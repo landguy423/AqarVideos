@@ -1,0 +1,77 @@
+{
+  "_from": "react-native-autosuggest",
+  "_id": "react-native-autosuggest@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-ShYXnWL7J+GQcg/+5crnYYVnXeq95hKL/aqFKrwhDwJEybPCK7W6r0tRb9gd3DLsJG7Dh2b3UO5DKwnUCYXzgw==",
+  "_location": "/react-native-autosuggest",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "react-native-autosuggest",
+    "name": "react-native-autosuggest",
+    "escapedName": "react-native-autosuggest",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-autosuggest/-/react-native-autosuggest-1.0.1.tgz",
+  "_shasum": "273390caecf117547d078f4c09d410476471d1ce",
+  "_spec": "react-native-autosuggest",
+  "_where": "/Users/ben/Documents/Work/AQAR/AqarVideos",
+  "author": {
+    "name": "Seth Silesky"
+  },
+  "bugs": {
+    "url": "https://github.com/silesky/react-native-autosuggest/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "prop-types": "^15.5.10"
+  },
+  "deprecated": false,
+  "description": "an autosuggest text input implementation for react native.",
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.14.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-config-standard-jsx": "^4.0.2",
+    "eslint-config-standard-react": "^5.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-prefer-object-spread": "^1.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prettier-standard": "^8.0.0"
+  },
+  "gitHead": "0c364d5e0561d3c83f1f4dbe967e7288d23923e3",
+  "homepage": "https://github.com/silesky/react-native-autosuggest#readme",
+  "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier-standard",
+      "git add"
+    ]
+  },
+  "main": "index.js",
+  "name": "react-native-autosuggest",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silesky/react-native-autosuggest.git"
+  },
+  "scripts": {
+    "format": "prettier-standard 'src/**/*.js'",
+    "precommit": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}

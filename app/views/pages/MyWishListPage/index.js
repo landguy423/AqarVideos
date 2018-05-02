@@ -1,0 +1,190 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Video from 'react-native-video';
+
+import {
+  View,
+  Text,
+  Dimensions,
+  ScrollView,
+  ListView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
+
+import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
+import LoadingSpinner from '@components/LoadingSpinner';
+import FontAwesome, {Icons} from 'react-native-fontawesome';
+import Icon from 'react-native-vector-icons/Feather';
+import I18n from '@i18n';
+import Container from '@layout/Container';
+import { styles } from './styles';
+import { getWishlistProducts, deleteWishlistProduct } from '@redux/Product/actions';
+
+class MyWishListPage extends Component {
+  constructor(props) {
+    super(props);
+    state = {
+      dataSource: null,
+      listData: [],
+      loading: false,
+    }
+  }
+
+  componentWillMount() {
+    const {
+      data,
+      token,
+      user,
+      products,
+      getWishlistProducts,
+    } = this.props
+
+    if (!products.wishlistProduct) {
+      this.setState({ loading: true })
+      // getWishlistProducts(token.tokenInfo.token, { user_id: user.userInfo.user.customer_id })
+      getWishlistProducts(token.tokenInfo.token, { user_id: 4 })
+    } else {
+      this.setData(products.wishlistProduct)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { products } = nextProps
+
+    if (this.props.products.loading === 'GET_WISHLIST_PRODUCT_REQUEST' && products.loading === 'GET_WISHLIST_PRODUCT_SUCCESS') {
+      console.log('WISHLIST: ', products.wishlistProduct);
+      this.setData(products.wishlistProduct)
+    }
+  }
+
+  setData = (products) => {
+    this.setState({ loading: false })
+    if (products) {
+      const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+      const dataSource = ds.cloneWithRows(products);
+      this.setState({
+        dataSource,
+        listData: products,
+      })
+    }
+  }
+
+  onItemSelect(rowData, rowID) {
+
+  }
+
+  onItemDelete(rowData, secId, rowId, rowMap) {
+    const {
+      token,
+      user,
+      deleteWishlistProduct,
+    } = this.props
+    const { listData } = this.state;
+
+    if (rowMap[`${secId}${rowId}`]) {
+			rowMap[`${secId}${rowId}`].closeRow();
+		}
+
+    let data = listData.splice(rowId, 1);
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    const dataSource = ds.cloneWithRows(listData);
+    this.setState({
+      dataSource,
+      listData,
+    })
+
+    deleteWishlistProduct(
+      token.tokenInfo.token,
+      {
+        // user_id: user.userInfo.user.customer_id
+        user_id: 4,
+        product_id: rowData.product_id,
+      }
+    )
+  }
+
+  render() {
+    const { dataSource, loading } = this.state
+    
+    return (
+      <Container title={I18n.t('sidebar.my_wishlist')}>
+        <LoadingSpinner visible={loading } />
+        
+        <View style={styles.container}>
+          {dataSource && (
+            <SwipeListView
+              dataSource={dataSource}
+              enableEmptySections={true}
+              renderRow={ (rowData, secId, rowId, rowMap) => (
+                <SwipeRow
+                  disableRightSwipe
+                  rightOpenValue={-50}
+                >
+                  <View style={styles.listRightView}>
+                    <TouchableOpacity
+                      style={styles.btnDeleteView}
+                      activeOpacity={0.9}
+                      onPress={() => this.onItemDelete(rowData, secId, rowId, rowMap)}
+                    >
+                      <FontAwesome style={styles.iconDelete}>{Icons.trash}</FontAwesome>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.listStyle}>
+                    <View style={styles.listItem}>
+                      <View style={styles.videoView}>
+                        {(!!rowData.video_url && rowData.video_url.length > 0 && rowData.status === '1') ?
+                          <Video
+                            ref={(ref) => { this.player = ref }}
+                            source={{ uri: rowData.video_url }}
+                            style={styles.video}
+                            resizeMode='cover'
+                            autoplay={false}
+                            paused
+                          /> :
+                          <Icon name='video-off' style={styles.emptyVideo} />
+                        }
+                      </View>
+                      <View style={styles.footerView}>
+                        <Text style={styles.textTitle}>{rowData.name}</Text>
+                        <View style={styles.bottomWrapper}> 
+                          <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
+                          <View style={styles.viewWrapper}>
+                            <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
+                            <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </SwipeRow>
+              )}
+            />
+          )}
+        </View>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = ({ user, token, products }) => ({
+  user,
+  token,
+  products,
+})
+
+const mapDispatchToProps = dispatch => ({
+  getWishlistProducts: (token, data) => dispatch(getWishlistProducts(token, data)),
+  deleteWishlistProduct: (token, data) => dispatch(deleteWishlistProduct(token, data))
+})
+
+MyWishListPage.propTypes = {
+  getWishlistProducts: PropTypes.func.isRequired,
+  deleteWishlistProduct: PropTypes.func.isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MyWishListPage)
