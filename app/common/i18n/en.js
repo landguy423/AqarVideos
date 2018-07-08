@@ -89,7 +89,13 @@ export default {
     ownership: "Ownership",
     description: "Description",
     title: "Title",
-    select_address: 'Select address from Map'
+    select_address: 'Select address from Map',
+    radius: 'Radius (km)',
+    radius_ph: 'Input Radius',
+    select_video: 'Please select the video',
+    select_address: 'Please select the address',
+    select_title: 'Please input title',
+    select_price: 'Please input price',
   },
   profile: {
     ph_name: 'User Name',

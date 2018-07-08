@@ -45,12 +45,12 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     const { userInfo, forgotPasswordResult } = nextProps;
 
-    if (userInfo != null) {
+    if (userInfo) {
       this.setState({ isLoginAlert: true });
       this.setState({ loading: false });
     }
 
-    if (forgotPasswordResult != null) {
+    if (forgotPasswordResult) {
       this.setState({ loading: false });
       this.setState({ isForgotResultAlert: true });
     }
@@ -69,12 +69,13 @@ class Login extends Component {
   }
 
   checkUserLoginResult() {
-    const { userLogin } = this.props;
+    const { userLogin, userInfo } = this.props;
     
     this.setState({ isLoginAlert: false });
-    console.log('userLogin: ', userLogin)
+
     if (userLogin) {
       AsyncStorage.setItem('loginStatus', JSON.stringify(true));
+      AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
       this.props.changeMenu(0);
       Actions.Main();
     }
@@ -95,7 +96,8 @@ class Login extends Component {
   }
 
   render() {
-    const { userInfo, forgotPasswordResult, loading, isLoginAlert } = this.props;
+    const { userInfo, forgotPasswordResult, loading } = this.props;
+    const { isLoginAlert } = this.state
 
     return (
       <View style={styles.container}>
@@ -115,7 +117,7 @@ class Login extends Component {
             title={forgotPasswordResult.status === 200 ? 'Success' : 'Error'}
             message={forgotPasswordResult.message} 
             visible={this.state.isForgotResultAlert} 
-            closeAlert={() => this.setState({isForgotResultAlert: false})}
+            closeAlert={() => this.setState({ isForgotResultAlert: false })}
           />
         )}
         
@@ -123,7 +125,14 @@ class Login extends Component {
           title="Warning"
           message="Please input your email"
           visible={this.state.isForgotAlert} 
-          closeAlert={() => this.setState({isForgotAlert: false})}
+          closeAlert={() => this.setState({ isForgotAlert: false })}
+        />
+
+        <CustomAlert 
+          title="Warning"
+          message="Email or password is not matched"
+          visible={this.state.loginFailed} 
+          closeAlert={() => this.setState({ loginFailed: false })}
         />
 
         <KeyboardScrollView>

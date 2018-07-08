@@ -89,7 +89,13 @@ export default {
     ownership: 'المالك',
     description: 'الوصف',
     title: 'العنوان',
-    select_address: 'اختر العنوان من الخريطة'
+    select_address: 'اختر العنوان من الخريطة',
+    radius: 'نصف القطر (km)',
+    radius_ph: 'دائرة نصف قطرها الإدخال',
+    select_video: 'يرجى تحديد الفيديو',
+    select_address: 'يرجى اختيار العنوان',
+    select_title: 'يرجى إدخال العنوان',
+    select_price: 'يرجى إدخال السعر',
   },
   profile: {
     ph_name: 'الاسم كامل',

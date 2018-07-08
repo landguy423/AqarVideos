@@ -14,3 +14,16 @@ export function getPackages(token) {
       })  
   };
 }
+
+export function getMyPackage(token, data) {
+  return {
+    types: [types.GET_MY_PACKAGE_REQUEST, types.GET_MY_PACKAGE_SUCCESS, types.GET_MY_PACKAGE_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${API_URL}?route=api/package/getPaidPackage&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          data,
+      })  
+  };
+}

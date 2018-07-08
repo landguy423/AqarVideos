@@ -28,14 +28,9 @@ export const styles = StyleSheet.create({
   },
   listItem: {
     width: listItemWidth,
-    height: '100%',
+    height: listItemHeight,
     flexDirection: 'row',
     backgroundColor: 'white',
-    // shadowOffset: { width:0, height:2 },
-    // shadowOpacity: 0.4,
-    // shadowRadius: 2,
-    // elevation: 1,
-    // shadowColor: 'black',
   },
   videoView: {
     width: 120,

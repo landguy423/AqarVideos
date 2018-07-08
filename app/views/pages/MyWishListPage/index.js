@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Video from 'react-native-video';
+import { Actions } from 'react-native-router-flux';
 
 import {
   View,
@@ -41,38 +42,28 @@ class MyWishListPage extends Component {
       getWishlistProducts,
     } = this.props
 
-    if (!products.wishlistProduct) {
-      this.setState({ loading: true })
-      // getWishlistProducts(token.tokenInfo.token, { user_id: user.userInfo.user.customer_id })
-      getWishlistProducts(token.tokenInfo.token, { user_id: 4 })
-    } else {
-      this.setData(products.wishlistProduct)
-    }
+    this.setState({ loading: true })
+    getWishlistProducts(token.tokenInfo.token, { user_id: user.userInfo.user.customer_id })
   }
 
   componentWillReceiveProps(nextProps) {
     const { products } = nextProps
 
     if (this.props.products.loading === 'GET_WISHLIST_PRODUCT_REQUEST' && products.loading === 'GET_WISHLIST_PRODUCT_SUCCESS') {
-      console.log('WISHLIST: ', products.wishlistProduct);
-      this.setData(products.wishlistProduct)
-    }
-  }
-
-  setData = (products) => {
-    this.setState({ loading: false })
-    if (products) {
-      const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-      const dataSource = ds.cloneWithRows(products);
-      this.setState({
-        dataSource,
-        listData: products,
-      })
+      this.setState({ loading: false })
+      if (products.wishlistProduct) {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        const dataSource = ds.cloneWithRows(products.wishlistProduct);
+        this.setState({
+          dataSource,
+          listData: products.wishlistProduct,
+        })
+      }
     }
   }
 
   onItemSelect(rowData, rowID) {
-
+    Actions.ProductDetail({ data: rowData });
   }
 
   onItemDelete(rowData, secId, rowId, rowMap) {
@@ -98,8 +89,7 @@ class MyWishListPage extends Component {
     deleteWishlistProduct(
       token.tokenInfo.token,
       {
-        // user_id: user.userInfo.user.customer_id
-        user_id: 4,
+        user_id: user.userInfo.user.customer_id,
         product_id: rowData.product_id,
       }
     )
@@ -107,7 +97,7 @@ class MyWishListPage extends Component {
 
   render() {
     const { dataSource, loading } = this.state
-    
+
     return (
       <Container title={I18n.t('sidebar.my_wishlist')}>
         <LoadingSpinner visible={loading } />
@@ -132,31 +122,37 @@ class MyWishListPage extends Component {
                     </TouchableOpacity>
                   </View>
                   <View style={styles.listStyle}>
-                    <View style={styles.listItem}>
-                      <View style={styles.videoView}>
-                        {(!!rowData.video_url && rowData.video_url.length > 0 && rowData.status === '1') ?
-                          <Video
-                            ref={(ref) => { this.player = ref }}
-                            source={{ uri: rowData.video_url }}
-                            style={styles.video}
-                            resizeMode='cover'
-                            autoplay={false}
-                            paused
-                          /> :
-                          <Icon name='video-off' style={styles.emptyVideo} />
-                        }
-                      </View>
-                      <View style={styles.footerView}>
-                        <Text style={styles.textTitle}>{rowData.name}</Text>
-                        <View style={styles.bottomWrapper}> 
-                          <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
-                          <View style={styles.viewWrapper}>
-                            <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
-                            <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>
+                    <TouchableOpacity
+                      style={styles.btnDeleteView}
+                      activeOpacity={0.9}
+                      onPress={() => this.onItemSelect(rowData, rowId)}
+                    >
+                      <View style={styles.listItem}>
+                        <View style={styles.videoView}>
+                          {(!!rowData.video_url && rowData.video_url.length > 0 && rowData.status === '1') ?
+                            <Video
+                              ref={(ref) => { this.player = ref }}
+                              source={{ uri: rowData.video_url }}
+                              style={styles.video}
+                              resizeMode='cover'
+                              autoplay={false}
+                              paused
+                            /> :
+                            <Icon name='video-off' style={styles.emptyVideo} />
+                          }
+                        </View>
+                        <View style={styles.footerView}>
+                          <Text style={styles.textTitle}>{rowData.name}</Text>
+                          <View style={styles.bottomWrapper}> 
+                            <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
+                            <View style={styles.viewWrapper}>
+                              <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
+                              <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>
+                            </View>
                           </View>
                         </View>
                       </View>
-                    </View>
+                    </TouchableOpacity>
                   </View>
                 </SwipeRow>
               )}

@@ -44,8 +44,10 @@ class MainPage extends Component {
     if (!userLogin) {
       AsyncStorage.getItem('loginStatus').then((value) => {
         if (value === 'true') {
-          this.props.setLoginStatus(true);
           this.props.changeMenu(0);
+          AsyncStorage.getItem('userInfo').then((value) => {
+            this.props.setLoginStatus(JSON.parse(value));
+          })
         }
       }).done();
     }
@@ -56,7 +58,7 @@ class MainPage extends Component {
 
     switch(index) {
       case 'plus':
-        this.setState({isBtnList: !this.state.isBtnList});
+        this.setState({ isBtnList: !this.state.isBtnList });
         break;
       case 'list':
         if (btnStatus == 'map')

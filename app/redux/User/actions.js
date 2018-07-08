@@ -16,9 +16,10 @@ export function userSignOut() {
   };
 }
 
-export function setLoginStatus() {
+export function setLoginStatus(data) {
   return {
     type: types.SET_LOGIN_STATUS,
+    data,
   };
 }
 

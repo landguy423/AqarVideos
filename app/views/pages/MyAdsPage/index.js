@@ -36,22 +36,20 @@ class MyAdsPage extends Component {
       token,
       user,
       products,
-      getAdsProcuts,
+      getAdsProducts,
     } = this.props
 
-    if (!products.myAdsProduct) {
-      this.setState({ loading: true })
-      // getAdsProducts(token.tokenInfo.token, { user_id: user.userInfo.user.customer_id })
-      getAdsProducts(token.tokenInfo.token, { user_id: 4 })
-    } else {
-      this.setData(products.myAdsProduct.ads)
-    }
+    this.setState({ loading: true })
+    getAdsProducts(token.tokenInfo.token, { id: user.userInfo.user.customer_id })
   }
 
   componentWillReceiveProps( { products }) {
     if (this.props.products.loading === 'GET_ADS_PRODUCT_REQUEST' && products.loading === 'GET_ADS_PRODUCT_SUCCESS' && products.myAdsProduct.status === 200) {
-      console.log('products.myAdsProduct', products.myAdsProduct)
+      console.log('PPP: ', products.myAdsProduct);
       this.setData(products.myAdsProduct.ads)
+    }
+    if (products.loading === 'GET_ADS_PRODUCT_FAILED') {
+      this.setState({ loading: false })  
     }
   }
 
@@ -63,16 +61,7 @@ class MyAdsPage extends Component {
   }
 
   onItemSelect(rowData, rowID) {
-    Actions.PostNewVideoPreview({data: {
-      category: rowData.category,
-      title: rowData.name,
-      description: rowData.description,
-      price: rowData.price,
-      productOption: rowData.product_type,
-      videoUri: rowData.video_url,
-      latitude: rowData.latitude,
-      longitude: rowData.latitude,
-    }});
+    Actions.ProductUpdate({ data: rowData });
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
@@ -120,7 +109,6 @@ class MyAdsPage extends Component {
 
   render() {
     const { dataSource, loading } = this.state
-    console.log('LOADING: ', loading)
     return (
       <Container title={I18n.t('sidebar.my_ads')}>
         <LoadingSpinner visible={loading } />

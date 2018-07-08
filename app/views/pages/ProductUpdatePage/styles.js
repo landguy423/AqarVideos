@@ -25,8 +25,8 @@ export const styles = StyleSheet.create({
     color: 'white',
   },
   videoThumbnail: {
-    width: commonStyles.screenWidth,
-    height: 200,
+    width: '100%',
+    height: '100%',
   },
   titleView: {
     marginVertical: 10,
@@ -185,5 +185,24 @@ export const styles = StyleSheet.create({
   },
   addressView: {
     marginTop: 5,
-  }
+  },
+  buttonStyle: {
+    height: commonStyles.buttonHeight,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  editBtnView: {
+    backgroundColor: commonColors.pinkColor,
+    marginTop: 30,
+    marginBottom: 10,
+  },
+  deleteBtnView: {
+    backgroundColor: commonColors.darkGrayColor,
+    marginBottom: 30,
+  },
+  textEdit: {
+    fontFamily: commonStyles.normalFont,
+    fontSize: commonStyles.normalFontSize,
+    color: 'white',
+  },
 });

@@ -9,13 +9,30 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     height: commonStyles.screenNormalHeight,
-    width: '100%',
+    width: commonStyles.screenWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  subContainer: {
+    backgroundColor: 'white',
+    width: commonStyles.screenWidth,
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  thumbnail: {
+  videoView: {
     width: '100%',
     height: 200,
+    backgroundColor: commonColors.darkGrayColor,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  video: {
+    width: '100%',
+    height: 200,
+  },
+  emptyVideo: {
+    color: 'white',
+    fontSize: 50,
   },
   titleView: {
     marginVertical: 20,
@@ -29,7 +46,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: commonStyles.normalFontSize,
     textAlign: 'right',
-    color: commonColors.placeholderText,
+    color: commonColors.darkGrayColor,
   },
   textPhone: {
     fontFamily: commonStyles.normalFont,
@@ -71,6 +88,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: commonColors.borderColor,
     height: 1,
+    marginTop: 20,
   },
   btnView: {
     width: '100%',
@@ -126,5 +144,13 @@ export const styles = StyleSheet.create({
   },
   iconAd: {
     marginLeft: 10,
+  },
+  mapViewContainer: {
+    width: '100%',
+    height: 200,
+  },
+  mapView: {
+    height: '100%',
+    width: '100%',
   },
 });

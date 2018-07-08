@@ -31,9 +31,15 @@ class ProductListPage extends Component {
   }
 
   componentWillMount() {
-    const { category, allProduct } = this.props
+    const { category, allProduct, user } = this.props
 
-    const categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+    let categoryProduct = [];
+    if (user.userLogin) {
+      const { customer_id } = user.userInfo.user
+      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
+    } else {
+      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+    }
     this.setState({
       categoryProduct,
     })
@@ -44,6 +50,7 @@ class ProductListPage extends Component {
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
+    const { user } = this.props
     return (
       <View style={styles.listItem}>
         <TouchableOpacity 
@@ -70,7 +77,11 @@ class ProductListPage extends Component {
         </TouchableOpacity>
 
         <View style={styles.footerView}>
-          <FontAwesome style={styles.favorite}>{rowData.status ? Icons.star : Icons.starO}</FontAwesome>
+          <View style={styles.favoriteView}>
+            {user.userLogin && (
+              <FontAwesome style={styles.favorite}>{rowData.favorite ? Icons.star : Icons.starO}</FontAwesome>
+            )}
+          </View>
 
           <View style={styles.footerRightView}>
             {rowData.price.length > 0 && (
@@ -118,4 +129,15 @@ class ProductListPage extends Component {
   }
 }
 
-export default ProductListPage
+const mapStateToProps = ({ user }) => ({
+  user,
+})
+
+ProductListPage.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  null,
+)(ProductListPage)

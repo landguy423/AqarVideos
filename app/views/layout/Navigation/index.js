@@ -34,13 +34,13 @@ class Navigation extends Component {
   }
 
   onBack() {
-    Actions.pop();
+    Actions.pop({ refresh: {} });
   }
 
   render() {
     const { title, type } = this.props;
 
-    if (type == 'register') {
+    if (type === 'register') {
       return (
         <View style={styles.container_register}>
           <View style={styles.backIconWrapper}>
@@ -51,7 +51,7 @@ class Navigation extends Component {
         </View>
       )
     }
-    else if (type == 'detail') {
+    else if (type === 'detail') {
       return (
         <View style={styles.container_detail}>
           <View style={styles.backIconWrapper}>

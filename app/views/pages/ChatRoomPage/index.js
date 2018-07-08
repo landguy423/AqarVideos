@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
@@ -10,124 +11,170 @@ import {
   TextInput,
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import Moment from 'react-moment';
+import { connect } from 'react-redux';
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import KeyboardScrollView from '@components/KeyboardView';
 import SendMessageComponent from '@components/MessageComponent/SendMessageComponent';
 import ReceiveMessageComponent from '@components/MessageComponent/ReceiveMessageComponent';
-
+import LoadingSpinner from '@components/LoadingSpinner';
+import { getChatData, sendMessage } from '@redux/Message/actions';
+import { sortBy } from 'lodash';
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
 
-export default class ChatRoomPage extends Component {
+class ChatRoomPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messageData: [],
+      message: '',
+      loading: false,
     }
   }
 
   componentWillMount() {
-    const messageData = [
-      {
-        type: 'receive',
-        name: 'User1',
-        message: 'testtesttesttesttesttesttesttesttesttesttesttest',
-        date: '15.Nov 13:45'
-      },
-      {
-        type: 'send',
-        name: 'Me',
-        message: 'testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttestesttesttesttesttest',
-        date: '15.Nov 13:45'
-      },
-      {
-        type: 'receive',
-        name: 'User1',
-        message: 'testtesttesttesttesttesttesttesttesttesttesttestesttesttesttesttestesttesttesttesttest',
-        date: '15.Nov 13:45'
-      },
-      {
-        type: 'receive',
-        name: 'User2',
-        message: 'testtesttesttesttesttesttesttest',
-        date: '15.Nov 13:45'
-      },
-      {
-        type: 'send',
-        name: 'Me',
-        message: 'testtesttesttesttesttesttesttesttesttesttesttest',
-        date: '15.Nov 13:45'
-      },
-      {
-        type: 'receive',
-        name: 'User1',
-        message: 'teststtest',
-        date: '15.Nov 13:45'
-      },
-      {
-        type: 'receive',
-        name: 'User2',
-        message: 'testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest',
-        date: '15.Nov 13:45'
-      },
-    ];
+    const { data, user, token, message, getChatData } = this.props;
 
-    this.setState({ messageData });
+    this.setState({ loading: true })
+    getChatData(
+      token.tokenInfo.token,
+      {
+        product_id: data.product_id,
+        receiver_id: data.sender_id === user.userInfo.user.customer_id ? data.receiver_id : data.sender_id,
+        sender_id: user.userInfo.user.customer_id,
+      }
+    );
   }
+
+  componentWillReceiveProps(nextProps) {
+    const { message, getChatData, token, data, user } = nextProps;
+
+    if (this.props.message.status === 'GET_CHAT_DATA_REQUEST' && message.status === 'GET_CHAT_DATA_SUCCESS') {
+      console.log('CHAT_DATA: ', message.chatData);
+      this.setState({ loading: false });
+      if (message.chatData.status === 200) {
+        let data = message.chatData.messages;
+        data = sortBy(data, item => item.date_added);
+        this.setState({ messageData: data });
+      }
+      if (message.chatData.status === 107) {
+        this.setState({ messageData: [] });
+      }
+    }
+
+    // Recall message list
+    if (this.props.message.status === 'SEND_DIRECT_MESSAGE_REQUEST' && message.status === 'SEND_DIRECT_MESSAGE_SUCCESS') {
+      console.log('RECAL__CHAT: ', message: directMessage);
+      if (message.directMessage.status === 200) {
+        getChatData(
+          token.tokenInfo.token,
+          {
+            product_id: data.product_id,
+            receiver_id: data.sender_id === user.userInfo.user.customer_id ? data.receiver_id : data.sender_id,
+            sender_id: user.userInfo.user.customer_id,
+          }
+        );
+      }
+    }
+  }
+
   onItemSelect(rowData, rowID) {
     
   }
     
   _renderRow (rowData, sectionID, rowID, highlightRow) {
-    if (rowData.type == 'send') {
-      return (
-        <SendMessageComponent data={rowData} />
-      )
-    }
-    else {
-      return (
-        <ReceiveMessageComponent data={rowData} />
-      )
+    const { user } = this.props;
+    const { customer_id } = user.userInfo.user;
+
+    if (rowData.sender_id === customer_id) {
+      return <SendMessageComponent data={rowData} />
+    } else if (rowData.receiver_id === customer_id) {
+      return <ReceiveMessageComponent data={rowData} />
     }
   }
+
   _renderSeparator (sectionID, rowID, adjacentRowHighlighted) {
     return (
       <View
           key={`${sectionID}-${rowID}`}
-          style={{ height: 0, backgroundColor: 'transparent', flex:1}}
+          style={{ height: 0, backgroundColor: 'transparent', flex: 1 }}
       />
     );
   }
   
+  getNow() {
+    const today = new Date()
+    let dd = today.getDate()
+    let mm = today.getMonth() + 1
+    let yyyy = today.getFullYear()
+
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+    const hour = today.getHours();
+    const min = today.getMinutes();
+    const sec = today.getSeconds();
+    return `${yyyy}-${mm}-${dd} ${hour}:${min}:${sec}`;
+  }
+
   onSend() {
     const { messageData, message } = this.state;
+    const { data, user, token, sendMessage } = this.props;
+
+    this.setState({ message: '' });
+
     this.setState({
       messageData: [
         ...messageData,
         {
-          type: 'send',
-          name: 'Me',
+          sender_id: user.userInfo.user.customer_id,
+          senders_detail: {
+            name: user.userInfo.user.firstname
+          },
           message: message,
-          date: '15.Nov 13:45'
+          date_added: this.getNow()
         }
       ],
+      message: '',
     })
+
+    sendMessage(
+      token.tokenInfo.token,
+      {
+        product_id: data.product_id,
+        receiver_id: data.sender_id === user.userInfo.user.customer_id ? data.receiver_id : data.sender_id,
+        sender_id: user.userInfo.user.customer_id,
+        message,
+        subject: '',
+      }
+    )
   }
 
   render() {
-    const { data } = this.props;
-    const { messageData } = this.state;
+    const { data, user } = this.props;
+    const { messageData, loading } = this.state;
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     const dataSource = ds.cloneWithRows(messageData);
 
+    let userName = '';
+    if (user.userInfo) {
+      userName = data.sender_id === user.userInfo.user.customer_id ? data.receiver_details.name : data.sender_details.name;
+    }
+
     return (
-      <Container title={data.name} type="detail">
+      <Container title={userName} type="detail">
+        <LoadingSpinner visible={loading } />
+
         <View style={styles.container}>
           <KeyboardScrollView>
             <View style={styles.container}>
@@ -139,6 +186,7 @@ export default class ChatRoomPage extends Component {
                   renderSeparator={this._renderSeparator}
                   contentContainerStyle={styles.listView}
                   onContentSizeChange={(width, height) => this.refs.listview.scrollToEnd()}
+                  enableEmptySections={true}
                 />
               </View>
 
@@ -159,11 +207,13 @@ export default class ChatRoomPage extends Component {
                   />
                   <Icon name='pencil' style={styles.iconPen} />
                 </View>
+
                 <TouchableOpacity activeOpacity={0.5} onPress={() => this.onSend()}>
                   <View style={styles.btnSendView}>
                     <Icon name='send' style={styles.iconSend} />
                   </View>
                 </TouchableOpacity>
+
               </View>
             </View>
           </KeyboardScrollView>
@@ -172,3 +222,28 @@ export default class ChatRoomPage extends Component {
     );
   }
 }
+
+
+const mapStateToProps = ({ message, token, user }) => ({
+  user,
+  token,
+  message
+})
+
+const mapDispatchToProps = dispatch => ({
+  getChatData: (token, data) => dispatch(getChatData(token, data)),
+  sendMessage: (token, data) => dispatch(sendMessage(token, data)),
+})
+
+ChatRoomPage.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  token: PropTypes.objectOf(PropTypes.any).isRequired,
+  message: PropTypes.objectOf(PropTypes.any).isRequired,
+  getChatData: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ChatRoomPage)

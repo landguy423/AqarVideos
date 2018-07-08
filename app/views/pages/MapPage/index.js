@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import PropTypes from 'prop-types';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -21,7 +22,7 @@ const icon_bubble = require('@common/assets/images/map/speech_bubble.png');
 const icon_satellite = require('@common/assets/images/map/satellite.png');
 const icon_standard = require('@common/assets/images/map/standard.png');
 
-export default class MapPage extends Component {
+class MapPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,17 +32,23 @@ export default class MapPage extends Component {
   }
 
   componentWillMount() {
-    const { category, allProduct } = this.props
+    const { category, allProduct, user } = this.props
 
-    const categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
-    console.log('categoryProduct: ', categoryProduct)
+    let categoryProduct = [];
+    if (user.userLogin) {
+      const { customer_id } = user.userInfo.user
+      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
+    } else {
+      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+    }
     this.setState({
       categoryProduct,
     })
   }
 
   gotoDetailPage(data) {
-    Actions.ProductDetail({data: data.data});
+    Actions.ProductDetail({ data });
+    // Actions.ProductUpdate({ data });
   }
 
   changeMapType(mapType) {
@@ -55,7 +62,7 @@ export default class MapPage extends Component {
   render() {
     const { mapType, categoryProduct } = this.state;
     const { locationData, region } = this.props;
-
+    
     return (
       <View
         style={{ height: commonStyles.screenSubHeight }}
@@ -87,28 +94,29 @@ export default class MapPage extends Component {
           {categoryProduct.map((marker, index) => (
             <MapView.Marker
               key={index}
-              coordinate={{ latitude: marker.latitude, longitude: marker.longitude }}
+              coordinate={{ latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude) }}
               zIndex={9}
             >
               <View style={styles.marker}>
-                <Image source={icon_bubble} resizeMode="cover">
-                </Image>
-                <Text style={styles.markerText}>{marker.price}</Text>
+                <Image source={icon_bubble} resizeMode="cover" style={styles.bubble} />
+                <Text style={styles.markerText}>{parseFloat(marker.price).toFixed(2)}</Text>
               </View>
 
               <MapView.Callout onPress={() => this.gotoDetailPage(marker)}>
                 <View style={styles.markerDetailView}>
-                  {(!!marker.video_url && marker.video_url.length > 0 && marker.status === '1') ?
-                    <Video
-                      ref={(ref) => { this.player = ref }}
-                      source={{ uri: marker.video_url }}
-                      style={styles.markerDetailVideo}
-                      resizeMode='cover'
-                      autoplay={false}
-                      paused
-                    /> :
-                    <Icon name='video-off' style={styles.emptyVideo} />
-                  }
+                  <View style={styles.videoView}>
+                    {(!!marker.video_url && marker.video_url.length > 0 && marker.status === '1') ?
+                        <Video
+                          ref={(ref) => { this.player = ref }}
+                          source={{ uri: marker.video_url }}
+                          style={styles.markerDetailVideo}
+                          resizeMode='cover'
+                          autoplay={false}
+                          paused
+                        /> :
+                        <Icon name='video-off' style={styles.emptyVideo} />
+                    }
+                  </View>
                   <Text style={styles.markerDetailText}>{marker.name}</Text>
                 </View>
               </MapView.Callout>
@@ -119,3 +127,17 @@ export default class MapPage extends Component {
     );
   }
 }
+
+
+const mapStateToProps = ({ user }) => ({
+  user,
+})
+
+MapPage.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  null,
+)(MapPage)

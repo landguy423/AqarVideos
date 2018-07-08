@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import I18n from '@i18n';
-
+import PropTypes from 'prop-types';
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
@@ -27,9 +27,13 @@ export default class CategoryComponent extends Component {
     }
   }
 
+  componentWillMount() {
+    this.setState({ category: this.props.category })
+  }
+
   onSelectCategory(item, index) {
     this.setState({category: item});
-    this.props.category(item);
+    this.props.selectCategory(item);
 
     // if (index == 6 || index == 3) {
     //   this.refs.categoryScroll.scrollToEnd();
@@ -190,4 +194,8 @@ export default class CategoryComponent extends Component {
       </ScrollView>
     )
   }
+}
+
+CategoryComponent.defaultProps = {
+  category: 'building',
 }

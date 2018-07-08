@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
+  AsyncStorage
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -50,16 +51,19 @@ class Signup extends Component {
     const { verifyPhoneInfo, verifyCodeInfo, userSignupInfo } = nextProps;
     
     if (verifyPhoneInfo) {
-      this.setState({loading: false});
-      this.setState({isAlert: true});
+      this.setState({ loading: false });
+      this.setState({ isAlert: true });
     }
     if (verifyCodeInfo) {
-      this.setState({loading: false});
-      this.setState({isAlert: true});
+      this.setState({ loading: false });
+      this.setState({ isAlert: true });
     }
     if (userSignupInfo) {
-      this.setState({loading: false});
-      this.setState({isAlert: true});
+      this.setState({ loading: false });
+      this.setState({ isAlert: true });
+
+      AsyncStorage.setItem('loginStatus', JSON.stringify(true));
+      AsyncStorage.setItem('userInfo', JSON.stringify(userSignupInfo));
       
       this.props.changeMenu(0);
       Actions.Package();
@@ -173,7 +177,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={ true }
                 placeholder={I18n.t('profile.ph_firstname')}
-                placeholderTextColor={ commonColors.placeholderText }
+                placeholderTextColor={ commonColors.placeholderSubText }
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -188,11 +192,11 @@ class Signup extends Component {
                 <Icon name='user' style={styles.inputIcon}></Icon>
               </View>
               <TextInput
-                ref="Last Name"
+                ref="lastName"
                 autoCapitalize="none"
                 autoCorrect={ true }
                 placeholder={I18n.t('profile.ph_lastname')}
-                placeholderTextColor={ commonColors.placeholderText }
+                placeholderTextColor={ commonColors.placeholderSubText }
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -211,7 +215,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_email')}
-                placeholderTextColor={commonColors.placeholderText}
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -232,7 +236,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_mobile_number')}
-                placeholderTextColor={commonColors.placeholderText}
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -251,7 +255,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_password')}
-                placeholderTextColor={commonColors.placeholderText}
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -271,7 +275,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_confirm_password')}
-                placeholderTextColor={commonColors.placeholderText}
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -295,7 +299,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_mobile_number')}
-                placeholderTextColor={commonColors.placeholderText}
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -314,7 +318,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_confirm_code')}
-                placeholderTextColor={commonColors.placeholderText}
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -339,7 +343,7 @@ class Signup extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_mobile_number')}
-                placeholderTextColor={commonColors.placeholderText}
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"

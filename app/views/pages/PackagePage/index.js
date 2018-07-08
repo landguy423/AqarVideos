@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoadingSpinner from '@components/LoadingSpinner';
@@ -20,27 +21,34 @@ import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
 import { getPackages } from '@redux/Package/actions';
 
+const COLORS = [
+  '#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor, 
+  '#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor
+];
+
 class PackagePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      errorLoading: false,
-      colorData: ['#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor, '#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor],
+      packageList: [],
     }
   }
 
   componentWillMount() {
-    this.setState({loading: true});
-    this.props.getPackages(this.props.tokenInfo.token);
+    const { token, getPackages } = this.props;
+
+    this.setState({ loading: true });
+    getPackages(token.tokenInfo.token);
   }
 
   componentWillReceiveProps(nextProps) {
-    const {packageInfo} = nextProps;
-    if (packageInfo) {
+    const { packages } = nextProps;
+
+    if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
       this.setState({ loading: false });
-      if (packageInfo.error) {
-        this.setState({ errorLoading: true });
+      if (packages.packageInfo.status === 200) {
+        this.setState({ packageList: packages.packageInfo.package})
       }
     }
   }
@@ -57,7 +65,7 @@ class PackagePage extends Component {
       >
         <View style={styles.listItem}>
           <View style={styles.imageView}>
-            <View style={[styles.roundContent, {backgroundColor: this.state.colorData[rowID]}]}>
+            <View style={[styles.roundContent, { backgroundColor: COLORS[rowID] }]}>
                 <Text style={styles.number}>{rowData.detail['1'].title}</Text>
                 <Text style={styles.day}>{rowData.duration}{I18n.t('packages.days')}</Text>
             </View>
@@ -69,57 +77,61 @@ class PackagePage extends Component {
       </TouchableOpacity>
     )
   }
+
   _renderSeparator (sectionID, rowID, adjacentRowHighlighted) {
     return (
       <View
           key={rowID}
-          style={{ height: 15, backgroundColor: 'transparent', flex:1}}
+          style={{ height: 15, backgroundColor: 'transparent', flex:1 }}
       />
     );
   }
 
   render() {
-    const { loading, errorLoading } = this.state
-    const { packageInfo } = this.props;
-    let dataSource;
-    
-    if (packageInfo) {
-      if (!packageInfo.error) {
-        let listData = packageInfo.package;
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        dataSource = ds.cloneWithRows(listData);
-      }
-    }
+    const { loading, packageList } = this.state
+    const { packages: { packageInfo }} = this.props;
+
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    dataSource = ds.cloneWithRows(packageList);
 
     return (
       <Container title={I18n.t('sidebar.packages')}>
         <LoadingSpinner visible={loading } />
 
-        {packageInfo && packageInfo.error && (
-          <CustomAlert 
-            title={'Warning'}
-            message={packageInfo.error.warning} 
-            visible={errorLoading} 
-            closeAlert={() => this.setState({ errorLoading: false })}
-          />
-        )}
-
         <View style={styles.container}>
-          {packageInfo && !packageInfo.error && (
           <ListView
-              ref='listview'
-              dataSource={dataSource}
-              renderRow={this._renderRow.bind(this)}
-              renderSeparator={this._renderSeparator}
-              contentContainerStyle={styles.listView}
-            />)}
+            ref='listview'
+            dataSource={dataSource}
+            renderRow={this._renderRow.bind(this)}
+            renderSeparator={this._renderSeparator}
+            contentContainerStyle={styles.listView}
+            enableEmptySections={true}
+          />
         </View>
       </Container>
     );
   }
 }
 
-export default connect(state => ({
-  tokenInfo: state.token.tokenInfo,
-  packageInfo: state.packages.packageInfo
-}),{ getPackages })(PackagePage);
+
+const mapStateToProps = ({ user, token, packages }) => ({
+  user,
+  token,
+  packages
+})
+
+const mapDispatchToProps = dispatch => ({
+  getPackages: token => dispatch(getPackages(token)),
+})
+
+PackagePage.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  token: PropTypes.objectOf(PropTypes.any).isRequired,
+  packages: PropTypes.objectOf(PropTypes.any),
+  getPackages: PropTypes.func.isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PackagePage)

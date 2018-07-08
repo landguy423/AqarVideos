@@ -89,22 +89,15 @@ export const styles = StyleSheet.create({
     fontSize: 40,
   },
   buttonStyle: {
-    marginVertical: 10,
+    marginVertical: 30,
     height: commonStyles.buttonHeight,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  editBtnView: {
-    backgroundColor: commonColors.pinkColor,
-  },
   postBtnView: {
     backgroundColor: commonColors.greenColor,
   },
-  deleteBtnView: {
-    backgroundColor: commonColors.darkGrayColor,
-    marginBottom: 40,
-  },
-  textEdit: {
+  textPost: {
     fontFamily: commonStyles.normalFont,
     fontSize: commonStyles.normalFontSize,
     color: 'white',

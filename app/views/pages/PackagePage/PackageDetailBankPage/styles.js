@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   fieldContainer: {
     width: '100%',
-    height: commonStyles.screenNormalHeight - commonStyles.buttonHeight - commonStyles.buttonBottomHeight,
+    height: commonStyles.screenNormalHeight - commonStyles.buttonHeight,
     justifyContent:'flex-start',
     alignItems: 'center',
   },
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     height: commonStyles.buttonHeight,
     backgroundColor: commonColors.greenColor,
     position: 'absolute',
-    bottom: commonStyles.buttonBottomHeight,
+    bottom: 0,
   },
   btnWrapper: {
     width: '100%',

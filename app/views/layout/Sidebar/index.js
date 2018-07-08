@@ -16,6 +16,7 @@ import { Actions } from 'react-native-router-flux';
 import I18n from '@i18n';
 import { styles } from './styles';
 import { userSignOut, changeMenu } from '@redux/User/actions';
+import { filter } from 'lodash';
 
 const icon_login = require('@common/assets/images/menu/login_signup.png');
 const icon_offer = require('@common/assets/images/menu/special_offer.png');
@@ -35,12 +36,20 @@ class Sidebar extends Component {
     super(props);
     this.state = {
       userLogin: false,
+      myAdsCount: 0,
+      myWishlistCount: 0,
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const {userLogin} = this.props;
-    this.setState({userLogin: userLogin});
+    const { user, products: { allProduct } } = nextProps;
+
+    this.setState({ userLogin: user.userLogin });
+    if (user.userInfo && user.userInfo.status === '200') {
+      const myAdsProduct = filter(allProduct, item => item.customer_id === user.userInfo.user.customer_id)
+      const myWishlistProduct = filter(allProduct, item => item.favorite)
+      this.setState({ myAdsCount: myAdsProduct.length, myWishlistCount: myWishlistProduct.length })
+    }
   }
 
   onItemSelect(data, rowID) {
@@ -81,6 +90,7 @@ class Sidebar extends Component {
         case '9':
           this.props.userSignOut();
           AsyncStorage.removeItem('loginStatus');
+          AsyncStorage.removeItem('userInfo');
           this.props.changeMenu(0);
           Actions.Main();
           this.props.menuState();
@@ -146,11 +156,11 @@ class Sidebar extends Component {
           icon: icon_area
         },
         {
-          title: I18n.t('sidebar.my_ads') + ' (' + adsCount + ')',
+          title: I18n.t('sidebar.my_ads') + ' (' + this.state.myAdsCount + ')',
           icon: icon_myad
         },
         {
-          title: I18n.t('sidebar.my_wishlist') + ' (' + wishlistCount + ')',
+          title: I18n.t('sidebar.my_wishlist') + ' (' + this.state.myWishlistCount + ')',
           icon: icon_wishlist
         },
         {
@@ -231,6 +241,7 @@ class Sidebar extends Component {
 }
 
 export default connect(state => ({
-  userLogin: state.user.userLogin,
+  user: state.user,
+  products: state.products,
   menuIndex: state.user.menuIndex,
 }),{ userSignOut, changeMenu })(Sidebar);

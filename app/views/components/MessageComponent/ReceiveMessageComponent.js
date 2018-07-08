@@ -18,7 +18,7 @@ export default class ReceiveMessageComponent extends Component {
     return (
       <View style={styles.receiveContainer}>
         <View style={styles.receiveMessageContainer}>
-          <Text style={styles.name}>{data.name}</Text>
+          {/* <Text style={styles.name}>{data.sender_details.name}</Text> */}
           <View style={styles.body}>
             <View style={styles.triangel}>
               <Triangle
@@ -32,7 +32,7 @@ export default class ReceiveMessageComponent extends Component {
               <Text style={styles.receiveMessage}>{data.message}</Text>   
             </View>
           </View>
-          <Text style={styles.date}>{data.date}</Text>
+          <Text style={styles.date}>{data.date_added}</Text>
         </View>
       </View>
     )

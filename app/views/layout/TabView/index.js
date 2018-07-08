@@ -49,14 +49,14 @@ class TabView extends Component {
   }
 
   componentWillMount() {
-    const { token, category, map, getProductsByCategory, products } = this.props
+    const { token, user, category, map, getProductsByCategory } = this.props
     const { myLocation } = map;
 
-    if (products.allProduct) {
-      this.setState({ loading: false, allProduct: products.allProduct })
+    this.setState({ loading: true })
+    if (user.userInfo) {
+      getProductsByCategory(token.tokenInfo.token, { id: user.userInfo.user.customer_id })
     } else {
-      this.setState({ loading: true })
-      getProductsByCategory(token.tokenInfo.token, category)
+      getProductsByCategory(token.tokenInfo.token, { id: 0 })
     }
 
     if (myLocation == null) {
@@ -269,14 +269,15 @@ class TabView extends Component {
   }
 }
 
-const mapStateToProps = ({ token, products, map }) => ({
+const mapStateToProps = ({ token, user, products, map }) => ({
+  user,
   token,
   products,
   map,
 })
 
 const mapDispatchToProps = dispatch => ({
-  getProductsByCategory: (token, category) => dispatch(getProductsByCategory(token, category)),
+  getProductsByCategory: (token, data) => dispatch(getProductsByCategory(token, data)),
   saveMyLocation: args => dispatch(saveMyLocation(args)),
 })
 

@@ -28,6 +28,7 @@ import MyLocationPage from './views/pages/MyLocationPage';
 import SupportAdvertisementPage from './views/pages/SupportAdvertisementPage';
 import ProductListPage from './views/pages/ProductListPage';
 import ProductDetailPage from './views/pages/ProductDetailPage';
+import ProductUpdatePage from './views/pages/ProductUpdatePage';
 import PostNewVideoPage from './views/pages/PostNewVideoPage';
 import PostNewVideoPreviewPage from './views/pages/PostNewVideoPreviewPage';
 import MyMessagePage from './views/pages/MyMessagePage';
@@ -76,6 +77,7 @@ export default class App extends Component {
         <Scene key="SupportAdvertisement" component={ SupportAdvertisementPage } hideNavBar panHandlers={null}/>
         <Scene key="ProductList" component={ ProductListPage } hideNavBar panHandlers={null}/>
         <Scene key="ProductDetail" component={ ProductDetailPage } hideNavBar panHandlers={null}/>
+        <Scene key="ProductUpdate" component={ ProductUpdatePage } hideNavBar panHandlers={null}/>
         <Scene key="PostNewVideo" component={ PostNewVideoPage } hideNavBar panHandlers={null}/>
         <Scene key="PostNewVideoPreview" component={ PostNewVideoPreviewPage } hideNavBar panHandlers={null}/>
         <Scene key="PostProductLocation" component={ PostProductLocationPage } hideNavBar panHandlers={null}/>

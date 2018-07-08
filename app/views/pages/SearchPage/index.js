@@ -7,11 +7,11 @@ import {
   ListView,
   TouchableOpacity,
   Image,
-  Modal,
   TouchableWithoutFeedback,
   TextInput,
 } from 'react-native';
 
+import PropTypes from 'prop-types';
 import KeyboardScrollView from '@components/KeyboardView';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import { connect } from 'react-redux';
@@ -23,99 +23,140 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import I18n from '@i18n';
 import Container from '@layout/Container';
-import ModalShare from '@components/ModalShare';
+import Modal from 'react-native-modal';
+import CustomAlert from '@components/CustomAlert';
 import { RadioGroup, RadioButton } from '@components/RadioButtonGroup';
 import DropdownComponent from '@components/DropdownComponent';
 import CategoryComponent from '@components/CategoryComponent';
 import AutoSuggestComponent from '@components/AutoSuggestComponent';
 import LoadingSpinner from '@components/LoadingSpinner';
 import PostProductLocationPage from '../PostProductLocationPage';
+import ProductListPage from '../ProductListPage';
 
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
 import { getRegions } from '@redux/Region/actions';
+import { searchProduct } from '@redux/Product/actions';
+
+import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
 class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
+      isError: false,
+      showProducts: false,
+      errMsg: '',
+      page: 'post',
+      address: I18n.t('post_video.select_address'),
+      coordinate: null,
       category: 'building',
-      title: '',
-      description: '',
-      price: '',
+      minPrice: '0',
+      maxPrice: '10000',
       productOption: 'Sale',
+      radius: '1',
       period: '',
       buildingType: '',
-      videoUri: null,
       minSquareMeter: '',
-      address: I18n.t('post_video.select_address'),
-      page: 'post',
-      coordinate: null,
+      maxSquareMeter: '',
+      roomType: '',
+      roomCount: '',
+      furniture: true,
+      ownership: false,
+      areaSpace: '',
+      streetSize: '',
+      galleryNumber: '',
+      searchedProducts: [],
     }
     this.player = null;
   }
 
   componentWillMount() {
-    // if (this.props.tokenInfo) {
-    //   this.setState({ loading: true })
-    //   this.props.getRegions(this.props.tokenInfo.token)
-    // }
   }
 
   componentWillReceiveProps(nextProps) {
-
+    const { products } = nextProps;
+    if (this.props.products.loading === 'SEARCH_PRODUCT_REQUEST' && products.loading === 'SEARCH_PRODUCT_SUCCESS') {
+      console.log('SEARCH_PRODUCT: ', products.searchProduct);
+      this.setState({ loading: false });
+      if (products.searchProduct.status === 200) {
+        // this.setState({ searchProductList: products.searchProduct });
+        this.setState({ showProducts: true });
+      } else if (products.searchProduct.status === 107) {
+        this.setState({ isError: true, errMsg: products.searchProduct.message });
+      }
+    }
   }
 
   onSelectProductOption(index, value) {
-    this.setState({productOption: value})
+    this.setState({ productOption: value })
   }
 
   selectCategory(item) {
-    this.setState({category: item});
+    this.setState({ category: item });
   }
 
   onSearch() {
-    
+    const { searchProduct, token } = this.props;
+
+    if (!this.state.coordinate) return;
+
+    this.setState({ loading: true });
+    this.props.searchProduct(
+      token.tokenInfo.token,
+      {
+        category_name: this.state.category,
+        lat: this.state.coordinate.latitude,
+        long: this.state.coordinate.longitude,
+        radius: this.state.radius,
+        product_type: this.state.productOption,
+        min_price: this.state.minPrice,
+        maxPrice: this.state.maxPrice,
+        building_type: this.state.buildingType,
+        min_square_meter: this.state.minSquareMeter,
+        max_square_meter: this.state.maxSquareMeter,
+        period: this.state.period,
+        room_type: this.state.roomType,
+        room_count: this.state.roomCount,
+        furniture: this.state.furniture,
+        ownership: this.state.ownership,
+        areaspace: this.state.areaSpace,
+        street_size: this.state.streetSize,
+        gallery_number: this.state.galleryNumber
+      }
+    );
   }
 
   getAddress(addressArr) {
-    const address = addressArr.street + ', ' + addressArr.city + ', ' + addressArr.country;
-    this.setState({ address })
-    this.setState({ coordinate: addressArr.coordinate })
+    if (addressArr) {
+      const address = addressArr.street ? (addressArr.street + ', ') : '' + addressArr.city ? (addressArr.city + ', ') : '' + addressArr.country;
+      this.setState({ address })
+      this.setState({ coordinate: addressArr.coordinate })
+    } else {
+      this.setState({ address: I18n.t('post_video.select_address') })
+    }
   }
 
   changePage(page) {
     this.setState({ page })
   }
 
+  closeAlert() {
+    this.setState({ isError: false });
+  }
+
   render() {
-    // const {videoData} = this.props;
     const {
       page,
       coordinate,
       address,
-      category, 
-      videoUri,
+      category,
       loading,
-    } = this.state;  
-
-    const periodData = [
-      { value: 'Daily' },
-      { value: 'Monthly' },
-      { value: 'Yearly' }
-    ];
-
-    const buildingTypeData = [
-      { value: 'Residential' },
-      { value: 'Commercial' }
-    ];
-
-    const apartmentRoomType = [
-      { value: 'Singular' },
-      { value: 'Familiar' }
-    ];
+      isError,
+      errMsg,
+    } = this.state;
 
     if (page === 'map') {
       return (
@@ -131,11 +172,17 @@ class SearchPage extends Component {
     return (
       <Container title={I18n.t('search')} type='detail'>
         <LoadingSpinner visible={loading } />
+        <CustomAlert 
+          title={'Error'}
+          message={errMsg}
+          visible={isError} 
+          closeAlert={() => this.closeAlert()}
+        />
 
         <View style={styles.container}>
           <View style={styles.inputContainer}>
             <KeyboardScrollView>
-              <CategoryComponent category={item => this.selectCategory(item)} />
+              <CategoryComponent selectCategory={item => this.selectCategory(item)} />
 
               <View style={styles.itemView}>
                 <Text style={styles.textTitle}>
@@ -143,9 +190,29 @@ class SearchPage extends Component {
                 </Text>
                 <TouchableOpacity onPress={() => this.changePage('map')}>
                   <View style={styles.addressView}>
-                    <Text style={styles.input}>{this.state.address}</Text>
+                    <Text style={styles.input}>{address}</Text>
                   </View>
                 </TouchableOpacity>
+              </View>
+
+              <View style={styles.itemView}>
+                <Text style={styles.textTitle}>
+                  {I18n.t('post_video.radius')}
+                </Text>
+                <TextInput
+                  ref="radius"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  placeholder={I18n.t('post_video.radius_ph')}
+                  placeholderTextColor={ commonColors.placeholderSubText }
+                  textAlign="right"
+                  style={styles.input}
+                  underlineColorAndroid="transparent"
+                  returnKeyType={'next'}
+                  keyboardType="numbers-and-punctuation"
+                  value={this.state.radius}
+                  onChangeText={text => this.setState({ radius: text })}
+                />
               </View>
 
               <View style={styles.productOptionView}>
@@ -174,8 +241,9 @@ class SearchPage extends Component {
                     {I18n.t('post_video.type')}
                   </Text>
                   <DropdownComponent
-                    selectItem={value => this.setState({buildingType: value})}
-                    item={this.state.buildingType} data={buildingTypeData}
+                    selectItem={value => this.setState({ buildingType: value })}
+                    item={this.state.buildingType}
+                    data={BUILDING_TYPE_DATA}
                   />
                 </View>
               )}
@@ -183,10 +251,9 @@ class SearchPage extends Component {
               <View style={styles.squareMeterView}>
                 <View style={styles.squareMeterBox}>
                   <TextInput
-                    ref="squareMeter"
+                    ref="maxPrice"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    multiline
                     placeholder={I18n.t('post_video.max_price')}
                     placeholderTextColor={ commonColors.placeholderSubText }
                     textAlign="right"
@@ -200,10 +267,9 @@ class SearchPage extends Component {
                 </View>
                 <View style={styles.squareMeterBox}>
                   <TextInput
-                    ref="squareMeter"
+                    ref="minPrice"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    multiline
                     placeholder={I18n.t('post_video.min_price')}
                     placeholderTextColor={ commonColors.placeholderSubText }
                     textAlign="right"
@@ -224,7 +290,6 @@ class SearchPage extends Component {
                     ref="maxSquareMeter"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    multiline
                     placeholder={I18n.t('post_video.max_squaremeter')}
                     placeholderTextColor={ commonColors.placeholderSubText }
                     textAlign="right"
@@ -241,7 +306,6 @@ class SearchPage extends Component {
                     ref="minSquareMeter"
                     autoCapitalize="none"
                     autoCorrect={false}
-                    multiline
                     placeholder={I18n.t('post_video.min_squaremeter')}
                     placeholderTextColor={ commonColors.placeholderSubText }
                     textAlign="right"
@@ -261,8 +325,9 @@ class SearchPage extends Component {
                     {I18n.t('post_video.period')}
                   </Text>
                   <DropdownComponent
-                    selectItem={value => this.setState({period: value})}
-                    item={this.state.period} data={periodData}
+                    selectItem={value => this.setState({ period: value })}
+                    item={this.state.period}
+                    data={PERIOD_DATA}
                   />
                 </View>
               )}
@@ -270,25 +335,13 @@ class SearchPage extends Component {
               {(category === 'apartment') && (
                 <View>
                   <View style={styles.itemView}>
-                    <CheckBox
-                      label={I18n.t('post_video.furniture')}
-                      labelBefore
-                      labelStyle={{
-                        color: commonColors.placeholderText,
-                        fontSize: 14,
-                        fontFamily: commonStyles.normalFont,
-                        fontWeight: 'bold'
-                      }}
-                      onChange={checked => this.setState({ furniture: checked })}
-                    />
-                  </View>
-                  <View style={styles.itemView}>
                     <Text style={styles.textTitle}>
                       {I18n.t('post_video.room_type')}
                     </Text>
                     <DropdownComponent
-                      selectItem={value => this.setState({roomType: value})}
-                      item={this.state.roomType} data={apartmentRoomType}
+                      selectItem={value => this.setState({ roomType: value })}
+                      item={this.state.roomType}
+                      data={APARTMENT_ROOM_TYPE}
                     />
                   </View>
                   <View style={styles.itemView}>
@@ -305,8 +358,22 @@ class SearchPage extends Component {
                       style={styles.input}
                       underlineColorAndroid="transparent"
                       returnKeyType={'next'}
+                      keyboardType="numbers-and-punctuation"
                       value={this.state.roomCount}
                       onChangeText={text => this.setState({ roomCount: text }) }
+                    />
+                  </View>
+                  <View style={styles.itemView}>
+                    <CheckBox
+                      label={I18n.t('post_video.furniture')}
+                      labelBefore
+                      labelStyle={{
+                        color: commonColors.placeholderText,
+                        fontSize: 14,
+                        fontFamily: commonStyles.normalFont,
+                        fontWeight: 'bold'
+                      }}
+                      onChange={checked => this.setState({ furniture: checked })}
                     />
                   </View>
                   <View style={styles.itemView}>
@@ -319,7 +386,7 @@ class SearchPage extends Component {
                         fontFamily: commonStyles.normalFont,
                         fontWeight: 'bold'
                       }}
-                      onChange={(checked) => this.setState({ownership: checked})}
+                      onChange={(checked) => this.setState({ ownership: checked })}
                     />
                   </View>
                 </View>
@@ -340,6 +407,7 @@ class SearchPage extends Component {
                     style={styles.input}
                     underlineColorAndroid="transparent"
                     returnKeyType={ 'next' }
+                    keyboardType="numbers-and-punctuation"
                     value={this.state.areaSpace}
                     onChangeText={text => this.setState({ areaSpace: text }) }
                   />
@@ -362,6 +430,7 @@ class SearchPage extends Component {
                       style={styles.input}
                       underlineColorAndroid="transparent"
                       returnKeyType={'next'}
+                      keyboardType="numbers-and-punctuation"
                       value={this.state.streetSize}
                       onChangeText={text => this.setState({ streetSize: text }) }
                     />
@@ -386,6 +455,7 @@ class SearchPage extends Component {
                   </View>
                 </View>
               )}
+              <View style={{ height: 50 }} />
 
             </KeyboardScrollView>
           </View>
@@ -395,13 +465,42 @@ class SearchPage extends Component {
               <Text style={styles.searchBtn}>{I18n.t('search')}</Text>
             </View>
           </TouchableOpacity>
+
+          <Modal
+            animationType="slide"
+            transparent
+            isVisible={this.state.showProducts}
+            backdropColor='rgba(0, 0, 0, 0.3)'
+            onBackdropPress={() => this.setState({ showProducts: false })}
+          >
+            <View style={styles.modal} >
+              <ProductListPage category={this.state.category} allProduct={this.state.searchedProducts} />
+            </View>
+          </Modal>
+
         </View>
       </Container>
     );
   }
 }
 
-export default connect(state => ({
-  tokenInfo: state.token.tokenInfo,
-  regionData: state.regions.regionData
-}),{ getRegions })(SearchPage);
+const mapStateToProps = ({ products, token, user }) => ({
+  user,
+  token,
+  products
+})
+
+const mapDispatchToProps = dispatch => ({
+  searchProduct: (token, data) => dispatch(searchProduct(token, data)),
+})
+
+SearchPage.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  token: PropTypes.objectOf(PropTypes.any).isRequired,
+  searchProduct: PropTypes.func.isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SearchPage)

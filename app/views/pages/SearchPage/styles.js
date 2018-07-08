@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputContainer: {
-    height: commonStyles.screenNormalHeight - commonStyles.buttonHeight - commonStyles.buttonBottomHeight,
+    height: commonStyles.screenNormalHeight - commonStyles.buttonHeight,
     width: '100%',
   },
   thumbnail: {
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: commonStyles.normalFontSize,
     textAlign: 'right',
-    color: commonColors.placeholderText,
+    color: commonColors.darkGrayColor,
     marginBottom: 3,
   },
   description: {
@@ -114,7 +114,6 @@ export const styles = StyleSheet.create({
     fontSize: 30,
   },
   searchBtnView: {
-    marginBottom: commonStyles.buttonBottomHeight,
     width: commonStyles.screenWidth,
     height: commonStyles.buttonHeight,
     backgroundColor: commonColors.greenColor,
@@ -126,4 +125,8 @@ export const styles = StyleSheet.create({
     fontSize: commonStyles.normalFontSize,
     color: 'white',
   },
+  modal: {
+   width: commonStyles.screenSubWidth,
+   marginVertical: commonStyles.screenWidth * 0.1,
+  }
 });

@@ -14,3 +14,16 @@ export function getProfileData(token, data) {
       })  
   };
 }
+
+export function updateProfileData(token, data) {
+  return {
+    types: [types.UPDATE_PROFILE_REQUEST, types.UPDATE_PROFILE_SUCCESS, types.UPDATE_PROFILE_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${API_URL}?route=api/customer&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          data: data
+      })  
+  };
+}

@@ -11,6 +11,7 @@ import {
   TextInput,
 } from 'react-native';
 
+import PropTypes from 'prop-types';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -35,42 +36,16 @@ import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
 import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
+import { updateProduct, deleteMyProduct } from '@redux/Product/actions';
 
-class PostNewVideoPage extends Component {
+class ProductUpdatePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      
-      video_url: null,
       videoFileName: null,
-      category: 'building',
-      location: I18n.t('post_video.select_address'),
       coordinate: null,
-      name: '',
-      description: '',
-      price: '',
-      product_type: 'Sale',
-
-      //building
-      building_type: 'Residential', // Residential, Commercial
-
-      //villa
-      squaremeter: '1000',
-
-      //apartment
-      furniture: false,
-      period: 'Daily',    // Daily, Monthly, Yearly
-      room_type: 'Singular', // Singular, Familiar
-      room_count: '',
-      ownership: false,
-
-      //office
-      areaspace: '',
-
-      //gallery
-      street_size: '',
-      gallery_number: '',
+      data: null,
 
       page: 'post',
       errorFlag: false,
@@ -80,37 +55,33 @@ class PostNewVideoPage extends Component {
   }
 
   componentWillMount() {
+    const { data } = this.props
+    this.setState({ ...data })
+
+    this.setState({
+      coordinate: {
+        latitude: data.latitude,
+        longitude: data.longitude,
+      },
+    })
   }
 
   componentWillReceiveProps(nextProps) {
-
+    const { products } = nextProps
+    if (this.props.products.loading === 'UPDATE_PRODUCT_REQUEST' && products.loading === 'UPDATE_PRODUCT_SUCCESS' ||
+      this.props.products.loading === 'DELETE_PRODUCT_REQUEST' && products.loading === 'DELETE_PRODUCT_SUCCESS' ||
+      products.loading === 'UPDATE_PRODUCT_FAILED') {
+        this.setState({ loading: false })
+    }
   }
 
-  onPreview() {
-    const propsData = this.state;
-
-    if (!propsData.video_url || !propsData.videoFileName) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_video') })
-      return
+  componentDidUpdate(prevProps) {
+    const { products } = prevProps
+    if (products.loading === 'UPDATE_PRODUCT_REQUEST' && this.props.products.loading === 'UPDATE_PRODUCT_SUCCESS' ||
+      products.loading === 'DELETE_PRODUCT_REQUEST' && this.props.products.loading === 'DELETE_PRODUCT_SUCCESS' ||
+      this.props.products.loading === 'UPDATE_PRODUCT_FAILED') {
+        Actions.MyAds()
     }
-    if (!propsData.coordinate) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_address') })
-      return
-    }
-    if (propsData.name.length === 0) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_title') })
-      return
-    } else if (propsData.price.length === 0) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_price') })
-      return
-    }
-
-    this.setState({ errorFlag: false })
-    Actions.PostNewVideoPreview({ data: propsData });
   }
 
   onSelectProductOption(index, value) {
@@ -125,8 +96,38 @@ class PostNewVideoPage extends Component {
     this.setState({ video_url: null, videoFileName: null })
   }
 
+  onUpdate = () => {
+    const { user, token, updateProduct } = this.props
+    const stateData = this.state
+
+    this.setState({ loading: true })
+    const params = {
+      customer_id: user.userInfo.user.customer_id,
+      product_description: {
+        1: {
+          name: stateData.name,
+          description: stateData.description,
+        }
+      },
+      ...stateData,
+    }
+    updateProduct(token.tokenInfo.token, params)
+  }
+
+  onDelete = () => {
+    const { user, token, deleteMyProduct } = this.props
+    const stateData = this.state
+
+    this.setState({ loading: true })
+    const params = {
+      user_id: user.userInfo.user.customer_id,
+      product_id: stateData.product_id
+    }
+    deleteMyProduct(token.tokenInfo.token, params)
+  }
+
   onCamera() {
-    if (this.state.video_url === null) {
+    if (!!this.state.video_url && this.state.video_url.length > 0) {
       const options = {
         title: I18n.t('post_video.record_choose_video'),
         takePhotoButtonTitle: I18n.t('post_video.record_video'),
@@ -180,10 +181,10 @@ class PostNewVideoPage extends Component {
       errorFlag,
       errorText,
       page,
-      category,
-      video_url,
-      location,
       coordinate,
+      location,
+      category, 
+      video_url,
     } = this.state;
 
     if (page === 'map') {
@@ -198,11 +199,11 @@ class PostNewVideoPage extends Component {
     }
 
     return (
-      <Container title={I18n.t('sidebar.post_new_ads')}>
+      <Container title={this.state.name} type='detail'>
         <LoadingSpinner visible={loading } />
 
         <CustomAlert 
-          title="Warning"
+          title="Error"
           message={errorText}
           visible={errorFlag} 
           closeAlert={() => this.setState({ errorFlag: false })}
@@ -212,7 +213,7 @@ class PostNewVideoPage extends Component {
           <KeyboardScrollView>
             <TouchableOpacity onPress={() => this.onCamera()}>
               <View style={styles.videoView}>
-                {video_url ?
+                {(!!video_url && video_url.length > 0) ?
                   <Video
                     ref={ref => this.player = ref}
                     source={{ uri: video_url }}
@@ -224,7 +225,7 @@ class PostNewVideoPage extends Component {
                   /> :
                   <Icon name='video' style={styles.cameraIcon} />
                 }
-                {video_url && (
+                {(!!video_url && video_url.length > 0) && (
                   <View style={styles.deleteVideo}>
                     <TouchableOpacity onPress={() => this.onDeleteVideo()}>
                       <View style={styles.deleteVideoInner}>
@@ -236,7 +237,7 @@ class PostNewVideoPage extends Component {
               </View>
             </TouchableOpacity>
 
-            <CategoryComponent selectCategory={item => this.selectCategory(item)} />
+            <CategoryComponent selectCategory={item => this.selectCategory(item)} category={this.state.category} />
 
             <View style={styles.itemView}>
               <Text style={styles.textTitle}>
@@ -299,13 +300,13 @@ class PostNewVideoPage extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('sar')}
-                placeholderTextColor={commonColors.placeholderSubText}
+                placeholderTextColor={ commonColors.placeholderSubText }
                 textAlign="right"
                 style={styles.input}
                 underlineColorAndroid="transparent"
                 returnKeyType={ 'next' }
-                value={this.state.price}
                 keyboardType="numbers-and-punctuation"
+                value={this.state.price}
                 onChangeText={text => this.setState({ price: text })}
                 onSubmitEditing={() => this.refs.password.focus()}
               />
@@ -316,7 +317,7 @@ class PostNewVideoPage extends Component {
                 color='#7D7D7D' 
                 style={styles.radioGroup} 
                 thickness={2}
-                selectedIndex={0}
+                selectedIndex={this.state.product_type === 'Sale' ? 0 : 1}
                 onSelect={(index, value) => this.onSelectProductOption(index, value)}
               >
                 <RadioButton value={'Sale'}>
@@ -359,8 +360,8 @@ class PostNewVideoPage extends Component {
                   style={styles.input}
                   underlineColorAndroid="transparent"
                   returnKeyType={'next'}
-                  value={this.state.squaremeter}
                   keyboardType="numbers-and-punctuation"
+                  value={this.state.squaremeter}
                   onChangeText={text => this.setState({ squaremeter: text })}
                 />
               </View>)}
@@ -390,7 +391,8 @@ class PostNewVideoPage extends Component {
                       fontFamily: commonStyles.normalFont,
                       fontWeight: 'bold'
                     }}
-                    onChange={checked => this.setState({ furniture: checked })}
+                    checked={this.state.furniture === '1' ? true : false}
+                    onChange={checked => this.setState({ furniture: checked.checked })}
                   />
                 </View>
                 <View style={styles.itemView}>
@@ -399,7 +401,7 @@ class PostNewVideoPage extends Component {
                   </Text>
                   <DropdownComponent
                     selectItem={value => this.setState({ room_type: value })}
-                    item={this.state.roomType}
+                    item={this.state.room_type}
                     data={APARTMENT_ROOM_TYPE}
                   />
                 </View>
@@ -432,7 +434,8 @@ class PostNewVideoPage extends Component {
                       fontFamily: commonStyles.normalFont,
                       fontWeight: 'bold'
                     }}
-                    onChange={checked => this.setState({ ownership: checked })}
+                    checked={this.state.ownership === '1' ? true : false}
+                    onChange={checked => this.setState({ ownership: checked.checked })}
                   />
                 </View>
               </View>
@@ -502,11 +505,18 @@ class PostNewVideoPage extends Component {
               </View>
             )}
 
-            <TouchableOpacity onPress={() => this.onPreview()} activeOpacity={0.5}>
-              <View style={styles.previewBtnView}>
-                <Text style={styles.textPreview}>{I18n.t('sidebar.preview')}</Text>
+            <TouchableOpacity onPress={this.onUpdate} activeOpacity={0.5}>
+              <View style={[styles.buttonStyle, styles.editBtnView]}>
+                <Text style={styles.textEdit}>{I18n.t('edit')}</Text>
               </View>
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={this.onDelete} activeOpacity={0.5}>
+              <View style={[styles.buttonStyle, styles.deleteBtnView]}>
+                <Text style={styles.textEdit}>{I18n.t('delete')}</Text>
+              </View>
+            </TouchableOpacity>
+
           </KeyboardScrollView>
         </View>
       </Container>
@@ -514,4 +524,26 @@ class PostNewVideoPage extends Component {
   }
 }
 
-export default PostNewVideoPage
+const mapStateToProps = ({ user, token, products }) => ({
+  user,
+  token,
+  products,
+})
+
+const mapDispatchToProps = dispatch => ({
+  updateProduct: (token, data) => dispatch(updateProduct(token, data)),
+  deleteMyProduct: (token, data) => dispatch(deleteMyProduct(token, data)),
+})
+
+ProductUpdatePage.propTypes = {
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  token: PropTypes.objectOf(PropTypes.any).isRequired,
+  updateProduct: PropTypes.func.isRequired,
+  deleteMyProduct: PropTypes.func.isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProductUpdatePage)

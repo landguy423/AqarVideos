@@ -1,4 +1,9 @@
-//Get user token
+// Get user token
 export const GET_PACKAGE_REQUEST = 'GET_PACKAGE_REQUEST';
 export const GET_PACKAGE_SUCCESS = 'GET_PACKAGE_SUCCESS';
 export const GET_PACKAGE_FAILED = 'GET_PACKAGE_FAILED';
+
+// Get My package
+export const GET_MY_PACKAGE_REQUEST = 'GET_MY_PACKAGE_REQUEST';
+export const GET_MY_PACKAGE_SUCCESS = 'GET_MY_PACKAGE_SUCCESS';
+export const GET_MY_PACKAGE_FAILED = 'GET_MY_PACKAGE_FAILED';

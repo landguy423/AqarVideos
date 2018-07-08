@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  Keyboard,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -70,6 +71,7 @@ class PostProductLocationPage extends Component {
       lastLat: lastLat,
       lastLong: lastLong,
     })
+    Keyboard.dismiss();
   }
 
   componentWillUnmount() {

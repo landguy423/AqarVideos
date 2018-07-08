@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     fontFamily: commonStyles.normalFont,
-    color: commonColors.placeholderText,
+    color: commonColors.darkGrayColor,
     width: commonStyles.screenWidth - 80,
     fontSize: commonStyles.normalFontSize,
   },

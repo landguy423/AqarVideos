@@ -18,7 +18,7 @@ export default class SendMessageComponent extends Component {
     return (
       <View style={styles.sendContainer}>
         <View style={styles.sendMessageContainer}>
-          <Text style={styles.name}>{data.name}</Text>
+          {/* <Text style={styles.name}>{data.sender_details.name}</Text> */}
           <View style={styles.body}>
             <View style={styles.sendMessageBox}>
               <Text style={styles.sendMessage}>{data.message}</Text>   
@@ -32,7 +32,7 @@ export default class SendMessageComponent extends Component {
               />
             </View>
           </View>
-          <Text style={styles.date}>{data.date}</Text>
+          <Text style={styles.date}>{data.date_added}</Text>
         </View>
       </View>
     )

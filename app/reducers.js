@@ -5,6 +5,7 @@ import packages from '@redux/Package/reducer';
 import regions from '@redux/Package/reducer';
 import products from '@redux/Product/reducer';
 import profile from '@redux/Profile/reducer';
+import message from '@redux/Message/reducer';
 
 export {
   token,
@@ -14,4 +15,5 @@ export {
   regions,
   products,
   profile,
+  message,
 };

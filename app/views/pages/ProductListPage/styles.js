@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   listView: {
     paddingTop: 15,
-    width: commonStyles.screenWidth,
+    width: '100%',
     paddingHorizontal: commonStyles.padding,
   },
   listItem: {
@@ -62,13 +62,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
-  footerRightView: {
+  favoriteView: {
+    width: 100,
+    height: '100%',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
   },
   favorite: {
     fontSize: 20,
     color: commonColors.darkGrayColor,
+  },
+  footerRightView: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   textTitle: {
     fontFamily: commonStyles.normalFont,

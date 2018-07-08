@@ -14,7 +14,6 @@ import * as commonColors from '@common/styles/commonColors';
 export default class AutoSuggestComponent extends Component {
   onChange = (text) => {
     this.props.handleChange(text);
-    console.log('SELECT:', text)
   }
 
   render () {

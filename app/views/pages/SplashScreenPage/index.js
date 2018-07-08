@@ -8,7 +8,8 @@ import {
   Image,
 } from 'react-native';
 
-const loading_icon = require('@common/assets/images/loading_icon/splash_loading.gif');
+// const loading_icon = require('@common/assets/images/loading_icon/splash_loading.gif');
+const loading_icon = require('@common/assets/images/splash_screen/logo.png');
 
 import { styles } from './styles';
 

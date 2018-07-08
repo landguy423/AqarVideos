@@ -10,6 +10,8 @@ import {
   TextInput,
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import KeyboardScrollView from '@components/KeyboardView';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
@@ -20,25 +22,70 @@ import DropdownComponent from '@components/DropdownComponent';
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
+import { sendAdvertisement } from '@redux/Message/actions';
+import LoadingSpinner from '@components/LoadingSpinner';
+import CustomAlert from '@components/CustomAlert';
 
-export default class SupportAdvertisementPage extends Component {
+class SupportAdvertisementPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: '',
       email: '',
       fullName: '',
-      mobileNumber: '',
+      telephone: '',
       subject: '',
+      message: '',
+      loading: false,
+      isSuccess: false,
+      successMsg: '',
     }
   }
 
-  onUpdate() {
-    
+  componentWillMount() {
+    const { user } = this.props;
+    if (user.userInfo) {
+      const userInfo = user.userInfo.user
+      this.setState({
+        fullName: `${userInfo.firstname} ${userInfo.lastname}`,
+        email: userInfo.email,
+        telephone: userInfo.telephone,
+      })
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { message } = nextProps;
+
+    if (this.props.message.status === 'SEND_AD_REQUEST' && message.status === 'SEND_AD_SUCCESS') {
+      this.setState({ loading: false });
+      if (message.advertisementData.status === 200) {
+        this.setState({ isSuccess: true, successMsg: message.advertisementData.message });
+      }
+    }
+  }
+
+  onSend() {
+    const { token, sendAdvertisement } = this.props;
+    this.setState({ loading: true });
+    sendAdvertisement(
+      token.tokenInfo.token,
+      {
+        full_name: this.state.fullName,
+        mobile_no: this.state.telephone,
+        email_id: this.state.email,
+        subject: this.state.subject,
+        message: this.state.message,
+      }
+    )
+  }
+
+  closeAlert() {
+    this.setState({ isSuccess: false });
   }
 
   render() {
-    const {tabIndex} = this.state;
+    const { loading, isSuccess, successMsg, tabIndex } = this.state;
     const subjectData = [
       { value: 'Subject1' },
       { value: 'Subject2' },
@@ -47,6 +94,14 @@ export default class SupportAdvertisementPage extends Component {
 
     return (
       <Container title={I18n.t('sidebar.support_advertisement')}>
+        <LoadingSpinner visible={loading } />
+        <CustomAlert 
+          title={'Success'}
+          message={successMsg}
+          visible={isSuccess} 
+          closeAlert={() => this.closeAlert()}
+        />
+
         <View style={styles.container}>
           <KeyboardScrollView>
             <View style={styles.fieldContainer}>
@@ -56,7 +111,7 @@ export default class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect
                   placeholder={I18n.t('profile.ph_name')}
-                  placeholderTextColor={commonColors.placeholderText}
+                  placeholderTextColor={commonColors.placeholderSubText}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -76,14 +131,14 @@ export default class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_mobile_number')}
-                  placeholderTextColor={commonColors.placeholderText}
+                  placeholderTextColor={commonColors.placeholderSubText}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
                   returnKeyType={'next'}
                   keyboardType="numbers-and-punctuation"
-                  value={this.state.mobile}
-                  onChangeText={text => this.setState({ mobile: text }) }
+                  value={this.state.telephone}
+                  onChangeText={text => this.setState({ telephone: text }) }
                   onSubmitEditing={() => this.refs.email.focus()}
                 />
                 <View style={styles.iconView}>
@@ -97,7 +152,7 @@ export default class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder={I18n.t('profile.ph_email')}
-                  placeholderTextColor={commonColors.placeholderText}
+                  placeholderTextColor={commonColors.placeholderSubText}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -128,7 +183,7 @@ export default class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect
                   placeholder={I18n.t('support.ph_message')}
-                  placeholderTextColor={commonColors.placeholderText}
+                  placeholderTextColor={commonColors.placeholderSubText}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -141,9 +196,9 @@ export default class SupportAdvertisementPage extends Component {
           </KeyboardScrollView>
 
           <View style={styles.btnView}>
-            <TouchableOpacity onPress={() => this.onUpdate()} activeOpacity={0.5}>
+            <TouchableOpacity onPress={() => this.onSend()} activeOpacity={0.5}>
               <View style={styles.btnWrapper}>
-                <Text style={styles.btnText}>{I18n.t('update')}</Text>
+                <Text style={styles.btnText}>{I18n.t('send')}</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -153,3 +208,25 @@ export default class SupportAdvertisementPage extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ user, token, message }) => ({
+  user,
+  token,
+  message
+})
+
+const mapDispatchToProps = dispatch => ({
+  sendAdvertisement: (token, data) => dispatch(sendAdvertisement(token, data)),
+})
+
+SupportAdvertisementPage.propTypes = {
+  user: PropTypes.objectOf(PropTypes.any).isRequired,
+  token: PropTypes.objectOf(PropTypes.any).isRequired,
+  message: PropTypes.objectOf(PropTypes.any).isRequired,
+  sendAdvertisement: PropTypes.func.isRequired,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SupportAdvertisementPage)

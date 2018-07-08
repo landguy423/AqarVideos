@@ -40,8 +40,7 @@ export default class VideoRecordPage extends Component {
     if (this.camera) {
       this.camera.capture({mode: Camera.constants.CaptureMode.video})
           .then((data) => {
-            console.log('captured_data', data)
-            Actions.PostNewVideo({videoData: data});
+            Actions.PostNewVideo({ videoData: data });
           })
           .catch(err => console.error(err));
 

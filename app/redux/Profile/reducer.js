@@ -16,7 +16,6 @@ export default function profile(state = initialState, action = {}) {
         status: 'GET_PROFILE_REQUEST',
       };
     case types.GET_PROFILE_SUCCESS:
-    console.log('ACTION', action)
       return {
         ...state,
         status: 'GET_PROFILE_SUCCESS',
@@ -27,6 +26,24 @@ export default function profile(state = initialState, action = {}) {
         ...state,
         status: 'GET_PROFILE_FAILED',
         profileData: null,
+      };
+    /**************************/
+    /* Update profile data
+    /**************************/
+    case types.UPDATE_PROFILE_REQUEST:
+      return {
+        ...state,
+        status: 'UPDATE_PROFILE_REQUEST',
+      };
+    case types.UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        status: 'UPDATE_PROFILE_SUCCESS',
+      }
+    case types.UPDATE_PROFILE_FAILED:
+      return {
+        ...state,
+        status: 'UPDATE_PROFILE_FAILED',
       };
     default:
       return state;
