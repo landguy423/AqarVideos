@@ -51,7 +51,7 @@ export default class VideoRecordPage extends Component {
   }
 
   stopRecording = () => {
-    this.setState({isStart: false});
+    this.setState({ isStart: false });
 
     if (this.camera) {
       this.camera.stopCapture();
@@ -62,7 +62,7 @@ export default class VideoRecordPage extends Component {
   }
 
   handleTimerComplete(time) {
-    this.setState({recordTime: time})
+    this.setState({ recordTime: time })
   }
 
   render() {

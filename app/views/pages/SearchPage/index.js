@@ -82,7 +82,7 @@ class SearchPage extends Component {
       console.log('SEARCH_PRODUCT: ', products.searchProduct);
       this.setState({ loading: false });
       if (products.searchProduct.status === 200) {
-        // this.setState({ searchProductList: products.searchProduct });
+        this.setState({ searchProductList: products.searchProduct.product });
         this.setState({ showProducts: true });
       } else if (products.searchProduct.status === 107) {
         this.setState({ isError: true, errMsg: products.searchProduct.message });
@@ -101,19 +101,22 @@ class SearchPage extends Component {
   onSearch() {
     const { searchProduct, token } = this.props;
 
-    if (!this.state.coordinate) return;
+    if (!this.state.coordinate || !this.state.radius) return;
 
     this.setState({ loading: true });
     this.props.searchProduct(
       token.tokenInfo.token,
       {
         category_name: this.state.category,
-        lat: this.state.coordinate.latitude,
-        long: this.state.coordinate.longitude,
-        radius: this.state.radius,
+        // lat: this.state.coordinate.latitude,
+        // long: this.state.coordinate.longitude,
+        // radius: this.state.radius,
+        lat: '41',
+        long: '120',
+        radius: '5',
         product_type: this.state.productOption,
         min_price: this.state.minPrice,
-        maxPrice: this.state.maxPrice,
+        max_price: this.state.maxPrice,
         building_type: this.state.buildingType,
         min_square_meter: this.state.minSquareMeter,
         max_square_meter: this.state.maxSquareMeter,
@@ -131,9 +134,10 @@ class SearchPage extends Component {
 
   getAddress(addressArr) {
     if (addressArr) {
-      const address = addressArr.street ? (addressArr.street + ', ') : '' + addressArr.city ? (addressArr.city + ', ') : '' + addressArr.country;
-      this.setState({ address })
-      this.setState({ coordinate: addressArr.coordinate })
+      const address = addressArr.street ? (addressArr.street + ', ') : '' +
+                      addressArr.city ? (addressArr.city + ', ') : '' +
+                      addressArr.country;
+      this.setState({ address, coordinate: addressArr.coordinate })
     } else {
       this.setState({ address: I18n.t('post_video.select_address') })
     }
@@ -171,7 +175,7 @@ class SearchPage extends Component {
 
     return (
       <Container title={I18n.t('search')} type='detail'>
-        <LoadingSpinner visible={loading } />
+        <LoadingSpinner visible={loading} />
         <CustomAlert 
           title={'Error'}
           message={errMsg}
