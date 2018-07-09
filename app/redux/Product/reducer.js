@@ -212,7 +212,6 @@ export default function products(state = initialState, action = {}) {
         searchProduct: null,
       };
     case types.SEARCH_PRODUCT_SUCCESS: {
-      console.log('LLLL', action.result);
       return {
         ...state,
         loading: types.SEARCH_PRODUCT_SUCCESS,

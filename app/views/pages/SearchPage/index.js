@@ -57,11 +57,11 @@ class SearchPage extends Component {
       maxPrice: '10000',
       productOption: 'Sale',
       radius: '1',
-      period: '',
-      buildingType: '',
+      period: 'Daily',
+      buildingType: 'Residential',
       minSquareMeter: '',
       maxSquareMeter: '',
-      roomType: '',
+      roomType: 'Singular',
       roomCount: '',
       furniture: true,
       ownership: false,
@@ -99,20 +99,21 @@ class SearchPage extends Component {
   }
 
   onSearch() {
-    const { searchProduct, token } = this.props;
+    const { searchProduct, token, user } = this.props;
 
-    if (!this.state.coordinate || !this.state.radius) return;
+    // if (!this.state.coordinate || !this.state.radius) return;
 
     this.setState({ loading: true });
     this.props.searchProduct(
       token.tokenInfo.token,
       {
+        user_id: user.userInfo ? user.userInfo.user.customer_id : null,
         category_name: this.state.category,
         // lat: this.state.coordinate.latitude,
         // long: this.state.coordinate.longitude,
         // radius: this.state.radius,
-        lat: '41',
-        long: '120',
+        lat: '37.78',
+        long: '-122.44',
         radius: '5',
         product_type: this.state.productOption,
         min_price: this.state.minPrice,

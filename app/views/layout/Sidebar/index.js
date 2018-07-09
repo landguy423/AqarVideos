@@ -38,6 +38,7 @@ class Sidebar extends Component {
       userLogin: false,
       myAdsCount: 0,
       myWishlistCount: 0,
+      isPaidUser: true,
     }
   }
 
@@ -66,15 +67,13 @@ class Sidebar extends Component {
           Actions.MyWishList();
           break;
         case '3':
-          // Actions.VideoRecord();
-          Actions.PostNewVideo();
+          if (this.state.isPaidUser) {
+            Actions.PostNewVideo();
+          }
           break;
         case '4':
           Actions.MyMessage();
           break;
-        // case '5':
-        //   Actions.MyLocation();
-        //   break;
         case '5':
           Actions.Package();
           break;
@@ -97,8 +96,7 @@ class Sidebar extends Component {
         default: 
           break;
       }
-    }
-    else {
+    } else {
       switch(rowID) {
         case '0':
           Actions.Main();
@@ -110,10 +108,6 @@ class Sidebar extends Component {
           break;
         case '2':
           this.props.changeMenu(2);
-          Actions.Package();
-          break;
-        case '3':
-          this.props.changeMenu(3);
           Actions.SupportAdvertisement();
           break;
         default: 
@@ -171,10 +165,6 @@ class Sidebar extends Component {
           title: I18n.t('sidebar.my_messages'),
           icon: icon_message
         },
-        // {
-        //   title: I18n.t('sidebar.my_location'),
-        //   icon: icon_location
-        // },
         {
           title: I18n.t('sidebar.packages'),
           icon: icon_package
@@ -196,8 +186,7 @@ class Sidebar extends Component {
           icon: icon_signout
         },
       ];
-    }
-    else {
+    } else {
       menuItems = [
         {
           title: I18n.t('sidebar.home'),
@@ -206,14 +195,6 @@ class Sidebar extends Component {
         {
           title: I18n.t('sidebar.login_signup'),
           icon: icon_login
-        },
-        // {
-        //   title: 'Special offers',
-        //   icon: icon_offer
-        // },
-        {
-          title: I18n.t('sidebar.packages'),
-          icon: icon_package
         },
         {
           title: I18n.t('sidebar.support_advertisement'),

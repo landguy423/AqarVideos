@@ -27,6 +27,7 @@ class MapButtonListComponent extends Component {
 
     this.state = {
       messageCount: 0,
+      isPaidUser: true,
     }
   }
 
@@ -36,12 +37,14 @@ class MapButtonListComponent extends Component {
     this.animatedMapValue = new Animated.Value(170)
     this.animatedListValue = new Animated.Value(0)
 
-    getChatUserList(
-      token.tokenInfo.token,
-      {
-        user_id: user.userInfo.user.customer_id,
-      }
-    )
+    if (user.userInfo) {
+      getChatUserList(
+        token.tokenInfo.token,
+        {
+          user_id: user.userInfo.user.customer_id,
+        }
+      )
+    }
   }
 
   componentDidMount() {
@@ -69,8 +72,9 @@ class MapButtonListComponent extends Component {
   }
 
   onNewVideo() {
-    // Actions.VideoRecord();
-    Actions.PostNewVideo();
+    if (this.state.isPaidUser) {
+      Actions.PostNewVideo();
+    }
   }
 
   onDirectMessage() {
@@ -89,6 +93,7 @@ class MapButtonListComponent extends Component {
             <Image source={btnStatus === 'list' ? icon_map: icon_list} style={styles.btnIcon} />
           </TouchableOpacity>
         </View>
+
         {user.userLogin && (
           <View>
             <TouchableOpacity onPress={() => this.onDirectMessage()}  activeOpacity={0.8}>
@@ -98,6 +103,7 @@ class MapButtonListComponent extends Component {
               </View>
             </TouchableOpacity>
           </View>)}
+
         {user.userLogin && (
           <View>
             <TouchableOpacity onPress={() => this.onNewVideo()} activeOpacity={0.8}>
