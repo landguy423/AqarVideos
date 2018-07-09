@@ -239,7 +239,7 @@ class SearchPage extends Component {
                 </Text>
               </View>
 
-              {(category == 'building' || category == 'land') && (
+              {(category === 'building') && (
                 <View style={styles.itemView}>
                   <Text style={styles.textTitle}>
                     {I18n.t('post_video.type')}

@@ -318,7 +318,12 @@ class PostNewVideoPreviewPage extends Component {
               <CheckBox
                 label={I18n.t('terms_conditions')}
                 labelBefore
-                labelStyle={{color: commonColors.placeholderText, fontSize: 14, fontFamily: commonStyles.normalFont, fontWeight: 'bold'}}
+                labelStyle={{
+                  color: commonColors.placeholderText,
+                  fontSize: 14,
+                  fontFamily: commonStyles.normalFont,
+                  fontWeight: 'bold'
+                }}
                 onChange={(checked) => this.setState({ terms: checked })}
               />
             </View>
