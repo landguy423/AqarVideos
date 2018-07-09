@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   Image,
   Modal,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Share
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -86,7 +87,16 @@ class ProductDetailPage extends Component {
   }
 
   onShare() {
-    this.setState({ showShareModal : true });
+    const { data } = this.props;
+    // this.setState({ showShareModal : true });
+    Share.share({
+      message: data.description,
+      url: data.video_url,
+      title: data.name
+    }, {
+      dialogTitle: 'AQAR Videos',
+      subject: 'AQAR Videos'
+    })
   }
 
   onSendMessage() {
