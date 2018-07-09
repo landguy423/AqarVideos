@@ -27,7 +27,6 @@ class MapButtonListComponent extends Component {
 
     this.state = {
       messageCount: 0,
-      isPaidUser: true,
     }
   }
 
@@ -72,7 +71,7 @@ class MapButtonListComponent extends Component {
   }
 
   onNewVideo() {
-    if (this.state.isPaidUser) {
+    if (this.props.packages.isPaidUser) {
       Actions.PostNewVideo();
     }
   }
@@ -82,7 +81,7 @@ class MapButtonListComponent extends Component {
   }
 
   render() {
-    const { btnStatus, user } = this.props;
+    const { btnStatus, user, packages } = this.props;
     const animatedMapStyle= { bottom: this.animatedMapValue }
     const animatedListStyle= { bottom: this.animatedListValue }
 
@@ -116,10 +115,11 @@ class MapButtonListComponent extends Component {
   }
 }
 
-const mapStateToProps = ({ user, token, message }) => ({
+const mapStateToProps = ({ user, token, message, packages }) => ({
   user,
   token,
   message,
+  packages,
 })
 
 const mapDispatchToProps = dispatch => ({

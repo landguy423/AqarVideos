@@ -38,7 +38,6 @@ class Sidebar extends Component {
       userLogin: false,
       myAdsCount: 0,
       myWishlistCount: 0,
-      isPaidUser: true,
     }
   }
 
@@ -67,7 +66,7 @@ class Sidebar extends Component {
           Actions.MyWishList();
           break;
         case '3':
-          if (this.state.isPaidUser) {
+          if (this.props.packages.isPaidUser) {
             Actions.PostNewVideo();
           }
           break;
@@ -224,5 +223,6 @@ class Sidebar extends Component {
 export default connect(state => ({
   user: state.user,
   products: state.products,
+  packages: state.packages,
   menuIndex: state.user.menuIndex,
 }),{ userSignOut, changeMenu })(Sidebar);

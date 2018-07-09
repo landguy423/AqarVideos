@@ -5,12 +5,13 @@ const initialState = {
   error:null,
   packageInfo: null,
   myPackageInfo: null,
+  isPaidUser: true
 };
 
 export default function packages(state = initialState, action = {}) {
   switch (action.type) {
     /**************************/
-    /* Get API Token
+    /* Get all packages
     /**************************/
     case types.GET_PACKAGE_REQUEST:
       return {
