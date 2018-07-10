@@ -127,6 +127,6 @@ export const styles = StyleSheet.create({
   },
   modal: {
    width: commonStyles.screenSubWidth,
-   marginVertical: commonStyles.screenWidth * 0.1,
+   marginVertical: commonStyles.screenWidth * 0.12,
   }
 });

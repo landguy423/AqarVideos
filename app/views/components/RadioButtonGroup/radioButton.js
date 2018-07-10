@@ -49,7 +49,7 @@ export default class RadioButton extends Component{
                     disabled={this.props.disabled}
                     onPress={() => this.context.onSelect(this.props.index, this.props.value)}
                 >
-                    <View style={[styles.container, this.props.style, this.props.isSelected?{backgroundColor: this.context.highlightColor}:null]}>
+                    <View style={[styles.container, this.props.style, this.props.isSelected ? {backgroundColor: this.context.highlightColor} : null]}>
                         <View style={styles.item}>
                             {children}
                         </View>

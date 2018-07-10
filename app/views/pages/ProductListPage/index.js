@@ -19,7 +19,7 @@ import I18n from '@i18n';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
-
+import * as commonStyles from '@common/styles/commonStyles';
 import LoadingSpinner from '@components/LoadingSpinner';
 
 class ProductListPage extends Component {
@@ -40,17 +40,20 @@ class ProductListPage extends Component {
     } else {
       categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
     }
+
     this.setState({
       categoryProduct,
     })
   }
 
   onItemSelect(rowData, rowID) {
+    this.props.closeModal();
     Actions.ProductDetail({ data: rowData });
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
-    const { user } = this.props
+    const { user, itemWidth } = this.props
+    console.log('ROW_DATA: ', rowData);
     return (
       <View style={styles.listItem}>
         <TouchableOpacity 
@@ -92,7 +95,6 @@ class ProductListPage extends Component {
               <Text  style={styles.textViewCount}>{`${I18n.t('number_of_view')} ${rowData.viewed}`}</Text>
               <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>
             </View>
-
           </View>
         </View>
       </View>
@@ -121,7 +123,7 @@ class ProductListPage extends Component {
           dataSource={dataSource}
           renderRow={this._renderRow.bind(this)}
           renderSeparator={this._renderSeparator}
-          contentContainerStyle={styles.listView}
+          contentContainerStyle={[styles.listView, { width: this.props.listWidth }]}
           enableEmptySections
         />
       </View>
@@ -133,8 +135,15 @@ const mapStateToProps = ({ user }) => ({
   user,
 })
 
+ProductListPage.defaultProps = {
+  listWidth: commonStyles.screenWidth,
+  closeModal: () => {}
+}
+
 ProductListPage.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
+  listWidth: PropTypes.number,
+  closeModal: PropTypes.func
 }
 
 export default connect(

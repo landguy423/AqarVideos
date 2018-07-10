@@ -82,8 +82,7 @@ class SearchPage extends Component {
       console.log('SEARCH_PRODUCT: ', products.searchProduct);
       this.setState({ loading: false });
       if (products.searchProduct.status === 200) {
-        this.setState({ searchProductList: products.searchProduct.product });
-        this.setState({ showProducts: true });
+        this.setState({ showProducts: true, searchProductList: products.searchProduct.product });
       } else if (products.searchProduct.status === 107) {
         this.setState({ isError: true, errMsg: products.searchProduct.message });
       }
@@ -114,7 +113,7 @@ class SearchPage extends Component {
         // radius: this.state.radius,
         lat: '37.78',
         long: '-122.44',
-        radius: '5',
+        radius: this.state.radius,
         product_type: this.state.productOption,
         min_price: this.state.minPrice,
         max_price: this.state.maxPrice,
@@ -479,7 +478,12 @@ class SearchPage extends Component {
             onBackdropPress={() => this.setState({ showProducts: false })}
           >
             <View style={styles.modal} >
-              <ProductListPage category={this.state.category} allProduct={this.state.searchedProducts} />
+              <ProductListPage
+                category={this.state.category}
+                allProduct={this.state.searchProductList}
+                listWidth={commonStyles.screenSubWidth}
+                closeModal={() => this.setState({ showProducts: false })}
+              />
             </View>
           </Modal>
 

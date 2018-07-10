@@ -97,7 +97,9 @@ class MainPage extends Component {
             <MapButtonListComponent onSelectItem={value => this.onSelectItem(value)} btnStatus={btnStatus} />
           )}
 
-          <ButtonPlusComponent isBtnList={isBtnList} btnStatus={btnStatus} onSelectItem={value => this.onSelectItem(value) }/>
+          {tokenInfo && (
+            <ButtonPlusComponent isBtnList={isBtnList} btnStatus={btnStatus} onSelectItem={value => this.onSelectItem(value) }/>
+          )}
         </View>
       </Container>
     );

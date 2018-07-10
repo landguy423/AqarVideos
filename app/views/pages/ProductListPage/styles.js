@@ -13,20 +13,20 @@ export const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    borderRadius: 5,
   },
   listView: {
     paddingTop: 15,
-    width: '100%',
     paddingHorizontal: commonStyles.padding,
   },
   listItem: {
-    width: commonStyles.screenSubWidth,
+    width: '100%',
     shadowOffset: { width:0, height:2 },
     shadowOpacity: 0.4,
     shadowColor: 'black',
   },
   videoView: {
-    width: commonStyles.screenSubWidth,
+    width: '100%',
     height: listItemHeight,
     paddingTop: 50,
     alignItems: 'center',
@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   favoriteView: {
-    width: 100,
+    width: 50,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
