@@ -22,7 +22,7 @@ import DropdownComponent from '@components/DropdownComponent';
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
-import { sendAdvertisement } from '@redux/Message/actions';
+import { sendAdvertisement, getAdSubject } from '@redux/Message/actions';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
 
@@ -39,11 +39,13 @@ class SupportAdvertisementPage extends Component {
       loading: false,
       isSuccess: false,
       successMsg: '',
+      subjectList: [],
     }
   }
 
   componentWillMount() {
-    const { user } = this.props;
+    const { user, token, getAdSubject } = this.props;
+
     if (user.userInfo) {
       const userInfo = user.userInfo.user
       this.setState({
@@ -52,10 +54,26 @@ class SupportAdvertisementPage extends Component {
         telephone: userInfo.telephone,
       })
     }
+
+    this.setState({ loading: true });
+    getAdSubject(token.tokenInfo.token)
   }
 
   componentWillReceiveProps(nextProps) {
     const { message } = nextProps;
+
+    if (this.props.message.status === 'GET_AD_SUBJECT_REQUEST' && message.status === 'GET_AD_SUBJECT_SUCCESS') {
+      this.setState({ loading: false });
+      if (message.adSubjectList.status === 200) {
+        console.log('DATA: ', message.adSubjectList);
+        let data = message.adSubjectList.subjects;
+        let subjectList = []
+        for (let i = 0; i < data.length; i ++) {
+          subjectList[i] = {value: data[i]['name']}
+        }
+        this.setState({ subjectList });
+      }
+    }
 
     if (this.props.message.status === 'SEND_AD_REQUEST' && message.status === 'SEND_AD_SUCCESS') {
       this.setState({ loading: false });
@@ -85,12 +103,7 @@ class SupportAdvertisementPage extends Component {
   }
 
   render() {
-    const { loading, isSuccess, successMsg, tabIndex } = this.state;
-    const subjectData = [
-      { value: 'Subject1' },
-      { value: 'Subject2' },
-      { value: 'Subject3' }
-    ];
+    const { loading, isSuccess, successMsg, tabIndex, subjectList } = this.state;
 
     return (
       <Container title={I18n.t('sidebar.support_advertisement')}>
@@ -171,7 +184,7 @@ class SupportAdvertisementPage extends Component {
                 <Text style={styles.textTitle}>{I18n.t('support.subject')}</Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ subject: value })}
-                  item={this.state.subject} data={subjectData}
+                  item={this.state.subject} data={subjectList}
                 />
               </View>
 
@@ -217,6 +230,7 @@ const mapStateToProps = ({ user, token, message }) => ({
 
 const mapDispatchToProps = dispatch => ({
   sendAdvertisement: (token, data) => dispatch(sendAdvertisement(token, data)),
+  getAdSubject: (token) => dispatch(getAdSubject(token)),
 })
 
 SupportAdvertisementPage.propTypes = {
@@ -224,6 +238,7 @@ SupportAdvertisementPage.propTypes = {
   token: PropTypes.objectOf(PropTypes.any).isRequired,
   message: PropTypes.objectOf(PropTypes.any).isRequired,
   sendAdvertisement: PropTypes.func.isRequired,
+  getAdSubject: PropTypes.func.isRequired,
 }
 
 export default connect(

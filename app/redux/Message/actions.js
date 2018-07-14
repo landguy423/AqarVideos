@@ -53,3 +53,15 @@ export function sendAdvertisement(token, data) {
       })  
   };
 }
+
+export function getAdSubject(token) {
+  return {
+    types: [types.GET_AD_SUBJECT_REQUEST, types.GET_AD_SUBJECT_SUCCESS, types.GET_AD_SUBJECT_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${API_URL}?route=api/package/getAdSubjectsList&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+      })  
+  };
+}

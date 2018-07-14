@@ -6,6 +6,7 @@ const initialState = {
   chatUserList: null,
   chatData: null,
   advertisementData: null,
+  adSubjectList: null,
 };
 
 export default function message(state = initialState, action = {}) {
@@ -93,6 +94,27 @@ export default function message(state = initialState, action = {}) {
         ...state,
         status: 'SEND_AD_FAILED',
         advertisementData: null,
+      };
+    /**
+     * Get advertisement subject list
+     */
+    case types.GET_AD_SUBJECT_REQUEST:
+      return {
+        ...state,
+        status: 'GET_AD_SUBJECT_REQUEST',
+        adSubjectList: null,
+      };
+    case types.GET_AD_SUBJECT_SUCCESS:
+      return {
+        ...state,
+        status: 'GET_AD_SUBJECT_SUCCESS',
+        adSubjectList: action.result.data
+      }
+    case types.GET_AD_SUBJECT_FAILED:
+      return {
+        ...state,
+        status: 'GET_AD_SUBJECT_FAILED',
+        adSubjectList: null,
       };
     default:
       return state;

@@ -68,7 +68,7 @@ class MyPackagePage extends Component {
       <Container title={I18n.t('sidebar.my_packages')}>
         <LoadingSpinner visible={loading } />
 
-        {isMyPackage && (
+        {isMyPackage ?
           <View style={styles.container}>
             <View style={styles.packageView}>
               <Text style={styles.title}>365</Text>
@@ -89,8 +89,9 @@ class MyPackagePage extends Component {
                 size={28}
               />
             </View>
-          </View>
-        )}
+          </View> :
+          <View style={styles.container} />
+        }
       </Container>
     );
   }
