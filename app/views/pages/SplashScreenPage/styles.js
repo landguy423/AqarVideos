@@ -15,6 +15,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff'
   },
+  loadingIconView: {
+    flex: 1
+  },
+  loadingIcon: {
+    flex: 1
+  },
   loadingTextView: {
     position: 'absolute',
     bottom: BOTTOM_HEIGHT,

@@ -65,7 +65,6 @@ class SupportAdvertisementPage extends Component {
     if (this.props.message.status === 'GET_AD_SUBJECT_REQUEST' && message.status === 'GET_AD_SUBJECT_SUCCESS') {
       this.setState({ loading: false });
       if (message.adSubjectList.status === 200) {
-        console.log('DATA: ', message.adSubjectList);
         let data = message.adSubjectList.subjects;
         let subjectList = []
         for (let i = 0; i < data.length; i ++) {

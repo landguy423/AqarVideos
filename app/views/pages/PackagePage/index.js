@@ -19,7 +19,7 @@ import Container from '@layout/Container';
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
-import { getPackages } from '@redux/Package/actions';
+import { getPackages, getTerlWebUrl } from '@redux/Package/actions';
 
 const COLORS = [
   '#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor, 
@@ -36,7 +36,7 @@ class PackagePage extends Component {
   }
 
   componentWillMount() {
-    const { token, getPackages } = this.props;
+    const { token, getPackages, getTerlWebUrl } = this.props;
 
     this.setState({ loading: true });
     getPackages(token.tokenInfo.token);
@@ -54,7 +54,8 @@ class PackagePage extends Component {
   }
 
   onItemSelect(rowData, rowID) {
-    Actions.PackageDetailBank({data: rowData});
+    console.log('ROWDTA: ', rowData)
+    Actions.PackageDetail({ data: rowData });
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
@@ -122,6 +123,7 @@ const mapStateToProps = ({ user, token, packages }) => ({
 
 const mapDispatchToProps = dispatch => ({
   getPackages: token => dispatch(getPackages(token)),
+  getTerlWebUrl: token => dispatch(getTerlWebUrl(token))
 })
 
 PackagePage.propTypes = {
@@ -129,6 +131,7 @@ PackagePage.propTypes = {
   token: PropTypes.objectOf(PropTypes.any).isRequired,
   packages: PropTypes.objectOf(PropTypes.any),
   getPackages: PropTypes.func.isRequired,
+  getTerlWebUrl: PropTypes.func.isRequired,
 }
 
 export default connect(

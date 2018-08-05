@@ -19,6 +19,7 @@ import RegisterPage from './views/pages/RegisterPage';
 import MyAdsPage from './views/pages/MyAdsPage';
 import MyWishListPage from './views/pages/MyWishListPage';
 import PackagePage from './views/pages/PackagePage';
+import PackageDetailPage from './views/pages/PackagePage/PackageDetailPage';
 import PackageDetailBankPage from './views/pages/PackagePage/PackageDetailBankPage';
 import MyPackagePage from './views/pages/MyPackagePage';
 import MyPackageDetailPage from './views/pages/MyPackagePage/MyPackageDetailPage';
@@ -48,18 +49,18 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    setTimeout(() => {
-      this.setState({ loading: false })
-    }, 1000)
+    // setTimeout(() => {
+    //   this.setState({ loading: false })
+    // }, 1000)
   }
 
   render() {
 
-    if (this.state.loading) {
-      return (
-        <SplashScreenPage />
-      )
-    }
+    // if (this.state.loading) {
+    //   return (
+    //     <SplashScreenPage />
+    //   )
+    // }
 
     const scenes = Actions.create(
       <Scene key="root">
@@ -69,8 +70,8 @@ export default class App extends Component {
         <Scene key="MyWishList" component={ MyWishListPage } hideNavBar panHandlers={null} />
         <Scene key="Package" component={ PackagePage } hideNavBar panHandlers={null}/>
         <Scene key="PackageDetailBank" component={ PackageDetailBankPage } hideNavBar panHandlers={null}/>
+        <Scene key="PackageDetail" component={ PackageDetailPage } hideNavBar panHandlers={null}/>
         <Scene key="MyPackage" component={ MyPackagePage } hideNavBar panHandlers={null}/>
-        {/* <Scene key="PackageDetail" component={ PackageDetailPage } hideNavBar panHandlers={null}/> */}
         <Scene key="ProfileEdit" component={ ProfileEditPage } hideNavBar panHandlers={null}/>
         <Scene key="Area" component={ AreaPage } hideNavBar panHandlers={null}/>
         <Scene key="MyLocation" component={ MyLocationPage } hideNavBar panHandlers={null}/>

@@ -86,16 +86,7 @@ export default class PackageDetailBankPage extends Component {
   }
 
   render() {
-    const data = {
-      price: 100,
-      duration: 20,
-      detail: {
-        '1': {
-          title: 'Test',
-          deacription: 'Test'
-        }
-      }
-    }
+    const { data } = this.props
 
     return (
       <Container title={data.detail['1'].title} type='detail'>

@@ -35,7 +35,8 @@ class MapPage extends Component {
     const { category, allProduct, user } = this.props
 
     let categoryProduct = [];
-    if (user.userLogin) {
+    if (user.userLogin && user.userInfo) {
+      console.log('USERL: ', user.userInfo)
       const { customer_id } = user.userInfo.user
       categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
     } else {

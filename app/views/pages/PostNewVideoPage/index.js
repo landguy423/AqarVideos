@@ -308,7 +308,6 @@ class PostNewVideoPage extends Component {
                 value={this.state.price}
                 keyboardType="numbers-and-punctuation"
                 onChangeText={text => this.setState({ price: text })}
-                onSubmitEditing={() => this.refs.password.focus()}
               />
             </View>
 

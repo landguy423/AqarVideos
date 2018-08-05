@@ -6,8 +6,8 @@ export const AWS_OPTIONS = {
   keyPrefix: 'upload/',
   bucket: 'videoaqar',
   region: 'us-east-1',
-  accessKey: 'AKIAJIZL4LQA3CRNAPXA',
-  secretKey: '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',
+  accessKey: 'AKIAIXM566LZGWNKN4SA',
+  secretKey: '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',
   successActionStatus: 201,
   // awsUrl: 's3.console.aws.amazon.com'
   awsUrl: 's3.amazonaws.com'
