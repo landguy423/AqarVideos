@@ -54,7 +54,6 @@ class PackagePage extends Component {
   }
 
   onItemSelect(rowData, rowID) {
-    console.log('ROWDTA: ', rowData)
     Actions.PackageDetail({ data: rowData });
   }
 

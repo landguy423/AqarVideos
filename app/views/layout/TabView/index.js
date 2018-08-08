@@ -23,7 +23,7 @@ import * as commonStyles from '@common/styles/commonStyles';
 import LoadingSpinner from '@components/LoadingSpinner';
 import { saveMyLocation } from '@redux/Map/actions';
 import { getProductsByCategory } from '@redux/Product/actions';
-
+import { checkUserPaymentStatus } from '@redux/Package/actions'
 import MapPage from '@pages/MapPage';
 import ProductListPage from '@pages/ProductListPage';
 import I18n from '@i18n';
@@ -49,12 +49,13 @@ class TabView extends Component {
   }
 
   componentWillMount() {
-    const { token, user, category, map, getProductsByCategory } = this.props
+    const { token, user, category, map, getProductsByCategory, checkUserPaymentStatus } = this.props
     const { myLocation } = map;
 
     this.setState({ loading: true })
     if (user.userInfo) {
       getProductsByCategory(token.tokenInfo.token, { id: user.userInfo.user.customer_id })
+      checkUserPaymentStatus(token.tokenInfo.token, { id: user.userInfo.user.customer_id })
     } else {
       getProductsByCategory(token.tokenInfo.token, { id: 0 })
     }
@@ -279,10 +280,12 @@ const mapStateToProps = ({ token, user, products, map }) => ({
 const mapDispatchToProps = dispatch => ({
   getProductsByCategory: (token, data) => dispatch(getProductsByCategory(token, data)),
   saveMyLocation: args => dispatch(saveMyLocation(args)),
+  checkUserPaymentStatus: (token, data) => dispatch(checkUserPaymentStatus(token, data)),
 })
 
 TabView.propTypes = {
   getProductsByCategory: PropTypes.func.isRequired,
+  checkUserPaymentStatus: PropTypes.func.isRequired,
 }
 
 export default connect(

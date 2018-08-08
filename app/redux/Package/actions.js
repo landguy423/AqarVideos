@@ -33,8 +33,21 @@ export function getTerlWebUrl(token, data) {
     types: [types.GET_WEBURL_REQUEST, types.GET_WEBURL_SUCCESS, types.GET_WEBURL_FAILED],
     promise:
       axios({
+        method: 'get',
+        url: `${API_URL}?route=api/telr&api_token=${token}`,
+        headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+        data
+      })  
+  };
+}
+
+export function checkUserPaymentStatus(token, data) {
+  return {
+    types: [types.CHECK_PAYMENT_STATUS_REQUEST, types.CHECK_PAYMENT_STATUS_SUCCESS, types.CHECK_PAYMENT_STATUS_FAILED],
+    promise:
+      axios({
           method: 'get',
-          url: `${API_URL}?route=api/telr&api_token=${token}`,
+          url: `${API_URL}?route=api/telr/check_user_payments&api_token=${token}`,
           headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
           data
       })  

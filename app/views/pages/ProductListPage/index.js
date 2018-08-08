@@ -53,7 +53,6 @@ class ProductListPage extends Component {
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
     const { user, itemWidth } = this.props
-    console.log('ROW_DATA: ', rowData);
     return (
       <View style={styles.listItem}>
         <TouchableOpacity 

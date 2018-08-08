@@ -17,7 +17,7 @@ import { connect } from 'react-redux'
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import KeyboardScrollView from '@components/KeyboardView'
 const img_detail = require('@common/assets/images/my_message/picture.png')
-
+import LoadingSpinner from '@components/LoadingSpinner';
 import I18n from '@i18n'
 import Container from '@layout/Container'
 import { styles } from './styles'
@@ -30,7 +30,20 @@ class PackageDetailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex: 0
+      selectedIndex: 0,
+      loading: false
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { packages } = nextProps;
+
+    if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_SUCCESS') {
+      this.setState({ loading: false });
+      Actions.PaymentWebPage()
+      if (packages.webUrlInfo.status === 200) {
+        // this.setState({ webUrlInfo: packages.webUrlInfo.package})
+      }
     }
   }
 
@@ -40,10 +53,11 @@ class PackageDetailPage extends Component {
 
   onTry() {
     const { selectedIndex } = this.state
-    const { data, token, user } = this.props
+    const { data, token, user, getTerlWebUrl } = this.props
     const { customer_id } = user.userInfo.user
 
     if (selectedIndex === 0) {
+      this.setState({ loading: true });
       getTerlWebUrl(token.tokenInfo.token, { user_id: customer_id, package_id: data.package_id });
     } else {
       Actions.PackageDetailBank({ data: this.props.data });
@@ -55,6 +69,9 @@ class PackageDetailPage extends Component {
 
     return (
       <Container title={data.detail['1'].title} type='detail'>
+
+        <LoadingSpinner visible={this.state.loading } />
+
         <View style={styles.container}>
           <Image source={img_detail} style={styles.thumbnail} />
 

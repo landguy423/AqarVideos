@@ -75,6 +75,26 @@ export default function packages(state = initialState, action = {}) {
         status: types.GET_WEBURL_FAILED,
         error: action.error,
       };
+    case types.CHECK_PAYMENT_STATUS_REQUEST:
+      return {
+        ...state,
+        status: types.CHECK_PAYMENT_STATUS_REQUEST,
+      };
+    case types.CHECK_PAYMENT_STATUS_SUCCESS: {
+      console.log('CHECK_PAYMENT_STATUS_SUCCESS: ', action.result);
+      const { data } = action.result
+      const { message } = data
+      return {
+        ...state,
+        status: types.CHECK_PAYMENT_STATUS_SUCCESS,
+      }
+    }
+    case types.CHECK_PAYMENT_STATUS_FAILED:
+      return {
+        ...state,
+        status: types.CHECK_PAYMENT_STATUS_FAILED,
+        error: action.error,
+      };
     default:
       return state;
   }
