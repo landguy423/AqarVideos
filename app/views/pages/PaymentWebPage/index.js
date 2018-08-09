@@ -46,15 +46,17 @@ class PaymentWebPage extends Component {
   }
 
   handleBackButtonClick() {
-    Actions.Pop();
+    Actions.Package()
     return true;
   }
 
   onBack = () => {
-    Actions.pop()
+    Actions.Package()
   }
 
   render() {
+    const { url } = this.props
+
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -66,23 +68,23 @@ class PaymentWebPage extends Component {
           <Text style={styles.menuTitle}>Telr payment page</Text>
         </View>
 
-        {Platform.OS == 'ios'
-        ? <WebView 
-            source={{url: 'https://www.salama.com.sa/Account/App/MRegister.aspx'}} 
-            style={styles.paymentView} 
-            javaScriptEnabled={true}
-            domStorageEnabled={true}
-            decelerationRate="normal"
-            javaScriptEnabledAndroid={true}
-            scalesPageToFit={true}
-            startInLoadingState={true}
-          />
-        : <WebViewAndroid
-            style={styles.paymentView} 
-            javaScriptEnabled={true}
-            startInLoadingState={true}
-            url={'https://www.salama.com.sa/Account/App/MRegister.aspx'} // or use the source(object) attribute...
-          />}
+        <View style={styles.paymentView}>
+          {Platform.OS === 'ios'
+          ? <WebView 
+              source={{ uri: url }}
+              javaScriptEnabled={true}
+              domStorageEnabled={true}
+              decelerationRate="normal"
+              javaScriptEnabledAndroid={true}
+              scalesPageToFit={true}
+              startInLoadingState={true}
+            />
+          : <WebViewAndroid
+              javaScriptEnabled={true}
+              startInLoadingState={true}
+              url={url} // or use the source(object) attribute...
+            />}
+          </View>
       </View>
     );
   }

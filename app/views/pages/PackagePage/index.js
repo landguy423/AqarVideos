@@ -36,7 +36,8 @@ class PackagePage extends Component {
   }
 
   componentWillMount() {
-    const { token, getPackages, getTerlWebUrl } = this.props;
+    const { token, user, getPackages, getPaidPackage } = this.props;
+    const { customer_id } = user.userInfo.user
 
     this.setState({ loading: true });
     getPackages(token.tokenInfo.token);
@@ -121,8 +122,7 @@ const mapStateToProps = ({ user, token, packages }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getPackages: token => dispatch(getPackages(token)),
-  getTerlWebUrl: token => dispatch(getTerlWebUrl(token))
+  getPackages: token => dispatch(getPackages(token))
 })
 
 PackagePage.propTypes = {
@@ -130,7 +130,6 @@ PackagePage.propTypes = {
   token: PropTypes.objectOf(PropTypes.any).isRequired,
   packages: PropTypes.objectOf(PropTypes.any),
   getPackages: PropTypes.func.isRequired,
-  getTerlWebUrl: PropTypes.func.isRequired,
 }
 
 export default connect(

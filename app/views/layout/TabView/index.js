@@ -55,7 +55,7 @@ class TabView extends Component {
     this.setState({ loading: true })
     if (user.userInfo) {
       getProductsByCategory(token.tokenInfo.token, { id: user.userInfo.user.customer_id })
-      checkUserPaymentStatus(token.tokenInfo.token, { id: user.userInfo.user.customer_id })
+      checkUserPaymentStatus(token.tokenInfo.token, { user_id: user.userInfo.user.customer_id })
     } else {
       getProductsByCategory(token.tokenInfo.token, { id: 0 })
     }

@@ -29,6 +29,7 @@ export function getMyPackage(token, data) {
 }
 
 export function getTerlWebUrl(token, data) {
+  console.log('DATA:', data)
   return {
     types: [types.GET_WEBURL_REQUEST, types.GET_WEBURL_SUCCESS, types.GET_WEBURL_FAILED],
     promise:

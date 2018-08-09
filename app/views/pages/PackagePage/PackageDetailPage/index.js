@@ -31,7 +31,8 @@ class PackageDetailPage extends Component {
     super(props);
     this.state = {
       selectedIndex: 0,
-      loading: false
+      loading: false,
+      webUrlInfo: {}
     }
   }
 
@@ -40,9 +41,10 @@ class PackageDetailPage extends Component {
 
     if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_SUCCESS') {
       this.setState({ loading: false });
-      Actions.PaymentWebPage()
       if (packages.webUrlInfo.status === 200) {
-        // this.setState({ webUrlInfo: packages.webUrlInfo.package})
+        Actions.PaymentWebPage({ url: packages.webUrlInfo.order.url })
+      } else if (packages.webUrlInfo.status === 107) {
+        Actions.Package()
       }
     }
   }
@@ -122,7 +124,7 @@ const mapStateToProps = ({ user, token, packages }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTerlWebUrl: token => dispatch(getTerlWebUrl(token))
+  getTerlWebUrl: (token, data) => dispatch(getTerlWebUrl(token, data))
 })
 
 PackageDetailPage.propTypes = {
