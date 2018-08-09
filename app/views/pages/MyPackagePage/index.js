@@ -35,6 +35,7 @@ class MyPackagePage extends Component {
   componentWillMount() {
     const { user, token, getMyPackage } = this.props;
 
+    this.setState({ loading: true })
     getMyPackage(
       token.tokenInfo.token,
       {
@@ -48,6 +49,7 @@ class MyPackagePage extends Component {
 
     if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
       console.log('GET_MY_PACKAGE: ', packages.myPackageInfo);
+      this.setState({ loading: false })
       if (packages.myPackageInfo.status === 200) {
         this.setState({ isMyPackage: true });
         // this.setState({ data: package.myPackageInfo });
@@ -90,7 +92,11 @@ class MyPackagePage extends Component {
               />
             </View>
           </View> :
-          <View style={styles.container} />
+          <View style={styles.container}>
+            {!loading && (
+              <Text>There is no package available</Text>
+            )}
+          </View>
         }
       </Container>
     );
