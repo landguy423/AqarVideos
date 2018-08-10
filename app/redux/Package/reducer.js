@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import * as types from './actionTypes';
 
 const initialState = {
@@ -14,17 +15,25 @@ export default function packages(state = initialState, action = {}) {
     /**************************/
     /* Get all packages
     /**************************/
-    case types.GET_PACKAGE_REQUEST:
+    case types.GET_PACKAGE_REQUEST: {
+      console.log('GET_PACKAGE_REQUEST')
       return {
-          ...initialState,
-          status: 'GET_PACKAGE_REQUEST',
+        ...state,
+        status: 'GET_PACKAGE_REQUEST',
       };
+    }
     case types.GET_PACKAGE_SUCCESS: {
-      console.log('PACKAGES_LIST_RESULT: ', action.result);
+      const { data } = action.result
+      const { myPackageInfo } = this.state
+      console.log('PACKAGE_LIST: ', data)
+      if (myPackageInfo.status === 200) {
+        const paidPackageId = myPackageInfo.package.package_id
+      }
+
       return {
         ...state,
         status: 'GET_PACKAGE_SUCCESS',
-        packageInfo: action.result.data,
+        packageInfo: data
       }
     }
     case types.GET_PACKAGE_FAILED:
@@ -36,19 +45,25 @@ export default function packages(state = initialState, action = {}) {
     /**
      * Get my package
      */
-    case types.GET_MY_PACKAGE_REQUEST:
+    case types.GET_MY_PACKAGE_REQUEST: {
       return {
         ...state,
         status: 'GET_MY_PACKAGE_REQUEST',
         myPackageInfo: null,
       };
-    case types.GET_MY_PACKAGE_SUCCESS:
-    console.log('MY_PACKAGE_RESULT: ', action.result);
+    }
+    case types.GET_MY_PACKAGE_SUCCESS: {
+      const { data } = action.result
+      console.log('MY_PACKAGE_DATA: ', data)
+      console.log('IS_PAID_USER: ', data.status === 200 ? true : false)
+
       return {
         ...state,
         status: 'GET_MY_PACKAGE_SUCCESS',
-        myPackageInfo: action.result.data,
+        isPaidUser: data.status === 200 ? true : false,
+        myPackageInfo: data
       }
+    }
     case types.GET_MY_PACKAGE_FAILED:
       return {
         ...state,
@@ -62,7 +77,6 @@ export default function packages(state = initialState, action = {}) {
           status: types.GET_WEBURL_REQUEST,
       };
     case types.GET_WEBURL_SUCCESS: {
-      console.log('WEB_URL_INFO: ', action.result);
       return {
         ...state,
         status: types.GET_WEBURL_SUCCESS,
@@ -81,11 +95,11 @@ export default function packages(state = initialState, action = {}) {
         status: types.CHECK_PAYMENT_STATUS_REQUEST,
       };
     case types.CHECK_PAYMENT_STATUS_SUCCESS: {
-      console.log('CHECK_PAYMENT_STATUS_SUCCESS: ', action.result);
       const { data } = action.result
       const { message } = data
       return {
         ...state,
+        isPaidUser: data.status === 200 ? true : false,
         status: types.CHECK_PAYMENT_STATUS_SUCCESS,
       }
     }

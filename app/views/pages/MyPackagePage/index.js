@@ -48,11 +48,10 @@ class MyPackagePage extends Component {
     const { packages } = nextProps;
 
     if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
-      console.log('GET_MY_PACKAGE: ', packages.myPackageInfo);
       this.setState({ loading: false })
       if (packages.myPackageInfo.status === 200) {
         this.setState({ isMyPackage: true });
-        // this.setState({ data: package.myPackageInfo });
+        this.setState({ myPackageData: packages.myPackageInfo.package });
       } else if (packages.myPackageInfo.status === 107) {
         this.setState({ isMyPackage: false });
       }
@@ -64,7 +63,7 @@ class MyPackagePage extends Component {
   }
 
   render() {
-    const { loading, isMyPackage } = this.state
+    const { loading, isMyPackage, myPackageData } = this.state
 
     return (
       <Container title={I18n.t('sidebar.my_packages')}>
@@ -73,7 +72,7 @@ class MyPackagePage extends Component {
         {isMyPackage ?
           <View style={styles.container}>
             <View style={styles.packageView}>
-              <Text style={styles.title}>365</Text>
+              <Text style={styles.title}>{myPackageData.detail.title}</Text>
             </View>
 
             <View style={styles.countdownView}>
@@ -87,7 +86,7 @@ class MyPackagePage extends Component {
                 digitBgColor={commonColors.pinkColor}
                 digitTxtColor="#fff"
                 timeTxtColor="#888"
-                until={99000}
+                until={myPackageData.remaining_days}
                 size={28}
               />
             </View>

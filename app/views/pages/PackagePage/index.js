@@ -16,10 +16,11 @@ import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
 import I18n from '@i18n';
 import Container from '@layout/Container';
+import _ from 'lodash'
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
-import { getPackages, getTerlWebUrl } from '@redux/Package/actions';
+import { getPackages, getTerlWebUrl, getMyPackage } from '@redux/Package/actions';
 
 const COLORS = [
   '#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor, 
@@ -36,20 +37,29 @@ class PackagePage extends Component {
   }
 
   componentWillMount() {
-    const { token, user, getPackages, getPaidPackage } = this.props;
+    const { token, user, getPackages, getMyPackage} = this.props;
     const { customer_id } = user.userInfo.user
 
     this.setState({ loading: true });
-    getPackages(token.tokenInfo.token);
+    getMyPackage(token.tokenInfo.token, { user_id: customer_id })
   }
 
   componentWillReceiveProps(nextProps) {
-    const { packages } = nextProps;
+    const { packages, token, getPackages } = nextProps;
+
+    if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
+      console.log('asdasdasd')
+      getPackages(token.tokenInfo.token);
+    }
 
     if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
       this.setState({ loading: false });
       if (packages.packageInfo.status === 200) {
-        this.setState({ packageList: packages.packageInfo.package})
+        if (packages.isPaidUser) {
+          const { myPackageInfo } = packages
+        } else {
+          this.setState({ packageList: packages.packageInfo.package})
+        }
       }
     }
   }
@@ -122,7 +132,8 @@ const mapStateToProps = ({ user, token, packages }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getPackages: token => dispatch(getPackages(token))
+  getPackages: token => dispatch(getPackages(token)),
+  getMyPackage: (token, data) => dispatch(getMyPackage(token, data))
 })
 
 PackagePage.propTypes = {
@@ -130,6 +141,7 @@ PackagePage.propTypes = {
   token: PropTypes.objectOf(PropTypes.any).isRequired,
   packages: PropTypes.objectOf(PropTypes.any),
   getPackages: PropTypes.func.isRequired,
+  getMyPackage: PropTypes.func.isRequired
 }
 
 export default connect(
