@@ -54,3 +54,28 @@ export function checkUserPaymentStatus(token, data) {
       })  
   };
 }
+
+export function getBankDetail(token) {
+  return {
+    types: [types.GET_BANK_DETAIL_REQUEST, types.GET_BANK_DETAIL_SUCCESS, types.GET_BANK_DETAIL_FAILED],
+    promise:
+      axios({
+          method: 'get',
+          url: `${API_URL}?route=api/bank&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
+      })  
+  };
+}
+
+export function sendBankDetail(token, data) {
+  return {
+    types: [types.SEND_BANK_DETAIL_REQUEST, types.SEND_BANK_DETAIL_SUCCESS, types.SEND_BANK_DETAIL_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${API_URL}?route=api/bank/addBankRequest&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          data
+      })  
+  };
+}

@@ -7,7 +7,8 @@ const initialState = {
   packageInfo: null,
   myPackageInfo: null,
   webUrlInfo: null,
-  isPaidUser: true
+  isPaidUser: true,
+  bankInfo: []
 };
 
 export default function packages(state = initialState, action = {}) {
@@ -16,32 +17,27 @@ export default function packages(state = initialState, action = {}) {
     /* Get all packages
     /**************************/
     case types.GET_PACKAGE_REQUEST: {
-      console.log('GET_PACKAGE_REQUEST')
       return {
         ...state,
+        packageInfo: null,
         status: 'GET_PACKAGE_REQUEST',
       };
     }
     case types.GET_PACKAGE_SUCCESS: {
       const { data } = action.result
-      const { myPackageInfo } = this.state
-      console.log('PACKAGE_LIST: ', data)
-      if (myPackageInfo.status === 200) {
-        const paidPackageId = myPackageInfo.package.package_id
-      }
-
       return {
         ...state,
         status: 'GET_PACKAGE_SUCCESS',
         packageInfo: data
       }
     }
-    case types.GET_PACKAGE_FAILED:
+    case types.GET_PACKAGE_FAILED: {
       return {
         ...state,
         status: 'GET_PACKAGE_FAILED',
         error: action.error,
       };
+    }
     /**
      * Get my package
      */
@@ -54,8 +50,6 @@ export default function packages(state = initialState, action = {}) {
     }
     case types.GET_MY_PACKAGE_SUCCESS: {
       const { data } = action.result
-      console.log('MY_PACKAGE_DATA: ', data)
-      console.log('IS_PAID_USER: ', data.status === 200 ? true : false)
 
       return {
         ...state,
@@ -71,6 +65,9 @@ export default function packages(state = initialState, action = {}) {
         myPackageInfo: null,
         error: action.error,
       };
+    /**
+     * Get Telr web url
+     */
     case types.GET_WEBURL_REQUEST:
       return {
           ...state,
@@ -89,6 +86,9 @@ export default function packages(state = initialState, action = {}) {
         status: types.GET_WEBURL_FAILED,
         error: action.error,
       };
+    /**
+     * Check Payment status
+     */
     case types.CHECK_PAYMENT_STATUS_REQUEST:
       return {
         ...state,
@@ -107,6 +107,61 @@ export default function packages(state = initialState, action = {}) {
       return {
         ...state,
         status: types.CHECK_PAYMENT_STATUS_FAILED,
+        error: action.error,
+      };
+    /**
+     * Get bank detail info
+     */
+    case types.GET_BANK_DETAIL_REQUEST: {
+      console.log('GET_BANK_DETAIL_REQUEST')
+      return {
+        ...state,
+        status: 'GET_BANK_DETAIL_REQUEST',
+        bankInfo: [],
+      };
+    }
+    case types.GET_BANK_DETAIL_SUCCESS: {
+      const { data } = action.result
+      console.log('GET_BANK_DETAIL_SUCCESS: ', data)
+
+      return {
+        ...state,
+        status: 'GET_BANK_DETAIL_SUCCESS',
+        bankInfo: data.status === 200 ? data.banks : []
+      }
+    }
+    case types.GET_BANK_DETAIL_FAILED:
+      console.log('GET_BANK_DETAIL_FAILED')
+      return {
+        ...state,
+        status: 'GET_BANK_DETAIL_FAILED',
+        bankInfo: [],
+        error: action.error,
+      };
+    /**
+     * Send bank detail
+     */
+    case types.SEND_BANK_DETAIL_REQUEST: {
+      console.log('SEND_BANK_DETAIL_REQUEST')
+      return {
+        ...state,
+        status: 'SEND_BANK_DETAIL_REQUEST',
+      };
+    }
+    case types.SEND_BANK_DETAIL_SUCCESS: {
+      const { data } = action.result
+      console.log('SEND_BANK_DETAIL_SUCCESS: ', data)
+
+      return {
+        ...state,
+        status: 'SEND_BANK_DETAIL_SUCCESS',
+      }
+    }
+    case types.SEND_BANK_DETAIL_FAILED:
+      console.log('SEND_BANK_DETAIL_FAILED', action)
+      return {
+        ...state,
+        status: 'SEND_BANK_DETAIL_FAILED',
         error: action.error,
       };
     default:

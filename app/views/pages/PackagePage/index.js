@@ -33,11 +33,12 @@ class PackagePage extends Component {
     this.state = {
       loading: false,
       packageList: [],
+      paidPackage: null
     }
   }
 
   componentWillMount() {
-    const { token, user, getPackages, getMyPackage} = this.props;
+    const { token, user, getMyPackage} = this.props;
     const { customer_id } = user.userInfo.user
 
     this.setState({ loading: true });
@@ -48,7 +49,6 @@ class PackagePage extends Component {
     const { packages, token, getPackages } = nextProps;
 
     if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
-      console.log('asdasdasd')
       getPackages(token.tokenInfo.token);
     }
 
@@ -57,9 +57,10 @@ class PackagePage extends Component {
       if (packages.packageInfo.status === 200) {
         if (packages.isPaidUser) {
           const { myPackageInfo } = packages
-        } else {
-          this.setState({ packageList: packages.packageInfo.package})
+          console.log('myPackageInfo: ', myPackageInfo)
+          this.setState({ paidPackage: myPackageInfo })
         }
+        this.setState({ packageList: packages.packageInfo.package})
       }
     }
   }
@@ -69,6 +70,11 @@ class PackagePage extends Component {
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
+    const { paidPackage } = this.state
+    if (paidPackage.status === 200 && paidPackage.package.package_id === rowData.package_id) {
+      return null
+    }
+
     return (
       <TouchableOpacity 
         activeOpacity={0.6}

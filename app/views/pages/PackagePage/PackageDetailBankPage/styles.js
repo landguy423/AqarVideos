@@ -25,22 +25,25 @@ export const styles = StyleSheet.create({
     justifyContent:'flex-start',
     alignItems: 'center',
   },
-  inputView: {
-    width: '100%',
-    borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+  titleView: {
+    marginVertical: 20,
     paddingHorizontal: commonStyles.padding,
-    height: 60,
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
   },
-  input: {
+  textTitle: {
     fontFamily: commonStyles.normalFont,
-    color: commonColors.darkGrayColor,
-    width: commonStyles.screenWidth - 80,
+    fontWeight: 'bold',
     fontSize: commonStyles.normalFontSize,
     textAlign: 'right',
+    color: commonColors.darkGrayColor,
+  },
+  textDescription: {
+    fontFamily: commonStyles.normalFont,
+    fontSize: commonStyles.normalFontSize,
+    color: commonColors.placeholderText,
+    textAlign: 'right'
   },
   btnView: {
     width: '100%',
