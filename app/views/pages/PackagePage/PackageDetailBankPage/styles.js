@@ -9,8 +9,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: commonStyles.screenNormalHeight,
     width: '100%',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
   },
   thumbnail: {
     width: '100%',
@@ -20,19 +18,18 @@ export const styles = StyleSheet.create({
     opacity: 0.1,
   },
   fieldContainer: {
-    width: '100%',
-    height: commonStyles.screenNormalHeight - commonStyles.buttonHeight,
-    justifyContent:'flex-start',
-    alignItems: 'center',
+    flex: 1
   },
   titleView: {
     marginVertical: 20,
+    backgroundColor: 'transparent',
     paddingHorizontal: commonStyles.padding,
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
   textTitle: {
+    backgroundColor: 'transparent',
     fontFamily: commonStyles.normalFont,
     fontWeight: 'bold',
     fontSize: commonStyles.normalFontSize,
@@ -40,6 +37,7 @@ export const styles = StyleSheet.create({
     color: commonColors.darkGrayColor,
   },
   textDescription: {
+    backgroundColor: 'transparent',
     fontFamily: commonStyles.normalFont,
     fontSize: commonStyles.normalFontSize,
     color: commonColors.placeholderText,

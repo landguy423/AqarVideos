@@ -79,9 +79,12 @@ class PackageDetailBankPage extends Component {
           <LoadingSpinner visible={this.state.loading } />
 
           <Image source={img_detail} style={styles.thumbnail} />
+          
+          <View style={styles.logoContainer}>
+          </View>
 
-          <View style={styles.fieldContainer}>
           {!isEmpty(bankData) && (
+          <View style={styles.fieldContainer}>
             <KeyboardScrollView>
                 <View style={styles.titleView}>
                   <Text style={styles.textTitle}>
@@ -119,8 +122,8 @@ class PackageDetailBankPage extends Component {
                   </Text>
                 </View>
             </KeyboardScrollView>
-            )}
           </View>
+          )}
 
           <View style={styles.btnView}>
             <TouchableOpacity onPress={() => this.onTry()} activeOpacity={0.5}>
