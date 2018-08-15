@@ -16,7 +16,6 @@ import { connect } from 'react-redux'
 // import * as TELR_PAYMENT from '@common/payment_telr/telr_payment'
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import KeyboardScrollView from '@components/KeyboardView'
-const img_detail = require('@common/assets/images/my_message/picture.png')
 import LoadingSpinner from '@components/LoadingSpinner';
 import I18n from '@i18n'
 import Container from '@layout/Container'
@@ -25,6 +24,7 @@ import * as commonStyles from '@common/styles/commonStyles'
 import * as commonColors from '@common/styles/commonColors'
 import { Actions } from 'react-native-router-flux'
 import { getTerlWebUrl } from '@redux/Package/actions'
+const img_detail = require('@common/assets/images/my_message/picture.png')
 
 class PackageDetailPage extends Component {
   constructor(props) {

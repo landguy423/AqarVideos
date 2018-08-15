@@ -8,7 +8,8 @@ const initialState = {
   myPackageInfo: null,
   webUrlInfo: null,
   isPaidUser: true,
-  bankInfo: []
+  bankInfo: [],
+  sendBankResult: null,
 };
 
 export default function packages(state = initialState, action = {}) {
@@ -146,6 +147,7 @@ export default function packages(state = initialState, action = {}) {
       return {
         ...state,
         status: 'SEND_BANK_DETAIL_REQUEST',
+        sendBankResult: null,
       };
     }
     case types.SEND_BANK_DETAIL_SUCCESS: {
@@ -155,15 +157,18 @@ export default function packages(state = initialState, action = {}) {
       return {
         ...state,
         status: 'SEND_BANK_DETAIL_SUCCESS',
+        sendBankResult: data
       }
     }
-    case types.SEND_BANK_DETAIL_FAILED:
+    case types.SEND_BANK_DETAIL_FAILED: {
       console.log('SEND_BANK_DETAIL_FAILED', action)
       return {
         ...state,
         status: 'SEND_BANK_DETAIL_FAILED',
         error: action.error,
-      };
+        sendBankResult: null,
+      }
+    }
     default:
       return state;
   }

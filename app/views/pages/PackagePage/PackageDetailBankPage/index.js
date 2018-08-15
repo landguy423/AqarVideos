@@ -18,14 +18,14 @@ import KeyboardScrollView from '@components/KeyboardView';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import DatePicker from 'react-native-datepicker';
 import LoadingSpinner from '@components/LoadingSpinner';
-const img_detail = require('@common/assets/images/my_message/picture.png');
-
+import CustomAlert from '@components/CustomAlert';
 import { getBankDetail, sendBankDetail } from '@redux/Package/actions'
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
+const img_detail = require('@common/assets/images/my_message/picture.png')
 
 class PackageDetailBankPage extends Component {
   constructor(props) {
@@ -33,7 +33,8 @@ class PackageDetailBankPage extends Component {
     this.state = {
       bankInfo: [],
       bankData: {},
-      loading: false
+      loading: false,
+      sendBankResult: null
     }
   }
 
@@ -50,6 +51,19 @@ class PackageDetailBankPage extends Component {
       this.setState({ loading: false })
       this.setState({ bankInfo, bankData: bankInfo.length > 0 ? bankInfo[0] : {} })
     }
+
+    if (this.props.packages.status === 'SEND_BANK_DETAIL_REQUEST' && nextProps.packages.status === 'SEND_BANK_DETAIL_SUCCESS') {
+      console.log('SEND_BANK_DETAIL: ', nextProps.packages.sendBankResult)
+      this.setState({
+        loading: false,
+        isSendResult: true,
+        sendBankResult: nextProps.packages.sendBankResult
+      })
+    }
+
+    if (nextProps.packages.status === 'GET_BANK_DETAIL_FAILED' || nextProps.packages.status === 'SEND_BANK_DETAIL_FAILED') {
+      this.setState({ loading: false })
+    }
   }
 
   onTry = () => {
@@ -60,6 +74,8 @@ class PackageDetailBankPage extends Component {
       user_id,
       bank_id
     }
+
+    this.setState({ loading: true })
     this.props.sendBankDetail(token.tokenInfo.token, param)
   }
 
@@ -68,9 +84,14 @@ class PackageDetailBankPage extends Component {
 		this.setState({ bankData: bankInfo[index] });
   }
 
+  closeSendResultModal = () => {
+    this.setState({ isSendResult: false })
+    Actions.Package()
+  }
+
   render() {
     const { data } = this.props
-    const { bankData } = this.state
+    const { bankData, sendBankResult } = this.state
 
     
     return (
@@ -132,8 +153,16 @@ class PackageDetailBankPage extends Component {
               </View>
             </TouchableOpacity>
           </View>
-
         </View>
+
+        {sendBankResult && (
+          <CustomAlert 
+            title={sendBankResult.status === 200 ? 'Success' : 'Error'}
+            message={sendBankResult.message} 
+            visible={this.state.isSendResult} 
+            closeAlert={() => this.closeSendResultModal() }
+          />
+        )}
       </Container>
     );
   }
