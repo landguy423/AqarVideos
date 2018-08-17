@@ -29,41 +29,22 @@ class MyPackagePage extends Component {
     this.state = {
       loading: false,
       isMyPackage: false,
+      myPackageInfo: {}
     }
   }
 
   componentWillMount() {
-    const { user, token, getMyPackage } = this.props;
+    const { user, token, packages } = this.props;
 
-    this.setState({ loading: true })
-    getMyPackage(
-      token.tokenInfo.token,
-      {
-        user_id: user.userInfo.user.customer_id,
-      }
-    )
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { packages } = nextProps;
-
-    if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
-      this.setState({ loading: false })
-      if (packages.myPackageInfo.status === 200) {
-        this.setState({ isMyPackage: true });
-        this.setState({ myPackageData: packages.myPackageInfo.package });
-      } else if (packages.myPackageInfo.status === 107) {
-        this.setState({ isMyPackage: false });
-      }
+    if (packages.myPackageInfo.status === 200) {
+      this.setState({ isMyPackage: true, myPackageInfo: packages.myPackageInfo.package });
+    } else {
+      this.setState({ isMyPackage: false });
     }
   }
 
-  onRenew() {
-    // Actions.MyPackageDetail({data: rowData});
-  }
-
   render() {
-    const { loading, isMyPackage, myPackageData } = this.state
+    const { loading, isMyPackage, myPackageInfo } = this.state
 
     return (
       <Container title={I18n.t('sidebar.my_packages')}>
@@ -72,7 +53,7 @@ class MyPackagePage extends Component {
         {isMyPackage ?
           <View style={styles.container}>
             <View style={styles.packageView}>
-              <Text style={styles.title}>{myPackageData.detail.title}</Text>
+              <Text style={styles.title}>{myPackageInfo.detail.title}</Text>
             </View>
 
             <View style={styles.countdownView}>
@@ -86,14 +67,14 @@ class MyPackagePage extends Component {
                 digitBgColor={commonColors.pinkColor}
                 digitTxtColor="#fff"
                 timeTxtColor="#888"
-                until={myPackageData.remaining_days}
+                until={myPackageInfo.remaining_days}
                 size={28}
               />
             </View>
           </View> :
           <View style={styles.container}>
             {!loading && (
-              <Text>There is no package available</Text>
+              <Text>{I18n.t('packages.empty_package')}</Text>
             )}
           </View>
         }

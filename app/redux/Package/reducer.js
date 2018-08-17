@@ -43,6 +43,7 @@ export default function packages(state = initialState, action = {}) {
      * Get my package
      */
     case types.GET_MY_PACKAGE_REQUEST: {
+      console.log('GET_MY_PACKAGE_REQUEST')
       return {
         ...state,
         status: 'GET_MY_PACKAGE_REQUEST',
@@ -50,6 +51,7 @@ export default function packages(state = initialState, action = {}) {
       };
     }
     case types.GET_MY_PACKAGE_SUCCESS: {
+      console.log('GET_MY_PACKAGE_SUCCESS')
       const { data } = action.result
 
       return {

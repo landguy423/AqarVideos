@@ -33,7 +33,8 @@ class PackagePage extends Component {
     this.state = {
       loading: false,
       packageList: [],
-      paidPackage: null
+      isPaidUser: false,
+      myPackageInfo: null
     }
   }
 
@@ -49,17 +50,27 @@ class PackagePage extends Component {
     const { packages, token, getPackages } = nextProps;
 
     if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
-      getPackages(token.tokenInfo.token);
+      console.log('PAID_PACKAGE: ', packages.myPackageInfo)
+      if (packages.isPaidUser) {
+        this.setState({
+          isPaidUser: packages.isPaidUser,
+          myPackageInfo: packages.myPackageInfo
+        })
+
+        if (packages.myPackageInfo.package.status === 0) {
+          getPackages(token.tokenInfo.token);
+        } else {
+          this.setState({ loading: false });
+        }
+      } else {
+        getPackages(token.tokenInfo.token);
+      }
     }
 
     if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
       this.setState({ loading: false });
       if (packages.packageInfo.status === 200) {
-        if (packages.isPaidUser) {
-          const { myPackageInfo } = packages
-          console.log('myPackageInfo: ', myPackageInfo)
-          this.setState({ paidPackage: myPackageInfo })
-        }
+        console.log('PAKCAGE_LIST: ', packages.packageInfo.package)
         this.setState({ packageList: packages.packageInfo.package})
       }
     }
@@ -70,8 +81,9 @@ class PackagePage extends Component {
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
-    const { paidPackage } = this.state
-    if (paidPackage.status === 200 && paidPackage.package.package_id === rowData.package_id) {
+    const { myPackageInfom, isPaidUser } = this.state
+    // Hide current package
+    if (isPaidUser && myPackageInfo.package.package_id === rowData.package_id) {
       return null
     }
 
@@ -105,7 +117,7 @@ class PackagePage extends Component {
   }
 
   render() {
-    const { loading, packageList } = this.state
+    const { loading, packageList, myPackageInfo, isPaidUser  } = this.state
     const { packages: { packageInfo }} = this.props;
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -116,14 +128,17 @@ class PackagePage extends Component {
         <LoadingSpinner visible={loading } />
 
         <View style={styles.container}>
-          <ListView
+          {(isPaidUser && myPackageInfo.package.status !== 0) // show the packages if it is Free trial
+          ? <Text>{I18n.t('packages.paid_package')}: {myPackageInfo.package.detail.title} </Text>
+          : <ListView
             ref='listview'
-            dataSource={dataSource}
-            renderRow={this._renderRow.bind(this)}
-            renderSeparator={this._renderSeparator}
-            contentContainerStyle={styles.listView}
-            enableEmptySections={true}
-          />
+              dataSource={dataSource}
+              renderRow={this._renderRow.bind(this)}
+              renderSeparator={this._renderSeparator}
+              contentContainerStyle={styles.listView}
+              enableEmptySections={true}
+            />
+          }
         </View>
       </Container>
     );

@@ -52,6 +52,8 @@ export default {
     date: 'Date',
     confirm: 'CONFIRM',
     cancel: 'CANCEL',
+    empty_package: "There is no package available",
+    paid_package: "You already chose the package"
   },
   post_video: {
     record_choose_video: "Record or Choose the Video",

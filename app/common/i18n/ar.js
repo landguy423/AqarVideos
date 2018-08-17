@@ -52,6 +52,8 @@ export default {
     date: 'التاريخ',
     confirm: 'تأكيد',
     cancel: 'إلغاء',
+    empty_package: "لا يوجد حزمة المتاحة",
+    paid_package: "أنت بالفعل اخترت الحزمة"
   },
   post_video: {
     record_choose_video: 'سجل أو اختر فيديو',
