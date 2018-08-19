@@ -76,7 +76,8 @@ export function deleteWishlistProduct(token, data) {
           url: `${API_URL}?route=api/package/deleteWhishList&api_token=${token}`,
           headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
           data,
-      })  
+      }),
+    payload: { productId: data.product_id }
   };
 }
 
@@ -112,7 +113,8 @@ export function setFavorite(token, data, flag) {
           url,
           headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
           data: params,
-      })  
+      }),
+    payload: { productId: data.product_id, flag }
   };
 }
 

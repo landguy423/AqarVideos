@@ -1,4 +1,5 @@
-import * as types from './actionTypes';
+import _ from 'lodash'
+import * as types from './actionTypes'
 
 const initialState = {
   loading: null,
@@ -108,12 +109,13 @@ export default function products(state = initialState, action = {}) {
         wishlistProduct: null,
       };
     case types.GET_WISHLIST_PRODUCT_SUCCESS: {
+      const { data } = action.result
       return {
         ...state,
         loading: types.GET_WISHLIST_PRODUCT_SUCCESS,
-        wishlistProduct: action.result.data.status === 107 ?
-          null :
-          (!action.result.data.products ? null : action.result.data.products),
+        wishlistProduct: data.status === 107 ?
+          [] :
+          (!data.products ? [] : data.products),
       }
     }
     case types.GET_WISHLIST_PRODUCT_FAILED:
@@ -131,9 +133,21 @@ export default function products(state = initialState, action = {}) {
         loading: types.DEL_WISHLIST_PRODUCT_REQUEST,
       };
     case types.DEL_WISHLIST_PRODUCT_SUCCESS:
+      const { productId } = action.payload
+      const { allProduct } = state
+      const currentProduct = _.filter(allProduct, item => item.product_id === productId)
+      const restProduct = _.filter(allProduct, item => item.product_id !== productId)
+
       return {
         ...state,
         loading: types.DEL_WISHLIST_PRODUCT_SUCCESS,
+        allProduct: [
+          ...restProduct,
+          {
+            ...currentProduct[0],
+            favorite: false
+          }
+        ]
       }
     case types.DEL_WISHLIST_PRODUCT_FAILED:
       return {
@@ -171,9 +185,21 @@ export default function products(state = initialState, action = {}) {
         loading: types.SET_FAVORITE_REQUEST,
       };
     case types.SET_FAVORITE_SUCCESS: {
+      const { productId, flag } = action.payload
+      const { allProduct } = state
+      const currentProduct = _.filter(allProduct, item => item.product_id === productId)
+      const restProduct = _.filter(allProduct, item => item.product_id !== productId)
+
       return {
         ...state,
         loading: types.SET_FAVORITE_SUCCESS,
+        allProduct: [
+          ...restProduct,
+          {
+            ...currentProduct[0],
+            favorite: !flag
+          }
+        ]
       }
     }
     case types.SET_FAVORITE_FAILED:

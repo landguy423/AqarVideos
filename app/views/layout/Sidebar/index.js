@@ -42,12 +42,12 @@ class Sidebar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { user, products: { allProduct } } = nextProps;
+    const { user, products } = nextProps;
 
     this.setState({ userLogin: user.userLogin });
     if (user.userInfo && user.userInfo.status === '200') {
-      const myAdsProduct = filter(allProduct, item => item.customer_id === user.userInfo.user.customer_id)
-      const myWishlistProduct = filter(allProduct, item => item.favorite)
+      const myAdsProduct = filter(products.allProduct, item => item.customer_id === user.userInfo.user.customer_id)
+      const myWishlistProduct = filter(products.allProduct, item => item.favorite)
       this.setState({ myAdsCount: myAdsProduct.length, myWishlistCount: myWishlistProduct.length })
     }
   }
@@ -139,8 +139,6 @@ class Sidebar extends Component {
 
   render() {
     let menuItems = [];
-    let adsCount = 3;
-    let wishlistCount = 5;
 
     if (this.state.userLogin) {
       menuItems = [

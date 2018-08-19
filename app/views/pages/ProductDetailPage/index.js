@@ -354,17 +354,16 @@ class ProductDetailPage extends Component {
                 </View>
               )}
               
-              {user.userLogin && (
+              {/* {user.userLogin && (
                 <View style={styles.btnView}>
                   <TouchableOpacity onPress={() => this.onReportAD()} activeOpacity={0.5}>
                     <View style={styles.btnAd}>
                       <Text style={[styles.textDescription, {fontStyle: 'italic'}]}>{I18n.t('report_ad')}</Text>
-                      {/* <Icon name='flag' style={styles.iconAd} /> */}
                       <Image source={icon_report} style={styles.iconAd} />
                     </View>
                   </TouchableOpacity>
                 </View>
-              )}
+              )} */}
             </View>
             
             <ModalShare showShareModal={showShareModal} hideShareModal={() => this.setState({ showShareModal: false })} />
