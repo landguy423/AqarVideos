@@ -47,13 +47,11 @@ class PackageDetailBankPage extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.packages.status === 'GET_BANK_DETAIL_REQUEST' && nextProps.packages.status === 'GET_BANK_DETAIL_SUCCESS') {
       const { bankInfo } = nextProps.packages
-      console.log('BANK_INFO: ', bankInfo)
       this.setState({ loading: false })
       this.setState({ bankInfo, bankData: bankInfo.length > 0 ? bankInfo[0] : {} })
     }
 
     if (this.props.packages.status === 'SEND_BANK_DETAIL_REQUEST' && nextProps.packages.status === 'SEND_BANK_DETAIL_SUCCESS') {
-      console.log('SEND_BANK_DETAIL: ', nextProps.packages.sendBankResult)
       this.setState({
         loading: false,
         isSendResult: true,
@@ -91,7 +89,7 @@ class PackageDetailBankPage extends Component {
 
   render() {
     const { data } = this.props
-    const { bankData, sendBankResult } = this.state
+    const { bankInfo, bankData, sendBankResult } = this.state
 
     
     return (
@@ -102,6 +100,11 @@ class PackageDetailBankPage extends Component {
           <Image source={img_detail} style={styles.thumbnail} />
           
           <View style={styles.logoContainer}>
+            {bankInfo.map((item, index) => (
+              <TouchableOpacity key={index} onPress={() => this.onChange(index)} style={styles.logoView} activeOpacity={0.8}>
+                <Image source={{ uri: item.image }} style={styles.logo} />
+              </TouchableOpacity>
+            ))}
           </View>
 
           {!isEmpty(bankData) && (

@@ -45,7 +45,6 @@ class MyAdsPage extends Component {
 
   componentWillReceiveProps( { products }) {
     if (this.props.products.loading === 'GET_ADS_PRODUCT_REQUEST' && products.loading === 'GET_ADS_PRODUCT_SUCCESS' && products.myAdsProduct.status === 200) {
-      console.log('PPP: ', products.myAdsProduct);
       this.setData(products.myAdsProduct.ads)
     }
     if (products.loading === 'GET_ADS_PRODUCT_FAILED') {

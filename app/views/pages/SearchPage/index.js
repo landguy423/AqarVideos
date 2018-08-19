@@ -79,7 +79,6 @@ class SearchPage extends Component {
   componentWillReceiveProps(nextProps) {
     const { products } = nextProps;
     if (this.props.products.loading === 'SEARCH_PRODUCT_REQUEST' && products.loading === 'SEARCH_PRODUCT_SUCCESS') {
-      console.log('SEARCH_PRODUCT: ', products.searchProduct);
       this.setState({ loading: false });
       if (products.searchProduct.status === 200) {
         this.setState({ showProducts: true, searchProductList: products.searchProduct.product });

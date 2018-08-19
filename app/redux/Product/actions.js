@@ -130,7 +130,6 @@ export function addViewCount(token, data) {
 }
 
 export function searchProduct(token, data) {
-  console.log('SEARCH_PARAM: ', data);
   return {
     types: [types.SEARCH_PRODUCT_REQUEST, types.SEARCH_PRODUCT_SUCCESS, types.SEARCH_PRODUCT_FAILED],
     promise:

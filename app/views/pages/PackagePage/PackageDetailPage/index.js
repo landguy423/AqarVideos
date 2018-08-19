@@ -13,7 +13,6 @@ import {
 
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import * as TELR_PAYMENT from '@common/payment_telr/telr_payment'
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import KeyboardScrollView from '@components/KeyboardView'
 import LoadingSpinner from '@components/LoadingSpinner';
@@ -85,22 +84,24 @@ class PackageDetailPage extends Component {
             </KeyboardScrollView>
           </View>
 
-          <View style={styles.radioButtonView}>
-            <RadioGroup
-              highlightColor="transparent"
-              color="#999"
-              activeColor="#88AC40"
-              selectedIndex={0}
-              onSelect={(index, value) => this.onSelect(index, value)}
-            >
-              <RadioButton value={'MasterCard'}>
-                <Text>Master Card</Text>
-              </RadioButton>
-              <RadioButton value={'Bank'}>
-                <Text>Bank</Text>
-              </RadioButton>
-            </RadioGroup>
-          </View>
+          {data.price !== '$0.00' && (
+            <View style={styles.radioButtonView}>
+              <RadioGroup
+                highlightColor="transparent"
+                color="#999"
+                activeColor="#88AC40"
+                selectedIndex={0}
+                onSelect={(index, value) => this.onSelect(index, value)}
+              >
+                <RadioButton value={'MasterCard'}>
+                  <Text>Master Card</Text>
+                </RadioButton>
+                <RadioButton value={'Bank'}>
+                  <Text>Bank</Text>
+                </RadioButton>
+              </RadioGroup>
+            </View>
+          )}
 
           <View style={styles.btnView}>
             <TouchableOpacity onPress={() => this.onTry()} activeOpacity={0.5}>

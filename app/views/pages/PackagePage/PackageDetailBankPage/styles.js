@@ -61,4 +61,24 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontSize: commonStyles.normalFontSize,
   },
+  logoContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: 10
+  },
+  logoView: {
+    width: 150,
+    height: 80,
+    borderWidth: 3,
+    borderColor: commonColors.greenColor,
+    margin: 10,
+    borderRadius: 5
+  },
+  logo: {
+    width: '100%',
+    height: '100%'
+  }
 });

@@ -28,4 +28,9 @@ export const styles = StyleSheet.create({
     fontSize: 80,
     backgroundColor: 'transparent',
   },
+  noPackgeText: {
+    fontFamily: commonStyles.normalFont,
+    color: commonColors.greenColor,
+    fontSize: 20
+  }
 });

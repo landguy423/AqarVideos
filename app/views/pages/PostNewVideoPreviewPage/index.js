@@ -77,13 +77,9 @@ class PostNewVideoPreviewPage extends Component {
     }
 
     this.setState({ loading: true })
-
-    console.log('UPLOADING FILE: ', file)
-    console.log('UPLOADING OPTION: ', AWS_OPTIONS)
     
     RNS3.put(file, AWS_OPTIONS)
       .then(response => {
-        console.log('UPLOADING RESPONSE: ', response)
         this.setState({ loading: false })
         if (response.status !== 201) {
           this.setState({ videoError: true, videoUploadingErrorMsg: 'Failed to upload video file to server' })
@@ -91,10 +87,6 @@ class PostNewVideoPreviewPage extends Component {
         } else {
           this.setState({ videoError: false })
           const video_url = response.body.postResponse.location
-
-          console.log('video_url: ', video_url)
-
-          // const video_url = 'https://videoaqar.s3.amazonaws.com/upload%2FIMG_7189.MOV'
 
           const params = {
             customer_id: user.userInfo.user.customer_id,

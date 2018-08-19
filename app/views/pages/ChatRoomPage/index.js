@@ -56,7 +56,6 @@ class ChatRoomPage extends Component {
     const { message, getChatData, token, data, user } = nextProps;
 
     if (this.props.message.status === 'GET_CHAT_DATA_REQUEST' && message.status === 'GET_CHAT_DATA_SUCCESS') {
-      console.log('CHAT_DATA: ', message.chatData);
       this.setState({ loading: false });
       if (message.chatData.status === 200) {
         let data = message.chatData.messages;
@@ -70,7 +69,6 @@ class ChatRoomPage extends Component {
 
     // Recall message list
     if (this.props.message.status === 'SEND_DIRECT_MESSAGE_REQUEST' && message.status === 'SEND_DIRECT_MESSAGE_SUCCESS') {
-      console.log('RECAL__CHAT: ', message: directMessage);
       if (message.directMessage.status === 200) {
         getChatData(
           token.tokenInfo.token,

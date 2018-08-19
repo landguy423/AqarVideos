@@ -24,7 +24,6 @@ export default function user(state = initialState, action = {}) {
         loading: true,
       };
     case types.USER_SIGN_IN_SUCCESS:
-      console.log('USER_INFO: ', action.result.data)
       return {
         ...state,
         loading: false,

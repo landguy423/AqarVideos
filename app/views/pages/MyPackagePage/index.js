@@ -74,7 +74,7 @@ class MyPackagePage extends Component {
           </View> :
           <View style={styles.container}>
             {!loading && (
-              <Text>{I18n.t('packages.empty_package')}</Text>
+              <Text style={styles.noPackgeText}>{I18n.t('packages.empty_package')}</Text>
             )}
           </View>
         }

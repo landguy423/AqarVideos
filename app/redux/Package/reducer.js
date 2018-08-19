@@ -26,6 +26,7 @@ export default function packages(state = initialState, action = {}) {
     }
     case types.GET_PACKAGE_SUCCESS: {
       const { data } = action.result
+      console.log('GET_PACKAGE_SUCCESS', data)
       return {
         ...state,
         status: 'GET_PACKAGE_SUCCESS',
@@ -51,8 +52,8 @@ export default function packages(state = initialState, action = {}) {
       };
     }
     case types.GET_MY_PACKAGE_SUCCESS: {
-      console.log('GET_MY_PACKAGE_SUCCESS')
       const { data } = action.result
+      console.log('GET_MY_PACKAGE_SUCCESS', data)
 
       return {
         ...state,

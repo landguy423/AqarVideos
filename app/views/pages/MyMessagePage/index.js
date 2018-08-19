@@ -36,8 +36,6 @@ class MyMessagePage extends Component {
   componentWillMount() {
     const { user, token, getChatUserList } = this.props;
 
-    console.log('USER_INFO: ', user.userInfo);
-
     this.setState({ loading: true });
     getChatUserList(
       token.tokenInfo.token,
@@ -51,7 +49,6 @@ class MyMessagePage extends Component {
     const { message } = nextProps;
 
     if (this.props.message.status === 'GET_CHAT_USER_REQUEST' && message.status === 'GET_CHAT_USER_SUCCESS') {
-      console.log('CHAT_USER_LIST: ', message.chatUserList);
       this.setState({ loading: false });
       if (message.chatUserList.status === 200) {
         this.setState({ listData: message.chatUserList.messages });

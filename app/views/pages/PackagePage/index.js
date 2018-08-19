@@ -50,14 +50,13 @@ class PackagePage extends Component {
     const { packages, token, getPackages } = nextProps;
 
     if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
-      console.log('PAID_PACKAGE: ', packages.myPackageInfo)
       if (packages.isPaidUser) {
         this.setState({
           isPaidUser: packages.isPaidUser,
           myPackageInfo: packages.myPackageInfo
         })
 
-        if (packages.myPackageInfo.package.status === 0) {
+        if (packages.myPackageInfo.package.price === '$0.00') {
           getPackages(token.tokenInfo.token);
         } else {
           this.setState({ loading: false });
@@ -70,7 +69,6 @@ class PackagePage extends Component {
     if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
       this.setState({ loading: false });
       if (packages.packageInfo.status === 200) {
-        console.log('PAKCAGE_LIST: ', packages.packageInfo.package)
         this.setState({ packageList: packages.packageInfo.package})
       }
     }
@@ -128,8 +126,8 @@ class PackagePage extends Component {
         <LoadingSpinner visible={loading } />
 
         <View style={styles.container}>
-          {(isPaidUser && myPackageInfo.package.status !== 0) // show the packages if it is Free trial
-          ? <Text>{I18n.t('packages.paid_package')}: {myPackageInfo.package.detail.title} </Text>
+          {(isPaidUser && myPackageInfo.package.price !== '$0.00') // Show all packages if it is in Free trial
+          ? <Text style={styles.paidPackgeText}>{I18n.t('packages.paid_package')}: {myPackageInfo.package.detail.title} </Text>
           : <ListView
             ref='listview'
               dataSource={dataSource}
