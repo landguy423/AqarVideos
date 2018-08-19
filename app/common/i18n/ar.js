@@ -98,7 +98,7 @@ export default {
     select_video: 'يرجى تحديد الفيديو',
     select_address: 'يرجى اختيار العنوان',
     select_title: 'يرجى إدخال العنوان',
-    select_price: 'يرجى إدخال السعر',
+    select_price: 'يرجى إدخال السعر'
   },
   profile: {
     ph_name: 'الاسم كامل',
@@ -140,4 +140,21 @@ export default {
     whatsapp: 'واتس أب',
     linkedin: 'لنكد إن',
   },
+  period_type: {
+    daily: 'اليومي',
+    monthly: 'شهريا',
+    yearly: 'سنوي'
+  },
+  building_type: {
+    residential: 'سكني',
+    commercial: 'تجاري'
+  },
+  apartment_type: {
+    singular: 'صيغة المفرد',
+    familiar: 'مألوف'
+  },
+  payment_type: {
+    visa: 'التأشيرة والبطاقة الرئيسية',
+    bank: 'بنك'
+  }
 }

@@ -94,10 +94,10 @@ class PackageDetailPage extends Component {
                 onSelect={(index, value) => this.onSelect(index, value)}
               >
                 <RadioButton value={'MasterCard'}>
-                  <Text>Master Card</Text>
+                  <Text>{I18n.t('payment_type.visa')}</Text>
                 </RadioButton>
                 <RadioButton value={'Bank'}>
-                  <Text>Bank</Text>
+                  <Text>{I18n.t('payment_type.bank')}</Text>
                 </RadioButton>
               </RadioGroup>
             </View>

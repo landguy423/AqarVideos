@@ -37,6 +37,8 @@ import CustomAlert from '@components/CustomAlert';
 
 import { addProduct } from '@redux/Product/actions';
 
+import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
+
 class PostNewVideoPreviewPage extends Component {
   constructor(props) {
     super(props);
@@ -207,7 +209,7 @@ class PostNewVideoPreviewPage extends Component {
                   {I18n.t('post_video.type')}
                 </Text>
                 <Text style={styles.textDescription}>
-                  {data.building_type}
+                  {BUILDING_TYPE_DATA[parseInt(data.building_type)].value}
                 </Text>
               </View>
             )}
@@ -229,6 +231,7 @@ class PostNewVideoPreviewPage extends Component {
                 </Text>
                 <Text style={styles.textDescription}>
                   {data.period}
+                  {PERIOD_DATA[parseInt(data.period)].value}
                 </Text>
               </View>
             )}
@@ -248,7 +251,7 @@ class PostNewVideoPreviewPage extends Component {
                     {I18n.t('post_video.room_type')}
                   </Text>
                   <Text style={styles.textDescription}>
-                    {data.room_type}
+                    {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
                   </Text>
                 </View>
                 <View style={styles.titleView}>
@@ -307,7 +310,7 @@ class PostNewVideoPreviewPage extends Component {
                 {I18n.t('post_video.product_option')}
               </Text>
               <Text style={styles.textDescription}>
-                {data.product_type}
+                {data.product_type === '0' ? I18n.t('post_video.sale') : I18n.t('post_video.rent')}
               </Text>
             </View>
 

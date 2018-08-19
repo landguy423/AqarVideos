@@ -183,7 +183,8 @@ class SupportAdvertisementPage extends Component {
                 <Text style={styles.textTitle}>{I18n.t('support.subject')}</Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ subject: value })}
-                  item={this.state.subject} data={subjectList}
+                  item={this.state.subject}
+                  data={subjectList}
                 />
               </View>
 

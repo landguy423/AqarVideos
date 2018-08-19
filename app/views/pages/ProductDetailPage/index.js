@@ -29,6 +29,9 @@ import { CATEGORY_ICON_LIST } from '@common/category';
 
 import { setFavorite, addViewCount } from '@redux/Product/actions';
 
+
+import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
+
 import * as commonStyles from '@common/styles/commonStyles';
 import { styles } from './styles';
 
@@ -182,7 +185,7 @@ class ProductDetailPage extends Component {
                     {I18n.t('post_video.type')}
                   </Text>
                   <Text style={styles.textDescription}>
-                    {data.building_type}
+                    {BUILDING_TYPE_DATA[parseInt(data.building_type)].value}
                   </Text>
                 </View>
               )}
@@ -204,7 +207,7 @@ class ProductDetailPage extends Component {
                     {I18n.t('post_video.period')}
                   </Text>
                   <Text style={styles.textDescription}>
-                    {data.period}
+                    {PERIOD_DATA[parseInt(data.period)].value}
                   </Text>
                 </View>
               )}
@@ -224,7 +227,7 @@ class ProductDetailPage extends Component {
                       {I18n.t('post_video.room_type')}
                     </Text>
                     <Text style={styles.textDescription}>
-                      {data.room_type}
+                      {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
                     </Text>
                   </View>
                   <View style={styles.titleView}>
@@ -285,7 +288,7 @@ class ProductDetailPage extends Component {
                   {I18n.t('post_video.product_option')}
                 </Text>
                 <Text style={styles.textDescription}>
-                  {data.product_type}
+                  {data.product_type === '0' ? I18n.t('post_video.sale') : I18n.t('post_video.rent')}
                 </Text>
               </View>
               

@@ -50,18 +50,18 @@ class PostNewVideoPage extends Component {
       name: '',
       description: '',
       price: '',
-      product_type: 'Sale',
+      product_type: '0',
 
       //building
-      building_type: 'Residential', // Residential, Commercial
+      building_type: '0', // Residential, Commercial
 
       //villa
       squaremeter: '1000',
 
       //apartment
       furniture: false,
-      period: 'Daily',    // Daily, Monthly, Yearly
-      room_type: 'Singular', // Singular, Familiar
+      period: '0',    // Daily, Monthly, Yearly
+      room_type: '0', // Singular, Familiar
       room_count: '',
       ownership: false,
 
@@ -114,7 +114,7 @@ class PostNewVideoPage extends Component {
   }
 
   onSelectProductOption(index, value) {
-    this.setState({ product_type: value })
+    this.setState({ product_type: index })
   }
 
   selectCategory(item) {
@@ -319,10 +319,10 @@ class PostNewVideoPage extends Component {
                 selectedIndex={0}
                 onSelect={(index, value) => this.onSelectProductOption(index, value)}
               >
-                <RadioButton value={'Sale'}>
+                <RadioButton value={I18n.t('post_video.sale')}>
                   <Text style={styles.textDescription}>{I18n.t('post_video.sale')}</Text>
                 </RadioButton>
-                <RadioButton value={'Rent'}>
+                <RadioButton value={I18n.t('post_video.rent')}>
                   <Text style={styles.textDescription}>{I18n.t('post_video.rent')}</Text>
                 </RadioButton>
               </RadioGroup>
@@ -338,7 +338,7 @@ class PostNewVideoPage extends Component {
                 </Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ building_type: value })}
-                  item={this.state.building_type}
+                  item={BUILDING_TYPE_DATA[parseInt(this.state.building_type)].value}
                   data={BUILDING_TYPE_DATA}
                 />
               </View>
@@ -372,7 +372,7 @@ class PostNewVideoPage extends Component {
                 </Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ period: value })}
-                  item={this.state.period}
+                  item={PERIOD_DATA[parseInt(this.state.period)].value}
                   data={PERIOD_DATA}
                 />
               </View>
@@ -399,7 +399,7 @@ class PostNewVideoPage extends Component {
                   </Text>
                   <DropdownComponent
                     selectItem={value => this.setState({ room_type: value })}
-                    item={this.state.roomType}
+                    item={APARTMENT_ROOM_TYPE[parseInt(this.state.room_type)].value}
                     data={APARTMENT_ROOM_TYPE}
                   />
                 </View>

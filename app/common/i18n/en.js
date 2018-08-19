@@ -98,7 +98,7 @@ export default {
     select_video: 'Please select the video',
     select_address: 'Please select the address',
     select_title: 'Please input title',
-    select_price: 'Please input price',
+    select_price: 'Please input price'
   },
   profile: {
     ph_name: 'User Name',
@@ -140,4 +140,21 @@ export default {
     whatsapp: "Whatsapp",
     linkedin: "Linkedin",
   },
+  period_type: {
+    daily: 'Daily',
+    monthly: 'Monthly',
+    yearly: 'Yearly'
+  },
+  building_type: {
+    residential: 'Residential',
+    commercial: 'Commercial'
+  },
+  apartment_type: {
+    singular: 'Singular',
+    familiar: 'Familiar'
+  },
+  payment_type: {
+    visa: 'Visa and Master card',
+    bank: 'Bank'
+  }
 }

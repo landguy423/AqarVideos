@@ -55,13 +55,13 @@ class SearchPage extends Component {
       category: 'building',
       minPrice: '0',
       maxPrice: '10000',
-      productOption: 'Sale',
+      productOption: I18n.t('post_video.sale'),
       radius: '1',
-      period: 'Daily',
-      buildingType: 'Residential',
+      period: '0',
+      buildingType: '0',
       minSquareMeter: '',
       maxSquareMeter: '',
-      roomType: 'Singular',
+      roomType: '0',
       roomCount: '',
       furniture: true,
       ownership: false,
@@ -89,7 +89,7 @@ class SearchPage extends Component {
   }
 
   onSelectProductOption(index, value) {
-    this.setState({ productOption: value })
+    this.setState({ productOption: index })
   }
 
   selectCategory(item) {
@@ -226,10 +226,10 @@ class SearchPage extends Component {
                   selectedIndex={0}
                   onSelect={(index, value) => this.onSelectProductOption(index, value)}
                 >
-                  <RadioButton value={'Sale'}>
+                  <RadioButton value={I18n.t('post_video.sale')}>
                     <Text style={styles.textDescription}>{I18n.t('post_video.sale')}</Text>
                   </RadioButton>
-                  <RadioButton value={'Rent'}>
+                  <RadioButton value={I18n.t('post_video.rent')}>
                     <Text style={styles.textDescription}>{I18n.t('post_video.rent')}</Text>
                   </RadioButton>
                 </RadioGroup>
@@ -245,7 +245,7 @@ class SearchPage extends Component {
                   </Text>
                   <DropdownComponent
                     selectItem={value => this.setState({ buildingType: value })}
-                    item={this.state.buildingType}
+                    item={BUILDING_TYPE_DATA[parseInt(this.state.buildingType)].value}
                     data={BUILDING_TYPE_DATA}
                   />
                 </View>
@@ -329,7 +329,7 @@ class SearchPage extends Component {
                   </Text>
                   <DropdownComponent
                     selectItem={value => this.setState({ period: value })}
-                    item={this.state.period}
+                    item={PERIOD_DATA[parseInt(this.state.period)].value}
                     data={PERIOD_DATA}
                   />
                 </View>
@@ -343,7 +343,7 @@ class SearchPage extends Component {
                     </Text>
                     <DropdownComponent
                       selectItem={value => this.setState({ roomType: value })}
-                      item={this.state.roomType}
+                      item={APARTMENT_ROOM_TYPE[parseInt(this.state.roomType)].value}
                       data={APARTMENT_ROOM_TYPE}
                     />
                   </View>

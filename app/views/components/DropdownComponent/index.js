@@ -25,7 +25,7 @@ export default class DropdownComponent extends Component {
           itemTextStyle={styles.dropdownItemStyle}
           pickerStyle={styles.pickerStyle}
           itemCount={10}
-          onChangeText={value => this.props.selectItem(value)}
+          onChangeText={(value, index) => this.props.selectItem(index)}
           renderBase={() => (
             <View style={styles.dropdownPlaceholderView}>
               <IconEntypo name='chevron-down' style={styles.arrowDown} />
