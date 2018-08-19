@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
     opacity: 0.1,
   },
   fieldContainer: {
-    flex: 1
+    flex: 1,
+    paddingBottom: commonStyles.buttonHeight
   },
   titleView: {
     marginVertical: 20,

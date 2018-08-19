@@ -53,7 +53,8 @@ export default {
     confirm: 'CONFIRM',
     cancel: 'CANCEL',
     empty_package: "There is no package available",
-    paid_package: "You already chose the package"
+    paid_package: "You already chose the package",
+    free_package: "You are in a free trial"
   },
   post_video: {
     record_choose_video: "Record or Choose the Video",

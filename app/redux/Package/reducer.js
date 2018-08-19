@@ -73,15 +73,18 @@ export default function packages(state = initialState, action = {}) {
      * Get Telr web url
      */
     case types.GET_WEBURL_REQUEST:
+      console.log('GET_WEBURL_REQUEST')
       return {
           ...state,
           status: types.GET_WEBURL_REQUEST,
       };
     case types.GET_WEBURL_SUCCESS: {
+      const { data } = action.result
+      console.log('GET_WEBURL_SUCCESS', data)
       return {
         ...state,
         status: types.GET_WEBURL_SUCCESS,
-        webUrlInfo: action.result.data,
+        webUrlInfo: data
       }
     }
     case types.GET_WEBURL_FAILED:

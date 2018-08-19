@@ -14,9 +14,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: commonStyles.padding,
   },
   packageView: {
-    width: commonStyles.screenSubWidth - 80,
-    height: commonStyles.screenSubWidth - 80,
-    borderRadius: commonStyles.screenSubWidth / 2,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
     backgroundColor: commonColors.greenColor,
     justifyContent: 'center',
      alignItems: 'center',
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     fontFamily: commonStyles.normalFont,
     textAlign: 'right',
     color: 'white',
-    fontSize: 80,
+    fontSize: 30,
     backgroundColor: 'transparent',
   },
   noPackgeText: {

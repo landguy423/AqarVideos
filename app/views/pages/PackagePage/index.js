@@ -79,7 +79,7 @@ class PackagePage extends Component {
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
-    const { myPackageInfom, isPaidUser } = this.state
+    const { myPackageInfo, isPaidUser } = this.state
     // Hide current package
     if (isPaidUser && myPackageInfo.package.package_id === rowData.package_id) {
       return null
@@ -109,13 +109,13 @@ class PackagePage extends Component {
     return (
       <View
           key={rowID}
-          style={{ height: 15, backgroundColor: 'transparent', flex:1 }}
+          style={{ height: 15, backgroundColor: 'transparent', flex: 1 }}
       />
     );
   }
 
   render() {
-    const { loading, packageList, myPackageInfo, isPaidUser  } = this.state
+    const { loading, packageList, myPackageInfo, isPaidUser } = this.state
     const { packages: { packageInfo }} = this.props;
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -126,16 +126,20 @@ class PackagePage extends Component {
         <LoadingSpinner visible={loading } />
 
         <View style={styles.container}>
+          {(isPaidUser && myPackageInfo.package.price === '$0.00') && (
+            <Text style={styles.paidPackgeText}>{I18n.t('packages.free_package')}</Text>
+          )}
+          
           {(isPaidUser && myPackageInfo.package.price !== '$0.00') // Show all packages if it is in Free trial
-          ? <Text style={styles.paidPackgeText}>{I18n.t('packages.paid_package')}: {myPackageInfo.package.detail.title} </Text>
-          : <ListView
-            ref='listview'
-              dataSource={dataSource}
-              renderRow={this._renderRow.bind(this)}
-              renderSeparator={this._renderSeparator}
-              contentContainerStyle={styles.listView}
-              enableEmptySections={true}
-            />
+            ? <Text style={styles.paidPackgeText}>{I18n.t('packages.paid_package')}: {myPackageInfo.package.detail.title} </Text>
+            : <ListView
+              ref='listview'
+                dataSource={dataSource}
+                renderRow={this._renderRow.bind(this)}
+                renderSeparator={this._renderSeparator}
+                contentContainerStyle={styles.listView}
+                enableEmptySections={true}
+              />
           }
         </View>
       </Container>
