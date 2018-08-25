@@ -47,9 +47,9 @@ class PostNewVideoPage extends Component {
       category: 'building',
       location: I18n.t('post_video.select_address'),
       coordinate: null,
-      name: '',
-      description: '',
-      price: '',
+      name: 'TEST_PRODUCT',
+      description: 'Test product',
+      price: '111',
       product_type: '0',
 
       //building

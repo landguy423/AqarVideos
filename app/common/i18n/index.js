@@ -1,6 +1,6 @@
 import I18n from 'react-native-i18n'
 
-import en from './ar';
+import en from './en';
 import ar from './ar';
 
 I18n.fallbacks = true

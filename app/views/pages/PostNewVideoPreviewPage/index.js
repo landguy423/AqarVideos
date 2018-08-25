@@ -58,6 +58,10 @@ class PostNewVideoPreviewPage extends Component {
       this.setState({ loading: false })
       Actions.Main()
     }
+
+    if (products.loading && this.props.products.loading === 'ADD_PRODUCT_REQUEST' && products.loading === 'ADD_PRODUCT_FAILED' ) {
+      this.setState({ loading: false })
+    }
   }
 
   onEdit() {
@@ -72,19 +76,28 @@ class PostNewVideoPreviewPage extends Component {
       addProduct,
     } = this.props
 
+    if (!this.state.terms) {
+      return
+    }
+
     const file = {
       uri: data.video_url,
       name: data.videoFileName,
       type: 'video/quicktime',
     }
 
-    this.setState({ loading: true })
+    this.setState({ videoError: false, loading: true })
     
     RNS3.put(file, AWS_OPTIONS)
       .then(response => {
+        console.log('UPLOAD_RESPONSE: ', response)
         this.setState({ loading: false })
         if (response.status !== 201) {
-          this.setState({ videoError: true, videoUploadingErrorMsg: 'Failed to upload video file to server' })
+          if (response.status === 403) {
+            this.setState({ videoError: true, videoUploadingErrorMsg: 'The request signature we calculated does not match the signature you provided. Check your key and signing method' })
+          } else {
+            this.setState({ videoError: true, videoUploadingErrorMsg: 'Failed to upload video file to server' })
+          }
           throw new Error("Failed to upload video file to server")
         } else {
           this.setState({ videoError: false })
@@ -110,7 +123,7 @@ class PostNewVideoPreviewPage extends Component {
       })
       .catch(error => {
         this.setState({ loading: false })
-        console.log('UPLOADING ERROR: ', error)
+        console.log('UPLOADING_ERROR: ', error)
       })
   }
 
@@ -160,7 +173,7 @@ class PostNewVideoPreviewPage extends Component {
               <View style={styles.iconView}>
                 <Image source={CATEGORY_ICON_LIST[data.category]} style={styles.iconOffice} resizeMode="contain" />
                 <Text style={styles.textDescription}>
-                  {data.category}
+                  {I18n.t(`category.${data.category}`)}
                 </Text>
               </View>
             </View>
