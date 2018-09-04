@@ -56,6 +56,7 @@ class ProductUpdatePage extends Component {
 
   componentWillMount() {
     const { data } = this.props
+    console.log('PRODUCT_UPDATE_DATA: ', data)
     this.setState({ ...data })
 
     this.setState({
@@ -197,7 +198,8 @@ class ProductUpdatePage extends Component {
     const {
       loading,
       page,
-      coordinate,
+      latitude,
+      longitude,
       location,
       category, 
       video_url,
@@ -207,7 +209,7 @@ class ProductUpdatePage extends Component {
       return (
         <PostProductLocationPage
           changePage={() => this.changePage('post')}
-          coordinate={coordinate}
+          coordinate={{ latitude: parseInt(latitude), longitude: parseInt(longitude) }}
           getAddress={location => this.getAddress(location)}
           address={location}
         />
@@ -272,7 +274,7 @@ class ProductUpdatePage extends Component {
               </View>
             </TouchableOpacity>
 
-            <CategoryComponent selectCategory={item => this.selectCategory(item)} category={this.state.category} />
+            <CategoryComponent selectCategory={item => this.selectCategory(item)} category={category} />
 
             <View style={styles.itemView}>
               <Text style={styles.textTitle}>
@@ -280,7 +282,7 @@ class ProductUpdatePage extends Component {
               </Text>
               <TouchableOpacity onPress={() => this.changePage('map')}>
                 <View style={styles.addressView}>
-                  <Text style={styles.input}>{this.state.location}</Text>
+                  <Text style={styles.input}>{location ? location : I18n.t('post_video.select_address') }</Text>
                 </View>
               </TouchableOpacity>
             </View>

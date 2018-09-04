@@ -80,9 +80,9 @@ class PostProductLocationPage extends Component {
 
   changeMapType(mapType) {
     if (mapType == 'satellite')
-      this.setState({mapType: 'standard'});
+      this.setState({ mapType: 'standard' });
     else
-      this.setState({mapType: 'satellite'});
+      this.setState({ mapType: 'satellite' });
   }
 
   onMapPress(e) {
