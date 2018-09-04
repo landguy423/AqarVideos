@@ -21,15 +21,15 @@ export const styles = StyleSheet.create({
   },
   listItem: {
     width: '100%',
-    shadowOffset: { width:0, height:2 },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowColor: 'black',
   },
   videoView: {
     width: '100%',
     height: listItemHeight,
-    paddingTop: 50,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: commonColors.darkGrayColor,
   },
   emptyVideo: {

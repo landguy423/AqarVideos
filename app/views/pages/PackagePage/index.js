@@ -56,14 +56,13 @@ class PackagePage extends Component {
           myPackageInfo: packages.myPackageInfo
         })
 
-        if (packages.myPackageInfo.package.price === '$0.00') {
-          getPackages(token.tokenInfo.token);
-        } else {
-          this.setState({ loading: false });
-        }
-      } else {
-        getPackages(token.tokenInfo.token);
+        // if (packages.myPackageInfo.package.price === '$0.00') {
+        //   getPackages(token.tokenInfo.token);
+        // } else {
+        //   this.setState({ loading: false });
+        // }
       }
+      getPackages(token.tokenInfo.token);
     }
 
     if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
@@ -80,10 +79,6 @@ class PackagePage extends Component {
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
     const { myPackageInfo, isPaidUser } = this.state
-    // Hide current package
-    if (isPaidUser && myPackageInfo.package.package_id === rowData.package_id) {
-      return null
-    }
 
     return (
       <TouchableOpacity 
@@ -126,21 +121,14 @@ class PackagePage extends Component {
         <LoadingSpinner visible={loading } />
 
         <View style={styles.container}>
-          {(isPaidUser && myPackageInfo.package.price === '$0.00') && (
-            <Text style={styles.paidPackgeText}>{I18n.t('packages.free_package')}</Text>
-          )}
-          
-          {(isPaidUser && myPackageInfo.package.price !== '$0.00') // Show all packages if it is in Free trial
-            ? <Text style={styles.paidPackgeText}>{I18n.t('packages.paid_package')}: {myPackageInfo.package.detail.title} </Text>
-            : <ListView
-              ref='listview'
-                dataSource={dataSource}
-                renderRow={this._renderRow.bind(this)}
-                renderSeparator={this._renderSeparator}
-                contentContainerStyle={styles.listView}
-                enableEmptySections={true}
-              />
-          }
+          <ListView
+            ref='listview'
+            dataSource={dataSource}
+            renderRow={this._renderRow.bind(this)}
+            renderSeparator={this._renderSeparator}
+            contentContainerStyle={styles.listView}
+            enableEmptySections={true}
+          />
         </View>
       </Container>
     );

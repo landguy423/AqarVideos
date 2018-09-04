@@ -22,6 +22,7 @@ import I18n from '@i18n';
 import Container from '@layout/Container';
 import { styles } from './styles';
 import { getWishlistProducts, deleteWishlistProduct } from '@redux/Product/actions';
+import VideoComponent from '@components/VideoComponent'
 
 class MyWishListPage extends Component {
   constructor(props) {
@@ -129,17 +130,7 @@ class MyWishListPage extends Component {
                     >
                       <View style={styles.listItem}>
                         <View style={styles.videoView}>
-                          {(!!rowData.video_url && rowData.video_url.length > 0 && rowData.status === '1') ?
-                            <Video
-                              ref={(ref) => { this.player = ref }}
-                              source={{ uri: rowData.video_url }}
-                              style={styles.video}
-                              resizeMode='cover'
-                              autoplay={false}
-                              paused
-                            /> :
-                            <Icon name='video-off' style={styles.emptyVideo} />
-                          }
+                          <VideoComponent rowData={rowData} />
                         </View>
                         <View style={styles.footerView}>
                           <Text style={styles.textTitle}>{rowData.name}</Text>

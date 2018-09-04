@@ -21,6 +21,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
 import * as commonStyles from '@common/styles/commonStyles';
 import LoadingSpinner from '@components/LoadingSpinner';
+import VideoComponent from '@components/VideoComponent'
 
 class ProductListPage extends Component {
   constructor(props) {
@@ -60,17 +61,7 @@ class ProductListPage extends Component {
           onPress={() => this.onItemSelect(rowData, rowID)}
         >
           <View style={styles.videoView}>
-            {(!!rowData.video_url && rowData.video_url.length > 0 && rowData.status === '1') ?
-              <Video
-                ref={(ref) => { this.player = ref }}
-                source={{ uri: rowData.video_url }}
-                style={styles.imageView}
-                resizeMode='cover'
-                autoplay={false}
-                paused
-              /> :
-              <Icon name='video-off' style={styles.emptyVideo} />
-            } 
+            <VideoComponent rowData={rowData} offsetX={commonStyles.screenWidth / 2 - 30} offsetY={60} size={50} full={true} />
 
             <View style={styles.subView}>
               <Text style={styles.textTitle}>{rowData.name}</Text>

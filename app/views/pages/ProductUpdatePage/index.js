@@ -9,6 +9,7 @@ import {
   Image,
   TouchableWithoutFeedback,
   TextInput,
+  ActivityIndicator
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -46,6 +47,7 @@ class ProductUpdatePage extends Component {
       videoFileName: null,
       coordinate: null,
       data: null,
+      opacity: 0,
 
       page: 'post',
     }
@@ -176,6 +178,20 @@ class ProductUpdatePage extends Component {
     }
   }
 
+  onLoadStart = () => {
+    this.setState({ opacity: 1 }, () => {
+      this.player.presentFullscreenPlayer
+    })
+  }
+
+  onLoad = () => {
+    this.setState({ opacity: 0 })
+  }
+
+  onBuffer = ({ isBuffering }) => {
+    this.setState({ opacity: isBuffering ? 1 : 0 })
+  }
+
   render() {
     // const {videoData} = this.props;
     const {
@@ -214,7 +230,9 @@ class ProductUpdatePage extends Component {
                     resizeMode='cover'
                     autoplay={false}
                     paused
-                    onLoadStart={() => this.player.presentFullscreenPlayer}
+                    onBuffer={this.onBuffer}
+                    onLoad={this.onLoad}
+                    onLoadStart={this.onLoadStart}
                   /> :
                   <Icon name='video' style={styles.cameraIcon} />
                 }
@@ -238,6 +256,18 @@ class ProductUpdatePage extends Component {
                     </TouchableOpacity>
                   </View>
                 )}
+
+                <ActivityIndicator
+                  animating
+                  size="large"
+                  color="#fff"
+                  style={{
+                    opacity: this.state.opacity,
+                    position: 'absolute',
+                    top: 80,
+                    left: commonStyles.screenWidth / 2 - 20,
+                  }}
+                />
 
               </View>
             </TouchableOpacity>

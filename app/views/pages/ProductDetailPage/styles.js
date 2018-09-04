@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   video: {
-    width: '100%',
+    width: commonStyles.screenWidth,
     height: 200,
   },
   emptyVideo: {

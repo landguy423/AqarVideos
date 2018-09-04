@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-
   },
   listView: {
     flexDirection: 'row',
@@ -60,6 +59,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: commonColors.darkGrayColor,
     fontSize: 12,
+    marginBottom: 5,
   },
   textPrice: {
     fontFamily: commonStyles.normalFont,

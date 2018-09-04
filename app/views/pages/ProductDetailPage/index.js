@@ -9,7 +9,8 @@ import {
   Image,
   Modal,
   TouchableWithoutFeedback,
-  Share
+  Share,
+  ActivityIndicator
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -48,11 +49,13 @@ class ProductDetailPage extends Component {
     this.state = {
       showShareModal: false,
       favorite: true,
+      opacity: 0,
     }
   }
 
   componentWillMount() {
     const { data, token, user, addViewCount } = this.props
+    console.log('PRODUCT_DETAIL: ', data)
     this.setState({ favorite: data.favorite })
     addViewCount(token.tokenInfo.token, { product_id: data.product_id })
   }
@@ -116,6 +119,20 @@ class ProductDetailPage extends Component {
     this.player.seek(0);
   }
 
+  onLoadStart = () => {
+    this.setState({ opacity: 1 }, () => {
+      this.player.presentFullscreenPlayer
+    })
+  }
+
+  onLoad = () => {
+    this.setState({ opacity: 0 })
+  }
+
+  onBuffer = ({ isBuffering }) => {
+    this.setState({ opacity: isBuffering ? 1 : 0 })
+  }
+
   render() {
     const { data, user } = this.props;
     const { showShareModal } = this.state
@@ -135,11 +152,25 @@ class ProductDetailPage extends Component {
                       resizeMode='cover'
                       autoplay={false}
                       paused
-                      onLoadStart={() => this.player.presentFullscreenPlayer}
+                      onBuffer={this.onBuffer}
+                      onLoad={this.onLoad}
+                      onLoadStart={this.onLoadStart}
                     />
                   </TouchableOpacity> :
                   <Icon name='video-off' style={styles.emptyVideo} />
                 }
+
+                <ActivityIndicator
+                  animating
+                  size="large"
+                  color="#fff"
+                  style={{
+                    opacity: this.state.opacity,
+                    position: 'absolute',
+                    top: 80,
+                    left: commonStyles.screenWidth / 2 - 20,
+                  }}
+                />
               </View>
 
               <View style={styles.titleView}>

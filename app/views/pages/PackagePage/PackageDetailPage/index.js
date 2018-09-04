@@ -66,7 +66,7 @@ class PackageDetailPage extends Component {
   }
 
   render() {
-    const { data } = this.props
+    const { data, packages } = this.props
 
     return (
       <Container title={data.detail['1'].title} type='detail'>
@@ -84,7 +84,7 @@ class PackageDetailPage extends Component {
             </KeyboardScrollView>
           </View>
 
-          {data.price !== '$0.00' && (
+          {!packages.isPaidUser && data.price !== '$0.00' && (
             <View style={styles.radioButtonView}>
               <RadioGroup
                 highlightColor="transparent"
@@ -103,13 +103,15 @@ class PackageDetailPage extends Component {
             </View>
           )}
 
-          <View style={styles.btnView}>
-            <TouchableOpacity onPress={() => this.onTry()} activeOpacity={0.5}>
-              <View style={styles.btnWrapper}>
-                <Text style={styles.btnText}>{I18n.t('packages.try')}</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          {!packages.isPaidUser && (
+            <View style={styles.btnView}>
+              <TouchableOpacity onPress={() => this.onTry()} activeOpacity={0.5}>
+                <View style={styles.btnWrapper}>
+                  <Text style={styles.btnText}>{I18n.t('packages.try')}</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          )}
 
         </View>
       </Container>

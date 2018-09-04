@@ -7,19 +7,22 @@ import {
   ListView,
   TouchableOpacity,
   Image,
-} from 'react-native';
+} from 'react-native'
 
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import Video from 'react-native-video';
-import Container from '@layout/Container';
-import { styles } from './styles';
-import LoadingSpinner from '@components/LoadingSpinner';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
-import Icon from 'react-native-vector-icons/Feather';
-import I18n from '@i18n';
-import { getAdsProducts } from '@redux/Product/actions';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
+import Video from 'react-native-video'
+import Container from '@layout/Container'
+import { styles } from './styles'
+import LoadingSpinner from '@components/LoadingSpinner'
+import FontAwesome, {Icons} from 'react-native-fontawesome'
+import Icon from 'react-native-vector-icons/Feather'
+import I18n from '@i18n'
+import { getAdsProducts } from '@redux/Product/actions'
+import VideoComponent from '@components/VideoComponent'
+import * as commonStyles from '@common/styles/commonStyles'
+const listItemWidth = (commonStyles.screenWidth - commonStyles.padding * 2 - 15) / 2;
 
 class MyAdsPage extends Component {
   constructor(props) {
@@ -72,18 +75,9 @@ class MyAdsPage extends Component {
         <View style={styles.listItem}>
         
           <View style={styles.videoView}>
-            {(!!rowData.video_url && rowData.video_url.length > 0) ?
-              <Video
-                ref={(ref) => { this.player = ref }}
-                source={{ uri: rowData.video_url }}
-                style={styles.video}
-                resizeMode='cover'
-                autoplay={false}
-                paused
-              /> :
-              <Icon name='video-off' style={styles.emptyVideo} />
-            }
+            <VideoComponent rowData={rowData} user={true} offsetX={listItemWidth / 2 - 5} offsetY={(listItemWidth - 40) / 2 - 10} />
           </View>
+
           <View style={styles.footerView}>
             <Text  style={styles.textTitle}>{rowData.name}</Text>
             <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
