@@ -61,7 +61,7 @@ class ProfileEditPage extends Component {
       this.setState({
         loading: false,
         isUpdate: true,
-        message: 'You have successfully update the profile',
+        message: I18n.t('profile.success'),
         password: '',
         confirmPassword: '',
       })

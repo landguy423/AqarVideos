@@ -16,10 +16,12 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   loadingIconView: {
-    flex: 1
+    width: '100%',
+    height: '100%'
   },
   loadingIcon: {
-    flex: 1
+    width: '100%',
+    height: '100%'
   },
   loadingTextView: {
     position: 'absolute',

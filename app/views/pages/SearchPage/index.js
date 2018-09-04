@@ -83,7 +83,7 @@ class SearchPage extends Component {
       if (products.searchProduct.status === 200) {
         this.setState({ showProducts: true, searchProductList: products.searchProduct.product });
       } else if (products.searchProduct.status === 107) {
-        this.setState({ isError: true, errMsg: products.searchProduct.message });
+        this.setState({ isError: true, errMsg: I18n.t('alert.search') });
       }
     }
   }

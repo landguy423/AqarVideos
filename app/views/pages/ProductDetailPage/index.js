@@ -111,7 +111,6 @@ class ProductDetailPage extends Component {
 
   }
 
-
   onCamera() {
     this.player.presentFullscreenPlayer();
     this.player.seek(0);

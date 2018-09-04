@@ -168,7 +168,7 @@ export const styles = StyleSheet.create({
   deleteVideo: {
     position: 'absolute',
     right: 0,
-    top: 0,
+    bottom: 0,
     width: 60,
     height: 60,
   },
@@ -182,6 +182,13 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     backgroundColor: 'transparent',
+  },
+  showVideo: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: 60,
+    height: 60,
   },
   addressView: {
     marginTop: 5,

@@ -75,14 +75,14 @@ class Signup extends Component {
     let data = {
       phone: this.state.mobile
     }
-    this.setState({loading: true});
+    this.setState({ loading: true });
     this.props.verifyPhone(data, this.props.tokenInfo.token);
   }
 
   checkPhoneResult() {
     this.setState({isAlert: false});
-    if (this.props.verifyPhoneInfo.status == 200) {
-      this.setState({verifyStep: 1});
+    if (this.props.verifyPhoneInfo.status === '200') {
+      this.setState({ verifyStep: 1 });
     }
   }
 
@@ -92,16 +92,17 @@ class Signup extends Component {
       phone: this.state.mobile,
       code: this.state.code,
     }
-    this.setState({loading: true});
+    this.setState({ loading: true });
     this.props.verifyCode(data, this.props.tokenInfo.token);
   }
 
   checkCodeResult() {
     this.setState({isAlert: false});
-    if (this.props.verifyCodeInfo.status == 101)
-      this.setState({verifyStep: 2});
-    else
-      this.setState({verifyStep: 0});
+    if (this.props.verifyCodeInfo.status === '110') {
+      this.setState({ verifyStep: 2 });
+    } else {
+      this.setState({ verifyStep: 0 });
+    }
   }
 
   onSignUp() {
@@ -119,7 +120,7 @@ class Signup extends Component {
 
   checkUserSignupResult() {
     this.setState({isAlert: false});
-    if (this.props.userSignupInfo.status == 200) {
+    if (this.props.userSignupInfo.status === '200') {
       this.props.changeMenu(0);
       Actions.Main();
     }
@@ -134,24 +135,24 @@ class Signup extends Component {
 
         {this.props.verifyPhoneInfo && (
           <CustomAlert 
-            title={this.props.verifyPhoneInfo.status === 200 ? 'Success' : 'Error'}
-            message={this.props.verifyPhoneInfo.message} 
+            title={this.props.verifyPhoneInfo.status === '200' ? 'Success' : 'Error'}
+            message={I18n.t('register.verify_phone')} 
             visible={isAlert} 
             closeAlert={() => this.checkPhoneResult()}
           />)}
 
         {this.props.verifyCodeInfo && (
           <CustomAlert 
-            title={this.props.verifyCodeInfo.status === 200 ? 'Success' : 'Error'}
-            message={this.props.verifyCodeInfo.message} 
+            title={this.props.verifyCodeInfo.status === '200' ? 'Success' : 'Error'}
+            message={this.props.verifyCodeInfo.status === '200' ? I18n.t('register.verify_code') : I18n.t('register.invalid_code')} 
             visible={isAlert} 
             closeAlert={() => this.checkCodeResult()}
           />)}
         
         {this.props.userSignupInfo && (
           <CustomAlert 
-            title={this.props.userSignupInfo.status === 200 ? 'Success' : 'Error'}
-            message={this.props.userSignupInfo.message} 
+            title={this.props.userSignupInfo.status === '200' ? 'Success' : 'Error'}
+            message={this.props.userSignupInfo.status === '200' ? I18n.t('register.success') : I18n.t('register.failed')} 
             visible={isAlert} 
             closeAlert={() => this.checkUserSignupResult()}
           />)}

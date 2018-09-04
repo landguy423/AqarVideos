@@ -48,8 +48,6 @@ class ProductUpdatePage extends Component {
       data: null,
 
       page: 'post',
-      errorFlag: false,
-      errorText: '',
     }
     this.player = null;
   }
@@ -159,6 +157,11 @@ class ProductUpdatePage extends Component {
     }
   }
 
+  onShowVideo() {
+    this.player.presentFullscreenPlayer();
+    this.player.seek(0);
+  }
+
   changePage(page) {
     this.setState({ page })
   }
@@ -171,15 +174,12 @@ class ProductUpdatePage extends Component {
     } else {
       this.setState({ location: I18n.t('post_video.select_address') })
     }
-    this.setState({ errorFlag: false })
   }
 
   render() {
     // const {videoData} = this.props;
     const {
       loading,
-      errorFlag,
-      errorText,
       page,
       coordinate,
       location,
@@ -202,13 +202,6 @@ class ProductUpdatePage extends Component {
       <Container title={this.state.name} type='detail'>
         <LoadingSpinner visible={loading } />
 
-        <CustomAlert 
-          title="Error"
-          message={errorText}
-          visible={errorFlag} 
-          closeAlert={() => this.setState({ errorFlag: false })}
-        />
-
         <View style={styles.container}>
           <KeyboardScrollView>
             <TouchableOpacity onPress={() => this.onCamera()}>
@@ -225,6 +218,17 @@ class ProductUpdatePage extends Component {
                   /> :
                   <Icon name='video' style={styles.cameraIcon} />
                 }
+
+                {(!!video_url && video_url.length > 0) && (
+                  <View style={styles.showVideo}>
+                    <TouchableOpacity onPress={() => this.onShowVideo()}>
+                      <View style={styles.deleteVideoInner}>
+                        <Icon name='video' style={styles.deleteVideoIcon} />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                )}
+
                 {(!!video_url && video_url.length > 0) && (
                   <View style={styles.deleteVideo}>
                     <TouchableOpacity onPress={() => this.onDeleteVideo()}>
@@ -234,6 +238,7 @@ class ProductUpdatePage extends Component {
                     </TouchableOpacity>
                   </View>
                 )}
+
               </View>
             </TouchableOpacity>
 

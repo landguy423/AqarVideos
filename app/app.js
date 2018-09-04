@@ -50,18 +50,18 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    // setTimeout(() => {
-    //   this.setState({ loading: false })
-    // }, 1000)
+    setTimeout(() => {
+      this.setState({ loading: false })
+    }, 2000)
   }
 
   render() {
 
-    // if (this.state.loading) {
-    //   return (
-    //     <SplashScreenPage />
-    //   )
-    // }
+    if (this.state.loading) {
+      return (
+        <SplashScreenPage />
+      )
+    }
 
     const scenes = Actions.create(
       <Scene key="root">

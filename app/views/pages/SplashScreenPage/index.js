@@ -9,18 +9,18 @@ import {
 } from 'react-native';
 
 // const loading_icon = require('@common/assets/images/loading_icon/splash_loading.gif');
-const loading_icon = require('@common/assets/images/splash_screen/logo.png');
+const loading_icon = require('@common/assets/images/splash_screen/splash_screen.jpg');
 
 import { styles } from './styles';
 
 const SplashScreenPage = () => (
   <View style={styles.container}>
     <View style={styles.loadingIconView}>
-      <Image source={loading_icon} style={styles.loadingIcon} resizeMode='center' />
+      <Image source={loading_icon} style={styles.loadingIcon} resizeMode='cover' />
     </View>
-    <View style={styles.loadingTextView}>
+    {/* <View style={styles.loadingTextView}>
       <Text style={styles.loadingText}>www.videoaqar.com</Text>
-    </View>
+    </View> */}
   </View>
 );
 

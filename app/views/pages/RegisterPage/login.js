@@ -33,8 +33,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'demo@gmail.com',
-      password: '123456',
+      // email: 'demo@gmail.com',
+      // password: '123456',
+      email: '',
+      password: '',
       loading: false,
       isLoginAlert: false,    //show signin result
       isForgotAlert: false,   //show if email is numm 
@@ -106,7 +108,7 @@ class Login extends Component {
         {userInfo && (
           <CustomAlert 
             title={userInfo.status === '200' ? 'Success' : 'Error'}
-            message={userInfo.status === '200' ? userInfo.message : (userInfo.err ? userInfo.err : userInfo.error.warning)}
+            message={userInfo.status === '200' ? I18n.t('register.login_success') : I18n.t('register.login_failed')}
             visible={isLoginAlert} 
             closeAlert={() => this.checkUserLoginResult()}
           />
@@ -115,7 +117,7 @@ class Login extends Component {
         {forgotPasswordResult && (
           <CustomAlert 
             title={forgotPasswordResult.status === 200 ? 'Success' : 'Error'}
-            message={forgotPasswordResult.message} 
+            message={forgotPasswordResult.status === 200 ? I18n.t('register.forgot_success') : I18n.t('register.forgot_failed')} 
             visible={this.state.isForgotResultAlert} 
             closeAlert={() => this.setState({ isForgotResultAlert: false })}
           />
@@ -123,14 +125,14 @@ class Login extends Component {
         
         <CustomAlert 
           title="Warning"
-          message="Please input your email"
+          message={I18n.t('register.input_email')}
           visible={this.state.isForgotAlert} 
           closeAlert={() => this.setState({ isForgotAlert: false })}
         />
 
         <CustomAlert 
           title="Warning"
-          message="Email or password is not matched"
+          message={I18n.t('register.email_matched_fail')}
           visible={this.state.loginFailed} 
           closeAlert={() => this.setState({ loginFailed: false })}
         />

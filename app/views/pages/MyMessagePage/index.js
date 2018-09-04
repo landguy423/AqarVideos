@@ -56,7 +56,7 @@ class MyMessagePage extends Component {
       if (message.chatUserList.status === 107) {
         this.setState({
           isError: true,
-          message: message.chatUserList.message,
+          message: I18n.t('alert.no_chat')
         })
       }
     }

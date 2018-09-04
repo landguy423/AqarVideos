@@ -77,7 +77,7 @@ class SupportAdvertisementPage extends Component {
     if (this.props.message.status === 'SEND_AD_REQUEST' && message.status === 'SEND_AD_SUCCESS') {
       this.setState({ loading: false });
       if (message.advertisementData.status === 200) {
-        this.setState({ isSuccess: true, successMsg: message.advertisementData.message });
+        this.setState({ isSuccess: true, successMsg: I18n.t('alert.advertisement') });
       }
     }
   }

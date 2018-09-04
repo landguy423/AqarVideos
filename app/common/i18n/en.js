@@ -115,6 +115,8 @@ export default {
     wizard_phone: "verify phone",
     wizard_code: "verify code",
     wizard_signup: "signup",
+    success: "You have successfully updated the profile",
+    failed: "Profile update failed"
   },
   support: {
     subject: "Subject",
@@ -156,5 +158,31 @@ export default {
   payment_type: {
     visa: 'Visa and Master card',
     bank: 'Bank'
+  },
+  register: {
+    verify_phone: 'Verification code send to your phone!',
+    success_code: 'Verified code',
+    invalid_code: 'Invalid Code',
+    success: 'Successfully signup',
+    failed: 'Signup failed',
+    input_email: 'Please input your email',
+    email_matched_fail: 'Email or password is not matched',
+    forgot_success: 'An email with a confirmation link has been sent your email address',
+    forgot_failed: 'Mail does not exist',
+    login_success: 'Successfully logged in',
+    login_failed: 'Login failed'
+  },
+  alert: {
+    ok: "OK",
+    success: "Success",
+    error: "Error",
+    warning: "Warning",
+    search: "There are no products",
+    advertisement: "Sent Advertisement",
+    no_chat: "There are no users",
+    bank_success: "Sent bank data",
+    bank_failed: "Failed to send bank data",
+    upload_success: "The request signature we calculated does not match the signature you provided. Check your key and signing method",
+    upload_failed: "Failed to upload video file to server"
   }
 }

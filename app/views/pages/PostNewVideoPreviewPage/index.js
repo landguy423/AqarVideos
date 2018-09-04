@@ -20,7 +20,7 @@ import { Actions } from 'react-native-router-flux';
 import CheckBox from 'react-native-modest-checkbox';
 
 import { RNS3 } from 'react-native-aws3';
-import { AWS_OPTIONS } from '@common';
+import { AWS_OPTIONS } from '@common/aws';
 import { pickBy } from 'lodash';
 
 import I18n from '@i18n';
@@ -90,13 +90,12 @@ class PostNewVideoPreviewPage extends Component {
     
     RNS3.put(file, AWS_OPTIONS)
       .then(response => {
-        console.log('UPLOAD_RESPONSE: ', response)
         this.setState({ loading: false })
         if (response.status !== 201) {
           if (response.status === 403) {
-            this.setState({ videoError: true, videoUploadingErrorMsg: 'The request signature we calculated does not match the signature you provided. Check your key and signing method' })
+            this.setState({ videoError: true, videoUploadingErrorMsg: I18n.t('alert.upload_success') })
           } else {
-            this.setState({ videoError: true, videoUploadingErrorMsg: 'Failed to upload video file to server' })
+            this.setState({ videoError: true, videoUploadingErrorMsg: I18n.t('alert.upload_failed') })
           }
           throw new Error("Failed to upload video file to server")
         } else {

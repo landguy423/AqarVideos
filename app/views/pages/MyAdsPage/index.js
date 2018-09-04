@@ -72,7 +72,7 @@ class MyAdsPage extends Component {
         <View style={styles.listItem}>
         
           <View style={styles.videoView}>
-            {(!!rowData.video_url && rowData.video_url.length > 0 && rowData.status === '1') ?
+            {(!!rowData.video_url && rowData.video_url.length > 0) ?
               <Video
                 ref={(ref) => { this.player = ref }}
                 source={{ uri: rowData.video_url }}
