@@ -68,7 +68,7 @@ class SupportAdvertisementPage extends Component {
         let data = message.adSubjectList.subjects;
         let subjectList = []
         for (let i = 0; i < data.length; i ++) {
-          subjectList[i] = {value: data[i]['name']}
+          subjectList[i] = { value: data[i]['name'] }
         }
         this.setState({ subjectList });
       }
@@ -103,6 +103,7 @@ class SupportAdvertisementPage extends Component {
 
   render() {
     const { loading, isSuccess, successMsg, tabIndex, subjectList } = this.state;
+    console.log('SUBJECT: ', subjectList)
 
     return (
       <Container title={I18n.t('sidebar.support_advertisement')}>
@@ -183,7 +184,7 @@ class SupportAdvertisementPage extends Component {
                 <Text style={styles.textTitle}>{I18n.t('support.subject')}</Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ subject: value })}
-                  item={this.state.subject}
+                  item={subjectList[this.state.subject].value}
                   data={subjectList}
                 />
               </View>

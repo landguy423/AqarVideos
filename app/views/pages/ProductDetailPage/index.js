@@ -176,7 +176,7 @@ class ProductDetailPage extends Component {
               <View style={styles.titleView}>
                 <Image source={CATEGORY_ICON_LIST[data.category.toLowerCase()]} style={styles.iconCategory} resizeMode="contain" />
                 <Text style={styles.textDescription}>
-                  {data.category}
+                  {I18n.t(`category.${data.category}`)}
                 </Text>
               </View>
               
