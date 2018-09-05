@@ -97,5 +97,11 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     color: commonColors.darkGrayColor,
     marginLeft: 5,
+  },
+  emptyText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginTop: 30,
+    color: commonColors.greenColor
   }
 });

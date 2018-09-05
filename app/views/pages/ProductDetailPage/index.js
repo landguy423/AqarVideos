@@ -34,6 +34,7 @@ import { setFavorite, addViewCount } from '@redux/Product/actions';
 import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
 import * as commonStyles from '@common/styles/commonStyles';
+import * as commonColors from '@common/styles/commonColors';
 import { styles } from './styles';
 
 const ASPECT_RATIO = commonStyles.screenSubWidth / 200
@@ -143,7 +144,7 @@ class ProductDetailPage extends Component {
           <ScrollView>
             <View style={styles.subContainer}>
               <View style={styles.videoView}>
-                {(!!data.video_url && data.video_url.length > 0 && data.status === '1') ?
+                {(!!data.video_url && data.video_url.length > 0) ?
                   <TouchableOpacity onPress={() => this.onCamera()}>
                     <Video
                       ref={(ref) => { this.player = ref }}
@@ -176,7 +177,7 @@ class ProductDetailPage extends Component {
               <View style={styles.titleView}>
                 <Image source={CATEGORY_ICON_LIST[data.category.toLowerCase()]} style={styles.iconCategory} resizeMode="contain" />
                 <Text style={styles.textDescription}>
-                  {I18n.t(`category.${data.category}`)}
+                  {I18n.t(`category.${data.category.toLowerCase()}`)}
                 </Text>
               </View>
               
@@ -194,6 +195,15 @@ class ProductDetailPage extends Component {
                   {I18n.t('post_video.description')}
                 </Text>
                 <Text style={styles.textDescription}>
+                  {data.description}
+                </Text>
+              </View>
+
+              <View style={styles.titleView}>
+                <Text style={styles.textTitle}>
+                  {I18n.t('profile.ph_mobile_number')}
+                </Text>
+                <Text style={[styles.textDescription, { color: commonColors.greenColor }]}>
                   {data.description}
                 </Text>
               </View>

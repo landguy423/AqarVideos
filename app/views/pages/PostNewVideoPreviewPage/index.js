@@ -172,7 +172,7 @@ class PostNewVideoPreviewPage extends Component {
               <View style={styles.iconView}>
                 <Image source={CATEGORY_ICON_LIST[data.category]} style={styles.iconOffice} resizeMode="contain" />
                 <Text style={styles.textDescription}>
-                  {I18n.t(`category.${data.category}`)}
+                  {I18n.t(`category.${data.category.toLowerCase()}`)}
                 </Text>
               </View>
             </View>

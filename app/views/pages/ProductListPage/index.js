@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import { filter } from 'lodash';
 import Video from 'react-native-video';
+import _ from 'lodash'
 
 import I18n from '@i18n';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
@@ -41,9 +42,10 @@ class ProductListPage extends Component {
     } else {
       categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
     }
+    const data = _.orderBy(categoryProduct, ['date_added'], ['desc'])
 
     this.setState({
-      categoryProduct,
+      categoryProduct: data,
     })
   }
 
@@ -107,15 +109,18 @@ class ProductListPage extends Component {
     const dataSource = ds.cloneWithRows(categoryProduct);
 
     return (
-      <View style={styles.container}>        
-        <ListView
-          ref='listview'
-          dataSource={dataSource}
-          renderRow={this._renderRow.bind(this)}
-          renderSeparator={this._renderSeparator}
-          contentContainerStyle={[styles.listView, { width: this.props.listWidth }]}
-          enableEmptySections
-        />
+      <View style={styles.container}>
+        {categoryProduct.length > 0
+        ? <ListView
+            ref='listview'
+            dataSource={dataSource}
+            renderRow={this._renderRow.bind(this)}
+            renderSeparator={this._renderSeparator}
+            contentContainerStyle={[styles.listView, { width: this.props.listWidth }]}
+            enableEmptySections
+          />
+        : <Text style={styles.emptyText}>{I18n.t('alert.search')}</Text>
+        }
       </View>
     );
   }

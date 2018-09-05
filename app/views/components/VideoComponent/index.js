@@ -38,68 +38,35 @@ class VideoComponent extends Component {
   render() {
     const { rowData, user, offsetY, offsetX, size, full } = this.props
     
-    if (user) {   // for myAds video
-      if (!!rowData.video_url && rowData.video_url.length > 0) {
-        return (
-          <View style={styles.video}>
-            <Video
-              ref={(ref) => { this.player = ref }}
-              source={{ uri: rowData.video_url }}
-              style={styles.video}
-              resizeMode='cover'
-              autoplay={false}
-              paused
-              onBuffer={this.onBuffer}
-              onLoad={this.onLoad}
-              onLoadStart={this.onLoadStart}
-            />
-            <ActivityIndicator
-              animating
-              size={full ? "large" : "small"}
-              color="#fff"
-              style={{
-                opacity: this.state.opacity,
-                position: 'absolute',
-                top: offsetY,
-                left: offsetX,
-              }}
-            />
-          </View>
-        )
-      } else {
-        return <Icon name='video-off' size={size} color="#fff" style={full ? { marginBottom: 20 } : ''}/>
-      }
+    if (!!rowData.video_url && rowData.video_url.length > 0) {
+      return (
+        <View style={styles.video}>
+          <Video
+            ref={(ref) => { this.player = ref }}
+            source={{ uri: rowData.video_url }}
+            style={styles.video}
+            resizeMode='cover'
+            autoplay={false}
+            paused
+            onBuffer={this.onBuffer}
+            onLoad={this.onLoad}
+            onLoadStart={this.onLoadStart}
+          />
+          <ActivityIndicator
+            animating
+            size={full ? "large" : "small"}
+            color="#fff"
+            style={{
+              opacity: this.state.opacity,
+              position: 'absolute',
+              top: offsetY,
+              left: offsetX,
+            }}
+          />
+        </View>
+      )
     } else {
-      if (!!rowData.video_url && rowData.video_url.length > 0 && (!user && rowData.status === '1')) {
-        return (
-          <View style={styles.video}>
-            <Video
-              ref={(ref) => { this.player = ref }}
-              source={{ uri: rowData.video_url }}
-              style={styles.video}
-              resizeMode='cover'
-              autoplay={false}
-              paused
-              onBuffer={this.onBuffer}
-              onLoad={this.onLoad}
-              onLoadStart={this.onLoadStart}
-            />
-            <ActivityIndicator
-              animating
-              size={full ? "large" : "small"}
-              color="#fff"
-              style={{
-                opacity: this.state.opacity,
-                position: 'absolute',
-                top: offsetY,
-                left: offsetX,
-              }}
-            />
-          </View>
-        )
-      } else {
-        return <Icon name='video-off' size={size} color="#fff" style={full ? { marginBottom: 20 } : ''}/>
-      }
+      return <Icon name='video-off' size={size} color="#fff" style={full ? { marginBottom: 20 } : ''}/>
     }
   }
 }
@@ -109,7 +76,6 @@ VideoComponent.defaultProps = {
   offsetX: 50,
   offsetY: 40,
   size: 30,
-  user: false,
   full: false
 }
 
@@ -118,7 +84,6 @@ VideoComponent.propTypes = {
   offsetX: PropTypes.number,
   offsetY: PropTypes.number,
   size: PropTypes.number,
-  user: PropTypes.bool,
   full: PropTypes.bool
 }
 

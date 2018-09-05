@@ -11,6 +11,7 @@ const initialState = {
   verifyCodeInfo: null,
   userSignupInfo: null,
   forgotPasswordResult: null,
+  status: null
 };
 
 export default function user(state = initialState, action = {}) {
@@ -21,12 +22,14 @@ export default function user(state = initialState, action = {}) {
     case types.USER_SIGN_IN_REQUEST:
       return {
         ...initialState,
+        status: types.USER_SIGN_IN_REQUEST,
         loading: true,
       };
     case types.USER_SIGN_IN_SUCCESS:
       return {
         ...state,
         loading: false,
+        status: types.USER_SIGN_IN_SUCCESS,
         userLogin: action.result.data.status === '200' ? true : false,
         userInfo: action.result.data
       }
@@ -34,6 +37,7 @@ export default function user(state = initialState, action = {}) {
       return {
         ...state,
         loading: false,
+        status: types.USER_SIGN_IN_FAILED,
         userInfo: null,
         error: action.error,
       };
@@ -44,11 +48,13 @@ export default function user(state = initialState, action = {}) {
     case types.VERIFY_PHONE_REQUEST:
     return {
       ...initialState,
+      status: types.VERIFY_PHONE_REQUEST,
       loading: true,
     };
   case types.VERIFY_PHONE_SUCCESS:
     return {
       ...state,
+      status: types.VERIFY_PHONE_SUCCESS,
       loading: false,
       verifyPhoneInfo: action.result.data
     }
@@ -56,6 +62,7 @@ export default function user(state = initialState, action = {}) {
     return {
       ...state,
       loading: false,
+      status: types.VERIFY_PHONE_FAILED,
       verifyPhoneInfo: null,
     };
 
@@ -65,18 +72,21 @@ export default function user(state = initialState, action = {}) {
     case types.VERIFY_CODE_REQUEST:
       return {
         ...initialState,
+        status: types.VERIFY_CODE_REQUEST,
         loading: true,
       };
     case types.VERIFY_CODE_SUCCESS:
       return {
         ...state,
         loading: false,
+        status: types.VERIFY_CODE_SUCCESS,
         verifyCodeInfo: action.result.data
       }
     case types.VERIFY_CODE_FAILED:
       return {
         ...state,
         loading: false,
+        status: types.VERIFY_CODE_FAILED,
         verifyCodeInfo: null,
       };
     
@@ -86,18 +96,21 @@ export default function user(state = initialState, action = {}) {
     case types.USER_SIGNUP_REQUEST:
       return {
         ...initialState,
+        status: types.USER_SIGNUP_REQUEST,
         loading: true,
       };
     case types.USER_SIGNUP_SUCCESS:
       return {
         ...state,
         loading: false,
+        status: types.USER_SIGNUP_SUCCESS,
         userSignupInfo: action.result.data
       }
     case types.USER_SIGNUP_FAILED:
       return {
         ...state,
         loading: false,
+        status: types.USER_SIGNUP_FAILED,
         userSignupInfo: null,
       };
     
@@ -108,17 +121,20 @@ export default function user(state = initialState, action = {}) {
       return {
         ...initialState,
         loading: true,
+        status: types.FORGOT_PASSWORD_REQUEST,
       };
     case types.FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
         loading: false,
+        status: types.FORGOT_PASSWORD_SUCCESS,
         forgotPasswordResult: action.result.data
       }
     case types.FORGOT_PASSWORD_FAILED:
       return {
         ...state,
         loading: false,
+        status: types.FORGOT_PASSWORD_FAILED,
         forgotPasswordResult: null,
       };
 
@@ -129,6 +145,7 @@ export default function user(state = initialState, action = {}) {
       return {
         ...initialState,
         userLogin: false,
+        status: types.USER_SIGN_OUT,
         userInfo: null,
       };
 
@@ -138,6 +155,7 @@ export default function user(state = initialState, action = {}) {
     case types.SET_LOGIN_STATUS:
       return {
         userLogin: true,
+        status: types.SET_LOGIN_STATUS,
         userInfo: action.data,
       }
 
@@ -147,6 +165,7 @@ export default function user(state = initialState, action = {}) {
     case types.CHANGE_MENU:
       return {
         ...state,
+        status: types.CHANGE_MENU,
         menuIndex: action.data
       }
     default:

@@ -106,7 +106,7 @@ class MapPage extends Component {
               <MapView.Callout onPress={() => this.gotoDetailPage(marker)}>
                 <View style={styles.markerDetailView}>
                   <View style={styles.videoView}>
-                    {(!!marker.video_url && marker.video_url.length > 0 && marker.status === '1') ?
+                    {(!!marker.video_url && marker.video_url.length > 0) ?
                         <Video
                           ref={(ref) => { this.player = ref }}
                           source={{ uri: marker.video_url }}

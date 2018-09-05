@@ -18,6 +18,7 @@ import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 import LoadingSpinner from '@components/LoadingSpinner';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
+import _ from 'lodash'
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { styles } from './styles';
@@ -53,13 +54,18 @@ class MyWishListPage extends Component {
     if (this.props.products.loading === 'GET_WISHLIST_PRODUCT_REQUEST' && products.loading === 'GET_WISHLIST_PRODUCT_SUCCESS') {
       this.setState({ loading: false })
       if (products.wishlistProduct) {
+        const data = _.orderBy(products.wishlistProduct, ['date_added'], ['desc'])
+
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-        const dataSource = ds.cloneWithRows(products.wishlistProduct);
+        const dataSource = ds.cloneWithRows(data);
         this.setState({
           dataSource,
-          listData: products.wishlistProduct,
+          listData: data,
         })
       }
+    }
+    if (this.props.products.loading === 'GET_WISHLIST_PRODUCT_REQUEST' && products.loading === 'GET_WISHLIST_PRODUCT_FAILED') {
+      this.setState({ loading: false })
     }
   }
 

@@ -18,6 +18,7 @@ import { styles } from './styles'
 import LoadingSpinner from '@components/LoadingSpinner'
 import FontAwesome, {Icons} from 'react-native-fontawesome'
 import Icon from 'react-native-vector-icons/Feather'
+import _ from 'lodash'
 import I18n from '@i18n'
 import { getAdsProducts } from '@redux/Product/actions'
 import VideoComponent from '@components/VideoComponent'
@@ -48,7 +49,8 @@ class MyAdsPage extends Component {
 
   componentWillReceiveProps( { products }) {
     if (this.props.products.loading === 'GET_ADS_PRODUCT_REQUEST' && products.loading === 'GET_ADS_PRODUCT_SUCCESS' && products.myAdsProduct.status === 200) {
-      this.setData(products.myAdsProduct.ads)
+      const data = _.orderBy(products.myAdsProduct.ads, ['date_added'], ['desc'])
+      this.setData(data)
     }
     if (products.loading === 'GET_ADS_PRODUCT_FAILED') {
       this.setState({ loading: false })  
@@ -75,7 +77,7 @@ class MyAdsPage extends Component {
         <View style={styles.listItem}>
         
           <View style={styles.videoView}>
-            <VideoComponent rowData={rowData} user={true} offsetX={listItemWidth / 2 - 5} offsetY={(listItemWidth - 40) / 2 - 10} />
+            <VideoComponent rowData={rowData} offsetX={listItemWidth / 2 - 5} offsetY={(listItemWidth - 40) / 2 - 10} />
           </View>
 
           <View style={styles.footerView}>

@@ -35,8 +35,8 @@ class Login extends Component {
     this.state = {
       // email: 'demo@gmail.com',
       // password: '123456',
-      email: '',
-      password: '',
+      mobile: '9874561230',
+      password: '123456',
       loading: false,
       isLoginAlert: false,    //show signin result
       isForgotAlert: false,   //show if email is numm 
@@ -47,14 +47,16 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     const { userInfo, forgotPasswordResult } = nextProps;
 
-    if (userInfo) {
-      this.setState({ isLoginAlert: true });
-      this.setState({ loading: false });
+    if (this.props.user.status === 'USER_SIGN_IN_REQUEST' && nextProps.user.status === 'USER_SIGN_IN_SUCCESS') {
+      this.setState({ isLoginAlert: true, loading: false });
     }
 
-    if (forgotPasswordResult) {
-      this.setState({ loading: false });
-      this.setState({ isForgotResultAlert: true });
+    if (this.props.user.status === 'USER_SIGN_IN_REQUEST' && nextProps.user.status === 'USER_SIGN_IN_FAILED') {
+      this.setState({ loading: false, loginFailed: true });
+    }
+
+    if (this.props.user.status === 'FORGOT_PASSWORD_REQUEST' && nextProps.user.status === 'FORGOT_PASSWORD_SUCCESS') {
+      this.setState({ loading: false, isForgotResultAlert: true });
     }
   }
 
@@ -63,7 +65,7 @@ class Login extends Component {
     this.setState({ loading: true });
 
     let data = {
-      email: this.state.email,
+      telephone: this.state.mobile,
       password:  this.state.password
     };
 
@@ -84,14 +86,13 @@ class Login extends Component {
   }
 
   onForgotPassword() {
-    if (this.state.email == '') {
-      this.setState({isForgotAlert: true});
-    }
-    else {
-      this.setState({loading: true});
+    if (this.state.mobile == '') {
+      this.setState({ isForgotAlert: true });
+    } else {
+      this.setState({ loading: true });
 
       let data = {
-        email: this.state.email
+        telephone: this.state.mobile
       };
       this.props.forgotPassword(data, this.props.tokenInfo.token);
     }
@@ -108,7 +109,7 @@ class Login extends Component {
         {userInfo && (
           <CustomAlert 
             title={userInfo.status === '200' ? 'Success' : 'Error'}
-            message={userInfo.status === '200' ? I18n.t('register.login_success') : I18n.t('register.login_failed')}
+            message={userInfo.status === '200' ? I18n.t('register.login_success') : I18n.t('register.login_matched_fail')}
             visible={isLoginAlert} 
             closeAlert={() => this.checkUserLoginResult()}
           />
@@ -125,14 +126,14 @@ class Login extends Component {
         
         <CustomAlert 
           title="Warning"
-          message={I18n.t('register.input_email')}
+          message={I18n.t('register.input_mobile')}
           visible={this.state.isForgotAlert} 
           closeAlert={() => this.setState({ isForgotAlert: false })}
         />
 
         <CustomAlert 
           title="Warning"
-          message={I18n.t('register.email_matched_fail')}
+          message={I18n.t('register.login_matched_fail')}
           visible={this.state.loginFailed} 
           closeAlert={() => this.setState({ loginFailed: false })}
         />
@@ -140,10 +141,10 @@ class Login extends Component {
         <KeyboardScrollView>
           <View style={styles.fieldContainerLogin}>
             <View style={styles.inputView}>
-              <View style={styles.iconView}>
+              {/* <View style={styles.iconView}>
                 <Icon name='envelope' style={styles.inputIcon}></Icon>
-              </View>
-              <TextInput
+              </View> */}
+              {/* <TextInput
                 ref="email"
                 autoCapitalize="none"
                 autoCorrect={ false }
@@ -157,6 +158,24 @@ class Login extends Component {
                 value={ this.state.email }
                 onChangeText={ (text) => this.setState({ email: text }) }
                 onSubmitEditing={ () => this.refs.password.focus() }
+              /> */}
+              <View style={styles.iconView}>
+                <Icon name='screen-tablet' style={styles.inputIcon}></Icon>
+              </View>
+              <TextInputMask 
+                mask={"+[00000000000000]"} 
+                ref="mobileNumber"
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholder={I18n.t('profile.ph_mobile_number')}
+                placeholderTextColor={commonColors.placeholderSubText}
+                textAlign="left"
+                style={styles.input}
+                underlineColorAndroid="transparent"
+                returnKeyType={ 'next' }
+                keyboardType="phone-pad"
+                value={ this.state.mobile }
+                onChangeText={text => this.setState({ mobile: text })}
               />
             </View>
             <View style={styles.inputView}>
@@ -199,6 +218,7 @@ class Login extends Component {
 
 export default connect(state => ({
   tokenInfo: state.token.tokenInfo,
+  user: state.user,
   userInfo: state.user.userInfo,
   userLogin: state.user.userLogin,
   forgotPasswordResult: state.user.forgotPasswordResult,
