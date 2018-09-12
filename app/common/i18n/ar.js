@@ -161,6 +161,7 @@ export default {
   },
   register: {
     verify_phone: 'رمز التحقق يرسل إلى هاتفك!',
+    verify_phone_failed: 'المستخدم مسجل بالفعل مع رقم الهاتف هذا!',
     success_code: 'رمز التحقق',
     invalid_code: 'الرمز غير صحيح',
     success: 'التسجيل بنجاح',

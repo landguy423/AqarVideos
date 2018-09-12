@@ -65,6 +65,10 @@ class PackagePage extends Component {
       getPackages(token.tokenInfo.token);
     }
 
+    if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_FAILED') {
+      this.setState({ loading: false })
+    }
+
     if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
       this.setState({ loading: false });
       if (packages.packageInfo.status === 200) {

@@ -160,7 +160,8 @@ export default {
     bank: 'Bank'
   },
   register: {
-    verify_phone: 'Verification code send to your phone!',
+    verify_phone: 'Verification code sent to your phone!',
+    verify_phone_failed: 'User already registered with this phone number!',
     success_code: 'Verified code',
     invalid_code: 'Invalid Code',
     success: 'Successfully signup',

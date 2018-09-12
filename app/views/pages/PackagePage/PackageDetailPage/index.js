@@ -41,10 +41,17 @@ class PackageDetailPage extends Component {
     if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_SUCCESS') {
       this.setState({ loading: false });
       if (packages.webUrlInfo.status === 200) {
-        Actions.PaymentWebPage({ url: packages.webUrlInfo.order.url })
+        if (packages.webUrlInfo.message === 'Trial is active') {
+          Actions.Package()
+        } else {
+          Actions.PaymentWebPage({ url: packages.webUrlInfo.order.url })
+        }
       } else if (packages.webUrlInfo.status === 107) {
         Actions.Package()
       }
+    }
+    if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_FAILED') {
+      this.setState({ loading: false });
     }
   }
 

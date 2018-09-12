@@ -100,6 +100,12 @@ class TabView extends Component {
         allProduct: products.allProduct,
       })
     }
+
+    if (this.props.products.loading === 'GET_PRODUCT_BY_CATEGORY_REQUEST' && products.loading === 'GET_PRODUCT_BY_CATEGORY_FAILED' ) {
+      this.setState({
+        loading: false
+      })
+    }
   }
 
   componentWillUnmount() {

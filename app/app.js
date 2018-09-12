@@ -52,7 +52,7 @@ export default class App extends Component {
   componentWillMount() {
     setTimeout(() => {
       this.setState({ loading: false })
-    }, 2000)
+    }, 3000)
   }
 
   render() {

@@ -19,7 +19,7 @@ import KeyboardScrollView from '@components/KeyboardView';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import TextInputMask from 'react-native-text-input-mask';
-
+import _ from 'lodash'
 import CustomAlert from '@components/CustomAlert';
 import LoadingSpinner from '@components/LoadingSpinner';
 
@@ -33,10 +33,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // email: 'demo@gmail.com',
+      // mobile: '9874561230',
       // password: '123456',
-      mobile: '9874561230',
-      password: '123456',
+      mobile: '',
+      password: '',
       loading: false,
       isLoginAlert: false,    //show signin result
       isForgotAlert: false,   //show if email is numm 
@@ -63,7 +63,7 @@ class Login extends Component {
   onLogin() {
     const { token } = this.props.tokenInfo
     this.setState({ loading: true });
-
+    // const telephone = _.split(this.state.mobile, '+')
     let data = {
       telephone: this.state.mobile,
       password:  this.state.password
@@ -91,8 +91,9 @@ class Login extends Component {
     } else {
       this.setState({ loading: true });
 
+      const telephone = _.split(this.state.mobile, '+')
       let data = {
-        telephone: this.state.mobile
+        telephone: telephone[1]
       };
       this.props.forgotPassword(data, this.props.tokenInfo.token);
     }
@@ -187,7 +188,7 @@ class Login extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_password')}
-                placeholderTextColor={ commonColors.placeholderText }
+                placeholderTextColor={commonColors.placeholderSubText}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"

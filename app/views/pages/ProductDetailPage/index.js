@@ -204,7 +204,7 @@ class ProductDetailPage extends Component {
                   {I18n.t('profile.ph_mobile_number')}
                 </Text>
                 <Text style={[styles.textDescription, { color: commonColors.greenColor }]}>
-                  {data.description}
+                  {data.telephone}
                 </Text>
               </View>
               

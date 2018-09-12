@@ -38,35 +38,46 @@ class Signup extends Component {
       loading: false,
       mobile: '+966',
       code: '',
-      password: '111111',
-      confirmPassword: '111111',
-      email: 'test1@test1.com',  
-      firstName: 'test1',
-      lastName: 'test2',
+      password: '',
+      confirmPassword: '',
+      email: '',  
+      firstName: '',
+      lastName: '',
       verifyStep: _isArabic ? 2 : 0,
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { verifyPhoneInfo, verifyCodeInfo, userSignupInfo } = nextProps;
+    const { user } = nextProps;
     
-    if (verifyPhoneInfo) {
-      this.setState({ loading: false });
-      this.setState({ isAlert: true });
+    if (this.props.user.status === 'VERIFY_PHONE_REQUEST' && user.status === 'VERIFY_PHONE_SUCCESS') {
+      this.setState({ loading: false })
+      this.setState({ isAlert: true })
     }
-    if (verifyCodeInfo) {
-      this.setState({ loading: false });
-      this.setState({ isAlert: true });
+    if (this.props.user.status === 'VERIFY_PHONE_REQUEST' && user.status === 'VERIFY_PHONE_FAILED') {
+      this.setState({ loading: false })
     }
-    if (userSignupInfo) {
+    if (this.props.user.status === 'VERIFY_CODE_REQUEST' && user.status === 'VERIFY_CODE_SUCCESS') {
+      this.setState({ loading: false })
+      this.setState({ isAlert: true })
+    }
+    if (this.props.user.status === 'VERIFY_CODE_REQUEST' && user.status === 'VERIFY_CODE_FAILED') {
+      this.setState({ loading: false })
+    }
+    if (this.props.user.status === 'USER_SIGNUP_REQUEST' && user.status === 'USER_SIGNUP_SUCCESS') {
       this.setState({ loading: false });
       this.setState({ isAlert: true });
 
-      AsyncStorage.setItem('loginStatus', JSON.stringify(true));
-      AsyncStorage.setItem('userInfo', JSON.stringify(userSignupInfo));
-      
-      this.props.changeMenu(0);
-      Actions.Package();
+      if (user.userSignupInfo.status === '200') {
+        AsyncStorage.setItem('loginStatus', JSON.stringify(true));
+        AsyncStorage.setItem('userInfo', JSON.stringify(user.userSignupInfo));
+        
+        this.props.changeMenu(0);
+        Actions.Package();
+      }
+    }
+    if (this.props.user.status === 'USER_SIGNUP_REQUEST' && user.status === 'USER_SIGNUP_FAILED') {
+      this.setState({ loading: false });
     }
   }
   
@@ -81,7 +92,7 @@ class Signup extends Component {
 
   checkPhoneResult() {
     this.setState({isAlert: false});
-    if (this.props.verifyPhoneInfo.status === '200') {
+    if (this.props.user.verifyPhoneInfo.status === '200') {
       this.setState({ verifyStep: 1 });
     }
   }
@@ -98,7 +109,7 @@ class Signup extends Component {
 
   checkCodeResult() {
     this.setState({isAlert: false});
-    if (this.props.verifyCodeInfo.status === '110') {
+    if (this.props.user.verifyCodeInfo.status === '110') {
       this.setState({ verifyStep: 2 });
     } else {
       this.setState({ verifyStep: 0 });
@@ -114,13 +125,13 @@ class Signup extends Component {
       confirm: this.state.confirmPassword,
       telephone: this.state.mobile
     }
-    this.setState({loading: true});
+    this.setState({ loading: true });
     this.props.userSignUp(data, this.props.tokenInfo.token);
   }
 
   checkUserSignupResult() {
     this.setState({isAlert: false});
-    if (this.props.userSignupInfo.status === '200') {
+    if (this.props.user.userSignupInfo.status === '200') {
       this.props.changeMenu(0);
       Actions.Main();
     }
@@ -128,31 +139,32 @@ class Signup extends Component {
 
   render() {
     const { loading, isAlert } = this.state
+    const { user } = this.props
 
     return (
       <View style={styles.container}>
         <LoadingSpinner visible={loading } />
 
-        {this.props.verifyPhoneInfo && (
+        {user.verifyPhoneInfo && (
           <CustomAlert 
-            title={this.props.verifyPhoneInfo.status === '200' ? 'Success' : 'Error'}
-            message={I18n.t('register.verify_phone')} 
+            title={user.verifyPhoneInfo.status === '200' ? 'Success' : 'Error'}
+            message={user.verifyPhoneInfo.status === '200' ? I18n.t('register.verify_phone') : I18n.t('register.verify_phone_failed')} 
             visible={isAlert} 
             closeAlert={() => this.checkPhoneResult()}
           />)}
 
-        {this.props.verifyCodeInfo && (
+        {user.verifyCodeInfo && (
           <CustomAlert 
-            title={this.props.verifyCodeInfo.status === '200' ? 'Success' : 'Error'}
-            message={this.props.verifyCodeInfo.status === '200' ? I18n.t('register.verify_code') : I18n.t('register.invalid_code')} 
+            title={user.verifyCodeInfo.status === '200' ? 'Success' : 'Error'}
+            message={user.verifyCodeInfo.status === '200' ? I18n.t('register.success_code') : I18n.t('register.invalid_code')} 
             visible={isAlert} 
             closeAlert={() => this.checkCodeResult()}
           />)}
         
-        {this.props.userSignupInfo && (
+        {user.userSignupInfo && (
           <CustomAlert 
-            title={this.props.userSignupInfo.status === '200' ? 'Success' : 'Error'}
-            message={this.props.userSignupInfo.status === '200' ? I18n.t('register.success') : I18n.t('register.failed')} 
+            title={user.userSignupInfo.status === '200' ? 'Success' : 'Error'}
+            message={user.userSignupInfo.status === '200' ? I18n.t('register.success') : I18n.t('register.failed')} 
             visible={isAlert} 
             closeAlert={() => this.checkUserSignupResult()}
           />)}
@@ -390,7 +402,5 @@ class Signup extends Component {
 
 export default connect(state => ({
   tokenInfo: state.token.tokenInfo,
-  verifyPhoneInfo: state.user.verifyPhoneInfo,
-  verifyCodeInfo: state.user.verifyCodeInfo,
-  userSignupInfo: state.user.userSignupInfo,
+  user: state.user,
 }),{ verifyPhone, verifyCode, userSignUp, changeMenu })(Signup);

@@ -34,7 +34,7 @@ class SupportAdvertisementPage extends Component {
       email: '',
       fullName: '',
       telephone: '',
-      subject: '',
+      subject: '0',
       message: '',
       loading: false,
       isSuccess: false,
@@ -91,7 +91,7 @@ class SupportAdvertisementPage extends Component {
         full_name: this.state.fullName,
         mobile_no: this.state.telephone,
         email_id: this.state.email,
-        subject: this.state.subject,
+        subject: this.state.subjectList[this.state.subject].value,
         message: this.state.message,
       }
     )
@@ -184,7 +184,7 @@ class SupportAdvertisementPage extends Component {
                 <Text style={styles.textTitle}>{I18n.t('support.subject')}</Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ subject: value })}
-                  item={subjectList[this.state.subject].value}
+                  item={subjectList.length > 0 ? subjectList[this.state.subject].value : ''}
                   data={subjectList}
                 />
               </View>

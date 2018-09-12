@@ -29,11 +29,12 @@ export function getMyPackage(token, data) {
 }
 
 export function getTerlWebUrl(token, data) {
+  console.log('DATA: ', data)
   return {
     types: [types.GET_WEBURL_REQUEST, types.GET_WEBURL_SUCCESS, types.GET_WEBURL_FAILED],
     promise:
       axios({
-        method: 'get',
+        method: 'post',
         url: `${API_URL}?route=api/telr&api_token=${token}`,
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
         data
