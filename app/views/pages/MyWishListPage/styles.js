@@ -109,5 +109,11 @@ export const styles = StyleSheet.create({
   iconDelete: {
     fontSize: 35,
     color: 'white',
+  },
+  noPackgeText: {
+    fontFamily: commonStyles.normalFont,
+    color: commonColors.greenColor,
+    fontSize: 18,
+    marginTop: 30
   }
 });

@@ -295,6 +295,7 @@ class Signup extends Component {
                 returnKeyType={'send'}
                 secureTextEntry
                 value={this.state.confirmPassword}
+                onChangeText={text => this.setState({ confirmPassword: text })}
                 onSubmitEditing={() => this.onSignUp()}
               />
             </View> 

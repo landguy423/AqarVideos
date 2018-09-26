@@ -56,7 +56,7 @@ class ProductDetailPage extends Component {
 
   componentWillMount() {
     const { data, token, user, addViewCount } = this.props
-    console.log('PRODUCT_DETAIL: ', data)
+
     this.setState({ favorite: data.favorite })
     addViewCount(token.tokenInfo.token, { product_id: data.product_id })
   }

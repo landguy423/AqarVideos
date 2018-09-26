@@ -174,10 +174,11 @@ class Login extends Component {
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
-                returnKeyType={'next'}
+                returnKeyType={'send'}
                 secureTextEntry
                 value={ this.state.password }
                 onChangeText={ (text) => this.setState({ password: text }) }
+                onSubmitEditing={() => this.onLogin()}
               />
             </View>   
             <View style={styles.forgotPasswordView}>

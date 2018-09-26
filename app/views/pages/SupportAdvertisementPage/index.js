@@ -103,7 +103,6 @@ class SupportAdvertisementPage extends Component {
 
   render() {
     const { loading, isSuccess, successMsg, tabIndex, subjectList } = this.state;
-    console.log('SUBJECT: ', subjectList)
 
     return (
       <Container title={I18n.t('sidebar.support_advertisement')}>

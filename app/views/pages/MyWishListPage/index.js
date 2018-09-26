@@ -28,7 +28,7 @@ import VideoComponent from '@components/VideoComponent'
 class MyWishListPage extends Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       dataSource: null,
       listData: [],
       loading: false,
@@ -103,58 +103,59 @@ class MyWishListPage extends Component {
   }
 
   render() {
-    const { dataSource, loading } = this.state
+    const { dataSource, listData, loading } = this.state
 
     return (
       <Container title={I18n.t('sidebar.my_wishlist')}>
         <LoadingSpinner visible={loading } />
         
         <View style={styles.container}>
-          {dataSource && (
-            <SwipeListView
-              dataSource={dataSource}
-              enableEmptySections={true}
-              renderRow={ (rowData, secId, rowId, rowMap) => (
-                <SwipeRow
-                  disableRightSwipe
-                  rightOpenValue={-50}
-                >
-                  <View style={styles.listRightView}>
-                    <TouchableOpacity
-                      style={styles.btnDeleteView}
-                      activeOpacity={0.9}
-                      onPress={() => this.onItemDelete(rowData, secId, rowId, rowMap)}
-                    >
-                      <FontAwesome style={styles.iconDelete}>{Icons.trash}</FontAwesome>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={styles.listStyle}>
-                    <TouchableOpacity
-                      style={styles.btnDeleteView}
-                      activeOpacity={0.9}
-                      onPress={() => this.onItemSelect(rowData, rowId)}
-                    >
-                      <View style={styles.listItem}>
-                        <View style={styles.videoView}>
-                          <VideoComponent rowData={rowData} />
-                        </View>
-                        <View style={styles.footerView}>
-                          <Text style={styles.textTitle}>{rowData.name}</Text>
-                          <View style={styles.bottomWrapper}> 
-                            <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
-                            <View style={styles.viewWrapper}>
-                              <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
-                              <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>
+          {listData.length > 0 && dataSource
+            ? <SwipeListView
+                dataSource={dataSource}
+                enableEmptySections={true}
+                renderRow={ (rowData, secId, rowId, rowMap) => (
+                  <SwipeRow
+                    disableRightSwipe
+                    rightOpenValue={-50}
+                  >
+                    <View style={styles.listRightView}>
+                      <TouchableOpacity
+                        style={styles.btnDeleteView}
+                        activeOpacity={0.9}
+                        onPress={() => this.onItemDelete(rowData, secId, rowId, rowMap)}
+                      >
+                        <FontAwesome style={styles.iconDelete}>{Icons.trash}</FontAwesome>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={styles.listStyle}>
+                      <TouchableOpacity
+                        style={styles.btnDeleteView}
+                        activeOpacity={0.9}
+                        onPress={() => this.onItemSelect(rowData, rowId)}
+                      >
+                        <View style={styles.listItem}>
+                          <View style={styles.videoView}>
+                            <VideoComponent rowData={rowData} />
+                          </View>
+                          <View style={styles.footerView}>
+                            <Text style={styles.textTitle}>{rowData.name}</Text>
+                            <View style={styles.bottomWrapper}> 
+                              <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
+                              <View style={styles.viewWrapper}>
+                                <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
+                                <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>
+                              </View>
                             </View>
                           </View>
                         </View>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                </SwipeRow>
-              )}
-            />
-          )}
+                      </TouchableOpacity>
+                    </View>
+                  </SwipeRow>
+                )}
+              />
+            : !loading && <Text style={styles.noPackgeText}>{I18n.t('alert.search')}</Text>
+          }
         </View>
       </Container>
     );

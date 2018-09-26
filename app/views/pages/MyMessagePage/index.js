@@ -55,8 +55,7 @@ class MyMessagePage extends Component {
       }
       if (message.chatUserList.status === 107) {
         this.setState({
-          isError: true,
-          message: I18n.t('alert.no_chat')
+          listData: []
         })
       }
     }
@@ -115,21 +114,17 @@ class MyMessagePage extends Component {
     return (
       <Container title={I18n.t('sidebar.my_messages')}>
         <LoadingSpinner visible={loading } />
-        <CustomAlert 
-          title={I18n.t('alert.error')}
-          message={message}
-          visible={isError} 
-          closeAlert={() => this.closeAlert()}
-        />
-
         <View style={styles.container}>
-          <ListView
-              ref='listview'
-              dataSource={dataSource}
-              renderRow={this._renderRow.bind(this)}
-              contentContainerStyle={styles.listView}
-              enableEmptySections={true}
-            />
+          {listData.length > 0 && dataSource
+            ? <ListView
+                ref='listview'
+                dataSource={dataSource}
+                renderRow={this._renderRow.bind(this)}
+                contentContainerStyle={styles.listView}
+                enableEmptySections={true}
+              />
+            : !loading && <Text style={styles.noPackgeText}>{I18n.t('alert.no_chat')}</Text>
+          }
         </View>
       </Container>
     );

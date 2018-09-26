@@ -56,7 +56,6 @@ class ProductUpdatePage extends Component {
 
   componentWillMount() {
     const { data } = this.props
-    console.log('PRODUCT_UPDATE_DATA: ', data)
     this.setState({ ...data })
 
     this.setState({

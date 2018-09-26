@@ -57,6 +57,12 @@ class ProfileEditPage extends Component {
       this.setData(profile.profileData)
     }
 
+    if (this.props.profile.status === 'GET_PROFILE_REQUEST' && profile.status === 'GET_PROFILE_FAILED') {
+      this.setState({
+        loading: false
+      })
+    }
+
     if (this.props.profile.status === 'UPDATE_PROFILE_REQUEST' && profile.status === 'UPDATE_PROFILE_SUCCESS') {
       this.setState({
         loading: false,
@@ -64,6 +70,12 @@ class ProfileEditPage extends Component {
         message: I18n.t('profile.success'),
         password: '',
         confirmPassword: '',
+      })
+    }
+
+    if (this.props.profile.status === 'UPDATE_PROFILE_REQUEST' && profile.status === 'UPDATE_PROFILE_SUCCESS') {
+      this.setState({
+        loading: false
       })
     }
   }

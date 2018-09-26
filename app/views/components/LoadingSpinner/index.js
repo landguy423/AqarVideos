@@ -22,12 +22,14 @@ export default class LoadingSpinner extends Component {
     const { visible } = this.props;
     return(
         <Modal
-            animationType={'none'}
-            transparent
-            visible={visible}
-            onRequestClose={() => console.log('close')}>
-            <View style={{ flex: 1 }}/>
-            <View style={{
+          animationType={'none'}
+          transparent
+          visible={visible}
+          onRequestClose={() => {}}
+        >
+          <View style={{ flex: 1 }}/>
+          <View
+            style={{
               height: 80,
               width: 80,
               alignItems:'center',
@@ -35,21 +37,17 @@ export default class LoadingSpinner extends Component {
               backgroundColor:'#3434347f',
               borderRadius:10,
               alignSelf:'center'
-            }}>
-              {/* <ActivityIndicator
-                  animating
-                  size={"large"}
-                  color={'white'}
-              /> */}
-              <Image
-                source={loading_icon}
-                style={{
-                  width: 50,
-                  height: 50,
-                }}
-              />
-            </View>
-            <View style={{ flex: 1 }}/>
+            }}
+          >
+            <Image
+              source={loading_icon}
+              style={{
+                width: 50,
+                height: 50,
+              }}
+            />
+          </View>
+          <View style={{ flex: 1 }} />
         </Modal>
     );
   }

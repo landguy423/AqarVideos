@@ -28,9 +28,10 @@ const listItemWidth = (commonStyles.screenWidth - commonStyles.padding * 2 - 15)
 class MyAdsPage extends Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       dataSource: null,
       loading: false,
+      products: []
     }
   }
 
@@ -48,12 +49,13 @@ class MyAdsPage extends Component {
   }
 
   componentWillReceiveProps( { products }) {
-    if (this.props.products.loading === 'GET_ADS_PRODUCT_REQUEST' && products.loading === 'GET_ADS_PRODUCT_SUCCESS' && products.myAdsProduct.status === 200) {
+    if (this.props.products.loading === 'GET_ADS_PRODUCT_REQUEST' && products.loading === 'GET_ADS_PRODUCT_SUCCESS') {
+      this.setState({ loading: false })
       const data = _.orderBy(products.myAdsProduct.ads, ['date_added'], ['desc'])
       this.setData(data)
     }
     if (products.loading === 'GET_ADS_PRODUCT_FAILED') {
-      this.setState({ loading: false })  
+      this.setState({ loading: false })
     }
   }
 
@@ -61,7 +63,7 @@ class MyAdsPage extends Component {
     this.setState({ loading: false })
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     const dataSource = ds.cloneWithRows(products);
-    this.setState({ dataSource })
+    this.setState({ dataSource, products })
   }
 
   onItemSelect(rowData, rowID) {
@@ -103,21 +105,24 @@ class MyAdsPage extends Component {
   }
 
   render() {
-    const { dataSource, loading } = this.state
+    const { dataSource, loading, products } = this.state
+
     return (
       <Container title={I18n.t('sidebar.my_ads')}>
         <LoadingSpinner visible={loading } />
 
         <View style={styles.container}>
-          {dataSource && (
-            <ListView
-              ref='listview'
-              dataSource={dataSource}
-              renderRow={this._renderRow.bind(this)}
-              renderSeparator={this._renderSeparator}
-              contentContainerStyle={styles.listView}
-            />
-          )}
+          {products.length > 0 && dataSource
+            ? <ListView
+                ref='listview'
+                dataSource={dataSource}
+                renderRow={this._renderRow.bind(this)}
+                enableEmptySections={true}
+                renderSeparator={this._renderSeparator}
+                contentContainerStyle={styles.listView}
+              />
+            : !loading && <Text style={styles.noPackgeText}>{I18n.t('alert.search')}</Text>
+          }
         </View>
       </Container>
     );

@@ -87,7 +87,6 @@ export default function products(state = initialState, action = {}) {
         allProduct: null,
       };
     case types.GET_PRODUCT_BY_CATEGORY_SUCCESS: {
-      console.log('GET_PRODUCT_BY_CATEGORY_SUCCESS', action.result.data.product)
       return {
         ...state,
         loading: types.GET_PRODUCT_BY_CATEGORY_SUCCESS,
@@ -168,7 +167,7 @@ export default function products(state = initialState, action = {}) {
       return {
         ...state,
         loading: types.GET_ADS_PRODUCT_SUCCESS,
-        myAdsProduct: action.result.data,
+        myAdsProduct: action.result.status === 107 ? [] : action.result.data,
       }
     }
     case types.GET_ADS_PRODUCT_FAILED:

@@ -79,4 +79,10 @@ export const styles = StyleSheet.create({
     fontSize: 11,
     backgroundColor: 'transparent'
   },
+  noPackgeText: {
+    fontFamily: commonStyles.normalFont,
+    color: commonColors.greenColor,
+    fontSize: 18,
+    marginTop: 30
+  }
 });

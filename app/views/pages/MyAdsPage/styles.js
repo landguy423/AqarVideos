@@ -82,4 +82,10 @@ export const styles = StyleSheet.create({
     color: commonColors.darkGrayColor,
     marginLeft: 5,
   },
+  noPackgeText: {
+    fontFamily: commonStyles.normalFont,
+    color: commonColors.greenColor,
+    fontSize: 18,
+    marginTop: 30
+  }
 });

@@ -26,7 +26,6 @@ export default function packages(state = initialState, action = {}) {
     }
     case types.GET_PACKAGE_SUCCESS: {
       const { data } = action.result
-      console.log('GET_PACKAGE_SUCCESS', data)
       return {
         ...state,
         status: 'GET_PACKAGE_SUCCESS',
@@ -44,7 +43,6 @@ export default function packages(state = initialState, action = {}) {
      * Get my package
      */
     case types.GET_MY_PACKAGE_REQUEST: {
-      console.log('GET_MY_PACKAGE_REQUEST')
       return {
         ...state,
         status: 'GET_MY_PACKAGE_REQUEST',
@@ -53,7 +51,6 @@ export default function packages(state = initialState, action = {}) {
     }
     case types.GET_MY_PACKAGE_SUCCESS: {
       const { data } = action.result
-      console.log('GET_MY_PACKAGE_SUCCESS', data)
 
       return {
         ...state,
@@ -73,14 +70,13 @@ export default function packages(state = initialState, action = {}) {
      * Get Telr web url
      */
     case types.GET_WEBURL_REQUEST:
-      console.log('GET_WEBURL_REQUEST')
       return {
           ...state,
           status: types.GET_WEBURL_REQUEST,
       };
     case types.GET_WEBURL_SUCCESS: {
       const { data } = action.result
-      console.log('GET_WEBURL_SUCCESS', data)
+
       return {
         ...state,
         status: types.GET_WEBURL_SUCCESS,
@@ -120,7 +116,6 @@ export default function packages(state = initialState, action = {}) {
      * Get bank detail info
      */
     case types.GET_BANK_DETAIL_REQUEST: {
-      console.log('GET_BANK_DETAIL_REQUEST')
       return {
         ...state,
         status: 'GET_BANK_DETAIL_REQUEST',
@@ -129,7 +124,6 @@ export default function packages(state = initialState, action = {}) {
     }
     case types.GET_BANK_DETAIL_SUCCESS: {
       const { data } = action.result
-      console.log('GET_BANK_DETAIL_SUCCESS: ', data)
 
       return {
         ...state,
@@ -138,7 +132,7 @@ export default function packages(state = initialState, action = {}) {
       }
     }
     case types.GET_BANK_DETAIL_FAILED:
-      console.log('GET_BANK_DETAIL_FAILED')
+
       return {
         ...state,
         status: 'GET_BANK_DETAIL_FAILED',
@@ -149,7 +143,6 @@ export default function packages(state = initialState, action = {}) {
      * Send bank detail
      */
     case types.SEND_BANK_DETAIL_REQUEST: {
-      console.log('SEND_BANK_DETAIL_REQUEST')
       return {
         ...state,
         status: 'SEND_BANK_DETAIL_REQUEST',
@@ -158,7 +151,6 @@ export default function packages(state = initialState, action = {}) {
     }
     case types.SEND_BANK_DETAIL_SUCCESS: {
       const { data } = action.result
-      console.log('SEND_BANK_DETAIL_SUCCESS: ', data)
 
       return {
         ...state,
@@ -167,7 +159,6 @@ export default function packages(state = initialState, action = {}) {
       }
     }
     case types.SEND_BANK_DETAIL_FAILED: {
-      console.log('SEND_BANK_DETAIL_FAILED', action)
       return {
         ...state,
         status: 'SEND_BANK_DETAIL_FAILED',
