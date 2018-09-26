@@ -203,7 +203,7 @@ class PostNewVideoPage extends Component {
         <LoadingSpinner visible={loading } />
 
         <CustomAlert 
-          title="Warning"
+          title={I18n.t('alert.warning')}
           message={errorText}
           visible={errorFlag} 
           closeAlert={() => this.setState({ errorFlag: false })}

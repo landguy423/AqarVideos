@@ -160,7 +160,7 @@ class PackageDetailBankPage extends Component {
 
         {sendBankResult && (
           <CustomAlert 
-            title={sendBankResult.status === 200 ? 'Success' : 'Error'}
+            title={sendBankResult.status === 200 ? I18n.t('alert.success') : I18n.t('alert.error')}
             message={sendBankResult.status === 200 ? I18n.t('alert.bank_success') : I18n.t('alert.bank_failed')} 
             visible={this.state.isSendResult} 
             closeAlert={() => this.closeSendResultModal() }

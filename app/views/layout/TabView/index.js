@@ -124,14 +124,14 @@ class TabView extends Component {
     
     if (currentLocation == null) {
       currentLocation = {
-        latitude: 37.78825,
-        longitude: -122.4324,
+        latitude: 24.774265,
+        longitude: 46.738586,
       }
     }
     if (region == null) {
       region = {
-        latitude: 37.78825,
-        longitude: -122.4324,
+        latitude: 24.774265,
+        longitude: 46.738586,
         latitudeDelta: 0.05,
         longitudeDelta: 0.05,
       }

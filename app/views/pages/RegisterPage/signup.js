@@ -109,7 +109,7 @@ class Signup extends Component {
 
   checkCodeResult() {
     this.setState({isAlert: false});
-    if (this.props.user.verifyCodeInfo.status === '110') {
+    if (this.props.user.verifyCodeInfo.status === '110' || this.props.user.verifyCodeInfo.status === '111') {
       this.setState({ verifyStep: 2 });
     } else {
       this.setState({ verifyStep: 0 });
@@ -147,7 +147,7 @@ class Signup extends Component {
 
         {user.verifyPhoneInfo && (
           <CustomAlert 
-            title={user.verifyPhoneInfo.status === '200' ? 'Success' : 'Error'}
+            title={user.verifyPhoneInfo.status === '200' ? I18n.t('alert.success') : I18n.t('alert.error')}
             message={user.verifyPhoneInfo.status === '200' ? I18n.t('register.verify_phone') : I18n.t('register.verify_phone_failed')} 
             visible={isAlert} 
             closeAlert={() => this.checkPhoneResult()}
@@ -155,7 +155,7 @@ class Signup extends Component {
 
         {user.verifyCodeInfo && (
           <CustomAlert 
-            title={user.verifyCodeInfo.status === '200' ? 'Success' : 'Error'}
+            title={user.verifyCodeInfo.status === '200' ? I18n.t('alert.success') : I18n.t('alert.error')}
             message={user.verifyCodeInfo.status === '200' ? I18n.t('register.success_code') : I18n.t('register.invalid_code')} 
             visible={isAlert} 
             closeAlert={() => this.checkCodeResult()}
@@ -163,7 +163,7 @@ class Signup extends Component {
         
         {user.userSignupInfo && (
           <CustomAlert 
-            title={user.userSignupInfo.status === '200' ? 'Success' : 'Error'}
+            title={user.userSignupInfo.status === '200' ? I18n.t('alert.success') : I18n.t('alert.error')}
             message={user.userSignupInfo.status === '200' ? I18n.t('register.success') : I18n.t('register.failed')} 
             visible={isAlert} 
             closeAlert={() => this.checkUserSignupResult()}
@@ -292,10 +292,10 @@ class Signup extends Component {
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
-                returnKeyType={'next'}
+                returnKeyType={'send'}
                 secureTextEntry
                 value={this.state.confirmPassword}
-                onChangeText={text => this.setState({ confirmPassword: text })}
+                onSubmitEditing={() => this.onSignUp()}
               />
             </View> 
           </View>)}
@@ -320,6 +320,7 @@ class Signup extends Component {
                 keyboardType="phone-pad"
                 value={this.state.mobile}
                 onChangeText={text => this.setState({ mobile: text })}
+                onSubmitEditing={() => this.refs.confirmCode.focus()}
               />
             </View>
             <View style={styles.inputView}>
@@ -335,11 +336,11 @@ class Signup extends Component {
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
-                returnKeyType={'next'}
+                returnKeyType={'send'}
                 keyboardType="numbers-and-punctuation"
                 value={ this.state.code }
                 onChangeText={text => this.setState({ code: text })}
-                onSubmitEditing={() => this.refs.email.focus()}
+                onSubmitEditing={() => this.onVerifyCode()}
               />
             </View>
           </View>)}
@@ -360,7 +361,6 @@ class Signup extends Component {
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
-                returnKeyType={'next'}
                 keyboardType="phone-pad"
                 value={this.state.mobile}
                 onChangeText={text => this.setState({ mobile: text })}

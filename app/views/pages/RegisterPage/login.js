@@ -109,7 +109,7 @@ class Login extends Component {
         
         {userInfo && (
           <CustomAlert 
-            title={userInfo.status === '200' ? 'Success' : 'Error'}
+            title={userInfo.status === '200' ? I18n.t('alert.success') : I18n.t('alert.error')}
             message={userInfo.status === '200' ? I18n.t('register.login_success') : I18n.t('register.login_matched_fail')}
             visible={isLoginAlert} 
             closeAlert={() => this.checkUserLoginResult()}
@@ -118,7 +118,7 @@ class Login extends Component {
 
         {forgotPasswordResult && (
           <CustomAlert 
-            title={forgotPasswordResult.status === 200 ? 'Success' : 'Error'}
+            title={forgotPasswordResult.status === 200 ? I18n.t('alert.success') : I18n.t('alert.error')}
             message={forgotPasswordResult.status === 200 ? I18n.t('register.forgot_success') : I18n.t('register.forgot_failed')} 
             visible={this.state.isForgotResultAlert} 
             closeAlert={() => this.setState({ isForgotResultAlert: false })}
@@ -126,14 +126,14 @@ class Login extends Component {
         )}
         
         <CustomAlert 
-          title="Warning"
+          title={I18n.t('alert.warning')}
           message={I18n.t('register.input_mobile')}
           visible={this.state.isForgotAlert} 
           closeAlert={() => this.setState({ isForgotAlert: false })}
         />
 
         <CustomAlert 
-          title="Warning"
+          title={I18n.t('alert.warning')}
           message={I18n.t('register.login_matched_fail')}
           visible={this.state.loginFailed} 
           closeAlert={() => this.setState({ loginFailed: false })}
@@ -142,24 +142,6 @@ class Login extends Component {
         <KeyboardScrollView>
           <View style={styles.fieldContainerLogin}>
             <View style={styles.inputView}>
-              {/* <View style={styles.iconView}>
-                <Icon name='envelope' style={styles.inputIcon}></Icon>
-              </View> */}
-              {/* <TextInput
-                ref="email"
-                autoCapitalize="none"
-                autoCorrect={ false }
-                placeholder={I18n.t('profile.ph_email')}
-                placeholderTextColor={ commonColors.placeholderText }
-                textAlign="left"
-                style={styles.input}
-                underlineColorAndroid="transparent"
-                returnKeyType={ 'next' }
-                keyboardType="email-address"
-                value={ this.state.email }
-                onChangeText={ (text) => this.setState({ email: text }) }
-                onSubmitEditing={ () => this.refs.password.focus() }
-              /> */}
               <View style={styles.iconView}>
                 <Icon name='screen-tablet' style={styles.inputIcon}></Icon>
               </View>

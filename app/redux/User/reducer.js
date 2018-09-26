@@ -95,7 +95,7 @@ export default function user(state = initialState, action = {}) {
     */
     case types.USER_SIGNUP_REQUEST:
       return {
-        ...initialState,
+        ...state,
         status: types.USER_SIGNUP_REQUEST,
         loading: true,
       };
@@ -104,7 +104,9 @@ export default function user(state = initialState, action = {}) {
         ...state,
         loading: false,
         status: types.USER_SIGNUP_SUCCESS,
-        userSignupInfo: action.result.data
+        userSignupInfo: action.result.data,
+        userLogin: action.result.data.status === '200' ? true : false,
+        userInfo: action.result.data
       }
     case types.USER_SIGNUP_FAILED:
       return {

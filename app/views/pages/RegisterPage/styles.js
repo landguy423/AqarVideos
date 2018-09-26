@@ -61,17 +61,18 @@ export const styles = StyleSheet.create({
     fontSize: commonStyles.normalFontSize,
   },
   fieldContainer: {
-    width: '100%',
+    width: commonStyles.screenWidth,
+    paddingHorizontal: commonStyles.padding,
     height: commonStyles.screenSubHeight - 200,
     justifyContent:'center',
     alignItems: 'center',
   },
   fieldContainerLogin: {
-    width: '100%',
     height: commonStyles.screenSubHeight - 200,
     justifyContent:'center',
     alignItems: 'center',
-    width: commonStyles.screenSubWidth,
+    width: commonStyles.screenWidth,
+    paddingHorizontal: commonStyles.padding
   },
   inputView: {
     width: '100%',

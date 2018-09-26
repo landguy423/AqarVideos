@@ -109,7 +109,7 @@ class SupportAdvertisementPage extends Component {
       <Container title={I18n.t('sidebar.support_advertisement')}>
         <LoadingSpinner visible={loading } />
         <CustomAlert 
-          title={'Success'}
+          title={I18n.t('alert.success')}
           message={successMsg}
           visible={isSuccess} 
           closeAlert={() => this.closeAlert()}

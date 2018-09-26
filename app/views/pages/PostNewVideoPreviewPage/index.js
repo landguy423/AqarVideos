@@ -145,7 +145,7 @@ class PostNewVideoPreviewPage extends Component {
         <LoadingSpinner visible={loading } />
         
         <CustomAlert 
-          title={'Warning'}
+          title={I18n.t('alert.warning')}
           message={videoUploadingErrorMsg} 
           visible={videoError} 
           closeAlert={() => this.setState({ videoError: false })}

@@ -176,7 +176,7 @@ class SearchPage extends Component {
       <Container title={I18n.t('search')} type='detail'>
         <LoadingSpinner visible={loading} />
         <CustomAlert 
-          title={'Error'}
+          title={I18n.t('alert.error')}
           message={errMsg}
           visible={isError} 
           closeAlert={() => this.closeAlert()}

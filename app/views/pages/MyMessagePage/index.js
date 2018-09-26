@@ -116,7 +116,7 @@ class MyMessagePage extends Component {
       <Container title={I18n.t('sidebar.my_messages')}>
         <LoadingSpinner visible={loading } />
         <CustomAlert 
-          title={'Error'}
+          title={I18n.t('alert.error')}
           message={message}
           visible={isError} 
           closeAlert={() => this.closeAlert()}

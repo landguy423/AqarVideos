@@ -129,7 +129,7 @@ class ProfileEditPage extends Component {
       <Container title={I18n.t('sidebar.my_profile')}>
         <LoadingSpinner visible={loading } />
         <CustomAlert 
-          title={'Success'}
+          title={I18n.t('alert.success')}
           message={this.state.message}
           visible={isUpdate} 
           closeAlert={() => this.closeAlert()}
