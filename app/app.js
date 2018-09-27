@@ -23,9 +23,7 @@ import PackageDetailPage from './views/pages/PackagePage/PackageDetailPage';
 import PackageDetailBankPage from './views/pages/PackagePage/PackageDetailBankPage';
 import MyPackagePage from './views/pages/MyPackagePage';
 import MyPackageDetailPage from './views/pages/MyPackagePage/MyPackageDetailPage';
-import ProfileEditPage from './views/pages/ProfileEditPage';
-import AreaPage from './views/pages/AreaPage';
-import MyLocationPage from './views/pages/MyLocationPage';
+import ProfileEditPage from './views/pages/ProfileEditPage'
 import SupportAdvertisementPage from './views/pages/SupportAdvertisementPage';
 import ProductListPage from './views/pages/ProductListPage';
 import ProductDetailPage from './views/pages/ProductDetailPage';
@@ -74,8 +72,6 @@ export default class App extends Component {
         <Scene key="PackageDetail" component={ PackageDetailPage } hideNavBar panHandlers={null}/>
         <Scene key="MyPackage" component={ MyPackagePage } hideNavBar panHandlers={null}/>
         <Scene key="ProfileEdit" component={ ProfileEditPage } hideNavBar panHandlers={null}/>
-        <Scene key="Area" component={ AreaPage } hideNavBar panHandlers={null}/>
-        <Scene key="MyLocation" component={ MyLocationPage } hideNavBar panHandlers={null}/>
         <Scene key="SupportAdvertisement" component={ SupportAdvertisementPage } hideNavBar panHandlers={null}/>
         <Scene key="ProductList" component={ ProductListPage } hideNavBar panHandlers={null}/>
         <Scene key="ProductDetail" component={ ProductDetailPage } hideNavBar panHandlers={null}/>
