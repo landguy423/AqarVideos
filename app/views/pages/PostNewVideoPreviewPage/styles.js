@@ -111,6 +111,7 @@ export const styles = StyleSheet.create({
   termsText: {
     fontFamily: commonStyles.normalFont,
     color: commonColors.greenColor,
+    textDecorationLine: 'underline',
     fontWeight: 'bold',
     marginRight: 5
   },

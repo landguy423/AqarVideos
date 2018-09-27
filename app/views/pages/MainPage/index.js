@@ -62,9 +62,9 @@ class MainPage extends Component {
         break;
       case 'list':
         if (btnStatus == 'map')
-          this.setState({btnStatus: 'list'});
+          this.setState({ btnStatus: 'list' });
         else
-          this.setState({btnStatus: 'map'});
+          this.setState({ btnStatus: 'map' });
         break;
       case 'mail':
         break;
@@ -73,12 +73,12 @@ class MainPage extends Component {
       default:
         break;
     }
-    this.setState({isBtnList: !this.state.isBtnList});
+    this.setState({ isBtnList: !this.state.isBtnList });
   }
 
   changeTab(index) {
     this.setState({ tabIndex: index })
-    this.setState({ btnStatus: 'map' })
+    // this.setState({ btnStatus: 'map' })
   }
 
   render() {

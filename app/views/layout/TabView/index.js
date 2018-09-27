@@ -114,7 +114,7 @@ class TabView extends Component {
 
   changeTab(index) {
     index = index.i;
-    this.setState({tabIndex: index});
+    this.setState({ tabIndex: index });
     this.props.changeTab(index);
   }
 
