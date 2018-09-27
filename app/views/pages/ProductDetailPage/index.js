@@ -187,17 +187,21 @@ class ProductDetailPage extends Component {
                 </Text>
               </View>
 
-              <View style={[styles.titleView, { marginTop: 0 }]}>
-                <Text style={styles.textDescription}>
-                  {data.description}
-                </Text>
-              </View>
+              {data.description && (
+                <View style={[styles.titleView, { marginVertical: 0 }]}>
+                  <Text style={styles.textDescription}>
+                    {data.description}
+                  </Text>
+                </View>
+              )}
 
-              <View style={styles.titleView}>
-                <Text style={[styles.textDescription, { color: commonColors.greenColor }]}>
-                  {data.telephone}
-                </Text>
-              </View>
+              {data.telephone && (
+                <View style={[styles.titleView, { marginBottom: 0 }]}>
+                  <Text style={[styles.textDescription, { color: commonColors.greenColor }]}>
+                    {data.telephone}
+                  </Text>
+                </View>
+              )}
               
               <View style={styles.separate} />
               
