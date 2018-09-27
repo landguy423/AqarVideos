@@ -37,14 +37,23 @@ export const styles = StyleSheet.create({
     zIndex: 99,
     position: 'absolute',
     top: STATUSBAR_HEIGHT,
-    left: commonStyles.screenWidth * 0.05,
+    marginLeft: 10,
     backgroundColor: 'transparent',
-    width: 50,
-    height: 35,
+    width: 100,
+  },
+  backIconView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
   },
   backIcon_detail: {
-    fontSize: 30,
     fontWeight: 'bold',
-    color: 'white',
+    color: commonColors.pinkColor,
+  },
+  backTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: commonColors.pinkColor,
+    marginBottom: 5
   }
 });

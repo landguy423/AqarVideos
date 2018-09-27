@@ -107,10 +107,13 @@ export const styles = StyleSheet.create({
     fontSize: commonStyles.normalFontSize,
     color: commonColors.placeholderText,
   },
+  underline: {
+    textDecorationLine: 'underline',
+    color: commonColors.greenColor
+  },
   icon: {
     marginBottom: 10,
   },
-
   //PriceView
   priceView: {
     width: '100%',

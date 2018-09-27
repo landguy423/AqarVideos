@@ -50,29 +50,17 @@ class PackagePage extends Component {
     const { packages, token, getPackages } = nextProps;
 
     if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
-      if (packages.isPaidUser) {
-        this.setState({
-          isPaidUser: packages.isPaidUser,
-          myPackageInfo: packages.myPackageInfo
-        })
-
-        // if (packages.myPackageInfo.package.price === '$0.00') {
-        //   getPackages(token.tokenInfo.token);
-        // } else {
-        //   this.setState({ loading: false });
-        // }
-      }
       getPackages(token.tokenInfo.token);
     }
 
     if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_FAILED') {
-      this.setState({ loading: false })
+      getPackages(token.tokenInfo.token);
     }
 
     if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
       this.setState({ loading: false });
       if (packages.packageInfo.status === 200) {
-        this.setState({ packageList: packages.packageInfo.package})
+        this.setState({ packageList: packages.packageInfo.package })
       }
     }
   }
@@ -82,8 +70,6 @@ class PackagePage extends Component {
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
-    const { myPackageInfo, isPaidUser } = this.state
-
     return (
       <TouchableOpacity 
         activeOpacity={0.6}
@@ -114,8 +100,7 @@ class PackagePage extends Component {
   }
 
   render() {
-    const { loading, packageList, myPackageInfo, isPaidUser } = this.state
-    const { packages: { packageInfo }} = this.props;
+    const { loading, packageList } = this.state
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     dataSource = ds.cloneWithRows(packageList);

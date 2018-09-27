@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     fontSize: 50,
   },
   titleView: {
-    marginVertical: 20,
+    marginVertical: 10,
     paddingHorizontal: commonStyles.padding,
     width: '100%',
     justifyContent: 'flex-end',
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: commonStyles.normalFontSize,
     textAlign: 'right',
-    color: commonColors.darkGrayColor,
+    color: commonColors.placeholderText,
   },
   textPhone: {
     fontFamily: commonStyles.normalFont,

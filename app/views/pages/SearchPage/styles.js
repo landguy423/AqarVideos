@@ -93,6 +93,10 @@ export const styles = StyleSheet.create({
     color: commonColors.placeholderText,
     textAlign: 'right',
   },
+  underline: {
+    textDecorationLine: 'underline',
+    color: commonColors.greenColor
+  },
   squareMeterView: {
     alignItems: 'center',
     justifyContent: 'space-around',

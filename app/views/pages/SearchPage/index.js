@@ -193,7 +193,7 @@ class SearchPage extends Component {
                 </Text>
                 <TouchableOpacity onPress={() => this.changePage('map')}>
                   <View style={styles.addressView}>
-                    <Text style={styles.input}>{address}</Text>
+                    <Text style={[styles.input, styles.underline]}>{address}</Text>
                   </View>
                 </TouchableOpacity>
               </View>

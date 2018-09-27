@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: commonStyles.padding,
     height: commonStyles.screenSubHeight - 200,
     justifyContent:'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   fieldContainerLogin: {
     height: commonStyles.screenSubHeight - 200,

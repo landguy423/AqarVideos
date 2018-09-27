@@ -89,27 +89,27 @@ class PostNewVideoPage extends Component {
   onPreview() {
     const propsData = this.state;
 
-    if (!propsData.video_url || !propsData.videoFileName) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_video') })
-      return
-    }
-    if (!propsData.coordinate) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_address') })
-      return
-    }
-    if (propsData.name.length === 0) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_title') })
-      return
-    } else if (propsData.price.length === 0) {
-      this.setState({ errorFlag: true })
-      this.setState({ errorText: I18n.t('post_video.select_price') })
-      return
-    }
+    // if (!propsData.video_url || !propsData.videoFileName) {
+    //   this.setState({ errorFlag: true })
+    //   this.setState({ errorText: I18n.t('post_video.select_video') })
+    //   return
+    // }
+    // if (!propsData.coordinate) {
+    //   this.setState({ errorFlag: true })
+    //   this.setState({ errorText: I18n.t('post_video.select_address') })
+    //   return
+    // }
+    // if (propsData.name.length === 0) {
+    //   this.setState({ errorFlag: true })
+    //   this.setState({ errorText: I18n.t('post_video.select_title') })
+    //   return
+    // } else if (propsData.price.length === 0) {
+    //   this.setState({ errorFlag: true })
+    //   this.setState({ errorText: I18n.t('post_video.select_price') })
+    //   return
+    // }
 
-    this.setState({ errorFlag: false })
+    // this.setState({ errorFlag: false })
     Actions.PostNewVideoPreview({ data: propsData });
   }
 
@@ -245,7 +245,7 @@ class PostNewVideoPage extends Component {
               </Text>
               <TouchableOpacity onPress={() => this.changePage('map')}>
                 <View style={styles.addressView}>
-                  <Text style={styles.input}>{this.state.location}</Text>
+                  <Text style={[styles.input, styles.underline]}>{this.state.location}</Text>
                 </View>
               </TouchableOpacity>
             </View>

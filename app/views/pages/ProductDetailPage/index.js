@@ -183,26 +183,17 @@ class ProductDetailPage extends Component {
               
               <View style={styles.titleView}>
                 <Text style={styles.textTitle}>
-                  {I18n.t('post_video.title')}
-                </Text>
-                <Text style={styles.textDescription}>
                   {data.name}
                 </Text>
               </View>
-              
-              <View style={styles.titleView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.description')}
-                </Text>
+
+              <View style={[styles.titleView, { marginTop: 0 }]}>
                 <Text style={styles.textDescription}>
                   {data.description}
                 </Text>
               </View>
 
               <View style={styles.titleView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('profile.ph_mobile_number')}
-                </Text>
                 <Text style={[styles.textDescription, { color: commonColors.greenColor }]}>
                   {data.telephone}
                 </Text>
@@ -210,20 +201,14 @@ class ProductDetailPage extends Component {
               
               <View style={styles.separate} />
               
-              <View style={styles.titleView}>
+              <View style={styles.itemView}>
                 <Text style={styles.textTitle}>
-                    {I18n.t('post_video.price')}
-                </Text>
-                <Text style={styles.textDescription}>
                   {`${data.price} ${I18n.t('sar')}`} 
                 </Text>
               </View>
 
               {data.category === 'building' && (
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.type')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {BUILDING_TYPE_DATA[parseInt(data.building_type)].value}
                   </Text>
@@ -231,10 +216,7 @@ class ProductDetailPage extends Component {
               )}
 
               {data.category === 'villa' && (
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.squaremeter')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {data.squaremeter}
                   </Text>
@@ -242,10 +224,7 @@ class ProductDetailPage extends Component {
               )}
 
               {(data.category === 'apartment' || data.category === 'chalet') && (
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.period')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {PERIOD_DATA[parseInt(data.period)].value}
                   </Text>
@@ -254,34 +233,22 @@ class ProductDetailPage extends Component {
 
               {data.category === 'apartment' && (
                 <View>
-                  <View style={styles.titleView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.furniture')}
-                    </Text>
+                  <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {data.furniture}
                     </Text>
                   </View>
-                  <View style={styles.titleView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.room_type')}
-                    </Text>
+                  <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
                     </Text>
                   </View>
-                  <View style={styles.titleView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.room_count')}
-                    </Text>
+                  <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {data.room_count}
                     </Text>
                   </View>
-                  <View style={styles.titleView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.ownership')}
-                    </Text>
+                  <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {data.ownership}
                     </Text>
@@ -290,10 +257,7 @@ class ProductDetailPage extends Component {
               )}
 
               {data.category === 'office' && (
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.area_space')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {data.areaspace}
                   </Text>
@@ -302,18 +266,12 @@ class ProductDetailPage extends Component {
 
               {data.category === 'gallery' && (
                 <View>
-                  <View style={styles.titleView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.street_size')}
-                    </Text>
+                  <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {data.street_size}
                     </Text>
                   </View>
-                  <View style={styles.titleView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.gallery_shop')}
-                    </Text>
+                  <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {data.gallery_number}
                     </Text>
@@ -321,24 +279,14 @@ class ProductDetailPage extends Component {
                 </View>
               )}
               
-              <View style={styles.separate} />
-
-              <View style={styles.titleView}>
+              <View style={styles.itemView}>
                 <Text style={styles.textTitle}>
-                  {I18n.t('post_video.product_option')}
-                </Text>
-                <Text style={styles.textDescription}>
                   {data.product_type === '0' ? I18n.t('post_video.sale') : I18n.t('post_video.rent')}
                 </Text>
               </View>
               
-              <View style={styles.separate} />
-
-              <View style={styles.titleView}>
+              <View style={[styles.titleView, { marginTop: 20 }]}>
                 <Text style={styles.textTitle}>
-                  {I18n.t('post_video.location')}
-                </Text>
-                <Text style={styles.textDescription}>
                   {data.location}
                 </Text>
                 <View style={styles.mapViewContainer}>

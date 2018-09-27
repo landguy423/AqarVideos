@@ -175,7 +175,10 @@ class PostProductLocationPage extends Component {
       <View style={styles.container}>
         <View style={styles.backIconWrapper}>
           <TouchableOpacity onPress={() => this.onBack()}>
-            <Icon name='arrow-left' style={styles.backIcon_detail}></Icon>
+            <View style={styles.backIconView}>
+              <Icon name='chevron-left' size={30} style={styles.backIcon_detail}></Icon>
+              <Text style={styles.backTitle}>رجوع</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View style={styles.btnMapTypeView}>

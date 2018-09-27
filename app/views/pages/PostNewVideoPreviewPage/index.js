@@ -7,7 +7,6 @@ import {
   ListView,
   TouchableOpacity,
   Image,
-  Modal,
   TouchableWithoutFeedback
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -17,7 +16,8 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { Actions } from 'react-native-router-flux';
-import CheckBox from 'react-native-modest-checkbox';
+import Modal from 'react-native-modal';
+import CustomCheckbox from '@components/CustomCheckbox';
 
 import { RNS3 } from 'react-native-aws3';
 import { AWS_OPTIONS } from '@common/aws';
@@ -48,6 +48,7 @@ class PostNewVideoPreviewPage extends Component {
       loading: false,
       videoError: false,
       icon: CATEGORY_ICON_LIST['building'],
+      showTNC: false
     }
   }
 
@@ -169,57 +170,44 @@ class PostNewVideoPreviewPage extends Component {
             </TouchableOpacity>
 
             <View style={styles.titleView}>
-              <View style={styles.iconView}>
-                <Image source={CATEGORY_ICON_LIST[data.category]} style={styles.iconOffice} resizeMode="contain" />
-                <Text style={styles.textDescription}>
-                  {I18n.t(`category.${data.category.toLowerCase()}`)}
-                </Text>
-              </View>
+              <Image source={CATEGORY_ICON_LIST[data.category]} style={styles.iconOffice} resizeMode="contain" />
+              <Text style={styles.textDescription}>
+                {I18n.t(`category.${data.category.toLowerCase()}`)}
+              </Text>
             </View>
 
-            <View style={styles.titleView}>
-              <Text style={styles.textTitle}>
-                {I18n.t('post_video.title')}
-              </Text>
-              <Text style={styles.textDescription}>
-                {data.name}
-              </Text>
-            </View>
+            {data.name && (
+              <View style={styles.titleView}>
+                <Text style={styles.textTitle}>
+                  {data.name}
+                </Text>
+              </View>
+            )}
             
-            <View style={styles.titleView}>
-              <Text style={styles.textTitle}>
-                {I18n.t('post_video.description')}
-              </Text>
-              <Text style={styles.textDescription}>
-                {data.description}
-              </Text>
-            </View>
+            {data.description && (
+              <View style={[styles.titleView, { marginTop: 0 }]}>
+                <Text style={styles.textDescription}>
+                  {data.description}
+                </Text>
+              </View>
+            )}
             
             <View style={styles.separate} />
             
-            <View style={styles.titleView}>
-              <Text style={styles.textTitle}>
-                  {I18n.t('post_video.price')}
-              </Text>
-              <Text style={styles.textDescription}>
+            <View style={styles.itemView}>
+              <Text style={[styles.textDescription, { fontWeight: 'bold' }]}>
                 {`${data.price} ${I18n.t('sar')}`} 
               </Text>
             </View>
             
-            <View style={styles.titleView}>
-              <Text style={styles.textTitle}>
-                {I18n.t('post_video.location')}
-              </Text>
+            <View style={styles.itemView}>
               <Text style={styles.textDescription}>
                 {data.location === I18n.t('post_video.select_address') ? '' : data.location}
               </Text>
             </View>
 
             {(data.category === 'building') && (
-              <View style={styles.titleView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.type')}
-                </Text>
+              <View style={styles.itemView}>
                 <Text style={styles.textDescription}>
                   {BUILDING_TYPE_DATA[parseInt(data.building_type)].value}
                 </Text>
@@ -227,20 +215,14 @@ class PostNewVideoPreviewPage extends Component {
             )}
 
             {data.category === 'villa' && (
-              <View style={styles.titleView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.squaremeter')}
-                </Text>
+              <View style={styles.itemView}>
                 <Text style={styles.textDescription}>
                   {data.squaremeter}
                 </Text>
               </View>)}
 
             {(data.category === 'apartment' || data.category === 'chalet') && (
-              <View style={styles.titleView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.period')}
-                </Text>
+              <View style={styles.itemView}>
                 <Text style={styles.textDescription}>
                   {data.period}
                   {PERIOD_DATA[parseInt(data.period)].value}
@@ -250,34 +232,22 @@ class PostNewVideoPreviewPage extends Component {
 
             {(data.category === 'apartment') && (
               <View>
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.furniture')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {data.furniture}
                   </Text>
                 </View>
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.room_type')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
                   </Text>
                 </View>
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.room_count')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {data.room_count}
                   </Text>
                 </View>
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.ownership')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {data.ownership}
                   </Text>
@@ -286,10 +256,7 @@ class PostNewVideoPreviewPage extends Component {
             )}
 
             {(data.category === 'office') && (
-              <View style={styles.titleView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.area_space')}
-                </Text>
+              <View style={styles.itemView}>
                 <Text style={styles.textDescription}>
                   {data.areaspace}
                 </Text>
@@ -298,18 +265,12 @@ class PostNewVideoPreviewPage extends Component {
 
             {(data.category === 'gallery') && (
               <View>
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.street_size')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {data.street_size}
                   </Text>
                 </View>
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.gallery_shop')}
-                  </Text>
+                <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {data.gallery_number}
                   </Text>
@@ -317,25 +278,23 @@ class PostNewVideoPreviewPage extends Component {
               </View>
             )}
             
-            <View style={styles.titleView}>
+            <View style={styles.itemView}>
               <Text style={styles.textTitle}>
-                {I18n.t('post_video.product_option')}
-              </Text>
-              <Text style={styles.textDescription}>
                 {data.product_type === '0' ? I18n.t('post_video.sale') : I18n.t('post_video.rent')}
               </Text>
             </View>
 
-            <View style={styles.itemView}>
-              <CheckBox
-                label={I18n.t('terms_conditions')}
+            <View style={[styles.titleView, { marginTop: 20 }]}>
+              <CustomCheckbox
+                label={
+                  <View style={styles.termsView}>
+                    <TouchableOpacity onPress={() => this.setState({ showTNC: true })}>
+                      <Text style={styles.termsText}>{I18n.t('terms_conditions')}</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.textTitle}>{I18n.t('will_accept')}</Text>
+                  </View>
+                }
                 labelBefore
-                labelStyle={{
-                  color: commonColors.placeholderText,
-                  fontSize: 14,
-                  fontFamily: commonStyles.normalFont,
-                  fontWeight: 'bold'
-                }}
                 onChange={(checked) => this.setState({ terms: checked })}
               />
             </View>
@@ -348,6 +307,26 @@ class PostNewVideoPreviewPage extends Component {
 
           </ScrollView>
         </View>
+
+        <Modal
+          animationIn='slideInUp'
+          animationOut='slideOutDown'
+          transparent
+          isVisible={this.state.showTNC}
+          backdropColor='rgba(0, 0, 0, 0.3)'
+          onBackdropPress={() => this.setState({ showTNC: false })}
+        >
+          <View style={styles.modalView} >
+            <Text style={styles.tncContent}>
+              شروط الإعلان
+              ١-التحديث شهريا وعدم تكرار الإعلان نفسه .
+              ٢-يعتبر المشترك او المعلن هو المسؤول عن محتوي اعلان الفيديو .
+              .
+              ٣-اغلاق الإعلان بعد بيع او ايجار العقار المعروض .
+              ٤-يتطلب إضافة أعلان جديد ، الاشتراك في إحدى باقات فيديو عقار بعد انتهاء الباقه المجانيه .
+            </Text>
+          </View>
+        </Modal>
       </Container>
     );
   }

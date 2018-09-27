@@ -1,5 +1,6 @@
 import {
   StyleSheet,
+  Platform
 } from 'react-native';
 import * as commonStyles from '@common/styles/commonStyles';
 import * as commonColors from '@common/styles/commonColors';
@@ -25,7 +26,7 @@ export const styles = StyleSheet.create({
     height: 200,
   },
   titleView: {
-    marginVertical: 20,
+    marginVertical: 10,
     paddingHorizontal: commonStyles.padding,
     width: '100%',
     justifyContent: 'flex-end',
@@ -102,4 +103,35 @@ export const styles = StyleSheet.create({
     fontSize: commonStyles.normalFontSize,
     color: 'white',
   },
+  termsView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  termsText: {
+    fontFamily: commonStyles.normalFont,
+    color: commonColors.greenColor,
+    fontWeight: 'bold',
+    marginRight: 5
+  },
+  modalView: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'black',
+        shadowOffset: { height: 5 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5
+      },
+      android: {
+        elevation: 20
+      }
+    })
+  },
+  tncContent: {
+    textAlign: 'right'
+  }
 });

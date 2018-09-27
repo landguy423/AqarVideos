@@ -36,7 +36,7 @@ class KeyboardScrollView extends Component {
     }
 
     return (
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView keyboardDismissMode="on-drag">
         {this.props.children}
       </KeyboardAwareScrollView>
     );
