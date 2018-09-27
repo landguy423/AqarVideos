@@ -99,7 +99,11 @@ class SearchPage extends Component {
   onSearch() {
     const { searchProduct, token, user } = this.props;
 
-    // if (!this.state.coordinate || !this.state.radius) return;
+    if (!this.state.coordinate || !this.state.radius) {
+      this.setState({ isError: true })
+      this.setState({ errMsg: I18n.t('post_video.select_address') })
+      return;
+    }
 
     this.setState({ loading: true });
     this.props.searchProduct(
@@ -107,12 +111,12 @@ class SearchPage extends Component {
       {
         user_id: user.userInfo ? user.userInfo.user.customer_id : null,
         category_name: this.state.category,
-        // lat: this.state.coordinate.latitude,
-        // long: this.state.coordinate.longitude,
-        // radius: this.state.radius,
-        lat: '37.78',
-        long: '-122.44',
+        lat: this.state.coordinate.latitude,
+        long: this.state.coordinate.longitude,
         radius: this.state.radius,
+        // lat: '37.78',
+        // long: '-122.44',
+        // radius: this.state.radius,
         product_type: this.state.productOption,
         min_price: this.state.minPrice,
         max_price: this.state.maxPrice,
