@@ -195,7 +195,7 @@ class ChatRoomPage extends Component {
                     autoCorrect={ true }
                     multiline
                     placeholder={I18n.t('support.ph_message')}
-                    placeholderTextColor={ commonColors.placeholderText }
+                    placeholderTextColor={ commonColors.placeholderSubText }
                     textAlign="right"
                     style={styles.input}
                     underlineColorAndroid="transparent"

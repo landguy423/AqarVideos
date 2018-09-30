@@ -105,6 +105,7 @@ class ProductDetailPage extends Component {
 
   onSendMessage() {
     const { data: { product_id, customer_id } } = this.props;
+
     Actions.DirectMessage({
       product_id,
       product_owner_id: customer_id,
@@ -237,11 +238,13 @@ class ProductDetailPage extends Component {
 
               {data.category === 'apartment' && (
                 <View>
-                  <View style={styles.itemView}>
-                    <Text style={styles.textDescription}>
-                      {data.furniture}
-                    </Text>
-                  </View>
+                  {(data.furniture || data.furniture === 'true') && (
+                    <View style={styles.itemView}>
+                      <Text style={styles.textDescription}>
+                        {I18n.t('post_video.furniture')}
+                      </Text>
+                    </View>
+                  )}
                   <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
@@ -252,11 +255,13 @@ class ProductDetailPage extends Component {
                       {data.room_count}
                     </Text>
                   </View>
-                  <View style={styles.itemView}>
-                    <Text style={styles.textDescription}>
-                      {data.ownership}
-                    </Text>
-                  </View>
+                  {(data.ownership || data.ownership === 'true')  && (
+                    <View style={styles.itemView}>
+                      <Text style={styles.textDescription}>
+                        {I18n.t('post_video.ownership')}
+                      </Text>
+                    </View>
+                  )}
                 </View>
               )}
 

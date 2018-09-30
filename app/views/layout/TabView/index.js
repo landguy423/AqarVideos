@@ -92,16 +92,22 @@ class TabView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { products } = nextProps
+    const { products, packages } = nextProps
 
-    if (this.props.products.loading === 'GET_PRODUCT_BY_CATEGORY_REQUEST' && products.loading === 'GET_PRODUCT_BY_CATEGORY_SUCCESS' ) {
+    if (this.props.products.loading === 'GET_PRODUCT_BY_CATEGORY_REQUEST' && products.loading === 'GET_PRODUCT_BY_CATEGORY_SUCCESS') {
       this.setState({
         loading: false,
         allProduct: products.allProduct,
       })
     }
 
-    if (this.props.products.loading === 'GET_PRODUCT_BY_CATEGORY_REQUEST' && products.loading === 'GET_PRODUCT_BY_CATEGORY_FAILED' ) {
+    if (this.props.products.loading === 'GET_PRODUCT_BY_CATEGORY_REQUEST' && products.loading === 'GET_PRODUCT_BY_CATEGORY_FAILED') {
+      this.setState({
+        loading: false
+      })
+    }
+
+    if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_FAILED') {
       this.setState({
         loading: false
       })
@@ -276,11 +282,12 @@ class TabView extends Component {
   }
 }
 
-const mapStateToProps = ({ token, user, products, map }) => ({
+const mapStateToProps = ({ token, user, products, map, packages }) => ({
   user,
   token,
   products,
   map,
+  packages
 })
 
 const mapDispatchToProps = dispatch => ({

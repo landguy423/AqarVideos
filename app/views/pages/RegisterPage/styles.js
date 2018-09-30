@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: commonStyles.buttonHeight,
     backgroundColor: commonColors.greenColor,
-    bottom: commonStyles.buttonBottomHeight,
+    bottom: 0,
     position: 'absolute',
   },
   btnViewLogin: {
@@ -63,9 +63,9 @@ export const styles = StyleSheet.create({
   fieldContainer: {
     width: commonStyles.screenWidth,
     paddingHorizontal: commonStyles.padding,
-    height: commonStyles.screenSubHeight - 200,
-    justifyContent:'center',
-    alignItems: 'center'
+    justifyContent:'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#fff'
   },
   fieldContainerLogin: {
     height: commonStyles.screenSubHeight - 200,

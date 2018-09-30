@@ -33,8 +33,7 @@ class PackagePage extends Component {
     this.state = {
       loading: false,
       packageList: [],
-      isPaidUser: false,
-      myPackageInfo: null
+      isPaidUser: false
     }
   }
 
@@ -49,19 +48,17 @@ class PackagePage extends Component {
   componentWillReceiveProps(nextProps) {
     const { packages, token, getPackages } = nextProps;
 
-    if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') {
-      getPackages(token.tokenInfo.token);
-    }
-
-    if (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_FAILED') {
+    if ((this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_SUCCESS') ||
+        (this.props.packages.status === 'GET_MY_PACKAGE_REQUEST' && packages.status === 'GET_MY_PACKAGE_FAILED')) {
       getPackages(token.tokenInfo.token);
     }
 
     if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_SUCCESS') {
-      this.setState({ loading: false });
-      if (packages.packageInfo.status === 200) {
-        this.setState({ packageList: packages.packageInfo.package })
-      }
+      this.setState({ loading: false }, () => {
+        if (packages.packageInfo.status === 200) {
+          this.setState({ packageList: packages.packageInfo.package })
+        }
+      });
     }
   }
 

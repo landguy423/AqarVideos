@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import KeyboardScrollView from '@components/KeyboardView'
 import LoadingSpinner from '@components/LoadingSpinner';
+import CustomAlert from '@components/CustomAlert';
 import I18n from '@i18n'
 import Container from '@layout/Container'
 import { styles } from './styles'
@@ -31,7 +32,9 @@ class PackageDetailPage extends Component {
     this.state = {
       selectedIndex: 0,
       loading: false,
-      webUrlInfo: {}
+      webUrlInfo: {},
+      errorFlag: false,
+      errorText: ''
     }
   }
 
@@ -39,19 +42,27 @@ class PackageDetailPage extends Component {
     const { packages } = nextProps;
 
     if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_SUCCESS') {
-      this.setState({ loading: false });
-      if (packages.webUrlInfo.status === 200) {
-        if (packages.webUrlInfo.message === 'Trial is active') {
-          Actions.Package()
-        } else {
-          Actions.PaymentWebPage({ url: packages.webUrlInfo.order.url })
+      this.setState({ loading: false }, () => {
+        if (packages.webUrlInfo.status === 200) {
+          if (packages.webUrlInfo.message === 'Trial is active') {
+            Actions.Package()
+          } else {
+            Actions.PaymentWebPage({ url: packages.webUrlInfo.order.url })
+          }
+        } else if (packages.webUrlInfo.status === 107) {
+          this.setState({
+            errorFlag: true,
+            errorText: I18n.t('packages.no_url')
+          });
         }
-      } else if (packages.webUrlInfo.status === 107) {
-        Actions.Package()
-      }
+      });
     }
     if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_FAILED') {
-      this.setState({ loading: false });
+      this.setState({
+        loading: false,
+        errorFlag: true,
+        errorText: I18n.t('packages.no_url')
+      });
     }
   }
 
@@ -65,7 +76,7 @@ class PackageDetailPage extends Component {
     const { customer_id } = user.userInfo.user
 
     if (selectedIndex === 0) {
-      this.setState({ loading: true });
+      // this.setState({ loading: true });
       getTerlWebUrl(token.tokenInfo.token, { user_id: customer_id, package_id: data.package_id });
     } else {
       Actions.PackageDetailBank({ data: this.props.data });
@@ -80,6 +91,13 @@ class PackageDetailPage extends Component {
 
         <LoadingSpinner visible={this.state.loading } />
 
+        <CustomAlert 
+          title={I18n.t('alert.error')}
+          message={this.state.errorText}
+          visible={this.state.errorFlag}
+          closeAlert={() => this.setState({ errorFlag: false })}
+        />
+
         <View style={styles.container}>
           <Image source={img_detail} style={styles.thumbnail} />
 
@@ -91,7 +109,8 @@ class PackageDetailPage extends Component {
             </KeyboardScrollView>
           </View>
 
-          {!packages.isPaidUser && data.price !== '$0.00' && (
+          {(!packages.isPaidUser || (packages.isPaidUser && packages.myPackageInfo && packages.myPackageInfo.package.price === '$0.00'))
+            && data.price !== '$0.00' && (
             <View style={styles.radioButtonView}>
               <RadioGroup
                 highlightColor="transparent"
@@ -110,7 +129,7 @@ class PackageDetailPage extends Component {
             </View>
           )}
 
-          {!packages.isPaidUser && (
+          {(!packages.isPaidUser || (packages.isPaidUser && packages.myPackageInfo && packages.myPackageInfo.package.price === '$0.00' && data.price !== '$0.00')) && (
             <View style={styles.btnView}>
               <TouchableOpacity onPress={() => this.onTry()} activeOpacity={0.5}>
                 <View style={styles.btnWrapper}>

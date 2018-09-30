@@ -156,7 +156,7 @@ class Login extends Component {
                 style={styles.input}
                 underlineColorAndroid="transparent"
                 returnKeyType={ 'next' }
-                keyboardType="phone-pad"
+                keyboardType="numbers-and-punctuation"
                 value={ this.state.mobile }
                 onChangeText={text => this.setState({ mobile: text })}
               />

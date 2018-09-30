@@ -216,7 +216,7 @@ class Signup extends Component {
                 returnKeyType={ 'next' }
                 value={ this.state.lastName }
                 onChangeText={ (text) => this.setState({ lastName: text }) }
-                onSubmitEditing={ () => this.refs.mobileNumber.focus() }
+                onSubmitEditing={ () => this.refs.email.focus() }
               />
             </View>
             <View style={styles.inputView}>
@@ -243,9 +243,9 @@ class Signup extends Component {
               <View style={styles.iconView}>
                 <Icon name='screen-tablet' style={styles.inputIcon}></Icon>
               </View>
-              <TextInputMask 
+              <TextInputMask
+                refInput={c => this.mobileNumber = c}
                 mask={"+[00000000000000]"} 
-                ref="mobileNumber"
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_mobile_number')}
@@ -254,9 +254,10 @@ class Signup extends Component {
                 style={styles.input}
                 underlineColorAndroid="transparent"
                 returnKeyType={ 'next' }
-                keyboardType="phone-pad"
+                keyboardType="numbers-and-punctuation"
                 value={ this.state.mobile }
                 onChangeText={text => this.setState({ mobile: text })}
+                onSubmitEditing={() => this.refs.password.focus()}
               />
             </View>
             <View style={styles.inputView}>
@@ -307,9 +308,9 @@ class Signup extends Component {
               <View style={styles.iconView}>
                 <Icon name='screen-tablet' style={styles.inputIcon}></Icon>
               </View>
-              <TextInputMask 
-                mask={"+[00000000000000]"} 
+              <TextInputMask
                 ref="mobileNumber"
+                mask={"+[00000000000000]"} 
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_mobile_number')}
@@ -318,7 +319,7 @@ class Signup extends Component {
                 style={styles.input}
                 underlineColorAndroid="transparent"
                 returnKeyType={'next'}
-                keyboardType="phone-pad"
+                keyboardType="numbers-and-punctuation"
                 value={this.state.mobile}
                 onChangeText={text => this.setState({ mobile: text })}
                 onSubmitEditing={() => this.refs.confirmCode.focus()}
@@ -352,9 +353,9 @@ class Signup extends Component {
               <View style={styles.iconView}>
                 <Icon name='screen-tablet' style={styles.inputIcon}></Icon>
               </View>
-              <TextInputMask 
-                mask={"+[00000000000000]"} 
+              <TextInputMask
                 ref="mobileNumber"
+                mask={"+[00000000000000]"}
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_mobile_number')}
@@ -362,9 +363,11 @@ class Signup extends Component {
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
-                keyboardType="phone-pad"
+                keyboardType="numbers-and-punctuation"
                 value={this.state.mobile}
                 onChangeText={text => this.setState({ mobile: text })}
+                returnKeyType={'send'}
+                onSubmitEditing={() => this.onVerifyPhone()}
               />
             </View>
           </View>)}

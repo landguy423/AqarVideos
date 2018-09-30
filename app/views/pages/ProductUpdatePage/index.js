@@ -203,6 +203,7 @@ class ProductUpdatePage extends Component {
       category, 
       video_url,
     } = this.state;
+    console.log('video_url: ', video_url)
 
     if (page === 'map') {
       return (
@@ -281,7 +282,7 @@ class ProductUpdatePage extends Component {
               </Text>
               <TouchableOpacity onPress={() => this.changePage('map')}>
                 <View style={styles.addressView}>
-                  <Text style={styles.input}>{location ? location : I18n.t('post_video.select_address') }</Text>
+                  <Text style={[styles.input, styles.underline]}>{location ? location : I18n.t('post_video.select_address') }</Text>
                 </View>
               </TouchableOpacity>
             </View>

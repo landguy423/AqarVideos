@@ -380,7 +380,7 @@ class SearchPage extends Component {
                         fontFamily: commonStyles.normalFont,
                         fontWeight: 'bold'
                       }}
-                      onChange={checked => this.setState({ furniture: checked })}
+                      onChange={checked => this.setState({ furniture: checked.checked })}
                     />
                   </View>
                   <View style={styles.itemView}>
@@ -393,7 +393,7 @@ class SearchPage extends Component {
                         fontFamily: commonStyles.normalFont,
                         fontWeight: 'bold'
                       }}
-                      onChange={(checked) => this.setState({ ownership: checked })}
+                      onChange={(checked) => this.setState({ ownership: checked.checked })}
                     />
                   </View>
                 </View>

@@ -62,7 +62,7 @@ class PostNewVideoPage extends Component {
       furniture: false,
       period: '0',    // Daily, Monthly, Yearly
       room_type: '0', // Singular, Familiar
-      room_count: '',
+      room_count: '0',
       ownership: false,
 
       //office
@@ -110,6 +110,7 @@ class PostNewVideoPage extends Component {
     }
 
     this.setState({ errorFlag: false })
+    
     Actions.PostNewVideoPreview({ data: propsData });
   }
 
@@ -390,7 +391,7 @@ class PostNewVideoPage extends Component {
                       fontFamily: commonStyles.normalFont,
                       fontWeight: 'bold'
                     }}
-                    onChange={checked => this.setState({ furniture: checked })}
+                    onChange={checked => this.setState({ furniture: checked.checked })}
                   />
                 </View>
                 <View style={styles.itemView}>
@@ -432,7 +433,7 @@ class PostNewVideoPage extends Component {
                       fontFamily: commonStyles.normalFont,
                       fontWeight: 'bold'
                     }}
-                    onChange={checked => this.setState({ ownership: checked })}
+                    onChange={checked => this.setState({ ownership: checked.checked })}
                   />
                 </View>
               </View>

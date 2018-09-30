@@ -77,14 +77,14 @@ class DirectMessagePage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder="Fullname"
-                  placeholderTextColor={ commonColors.placeholderText }
+                  placeholderTextColor={ commonColors.placeholderSubText }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
                   returnKeyType={ 'next' }
                   value={ this.state.fullName }
                   onChangeText={ (text) => this.setState({ fullName: text }) }
-                  onSubmitEditing={ () => this.refs.message.focus() }
+                  onSubmitEditing={ () => this.refs.subject.focus() }
                 />
                 <View style={styles.iconView}>
                   <Icon name='user' style={styles.inputIcon}></Icon>
@@ -99,7 +99,7 @@ class DirectMessagePage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder="Type subject"
-                  placeholderTextColor={ commonColors.placeholderText }
+                  placeholderTextColor={ commonColors.placeholderSubText }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -117,7 +117,7 @@ class DirectMessagePage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder="Type your message here"
-                  placeholderTextColor={ commonColors.placeholderText }
+                  placeholderTextColor={ commonColors.placeholderSubText }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"

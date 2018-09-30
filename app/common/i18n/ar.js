@@ -55,7 +55,8 @@ export default {
     cancel: 'إلغاء',
     empty_package: "لا يوجد حزمة المتاحة",
     paid_package: "أنت بالفعل اخترت الحزمة",
-    free_package: "وأنت في تجربة مجانية"
+    free_package: "وأنت في تجربة مجانية",
+    no_url: "لا يمكن الحصول على عنوان url الخاص بالدفع"
   },
   post_video: {
     record_choose_video: 'سجل أو اختر فيديو',

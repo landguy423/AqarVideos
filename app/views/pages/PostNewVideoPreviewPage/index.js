@@ -123,7 +123,6 @@ class PostNewVideoPreviewPage extends Component {
       })
       .catch(error => {
         this.setState({ loading: false })
-        console.log('UPLOADING_ERROR: ', error)
       })
   }
 
@@ -224,7 +223,6 @@ class PostNewVideoPreviewPage extends Component {
             {(data.category === 'apartment' || data.category === 'chalet') && (
               <View style={styles.itemView}>
                 <Text style={styles.textDescription}>
-                  {data.period}
                   {PERIOD_DATA[parseInt(data.period)].value}
                 </Text>
               </View>
@@ -232,11 +230,13 @@ class PostNewVideoPreviewPage extends Component {
 
             {(data.category === 'apartment') && (
               <View>
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.furniture}
-                  </Text>
-                </View>
+                {data.furniture.checked && (
+                  <View style={styles.itemView}>
+                    <Text style={styles.textDescription}>
+                      {I18n.t('post_video.furniture')}
+                    </Text>
+                  </View>
+                )}
                 <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
@@ -247,34 +247,42 @@ class PostNewVideoPreviewPage extends Component {
                     {data.room_count}
                   </Text>
                 </View>
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.ownership}
-                  </Text>
-                </View>
+                {data.ownership.checked && (
+                  <View style={styles.itemView}>
+                    <Text style={styles.textDescription}>
+                      {I18n.t('post_video.ownership')}
+                    </Text>
+                  </View>
+                )}
               </View>
             )}
 
             {(data.category === 'office') && (
-              <View style={styles.itemView}>
-                <Text style={styles.textDescription}>
-                  {data.areaspace}
-                </Text>
-              </View>
+              data.areaspace.length > 0 && (
+                <View style={styles.itemView}>
+                  <Text style={styles.textDescription}>
+                    {data.areaspace}
+                  </Text>
+                </View>
+              )
             )}
 
             {(data.category === 'gallery') && (
               <View>
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.street_size}
-                  </Text>
-                </View>
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.gallery_number}
-                  </Text>
-                </View>
+                {data.street_size.length > 0 && (
+                  <View style={styles.itemView}>
+                    <Text style={styles.textDescription}>
+                      {data.street_size}
+                    </Text>
+                  </View>
+                )}
+                {data.gallery_number.length > 0 && (
+                  <View style={styles.itemView}>
+                    <Text style={styles.textDescription}>
+                      {data.gallery_number}
+                    </Text>
+                  </View>
+                )}
               </View>
             )}
             
