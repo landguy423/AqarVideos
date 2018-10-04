@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
   ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
-  TextInput,
-  Platform,
+  Image
 } from 'react-native'
 
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
-import KeyboardScrollView from '@components/KeyboardView'
+import { Actions } from 'react-native-router-flux'
+// import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
+import { RadioGroup, RadioButton } from '@components/RadioButtonGroup';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
 import I18n from '@i18n'
@@ -22,9 +19,11 @@ import Container from '@layout/Container'
 import { styles } from './styles'
 import * as commonStyles from '@common/styles/commonStyles'
 import * as commonColors from '@common/styles/commonColors'
-import { Actions } from 'react-native-router-flux'
 import { getTerlWebUrl } from '@redux/Package/actions'
-const img_detail = require('@common/assets/images/my_message/picture.png')
+const IMG_PACKAGE = require('@common/assets/images/my_message/picture.png')
+const IMG_VISA = require('@common/assets/images/package/visa.png')
+const IMG_BANK_SAMB= require('@common/assets/images/package/samba.jpg')
+const IMG_BANK_RAJHI = require('@common/assets/images/package/rajhi.png')
 
 class PackageDetailPage extends Component {
   constructor(props) {
@@ -33,7 +32,7 @@ class PackageDetailPage extends Component {
       selectedIndex: 0,
       loading: false,
       webUrlInfo: {},
-      errorFlag: false,
+      isError: false,
       errorText: ''
     }
   }
@@ -51,16 +50,17 @@ class PackageDetailPage extends Component {
           }
         } else if (packages.webUrlInfo.status === 107) {
           this.setState({
-            errorFlag: true,
+            isError: true,
             errorText: I18n.t('packages.no_url')
           });
         }
       });
     }
+
     if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_FAILED') {
       this.setState({
         loading: false,
-        errorFlag: true,
+        isError: true,
         errorText: I18n.t('packages.no_url')
       });
     }
@@ -76,7 +76,7 @@ class PackageDetailPage extends Component {
     const { customer_id } = user.userInfo.user
 
     if (selectedIndex === 0) {
-      // this.setState({ loading: true });
+      this.setState({ loading: true });
       getTerlWebUrl(token.tokenInfo.token, { user_id: customer_id, package_id: data.package_id });
     } else {
       Actions.PackageDetailBank({ data: this.props.data });
@@ -85,45 +85,63 @@ class PackageDetailPage extends Component {
 
   render() {
     const { data, packages } = this.props
-
+    console.log('DATA: ', data)
     return (
-      <Container title={data.detail['1'].title} type='detail'>
+      <Container title={`${data.duration}${I18n.t('packages.days')}`} type='detail'>
 
         <LoadingSpinner visible={this.state.loading } />
 
         <CustomAlert 
           title={I18n.t('alert.error')}
           message={this.state.errorText}
-          visible={this.state.errorFlag}
-          closeAlert={() => this.setState({ errorFlag: false })}
+          visible={this.state.isError}
+          closeAlert={() => this.setState({ isError: false })}
         />
 
         <View style={styles.container}>
-          <Image source={img_detail} style={styles.thumbnail} />
+          <View style={styles.topView}>
+            <Image source={IMG_PACKAGE} style={styles.thumbnail} />
 
-          <View style={styles.fieldContainer}>
-            <KeyboardScrollView>
-              <View style={styles.detailView}>
-                <Text style={styles.description}>{data.detail['1'].description}</Text>
-              </View>
-            </KeyboardScrollView>
+            <View style={styles.titleView}>
+              <Text style={styles.title}>{data.duration}{I18n.t('packages.days')}</Text>
+              {data.price === '$0.00' && (
+                <Text style={styles.trialTitle}>{I18n.t('packages.free_trial')}</Text>
+              )}
+            </View>
+          </View>
+          
+          <View style={styles.detailView}>
+            <ScrollView style={styles.scrollView}>
+              <Text style={styles.description}>
+                {data.detail['1'].description}
+              </Text>
+            </ScrollView>
           </View>
 
           {(!packages.isPaidUser || (packages.isPaidUser && packages.myPackageInfo && packages.myPackageInfo.package.price === '$0.00'))
             && data.price !== '$0.00' && (
             <View style={styles.radioButtonView}>
-              <RadioGroup
-                highlightColor="transparent"
-                color="#999"
-                activeColor="#88AC40"
+              <RadioGroup 
+                color='#7D7D7D' 
+                style={styles.radioGroup}
+                thickness={2}
                 selectedIndex={0}
                 onSelect={(index, value) => this.onSelect(index, value)}
               >
-                <RadioButton value={'MasterCard'}>
-                  <Text>{I18n.t('payment_type.visa')}</Text>
+                <RadioButton value="MasterCard">
+                  <View style={styles.radioItem}>
+                    <Text style={styles.radioText}>{I18n.t('payment_type.visa')}</Text>
+                    <Image source={IMG_VISA} style={styles.visaImage} />
+                  </View>
                 </RadioButton>
-                <RadioButton value={'Bank'}>
-                  <Text>{I18n.t('payment_type.bank')}</Text>
+                <RadioButton value="Bank">
+                  <View style={styles.radioItem}>
+                    <Text style={styles.radioText}>{I18n.t('payment_type.bank')}</Text>
+                    <View style={styles.bankImageView}>
+                      <Image source={IMG_BANK_SAMB} style={styles.bankImage} />
+                      <Image source={IMG_BANK_RAJHI} style={styles.bankImage} />
+                    </View>
+                  </View>
                 </RadioButton>
               </RadioGroup>
             </View>

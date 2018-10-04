@@ -44,7 +44,7 @@ export default class RadioButton extends Component{
     render(){
         var {children} = this.props
         return(
-            <View style={{opacity: this.props.disabled?0.4:1}}>
+            <View style={{opacity: this.props.disabled?0.4:1, alignItems: 'flex-end'}}>
                 <TouchableWithoutFeedback
                     disabled={this.props.disabled}
                     onPress={() => this.context.onSelect(this.props.index, this.props.value)}

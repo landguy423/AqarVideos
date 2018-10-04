@@ -97,10 +97,6 @@ class SupportAdvertisementPage extends Component {
     )
   }
 
-  closeAlert() {
-    this.setState({ isSuccess: false });
-  }
-
   render() {
     const { loading, isSuccess, successMsg, tabIndex, subjectList } = this.state;
 
@@ -110,8 +106,8 @@ class SupportAdvertisementPage extends Component {
         <CustomAlert 
           title={I18n.t('alert.success')}
           message={successMsg}
-          visible={isSuccess} 
-          closeAlert={() => this.closeAlert()}
+          visible={isSuccess}
+          closeAlert={() => this.setState({ isSuccess: false })}
         />
 
         <View style={styles.container}>

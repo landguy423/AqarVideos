@@ -107,7 +107,7 @@ export default {
     ph_firstname: "الاسم الأول",
     ph_lastname: "اسم اعائلة",
     ph_mobile_number: 'رقم الجوال',
-    ph_email: 'البريد الالكتروني (خياري)',
+    ph_email: 'عنوان البريد الإلكتروني',
     ph_password: 'كلمة المرور',
     ph_confirm_password: 'تأكيد كلمة المرور',
     forgot_password: 'نسيت كلمة المرور',
@@ -173,7 +173,8 @@ export default {
     forgot_success: 'تم إرسال رابط التأكيد إلى عنوان هاتفك',
     forgot_failed: 'رقم الهاتف المحمول غير موجود',
     login_success: 'تسجيل الدخول بنجاح',
-    login_failed: 'فشل تسجيل الدخول'
+    login_failed: 'فشل تسجيل الدخول',
+    login_password_matched_fail: 'كلمة مرور خاطئة'
   },
   alert: {
     ok: "حسنا",

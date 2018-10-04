@@ -87,8 +87,9 @@ export const styles = StyleSheet.create({
   input: {
     fontFamily: commonStyles.normalFont,
     color: commonColors.darkGrayColor,
-    width: commonStyles.screenWidth - 80,
+    width: commonStyles.screenSubWidth - 60,
     fontSize: 20,
+    paddingRight: 20
   },
   iconView: {
     width: 50,

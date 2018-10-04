@@ -107,7 +107,7 @@ export default {
     ph_firstname: "First Name",
     ph_lastname: "Last Name",
     ph_mobile_number: "Mobile Number",
-    ph_email: "E-mail (optional)",
+    ph_email: "E-mail",
     ph_password: "Password",
     ph_confirm_password: "Conform Password",
     forgot_password: "Forgot Password",
@@ -173,7 +173,8 @@ export default {
     forgot_success: 'The confirmation link has been sent your phone address',
     forgot_failed: 'Mobile number does not exist',
     login_success: 'Successfully logged in',
-    login_failed: 'Login failed'
+    login_failed: 'Login failed',
+    login_password_matched_fail: 'Wrong password'
   },
   alert: {
     ok: "OK",

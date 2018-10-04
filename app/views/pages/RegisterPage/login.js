@@ -51,18 +51,17 @@ class Login extends Component {
     const { user } = nextProps;
 
     if (this.props.user.status === 'USER_SIGN_IN_REQUEST' && user.status === 'USER_SIGN_IN_SUCCESS') {
+      this.setState({ loading: false })
       if (user.userLogin) {
-        this.setState({ loading: false })
         AsyncStorage.setItem('loginStatus', JSON.stringify(true));
         AsyncStorage.setItem('userInfo', JSON.stringify(user.userInfo));
         this.props.changeMenu(0);
         Actions.Main();
       } else {
         this.setState({
-          loading: false,
           isError: true,
           errorTitle: I18n.t('alert.error'),
-          errorText: I18n.t('register.login_matched_fail')
+          errorText: user.userInfo.status === '102' ? I18n.t('register.login_password_matched_fail') : I18n.t('register.login_matched_fail')
         })
       }
     }
