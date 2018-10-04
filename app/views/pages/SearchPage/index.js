@@ -137,9 +137,10 @@ class SearchPage extends Component {
 
   getAddress(addressArr) {
     if (addressArr) {
-      const address = addressArr.street ? (addressArr.street + ', ') : '' +
-                      addressArr.city ? (addressArr.city + ', ') : '' +
-                      addressArr.country;
+      const street = addressArr.street ? (addressArr.street + ', ') : ''
+      const city = addressArr.city ? (addressArr.city + ', ') : ''
+      const address =  street + city + addressArr.country
+
       this.setState({ address, coordinate: addressArr.coordinate })
     } else {
       this.setState({ address: I18n.t('post_video.select_address') })

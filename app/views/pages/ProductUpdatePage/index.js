@@ -170,9 +170,11 @@ class ProductUpdatePage extends Component {
 
   getAddress(addressArr) {
     if (addressArr) {
-      const location = addressArr.street ? (addressArr.street + ', ') : '' + addressArr.city ? (addressArr.city + ', ') : '' + addressArr.country;
-      this.setState({ location })
-      this.setState({ coordinate: addressArr.coordinate })
+      const street = addressArr.street ? (addressArr.street + ', ') : ''
+      const city = addressArr.city ? (addressArr.city + ', ') : ''
+      const location =  street + city + addressArr.country
+
+      this.setState({ location, coordinate: addressArr.coordinate })
     } else {
       this.setState({ location: I18n.t('post_video.select_address') })
     }
@@ -193,7 +195,6 @@ class ProductUpdatePage extends Component {
   }
 
   render() {
-    // const {videoData} = this.props;
     const {
       loading,
       page,
