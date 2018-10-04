@@ -1,15 +1,14 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
-import { tabBarHieght } from '@common/styles/commonStyles';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 const categoryHeight = 100;
 
 export const styles = StyleSheet.create({
   categoryScrollView: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     backgroundColor: '#D6D6D6',
   },
   categoryView: {
@@ -26,17 +25,17 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   categoryBack: {
-    backgroundColor: commonColors.pinkColor,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
   },
   textCategory: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
   textCategorySelect: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: 'white',
     textAlign: 'right'
   },

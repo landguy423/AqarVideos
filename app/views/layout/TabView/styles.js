@@ -1,12 +1,11 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
   },
 });

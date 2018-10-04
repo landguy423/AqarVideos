@@ -26,8 +26,8 @@ import { pickBy } from 'lodash';
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { styles } from './styles';
-import * as commonColors from '@common/styles/commonColors';
-import * as commonStyles from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
 import { CATEGORY_ICON_LIST } from '@common/category';
 
 import ModalShare from '@components/ModalShare';

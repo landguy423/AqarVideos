@@ -1,15 +1,15 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
-const listItemWidth = (commonStyles.screenWidth - commonStyles.padding * 2 - 15) / 2;
+const listItemWidth = (COMMON_STYLES.SCREEN_WIDTH - COMMON_STYLES.PADDING * 2 - 15) / 2;
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingTop: 15,
-    paddingHorizontal: commonStyles.padding - 7.5,
+    paddingHorizontal: COMMON_STYLES.PADDING - 7.5,
   },
   listItem: {
     width: listItemWidth,
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   number: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     fontSize: 25,
     color: 'white',
@@ -54,7 +54,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   day: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     fontSize: 12,
     color: 'white',
@@ -70,14 +70,14 @@ export const styles = StyleSheet.create({
     backgroundColor: '#747474',
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     color: 'white',
     fontSize: 25,
   },
   paidPackgeText: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.greenColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.GREEN_COLOR,
     fontSize: 16
   }
 });

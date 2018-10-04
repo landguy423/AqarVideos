@@ -18,13 +18,12 @@ import I18n from '@i18n';
 import Container from '@layout/Container';
 import _ from 'lodash'
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { getPackages, getTerlWebUrl, getMyPackage } from '@redux/Package/actions';
 
 const COLORS = [
-  '#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor, 
-  '#88AC40', '#2A90B6', '#F19100', commonColors.pinkColor
+  '#88AC40', '#2A90B6', '#F19100', COMMON_COLORS.PINK_COLOR, 
+  '#88AC40', '#2A90B6', '#F19100', COMMON_COLORS.PINK_COLOR
 ];
 
 class PackagePage extends Component {

@@ -25,8 +25,7 @@ import LoadingSpinner from '@components/LoadingSpinner';
 import { getChatData, sendMessage } from '@redux/Message/actions';
 import { sortBy } from 'lodash';
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 class ChatRoomPage extends Component {
   constructor(props) {
@@ -195,7 +194,7 @@ class ChatRoomPage extends Component {
                     autoCorrect={ true }
                     multiline
                     placeholder={I18n.t('support.ph_message')}
-                    placeholderTextColor={ commonColors.placeholderSubText }
+                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                     textAlign="right"
                     style={styles.input}
                     underlineColorAndroid="transparent"

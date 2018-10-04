@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import AutoSuggest from './AutoSuggest'
 import { styles } from './styles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export default class AutoSuggestComponent extends Component {
   onChange = (text) => {

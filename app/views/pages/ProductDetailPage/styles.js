@@ -1,33 +1,33 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { tabBarHieght } from '@common/styles/commonStyles';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
-    width: commonStyles.screenWidth,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
   },
   subContainer: {
     backgroundColor: 'white',
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   videoView: {
     width: '100%',
     height: 200,
-    backgroundColor: commonColors.darkGrayColor,
+    backgroundColor: COMMON_COLORS.DARK_GRAY_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
   },
   video: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     height: 200,
   },
   emptyVideo: {
@@ -36,46 +36,46 @@ export const styles = StyleSheet.create({
   },
   titleView: {
     marginVertical: 10,
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
-    color: commonColors.placeholderText,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
   },
   textPhone: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
     color: '#88AC40',
   },
   description: {
     width: '100%',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
   },
   textDescription: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
   bold: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
   },
   itemView: {
     width: '100%',
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     height: 50,
   },
   iconCategory: {
@@ -86,7 +86,7 @@ export const styles = StyleSheet.create({
   separate: {
     width: '100%',
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     height: 1,
     marginTop: 20,
   },
@@ -105,27 +105,27 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnShare: {
-    backgroundColor: commonColors.pinkColor,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     width: 90,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   btnSend: {
-    width: commonStyles.screenWidth - 180,
-    backgroundColor: commonColors.greenColor,
+    width: COMMON_STYLES.SCREEN_WIDTH - 180,
+    backgroundColor: COMMON_COLORS.GREEN_COLOR,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
   },
   sendTextWrapper: {
     marginRight: 20,
   },
   textSend: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: 'white',
     textAlign: 'right',
   },
@@ -134,12 +134,12 @@ export const styles = StyleSheet.create({
     fontSize: 40,
   },
   icon_select: {
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 40,
   },
   btnAd: {
     flexDirection: 'row',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     alignItems: 'center',
   },
   iconAd: {

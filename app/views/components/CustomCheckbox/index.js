@@ -90,7 +90,7 @@ var styles = StyleSheet.create({
         marginRight: 5
     },
     label: {
-        fontSize: 16,
+        fontSize: 18,
         color: '#222'
     }
 })

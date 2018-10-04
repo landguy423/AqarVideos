@@ -1,27 +1,27 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
-const listItemWidth = commonStyles.screenSubWidth;
+const listItemWidth = COMMON_STYLES.SCREEN_SUB_WIDTH;
 const listItemHeight = 100;
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
 
   },
   listView: {
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     paddingTop: 15,
   },
   listStyle: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     alignItems: 'center',
     height: listItemHeight,
     marginVertical: 15,
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   videoView: {
     width: 120,
     height: listItemHeight,
-    backgroundColor: commonColors.darkGrayColor,
+    backgroundColor: COMMON_COLORS.DARK_GRAY_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -58,15 +58,15 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 15,
     textAlign: 'right',
   },
   textPrice: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.darkGrayColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 14,
     textAlign: 'right',
   },
@@ -75,15 +75,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textViewCount: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.darkGrayColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 11,
     fontStyle: 'italic',
     textAlign: 'right',
   },
   eye: {
     fontSize: 14,
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     marginLeft: 5,
   },
   listRightView: {
@@ -92,7 +92,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 100,
     marginVertical: 15,
-    marginLeft: commonStyles.screenWidth * 0.05,
+    marginLeft: COMMON_STYLES.SCREEN_WIDTH * 0.05,
     shadowOffset: { width:0, height:2 },
     shadowOpacity: 0.4,
     shadowRadius: 2,
@@ -111,9 +111,9 @@ export const styles = StyleSheet.create({
     color: 'white',
   },
   noPackgeText: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.greenColor,
-    fontSize: 18,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.GREEN_COLOR,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     marginTop: 30
   }
 });

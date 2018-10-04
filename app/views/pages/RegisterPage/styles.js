@@ -1,8 +1,8 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabBar: {
-    width: commonStyles.screenWidth,
-    height: commonStyles.tabBarHieght,
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    height: COMMON_STYLES.TAB_BAR_HEIGHT,
     flexDirection: 'row',
     backgroundColor: 'white',
   },
@@ -28,25 +28,25 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   tabText: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: 'white',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
   },
   loginContainer: {
-    height: commonStyles.screenSubHeight,
+    height: COMMON_STYLES.SCREEN_SUB_HEIGHT,
     width: '100%',
   },
   btnView: {
     width: '100%',
-    height: commonStyles.buttonHeight,
-    backgroundColor: commonColors.greenColor,
+    height: COMMON_STYLES.BUTTON_HEIGHT,
+    backgroundColor: COMMON_COLORS.GREEN_COLOR,
     bottom: 0,
     position: 'absolute',
   },
   btnViewLogin: {
     width: '100%',
-    height: commonStyles.buttonHeight,
-    backgroundColor: commonColors.greenColor,
+    height: COMMON_STYLES.BUTTON_HEIGHT,
+    backgroundColor: COMMON_COLORS.GREEN_COLOR,
     marginTop: 20,
   },
   btnWrapper: {
@@ -56,39 +56,39 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnText: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: 'white',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
   },
   fieldContainer: {
-    width: commonStyles.screenWidth,
-    paddingHorizontal: commonStyles.padding,
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     justifyContent:'flex-start',
     alignItems: 'center',
     backgroundColor: '#fff'
   },
   fieldContainerLogin: {
-    height: commonStyles.screenSubHeight - 200,
+    height: COMMON_STYLES.SCREEN_SUB_HEIGHT - 200,
     justifyContent:'center',
     alignItems: 'center',
-    width: commonStyles.screenWidth,
-    paddingHorizontal: commonStyles.padding
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    paddingHorizontal: COMMON_STYLES.PADDING
   },
   inputView: {
     width: '100%',
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     height: 50,
   },
   input: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.darkGrayColor,
-    width: commonStyles.screenSubWidth - 60,
-    fontSize: 20,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
+    width: COMMON_STYLES.SCREEN_SUB_WIDTH - 60,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     paddingRight: 20
   },
   iconView: {
@@ -104,13 +104,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     height: 50,
   },
   forgotPasswordText: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.placeholderText,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     fontStyle: 'italic',
   },
   wizard: {

@@ -16,7 +16,7 @@ import { filter } from 'lodash';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
 
 const icon_bubble = require('@common/assets/images/map/speech_bubble.png');
 const icon_satellite = require('@common/assets/images/map/satellite.png');
@@ -66,7 +66,7 @@ class MapPage extends Component {
     
     return (
       <View
-        style={{ height: commonStyles.screenSubHeight }}
+        style={{ height: COMMON_STYLES.SCREEN_SUB_HEIGHT }}
       >
         <View style={styles.btnMapTypeView}>
           <TouchableOpacity onPress={() => this.changeMapType(mapType)}>

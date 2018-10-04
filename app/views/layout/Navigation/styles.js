@@ -6,30 +6,30 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? ifIphoneX(44, 20) : 0;
 
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   container: {
-    height: commonStyles.menuHeight,
-    width: commonStyles.screenWidth,
-    backgroundColor: commonColors.pinkColor,
+    height: COMMON_STYLES.MENU_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     paddingTop: STATUSBAR_HEIGHT - 10,
     borderBottomWidth: 2,
     borderColor: 'rgba(179, 33, 118, 0.5)',
     justifyContent: 'center',
   },
   container_register: {
-    height: commonStyles.menuHeight,
-    width: commonStyles.screenWidth,
+    height: COMMON_STYLES.MENU_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     backgroundColor: 'white',
     paddingTop: STATUSBAR_HEIGHT - 10,
     borderColor: 'rgba(179, 33, 118, 0.5)',
   },
   container_detail: {
-    height: commonStyles.menuHeight,
-    width: commonStyles.screenWidth,
-    backgroundColor: commonColors.pinkColor,
+    height: COMMON_STYLES.MENU_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     paddingTop: STATUSBAR_HEIGHT - 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -37,21 +37,21 @@ export const styles = StyleSheet.create({
   },
   subContainer:{
     height: 30,
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   menuTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     textAlign: 'center',
     color: 'white',
   },
   menuTitle_support: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontSize: 15,
     textAlign: 'center',
     color: 'white',
@@ -61,19 +61,19 @@ export const styles = StyleSheet.create({
     height: 20,
   },
   backIcon: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     fontSize: 25,
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
   },
   backIconWrapper: {
     position: 'absolute',
-    left: commonStyles.padding,
+    left: COMMON_STYLES.PADDING,
     width: 30,
     bottom: 10,
   },
   backIcon_detail: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     fontSize: 25,
     color: 'white'

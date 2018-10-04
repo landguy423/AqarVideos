@@ -22,8 +22,8 @@ import _ from 'lodash'
 import I18n from '@i18n'
 import { getAdsProducts } from '@redux/Product/actions'
 import VideoComponent from '@components/VideoComponent'
-import * as commonStyles from '@common/styles/commonStyles'
-const listItemWidth = (commonStyles.screenWidth - commonStyles.padding * 2 - 15) / 2;
+import * as COMMON_STYLES from '@common/styles/commonStyles'
+const listItemWidth = (COMMON_STYLES.SCREEN_WIDTH - COMMON_STYLES.PADDING * 2 - 15) / 2;
 
 class MyAdsPage extends Component {
   constructor(props) {

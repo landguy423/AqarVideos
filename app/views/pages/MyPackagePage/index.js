@@ -19,8 +19,7 @@ import CountDown from 'react-native-countdown-component';
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { getMyPackage } from '@redux/Package/actions';
 
 class MyPackagePage extends Component {
@@ -64,7 +63,7 @@ class MyPackagePage extends Component {
                   borderRadius: 5,
                   backgroundColor: '#eee'
                 }}
-                digitBgColor={commonColors.pinkColor}
+                digitBgColor={COMMON_COLORS.PINK_COLOR}
                 digitTxtColor="#fff"
                 timeTxtColor="#888"
                 until={myPackageInfo.remaining_days}

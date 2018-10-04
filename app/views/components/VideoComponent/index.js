@@ -11,7 +11,6 @@ import Video from 'react-native-video';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './styles'
-import * as commonStyles from '@common/styles/commonStyles';
 
 class VideoComponent extends Component {
   constructor(props) {

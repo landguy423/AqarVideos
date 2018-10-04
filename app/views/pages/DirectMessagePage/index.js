@@ -22,8 +22,7 @@ import DropdownComponent from '@components/DropdownComponent';
 import { sendMessage } from '@redux/Message/actions';
 
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 class DirectMessagePage extends Component {
   constructor(props) {
@@ -77,7 +76,7 @@ class DirectMessagePage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder="Fullname"
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -99,7 +98,7 @@ class DirectMessagePage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder="Type subject"
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -117,7 +116,7 @@ class DirectMessagePage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder="Type your message here"
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"

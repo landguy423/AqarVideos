@@ -1,12 +1,10 @@
 import {
-  StyleSheet,
-  Dimensions,
-  Platform,
+  StyleSheet
 } from 'react-native';
 
-export const darkGrayColor = '#424242';
-export const placeholderText = '#7D7D7D';
-export const placeholderSubText = '#BBB';
-export const pinkColor = '#EB0089';
-export const borderColor = '#C3C3C3';
-export const greenColor = '#88AC40';
+export const DARK_GRAY_COLOR = '#424242'
+export const PLACEHOLDER_TEXT_COLOR = '#7D7D7D'
+export const PLACEHOLDER_SUB_TEXT_COLOR = '#BBB'
+export const PINK_COLOR = '#EB0089'
+export const BORDER_COLOR = '#C3C3C3'
+export const GREEN_COLOR = '#88AC40'

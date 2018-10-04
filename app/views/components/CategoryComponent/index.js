@@ -15,8 +15,8 @@ import {
 import I18n from '@i18n';
 import PropTypes from 'prop-types';
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import  { CATEGORY_ICON_LIST } from '@common/category';
 
 export default class CategoryComponent extends Component {
@@ -52,7 +52,7 @@ export default class CategoryComponent extends Component {
         horizontal
         alwaysBounceHorizontal={false}
         showsHorizontalScrollIndicator={false}
-        onContentSizeChange={(width, height) => this.refs.categoryScroll.scrollTo({x: width - commonStyles.screenWidth})}
+        onContentSizeChange={(width, height) => this.refs.categoryScroll.scrollTo({x: width - COMMON_STYLES.SCREEN_WIDTH})}
       >
         <View style={styles.categoryView}>
 

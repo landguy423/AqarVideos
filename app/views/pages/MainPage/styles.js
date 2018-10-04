@@ -1,13 +1,12 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
-    width: commonStyles.screenWidth
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH
   },
 });

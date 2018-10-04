@@ -3,15 +3,15 @@ import {
   Platform,
 } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 const BOTTOM_HEIGHT = Platform.OS === 'ios' ? ifIphoneX(100, 80) : 80;
 
 export const styles = StyleSheet.create({
   container: {
-    height: commonStyles.screenSubHeight,
-    width: commonStyles.screenWidth,
+    height: COMMON_STYLES.SCREEN_SUB_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH,
   },
   mapView: {
     ...StyleSheet.absoluteFillObject,
@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   markerText: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     position: 'absolute',
     color: 'white',
     top: 3,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: commonColors.darkGrayColor,
+    backgroundColor: COMMON_COLORS.DARK_GRAY_COLOR,
   },
   markerDetailVideo: {
     width: '100%',
@@ -56,9 +56,9 @@ export const styles = StyleSheet.create({
     fontSize: 30,
   },
   markerDetailText: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.darkGrayColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     textAlign: 'right',
   },
   btnMapTypeView: {

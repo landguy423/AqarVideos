@@ -1,13 +1,13 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: commonStyles.menuHeight,
+    paddingTop: COMMON_STYLES.MENU_HEIGHT,
     backgroundColor: '#fff',
     borderLeftWidth: 1,
     borderColor: '#f2f2f2',
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 50,
     width: '100%',
-    paddingHorizontal: commonStyles.padding/2,
+    paddingHorizontal: COMMON_STYLES.PADDING/2,
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: '#f3f3f3',
@@ -25,15 +25,15 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 50,
     width: '100%',
-    paddingHorizontal: commonStyles.padding/2,
+    paddingHorizontal: COMMON_STYLES.PADDING/2,
     alignItems: 'center',
     justifyContent: 'flex-end',
     backgroundColor: 'white',
   },
   menuItemTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontSize: 15,
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
   },
   iconView: {
     width: 30,

@@ -1,13 +1,13 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
   },
   thumbnail: {
@@ -19,35 +19,35 @@ export const styles = StyleSheet.create({
   },
   fieldContainer: {
     flex: 1,
-    paddingBottom: commonStyles.buttonHeight
+    paddingBottom: COMMON_STYLES.BUTTON_HEIGHT
   },
   titleView: {
     marginVertical: 20,
     backgroundColor: 'transparent',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
   },
   textTitle: {
     backgroundColor: 'transparent',
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
   },
   textDescription: {
     backgroundColor: 'transparent',
-    fontFamily: commonStyles.normalFont,
-    fontSize: 20,
-    color: commonColors.placeholderText,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
   btnView: {
     width: '100%',
-    height: commonStyles.buttonHeight,
-    backgroundColor: commonColors.pinkColor,
+    height: COMMON_STYLES.BUTTON_HEIGHT,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     position: 'absolute',
     bottom: 0,
   },
@@ -58,9 +58,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnText: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: 'white',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
   },
   logoContainer: {
     width: '100%',

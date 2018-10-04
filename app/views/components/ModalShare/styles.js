@@ -1,27 +1,27 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   container: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     backgroundColor: '#FBFBFB',
     position: 'absolute',
     bottom: 0,
     bottom: -25,
-    left: -commonStyles.padding,
-    padding: commonStyles.padding,
+    left: -COMMON_STYLES.PADDING,
+    padding: COMMON_STYLES.PADDING,
   },
   modalHeader: {
     marginBottom: 20,
   },
   headerText: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right',
   },
   iconList: {
@@ -49,8 +49,8 @@ export const styles = StyleSheet.create({
     color: '#14990A',
   },
   socialText: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR
   }
 });

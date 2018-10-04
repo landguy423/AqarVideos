@@ -1,28 +1,28 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   sendContainer: {
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     paddingVertical: 5,
     alignItems: 'flex-end',
     marginTop: 10,
   },
   receiveContainer: {
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     paddingVertical: 5,
     alignItems: 'flex-start',
     marginTop: 10,
   },
   sendMessageContainer: {
-    maxWidth: commonStyles.screenWidth * 0.7,
+    maxWidth: COMMON_STYLES.SCREEN_WIDTH * 0.7,
     alignItems: 'flex-end',
   },
   receiveMessageContainer: {
-    maxWidth: commonStyles.screenWidth * 0.7,
+    maxWidth: COMMON_STYLES.SCREEN_WIDTH * 0.7,
     alignItems: 'flex-start',
   },
   sendMessageBox: {
@@ -33,37 +33,37 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   receiveMessageBox: {
-    backgroundColor: commonColors.greenColor,
+    backgroundColor: COMMON_COLORS.GREEN_COLOR,
     marginVertical: 5,
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 15,
   },
   sendMessage: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     textAlign: 'right',
-    color: commonColors.placeholderText,
-    fontSize: 16,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
   },
   receiveMessage: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     textAlign: 'right',
     color: 'white',
-    fontSize: 16,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
   },
   name: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     textAlign: 'right',
-    color: commonColors.placeholderText,
-    fontSize: commonStyles.normalFontSize,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     paddingHorizontal: 15,
   },
   date: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     textAlign: 'right',
-    color: commonColors.placeholderText,
-    fontSize: 12,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+    fontSize: COMMON_STYLES.SMALL_FONT_SIZE,
     fontStyle: 'italic',
     paddingHorizontal: 15,
   },

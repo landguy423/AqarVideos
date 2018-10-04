@@ -1,23 +1,23 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
-const listItemWidth = commonStyles.screenSubWidth;
+const listItemWidth = COMMON_STYLES.SCREEN_SUB_WIDTH;
 const listItemHeight = 60;
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
 
   },
   listView: {
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     paddingTop: 15,
   },
   listItem: {
@@ -50,16 +50,16 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   textName: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    color: commonColors.placeholderText,
-    fontSize: commonStyles.normalFontSize,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
     marginBottom: 5,
   },
   textMessage: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.placeholderText,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     fontSize: 13,
     textAlign: 'right',
   },
@@ -73,16 +73,16 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   textCount: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     color: 'white',
     fontSize: 11,
     backgroundColor: 'transparent'
   },
   noPackgeText: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.greenColor,
-    fontSize: 18,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.GREEN_COLOR,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     marginTop: 30
   }
 });

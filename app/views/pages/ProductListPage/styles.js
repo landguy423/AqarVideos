@@ -1,8 +1,8 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 const listItemHeight = 200;
 
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   listView: {
     paddingTop: 15,
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
   },
   listItem: {
     width: '100%',
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     height: listItemHeight,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: commonColors.darkGrayColor,
+    backgroundColor: COMMON_COLORS.DARK_GRAY_COLOR,
   },
   emptyVideo: {
     fontSize: 60,
@@ -48,10 +48,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   textPrice: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     fontSize: 12,
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
   },
   footerView: {
     width: '100%',
@@ -69,15 +69,15 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   favorite: {
-    fontSize: 20,
-    color: commonColors.darkGrayColor,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
   },
   footerRightView: {
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     color: 'white',
     fontSize: 15,
@@ -88,20 +88,20 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textViewCount: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.darkGrayColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 11,
     fontStyle: 'italic',
   },
   eye: {
     fontSize: 13,
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     marginLeft: 5,
   },
   emptyText: {
     fontSize: 15,
     fontWeight: 'bold',
     marginTop: 30,
-    color: commonColors.greenColor
+    color: COMMON_COLORS.GREEN_COLOR
   }
 });

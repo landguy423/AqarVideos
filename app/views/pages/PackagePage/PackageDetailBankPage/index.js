@@ -23,8 +23,7 @@ import { getBankDetail, sendBankDetail } from '@redux/Package/actions'
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 const img_detail = require('@common/assets/images/my_message/picture.png')
 
 class PackageDetailBankPage extends Component {
@@ -104,7 +103,7 @@ class PackageDetailBankPage extends Component {
             {bankInfo.map((item, index) => (
               <TouchableOpacity
                 key={index} onPress={() => this.onChange(index)}
-                style={[styles.logoView, index === selectIndex ? { borderColor: commonColors.pinkColor } : { borderColor: commonColors.greenColor }]}
+                style={[styles.logoView, index === selectIndex ? { borderColor: COMMON_COLORS.PINK_COLOR } : { borderColor: COMMON_COLORS.GREEN_COLOR }]}
                 activeOpacity={0.8}
               >
                 <Image source={{ uri: item.image }} style={styles.logo} />

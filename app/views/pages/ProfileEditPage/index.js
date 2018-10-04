@@ -20,8 +20,8 @@ import Container from '@layout/Container';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { getProfileData, updateProfileData } from '@redux/Profile/actions';
 
 class ProfileEditPage extends Component {
@@ -156,7 +156,7 @@ class ProfileEditPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder={I18n.t('profile.ph_firstname')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -175,7 +175,7 @@ class ProfileEditPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder={I18n.t('profile.ph_lastname')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -194,7 +194,7 @@ class ProfileEditPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder={I18n.t('profile.ph_mobile_number')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -214,7 +214,7 @@ class ProfileEditPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder={I18n.t('profile.ph_email')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -234,7 +234,7 @@ class ProfileEditPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder={I18n.t('profile.ph_password')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -254,7 +254,7 @@ class ProfileEditPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder={I18n.t('profile.ph_confirm_password')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"

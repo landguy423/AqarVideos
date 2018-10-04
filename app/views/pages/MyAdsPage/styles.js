@@ -1,24 +1,24 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
-const listItemWidth = (commonStyles.screenWidth - commonStyles.padding * 2 - 15) / 2;
+const listItemWidth = (COMMON_STYLES.SCREEN_WIDTH - COMMON_STYLES.PADDING * 2 - 15) / 2;
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   listView: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingTop: 15,
-    paddingHorizontal: commonStyles.padding - 7.5,
+    paddingHorizontal: COMMON_STYLES.PADDING - 7.5,
   },
   listItem: {
     width: listItemWidth,
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
   videoView: {
     width: '100%',
     height: listItemWidth - 40,
-    backgroundColor: commonColors.darkGrayColor,
+    backgroundColor: COMMON_COLORS.DARK_GRAY_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -55,15 +55,15 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 12,
     marginBottom: 5,
   },
   textPrice: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.darkGrayColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 12,
   },
   viewWrapper: {
@@ -72,20 +72,20 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textViewCount: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.darkGrayColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     fontSize: 11,
     fontStyle: 'italic',
   },
   eye: {
     fontSize: 14,
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     marginLeft: 5,
   },
   noPackgeText: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.greenColor,
-    fontSize: 18,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.GREEN_COLOR,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     marginTop: 30
   }
 });

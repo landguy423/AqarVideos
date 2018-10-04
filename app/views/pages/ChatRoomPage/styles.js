@@ -1,23 +1,23 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 const inputHeight = 60;
-const inputWidth = commonStyles.screenWidth - commonStyles.padding - 55;
+const inputWidth = COMMON_STYLES.SCREEN_WIDTH - COMMON_STYLES.PADDING - 55;
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
-    width: commonStyles.screenWidth,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   messageContainer: {
     width: '100%',
-    height: commonStyles.screenNormalHeight - inputHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT - inputHeight,
   },
   inputContainer: {
     position: 'absolute',
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     height: inputHeight,
     width: '100%',
     paddingBottom: 15,
-    paddingHorizontal: commonStyles.padding / 2,
+    paddingHorizontal: COMMON_STYLES.PADDING / 2,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -40,13 +40,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    fontFamily: commonStyles.normalFont,
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     width: inputWidth - 55,
   },
   iconPen: {
     fontSize: 28,
-    color: commonColors.placeholderText,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     backgroundColor: 'transparent',
     marginLeft: 10,
   },
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
   btnSendView: {
     width: 45,
     height: 45,
-    backgroundColor: commonColors.greenColor,
+    backgroundColor: COMMON_COLORS.GREEN_COLOR,
     borderRadius: 25,
     marginLeft: 10,
     justifyContent: 'center',

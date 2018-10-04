@@ -20,7 +20,7 @@ import I18n from '@i18n';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
 import LoadingSpinner from '@components/LoadingSpinner';
 import VideoComponent from '@components/VideoComponent'
 
@@ -63,7 +63,7 @@ class ProductListPage extends Component {
           onPress={() => this.onItemSelect(rowData, rowID)}
         >
           <View style={styles.videoView}>
-            <VideoComponent rowData={rowData} offsetX={commonStyles.screenWidth / 2 - 30} offsetY={60} size={50} full={true} />
+            <VideoComponent rowData={rowData} offsetX={COMMON_STYLES.SCREEN_WIDTH / 2 - 30} offsetY={60} size={50} full={true} />
 
             <View style={styles.subView}>
               <Text style={styles.textTitle}>{rowData.name}</Text>
@@ -131,7 +131,7 @@ const mapStateToProps = ({ user }) => ({
 })
 
 ProductListPage.defaultProps = {
-  listWidth: commonStyles.screenWidth,
+  listWidth: COMMON_STYLES.SCREEN_WIDTH,
   closeModal: () => {}
 }
 

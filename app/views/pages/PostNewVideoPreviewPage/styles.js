@@ -2,32 +2,32 @@ import {
   StyleSheet,
   Platform
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { tabBarHieght } from '@common/styles/commonStyles';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   videoView: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     height: 200,
-    backgroundColor: commonColors.darkGrayColor,
+    backgroundColor: COMMON_COLORS.DARK_GRAY_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
   },
   videoThumbnail: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     height: 200,
   },
   titleView: {
     marginVertical: 10,
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-end'
@@ -37,40 +37,40 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
-    color: commonColors.placeholderText,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
   },
   textPhone: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
     color: '#88AC40',
   },
   description: {
     width: '100%',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
   },
   textDescription: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
   bold: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
   },
   itemView: {
     width: '100%',
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     height: 50,
   },
   iconOffice: {
@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
   separate: {
     width: '100%',
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     height: 1,
     marginTop: 20,
   },
@@ -91,16 +91,16 @@ export const styles = StyleSheet.create({
   },
   buttonStyle: {
     marginVertical: 30,
-    height: commonStyles.buttonHeight,
+    height: COMMON_STYLES.BUTTON_HEIGHT,
     justifyContent: 'center',
     alignItems: 'center',
   },
   postBtnView: {
-    backgroundColor: commonColors.greenColor,
+    backgroundColor: COMMON_COLORS.GREEN_COLOR,
   },
   textPost: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: 'white',
   },
   termsView: {
@@ -109,8 +109,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   termsText: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.greenColor,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.GREEN_COLOR,
     textDecorationLine: 'underline',
     fontWeight: 'bold',
     marginRight: 5

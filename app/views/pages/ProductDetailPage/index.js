@@ -33,11 +33,11 @@ import { setFavorite, addViewCount } from '@redux/Product/actions';
 
 import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { styles } from './styles';
 
-const ASPECT_RATIO = commonStyles.screenSubWidth / 200
+const ASPECT_RATIO = COMMON_STYLES.SCREEN_SUB_WIDTH / 200
 const LATITUDE_DELTA = 0.1222;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
@@ -170,7 +170,7 @@ class ProductDetailPage extends Component {
                     opacity: this.state.opacity,
                     position: 'absolute',
                     top: 80,
-                    left: commonStyles.screenWidth / 2 - 20,
+                    left: COMMON_STYLES.SCREEN_WIDTH / 2 - 20,
                   }}
                 />
               </View>
@@ -198,7 +198,7 @@ class ProductDetailPage extends Component {
 
               {data.telephone && (
                 <View style={[styles.titleView, { marginBottom: 0 }]}>
-                  <Text style={[styles.textDescription, { color: commonColors.greenColor }]}>
+                  <Text style={[styles.textDescription, { color: COMMON_COLORS.GREEN_COLOR }]}>
                     {data.telephone}
                   </Text>
                 </View>

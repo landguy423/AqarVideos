@@ -1,13 +1,13 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   videoContainer: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -41,13 +41,13 @@ export const styles = StyleSheet.create({
   btnRecordInnerStart: {
     width: 40,
     height: 40,
-    backgroundColor: commonColors.pinkColor,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     borderRadius: 20,
   },
   btnRecordInnerStop: {
     width: 30,
     height: 30,
-    backgroundColor: commonColors.pinkColor,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     borderRadius: 5,
   },
   timeView: {
@@ -57,9 +57,9 @@ export const styles = StyleSheet.create({
     zIndex: 99,
   },
   text: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: 'white',
-    fontSize: 20,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     margin: 0,
   }
 });

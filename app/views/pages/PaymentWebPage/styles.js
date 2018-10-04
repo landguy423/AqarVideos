@@ -6,18 +6,18 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? ifIphoneX(44, 20) : 0;
 
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   container: {
-    width: commonStyles.screenWidth,
-    height: commonColors.screenHeight
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    height: COMMON_COLORS.SCREEN_HEIGHT
   },
   header: {
-    height: commonStyles.menuHeight,
-    width: commonStyles.screenWidth,
-    backgroundColor: commonColors.pinkColor,
+    height: COMMON_STYLES.MENU_HEIGHT,
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     paddingTop: STATUSBAR_HEIGHT - 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -25,25 +25,25 @@ export const styles = StyleSheet.create({
   },
   backIconWrapper: {
     position: 'absolute',
-    left: commonStyles.padding,
+    left: COMMON_STYLES.PADDING,
     width: 30,
     bottom: 10,
   },
   backIcon: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     fontSize: 25,
     color: 'white'
   },
   menuTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     textAlign: 'center',
     color: 'white',
   },
   paymentView: {
-    height: commonStyles.screenHeight - commonStyles.menuHeight - 10,
-    width: commonStyles.screenWidth,
+    height: COMMON_STYLES.SCREEN_HEIGHT - COMMON_STYLES.MENU_HEIGHT - 10,
+    width: COMMON_STYLES.SCREEN_WIDTH,
   },
 });

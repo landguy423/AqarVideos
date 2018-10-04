@@ -32,8 +32,8 @@ import PostProductLocationPage from '../PostProductLocationPage'
 
 import { styles } from './styles';
 
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
 class PostNewVideoPage extends Component {
@@ -260,7 +260,7 @@ class PostNewVideoPage extends Component {
                 autoCapitalize="none"
                 autoCorrect
                 placeholder={I18n.t('post_video.ph_video_name')}
-                placeholderTextColor={commonColors.placeholderSubText}
+                placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                 textAlign="right"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -281,7 +281,7 @@ class PostNewVideoPage extends Component {
                 autoCorrect
                 multiline
                 placeholder={I18n.t('post_video.ph_video_desc')}
-                placeholderTextColor={commonColors.placeholderSubText}
+                placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                 textAlign="right"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -301,7 +301,7 @@ class PostNewVideoPage extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('sar')}
-                placeholderTextColor={commonColors.placeholderSubText}
+                placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                 textAlign="right"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -321,10 +321,10 @@ class PostNewVideoPage extends Component {
                 onSelect={(index, value) => this.onSelectProductOption(index, value)}
               >
                 <RadioButton value={I18n.t('post_video.sale')}>
-                  <Text style={styles.textDescription}>{I18n.t('post_video.sale')}</Text>
+                  <Text style={styles.textRadio}>{I18n.t('post_video.sale')}</Text>
                 </RadioButton>
                 <RadioButton value={I18n.t('post_video.rent')}>
-                  <Text style={styles.textDescription}>{I18n.t('post_video.rent')}</Text>
+                  <Text style={styles.textRadio}>{I18n.t('post_video.rent')}</Text>
                 </RadioButton>
               </RadioGroup>
               <Text style={styles.textTitle}>
@@ -355,7 +355,7 @@ class PostNewVideoPage extends Component {
                   autoCapitalize="none"
                   autoCorrect
                   placeholder={I18n.t('post_video.squaremeter')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -386,10 +386,10 @@ class PostNewVideoPage extends Component {
                     label={I18n.t('post_video.furniture')}
                     labelBefore
                     labelStyle={{
-                      color: commonColors.placeholderText,
-                      fontSize: 14,
-                      fontFamily: commonStyles.normalFont,
-                      fontWeight: 'bold'
+                      color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+                      fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                      marginBottom: 3,
+                      fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                     }}
                     onChange={checked => this.setState({ furniture: checked.checked })}
                   />
@@ -413,7 +413,7 @@ class PostNewVideoPage extends Component {
                     autoCapitalize="none"
                     autoCorrect
                     placeholder={I18n.t('post_video.ph_room_count')}
-                    placeholderTextColor={commonColors.placeholderSubText}
+                    placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                     textAlign="right"
                     style={styles.input}
                     underlineColorAndroid="transparent"
@@ -428,10 +428,10 @@ class PostNewVideoPage extends Component {
                     label={I18n.t('post_video.ownership')}
                     labelBefore
                     labelStyle={{
-                      color: commonColors.placeholderText,
-                      fontSize: 14,
-                      fontFamily: commonStyles.normalFont,
-                      fontWeight: 'bold'
+                      color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+                      fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                      marginBottom: 3,
+                      fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                     }}
                     onChange={checked => this.setState({ ownership: checked.checked })}
                   />
@@ -449,7 +449,7 @@ class PostNewVideoPage extends Component {
                   autoCapitalize="none"
                   autoCorrect
                   placeholder={I18n.t('post_video.ph_area_space')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -472,7 +472,7 @@ class PostNewVideoPage extends Component {
                     autoCapitalize="none"
                     autoCorrect
                     placeholder={I18n.t('post_video.ph_meter')}
-                    placeholderTextColor={commonColors.placeholderSubText}
+                    placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                     textAlign="right"
                     style={styles.input}
                     underlineColorAndroid="transparent"
@@ -491,7 +491,7 @@ class PostNewVideoPage extends Component {
                     autoCapitalize="none"
                     autoCorrect
                     placeholder={I18n.t('post_video.ph_gallery_number')}
-                    placeholderTextColor={commonColors.placeholderSubText}
+                    placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                     textAlign="right"
                     style={styles.input}
                     underlineColorAndroid="transparent"

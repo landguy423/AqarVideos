@@ -1,8 +1,7 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   btn: {
@@ -20,7 +19,7 @@ export const styles = StyleSheet.create({
     top: 0,
     width: 25,
     height: 25,
-    backgroundColor: commonColors.pinkColor,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',

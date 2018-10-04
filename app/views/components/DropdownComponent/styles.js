@@ -1,8 +1,8 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   dropDown: {
@@ -17,17 +17,17 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   dropdownPlaceholderText: {
-    fontFamily: commonStyles.normalFont,
-    color: commonColors.placeholderText,
-    fontSize: 20,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     textAlign: 'right'
   },
   arrowDown: {
     marginLeft: 25,
     fontSize: 30,
-    color: commonColors.placeholderText,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
   },
   pickerStyle: {
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
   }
 });

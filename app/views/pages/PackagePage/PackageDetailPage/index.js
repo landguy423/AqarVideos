@@ -17,8 +17,8 @@ import CustomAlert from '@components/CustomAlert';
 import I18n from '@i18n'
 import Container from '@layout/Container'
 import { styles } from './styles'
-import * as commonStyles from '@common/styles/commonStyles'
-import * as commonColors from '@common/styles/commonColors'
+import * as COMMON_STYLES from '@common/styles/commonStyles'
+import * as COMMON_COLORS from '@common/styles/commonColors'
 import { getTerlWebUrl } from '@redux/Package/actions'
 const IMG_PACKAGE = require('@common/assets/images/my_message/picture.png')
 const IMG_VISA = require('@common/assets/images/package/visa.png')

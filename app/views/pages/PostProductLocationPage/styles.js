@@ -3,8 +3,8 @@ import {
   Platform,
 } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 const BOTTOM_HEIGHT = Platform.OS === 'ios' ? ifIphoneX(100, 80) : 80;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? ifIphoneX(44, 20) : 0;
@@ -30,8 +30,8 @@ export const styles = StyleSheet.create({
     zIndex: 99, 
     position:'absolute', 
     top: BOTTOM_HEIGHT,
-    width: commonStyles.screenSubWidth,
-    left: commonStyles.screenWidth * 0.05,
+    width: COMMON_STYLES.SCREEN_SUB_WIDTH,
+    left: COMMON_STYLES.SCREEN_WIDTH * 0.05,
   },
   backIconWrapper: {
     zIndex: 99,
@@ -48,12 +48,13 @@ export const styles = StyleSheet.create({
   },
   backIcon_detail: {
     fontWeight: 'bold',
-    color: commonColors.pinkColor,
+    color: COMMON_COLORS.PINK_COLOR,
   },
   backTitle: {
-    fontSize: 20,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     fontWeight: 'bold',
-    color: commonColors.pinkColor,
-    marginBottom: 5
+    color: COMMON_COLORS.PINK_COLOR,
+    marginBottom: 5,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
   }
 });

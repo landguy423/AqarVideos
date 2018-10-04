@@ -24,8 +24,8 @@ import CustomAlert from '@components/CustomAlert';
 import LoadingSpinner from '@components/LoadingSpinner';
 
 import I18n from '@i18n';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { styles } from './styles';
 import { userSignIn, forgotPassword, changeMenu } from '@redux/User/actions';
 
@@ -160,7 +160,7 @@ class Login extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_mobile_number')}
-                placeholderTextColor={commonColors.placeholderSubText}
+                placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
@@ -179,7 +179,7 @@ class Login extends Component {
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder={I18n.t('profile.ph_password')}
-                placeholderTextColor={commonColors.placeholderSubText}
+                placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"

@@ -34,8 +34,8 @@ import PostProductLocationPage from '../PostProductLocationPage';
 import ProductListPage from '../ProductListPage';
 
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { getRegions } from '@redux/Region/actions';
 import { searchProduct } from '@redux/Product/actions';
 
@@ -211,7 +211,7 @@ class SearchPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('post_video.radius_ph')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -231,10 +231,10 @@ class SearchPage extends Component {
                   onSelect={(index, value) => this.onSelectProductOption(index, value)}
                 >
                   <RadioButton value={I18n.t('post_video.sale')}>
-                    <Text style={styles.textDescription}>{I18n.t('post_video.sale')}</Text>
+                    <Text style={styles.textRadio}>{I18n.t('post_video.sale')}</Text>
                   </RadioButton>
                   <RadioButton value={I18n.t('post_video.rent')}>
-                    <Text style={styles.textDescription}>{I18n.t('post_video.rent')}</Text>
+                    <Text style={styles.textRadio}>{I18n.t('post_video.rent')}</Text>
                   </RadioButton>
                 </RadioGroup>
                 <Text style={styles.textTitle}>
@@ -262,7 +262,7 @@ class SearchPage extends Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder={I18n.t('post_video.max_price')}
-                    placeholderTextColor={ commonColors.placeholderSubText }
+                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                     textAlign="right"
                     style={styles.inputPrice}
                     underlineColorAndroid="transparent"
@@ -278,7 +278,7 @@ class SearchPage extends Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder={I18n.t('post_video.min_price')}
-                    placeholderTextColor={ commonColors.placeholderSubText }
+                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                     textAlign="right"
                     style={styles.inputPrice}
                     underlineColorAndroid="transparent"
@@ -298,7 +298,7 @@ class SearchPage extends Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder={I18n.t('post_video.max_squaremeter')}
-                    placeholderTextColor={ commonColors.placeholderSubText }
+                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                     textAlign="right"
                     style={styles.inputPrice}
                     underlineColorAndroid="transparent"
@@ -314,7 +314,7 @@ class SearchPage extends Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder={I18n.t('post_video.min_squaremeter')}
-                    placeholderTextColor={ commonColors.placeholderSubText }
+                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                     textAlign="right"
                     style={styles.inputPrice}
                     underlineColorAndroid="transparent"
@@ -360,7 +360,7 @@ class SearchPage extends Component {
                       autoCapitalize="none"
                       autoCorrect={true}
                       placeholder={I18n.t('post_video.ph_room_count')}
-                      placeholderTextColor={commonColors.placeholderSubText}
+                      placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                       textAlign="right"
                       style={styles.input}
                       underlineColorAndroid="transparent"
@@ -375,10 +375,10 @@ class SearchPage extends Component {
                       label={I18n.t('post_video.furniture')}
                       labelBefore
                       labelStyle={{
-                        color: commonColors.placeholderText,
-                        fontSize: 14,
-                        fontFamily: commonStyles.normalFont,
-                        fontWeight: 'bold'
+                        color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+                        fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                        marginBottom: 3,
+                        fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                       }}
                       onChange={checked => this.setState({ furniture: checked.checked })}
                     />
@@ -388,10 +388,10 @@ class SearchPage extends Component {
                       label={I18n.t('post_video.ownership')}
                       labelBefore
                       labelStyle={{
-                        color: commonColors.placeholderText,
-                        fontSize: 14,
-                        fontFamily: commonStyles.normalFont,
-                        fontWeight: 'bold'
+                        color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
+                        fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                        marginBottom: 3,
+                        fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                       }}
                       onChange={(checked) => this.setState({ ownership: checked.checked })}
                     />
@@ -409,7 +409,7 @@ class SearchPage extends Component {
                     autoCapitalize="none"
                     autoCorrect={ true }
                     placeholder={I18n.t('post_video.ph_area_space')}
-                    placeholderTextColor={ commonColors.placeholderSubText }
+                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                     textAlign="right"
                     style={styles.input}
                     underlineColorAndroid="transparent"
@@ -432,7 +432,7 @@ class SearchPage extends Component {
                       autoCapitalize="none"
                       autoCorrect={true}
                       placeholder={I18n.t('post_video.ph_meter')}
-                      placeholderTextColor={ commonColors.placeholderSubText }
+                      placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                       textAlign="right"
                       style={styles.input}
                       underlineColorAndroid="transparent"
@@ -451,7 +451,7 @@ class SearchPage extends Component {
                       autoCapitalize="none"
                       autoCorrect={true}
                       placeholder={I18n.t('post_video.ph_gallery_number')}
-                      placeholderTextColor={ commonColors.placeholderSubText }
+                      placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                       textAlign="right"
                       style={styles.input}
                       underlineColorAndroid="transparent"
@@ -484,7 +484,7 @@ class SearchPage extends Component {
               <ProductListPage
                 category={this.state.category}
                 allProduct={this.state.searchProductList}
-                listWidth={commonStyles.screenSubWidth}
+                listWidth={COMMON_STYLES.SCREEN_SUB_WIDTH}
                 closeModal={() => this.setState({ showProducts: false })}
               />
             </View>

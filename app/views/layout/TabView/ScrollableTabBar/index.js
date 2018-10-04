@@ -31,7 +31,7 @@ const icon_gallery = require('@common/assets/images/tab/gallery.png');
 const icon_land = require('@common/assets/images/tab/land.png');
 const icon_esteraha = require('@common/assets/images/tab/esteraha.png');
 
-import * as commonStyles from '@common/styles/commonStyles';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
 
 const icons = [
   icon_gallery,
@@ -198,7 +198,7 @@ const ScrollableTabBar = createReactClass({
       onLayout={onLayoutHandler}
     >
       <View style={[styles.tab, this.props.tabStyle ]}>
-        <Text style={[{color: textColor, fontWeight, fontSize: 18, fontFamily: commonStyles.normalFont}, textStyle]}>
+        <Text style={[{ color: textColor, fontWeight, fontSize: COMMON_STYLES.LARGE_FONT_SIZE, fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY }, textStyle]}>
           {name}
         </Text>
         <Image source={icons[page]} style={styles.tabItemIcon} />
@@ -300,13 +300,13 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingLeft: commonStyles.padding/2,
-    paddingRight: commonStyles.padding/2,
+    paddingLeft: COMMON_STYLES.PADDING/2,
+    paddingRight: COMMON_STYLES.PADDING/2,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   container: {
-    height: commonStyles.tabBarHieght,
+    height: COMMON_STYLES.TAB_BAR_HEIGHT,
     borderBottomWidth: 1,
     borderColor: '#ccc',
     shadowOffset: { width:0, height:2 },
@@ -316,11 +316,11 @@ const styles = StyleSheet.create({
   tabs: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    padding: commonStyles.padding/2,
+    padding: COMMON_STYLES.PADDING/2,
   },
   tabItemIcon: {
     width: 18,
     height: 18,
-    marginLeft: commonStyles.padding/2,
+    marginLeft: COMMON_STYLES.PADDING/2,
   }
 });

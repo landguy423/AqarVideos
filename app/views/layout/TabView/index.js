@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
 import LoadingSpinner from '@components/LoadingSpinner';
 import { saveMyLocation } from '@redux/Map/actions';
 import { getProductsByCategory } from '@redux/Product/actions';
@@ -28,7 +28,7 @@ import MapPage from '@pages/MapPage';
 import ProductListPage from '@pages/ProductListPage';
 import I18n from '@i18n';
 
-const ASPECT_RATIO = commonStyles.screenWidth / commonStyles.screenHeight
+const ASPECT_RATIO = COMMON_STYLES.SCREEN_WIDTH / COMMON_STYLES.SCREEN_HEIGHT
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 

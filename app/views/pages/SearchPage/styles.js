@@ -1,20 +1,20 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { tabBarHieght } from '@common/styles/commonStyles';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   inputContainer: {
-    height: commonStyles.screenNormalHeight - commonStyles.buttonHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT - COMMON_STYLES.BUTTON_HEIGHT,
     width: '100%',
   },
   thumbnail: {
@@ -23,50 +23,51 @@ export const styles = StyleSheet.create({
   },
   titleView: {
     marginVertical: 15,
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     marginBottom: 3,
   },
   description: {
     width: '100%',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
   },
-  textDescription: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText,
+  textRadio: {
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    marginBottom: 5,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
   bold: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
   },
   itemView: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     alignItems: 'flex-end',
     justifyContent: 'center',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     marginVertical: 5,
     paddingVertical: 10,
   },
   productOptionView: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     marginVertical: 5,
     paddingVertical: 10,
     flexDirection: 'row',
@@ -78,24 +79,24 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   inputPrice: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     width: '100%',
-    fontSize: 20,
-    color: commonColors.placeholderText,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'center',
   },
   input: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     width: '100%',
-    fontSize: 20,
-    color: commonColors.placeholderText,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right',
   },
   underline: {
     textDecorationLine: 'underline',
-    color: commonColors.greenColor
+    color: COMMON_COLORS.GREEN_COLOR
   },
   squareMeterView: {
     alignItems: 'center',
@@ -106,31 +107,31 @@ export const styles = StyleSheet.create({
   squareMeterBox: {
     width: 150,
     borderWidth: 2,
-    borderColor: commonColors.placeholderText,
+    borderColor: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     height: 45,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 5,
   },
   linebar: {
-    color: commonColors.placeholderText,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     marginHorizontal: 10,
     fontSize: 30,
   },
   searchBtnView: {
-    width: commonStyles.screenWidth,
-    height: commonStyles.buttonHeight,
-    backgroundColor: commonColors.greenColor,
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    height: COMMON_STYLES.BUTTON_HEIGHT,
+    backgroundColor: COMMON_COLORS.GREEN_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
   },
   searchBtn: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: 'white',
   },
   modal: {
-   width: commonStyles.screenSubWidth,
-   marginVertical: commonStyles.screenWidth * 0.12,
+   width: COMMON_STYLES.SCREEN_SUB_WIDTH,
+   marginVertical: COMMON_STYLES.SCREEN_WIDTH * 0.12,
   }
 });

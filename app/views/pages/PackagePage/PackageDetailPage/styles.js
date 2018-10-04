@@ -1,13 +1,13 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -29,30 +29,30 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: '900',
-    // fontFamily: commonStyles.normalFont,
+    // fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     textAlign: 'right',
     color: '#fff'
   },
   trialTitle: {
     fontSize: 30,
-    // fontFamily: commonStyles.normalFont,
+    // fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     textAlign: 'right',
     color: '#fff'
   },
   detailView: {
     width: '100%',
-    height: commonStyles.screenNormalHeight - 380,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT - 380,
     backgroundColor: 'transparent',
   },
   scrollView: {
     width: '100%',
     paddingVertical: 20,
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
   },
   description: {
     backgroundColor: 'transparent',
     textAlign: 'right',
-    fontFamily: commonStyles.normalFont
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
   },
   radioGroup: {
     width: '100%'
@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
   radioButtonView: {
     width: '100%' ,
     position: 'absolute',
-    bottom: commonStyles.buttonHeight,
+    bottom: COMMON_STYLES.BUTTON_HEIGHT,
     paddingRight: 10
   },
   radioItem: {
@@ -72,8 +72,8 @@ export const styles = StyleSheet.create({
   radioText: {
     fontSize: 15,
     fontWeight: 'bold',
-    color: commonColors.greenColor,
-    fontFamily: commonStyles.normalFont,
+    color: COMMON_COLORS.GREEN_COLOR,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
   },
   visaImage: {
     width: 150,
@@ -88,8 +88,8 @@ export const styles = StyleSheet.create({
   },
   btnView: {
     width: '100%',
-    height: commonStyles.buttonHeight,
-    backgroundColor: commonColors.pinkColor,
+    height: COMMON_STYLES.BUTTON_HEIGHT,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     position: 'absolute',
     bottom: 0,
   },
@@ -100,8 +100,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnText: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: 'white',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
   },
 });

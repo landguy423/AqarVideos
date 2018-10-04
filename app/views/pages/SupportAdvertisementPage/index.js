@@ -20,8 +20,8 @@ import Container from '@layout/Container';
 import DropdownComponent from '@components/DropdownComponent';
 
 import { styles } from './styles';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { sendAdvertisement, getAdSubject } from '@redux/Message/actions';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
@@ -119,7 +119,7 @@ class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect
                   placeholder={I18n.t('profile.ph_name')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -139,7 +139,7 @@ class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_mobile_number')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -160,7 +160,7 @@ class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect={ false }
                   placeholder={I18n.t('profile.ph_email')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -192,7 +192,7 @@ class SupportAdvertisementPage extends Component {
                   autoCapitalize="none"
                   autoCorrect
                   placeholder={I18n.t('support.ph_message')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"

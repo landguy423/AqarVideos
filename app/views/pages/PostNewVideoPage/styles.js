@@ -1,22 +1,22 @@
 import {
   StyleSheet,
 } from 'react-native';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { tabBarHieght } from '@common/styles/commonStyles';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    height: commonStyles.screenNormalHeight,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   videoView: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     height: 200,
-    backgroundColor: commonColors.darkGrayColor,
+    backgroundColor: COMMON_COLORS.DARK_GRAY_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -25,53 +25,54 @@ export const styles = StyleSheet.create({
     color: 'white',
   },
   videoThumbnail: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     height: 200,
   },
   titleView: {
     marginVertical: 10,
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
     backgroundColor: 'transparent'
   },
   textTitle: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
-    fontSize: commonStyles.normalFontSize,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
-    color: commonColors.darkGrayColor,
+    color: COMMON_COLORS.DARK_GRAY_COLOR,
     marginBottom: 3,
     backgroundColor: 'transparent'
   },
-  textDescription: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText,
+  textRadio: {
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    marginBottom: 5,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
   bold: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
   },
   itemView: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     alignItems: 'flex-end',
     justifyContent: 'center',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     marginVertical: 5,
     paddingVertical: 10,
   },
   productOptionView: {
-    width: commonStyles.screenWidth,
+    width: COMMON_STYLES.SCREEN_WIDTH,
     borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
+    borderColor: COMMON_COLORS.BORDER_COLOR,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: commonStyles.padding,
+    paddingHorizontal: COMMON_STYLES.PADDING,
     marginVertical: 5,
     paddingVertical: 10,
     flexDirection: 'row',
@@ -81,33 +82,33 @@ export const styles = StyleSheet.create({
   },
   previewBtnView: {
     marginVertical: 40,
-    height: commonStyles.buttonHeight,
-    backgroundColor: commonColors.pinkColor,
+    height: COMMON_STYLES.BUTTON_HEIGHT,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
   },
   textPreview: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: 'white',
   },
   underline: {
     textDecorationLine: 'underline',
-    color: commonColors.greenColor
+    color: COMMON_COLORS.GREEN_COLOR
   },
   icon: {
     marginBottom: 10,
   },
   input: {
-    fontFamily: commonStyles.normalFont,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     width: '100%',
-    fontSize: 20,
-    color: commonColors.placeholderText,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right',
   },
   linebar: {
-    color: commonColors.placeholderText,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     marginHorizontal: 10,
     fontSize: 30,
   },

@@ -24,8 +24,8 @@ import CustomAlert from '@components/CustomAlert';
 import LoadingSpinner from '@components/LoadingSpinner';
 
 import I18n from '@i18n';
-import * as commonStyles from '@common/styles/commonStyles';
-import * as commonColors from '@common/styles/commonColors';
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
 import { styles, wizardStyle } from './styles';
 import { verifyPhone, verifyCode, userSignUp, changeMenu } from '@redux/User/actions';
 
@@ -194,7 +194,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder={I18n.t('profile.ph_firstname')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -213,7 +213,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={ true }
                   placeholder={I18n.t('profile.ph_lastname')}
-                  placeholderTextColor={ commonColors.placeholderSubText }
+                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -232,7 +232,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_email')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -253,7 +253,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_mobile_number')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -273,7 +273,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_password')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -293,7 +293,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_confirm_password')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="right"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -322,7 +322,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_mobile_number')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="left"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -342,7 +342,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_confirm_code')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="left"
                   style={styles.input}
                   underlineColorAndroid="transparent"
@@ -368,7 +368,7 @@ class Signup extends Component {
                   autoCapitalize="none"
                   autoCorrect={false}
                   placeholder={I18n.t('profile.ph_mobile_number')}
-                  placeholderTextColor={commonColors.placeholderSubText}
+                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
                   textAlign="left"
                   style={styles.input}
                   underlineColorAndroid="transparent"
