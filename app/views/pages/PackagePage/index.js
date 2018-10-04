@@ -60,6 +60,10 @@ class PackagePage extends Component {
         }
       });
     }
+
+    if (this.props.packages.status === 'GET_PACKAGE_REQUEST' && packages.status === 'GET_PACKAGE_FAILED') {
+      this.setState({ loading: false })
+    }
   }
 
   onItemSelect(rowData, rowID) {

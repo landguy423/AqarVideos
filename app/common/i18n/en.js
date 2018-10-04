@@ -36,14 +36,9 @@ export default {
   },
   packages: {
     days: " DAYS",
-    days_free: " DAYS FREE",
     trial: 'TRIAL',
     free_trial: 'FREE TRIAL',
-    extend: 'EXTEND',
     try: 'TRY',
-    trial_version: 'TRIAL VERSION',
-    congratulation: 'CONGRATULATIONS YOU HAVE SUCCESSFULLY UPDATED YOUR',
-    total_amount: 'Total Amount',
     account_number: 'Account Number',
     company_name: 'Company Name',
     bank_number: 'BankNumber',
@@ -54,8 +49,6 @@ export default {
     confirm: 'CONFIRM',
     cancel: 'CANCEL',
     empty_package: "There is no package available",
-    paid_package: "You already chose the package",
-    free_package: "You are in a free trial",
     no_url: "Can't get the payment url"
   },
   post_video: {

@@ -40,14 +40,14 @@ export const styles = StyleSheet.create({
   textDescription: {
     backgroundColor: 'transparent',
     fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
+    fontSize: 20,
     color: commonColors.placeholderText,
     textAlign: 'right'
   },
   btnView: {
     width: '100%',
     height: commonStyles.buttonHeight,
-    backgroundColor: commonColors.greenColor,
+    backgroundColor: commonColors.pinkColor,
     position: 'absolute',
     bottom: 0,
   },
@@ -74,7 +74,6 @@ export const styles = StyleSheet.create({
     width: 150,
     height: 80,
     borderWidth: 3,
-    borderColor: commonColors.greenColor,
     margin: 10,
     borderRadius: 5
   },

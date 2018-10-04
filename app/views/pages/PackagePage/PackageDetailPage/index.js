@@ -85,7 +85,7 @@ class PackageDetailPage extends Component {
 
   render() {
     const { data, packages } = this.props
-    console.log('DATA: ', data)
+
     return (
       <Container title={`${data.duration}${I18n.t('packages.days')}`} type='detail'>
 

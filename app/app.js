@@ -22,7 +22,6 @@ import PackagePage from './views/pages/PackagePage';
 import PackageDetailPage from './views/pages/PackagePage/PackageDetailPage';
 import PackageDetailBankPage from './views/pages/PackagePage/PackageDetailBankPage';
 import MyPackagePage from './views/pages/MyPackagePage';
-import MyPackageDetailPage from './views/pages/MyPackagePage/MyPackageDetailPage';
 import ProfileEditPage from './views/pages/ProfileEditPage'
 import SupportAdvertisementPage from './views/pages/SupportAdvertisementPage';
 import ProductListPage from './views/pages/ProductListPage';

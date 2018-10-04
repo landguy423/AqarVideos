@@ -34,7 +34,8 @@ class PackageDetailBankPage extends Component {
       bankInfo: [],
       bankData: {},
       loading: false,
-      sendBankResult: null
+      sendBankResult: null,
+      selectIndex: 0
     }
   }
 
@@ -79,7 +80,7 @@ class PackageDetailBankPage extends Component {
 
   onChange = (index) => {
     const { bankInfo } = this.state
-		this.setState({ bankData: bankInfo[index] });
+		this.setState({ selectIndex: index, bankData: bankInfo[index] });
   }
 
   closeSendResultModal = () => {
@@ -89,7 +90,7 @@ class PackageDetailBankPage extends Component {
 
   render() {
     const { data } = this.props
-    const { bankInfo, bankData, sendBankResult } = this.state
+    const { bankInfo, bankData, sendBankResult, selectIndex } = this.state
 
     
     return (
@@ -101,52 +102,56 @@ class PackageDetailBankPage extends Component {
           
           <View style={styles.logoContainer}>
             {bankInfo.map((item, index) => (
-              <TouchableOpacity key={index} onPress={() => this.onChange(index)} style={styles.logoView} activeOpacity={0.8}>
+              <TouchableOpacity
+                key={index} onPress={() => this.onChange(index)}
+                style={[styles.logoView, index === selectIndex ? { borderColor: commonColors.pinkColor } : { borderColor: commonColors.greenColor }]}
+                activeOpacity={0.8}
+              >
                 <Image source={{ uri: item.image }} style={styles.logo} />
               </TouchableOpacity>
             ))}
           </View>
 
           {!isEmpty(bankData) && (
-          <View style={styles.fieldContainer}>
-            <KeyboardScrollView>
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('packages.company_name')}
-                  </Text>
-                  <Text style={styles.textDescription}>
-                    {bankData.company_name}
-                  </Text>
-                </View>
-                
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('packages.bank_number')}
-                  </Text>
-                  <Text style={styles.textDescription}>
-                    {bankData.iban}
-                  </Text>
-                </View>
+            <View style={styles.fieldContainer}>
+              <KeyboardScrollView>
+                  <View style={styles.titleView}>
+                    <Text style={styles.textTitle}>
+                      {I18n.t('packages.company_name')}
+                    </Text>
+                    <Text style={styles.textDescription}>
+                      {bankData.company_name}
+                    </Text>
+                  </View>
+                  
+                  <View style={styles.titleView}>
+                    <Text style={styles.textTitle}>
+                      {I18n.t('packages.bank_number')}
+                    </Text>
+                    <Text style={styles.textDescription}>
+                      {bankData.iban}
+                    </Text>
+                  </View>
 
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('packages.account_number')}
-                  </Text>
-                  <Text style={styles.textDescription}>
-                    {bankData.account_no}
-                  </Text>
-                </View>
+                  <View style={styles.titleView}>
+                    <Text style={styles.textTitle}>
+                      {I18n.t('packages.account_number')}
+                    </Text>
+                    <Text style={styles.textDescription}>
+                      {bankData.account_no}
+                    </Text>
+                  </View>
 
-                <View style={styles.titleView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.location')}
-                  </Text>
-                  <Text style={styles.textDescription}>
-                    {bankData.address}
-                  </Text>
-                </View>
-            </KeyboardScrollView>
-          </View>
+                  <View style={styles.titleView}>
+                    <Text style={styles.textTitle}>
+                      {I18n.t('post_video.location')}
+                    </Text>
+                    <Text style={styles.textDescription}>
+                      {bankData.address}
+                    </Text>
+                  </View>
+              </KeyboardScrollView>
+            </View>
           )}
 
           <View style={styles.btnView}>

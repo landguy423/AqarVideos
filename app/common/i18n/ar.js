@@ -36,14 +36,9 @@ export default {
   },
   packages: {
     days: 'أيام',
-    days_free: 'أيام مجانية',
     trial: 'تجربة',
     free_trial: 'تجربة مجانية',
-    extend: 'تمديد',
     try: 'محاولة',
-    trial_version: 'نسخة تجربية',
-    congratulation: 'تهانينا تم التحديث بنجاح',
-    total_amount: 'الإجمالي',
     account_number: 'رقم الحساب',
     company_name: 'اسم الشركة',
     bank_number: 'رقم البنك',
@@ -54,8 +49,6 @@ export default {
     confirm: 'تأكيد',
     cancel: 'إلغاء',
     empty_package: "لا يوجد حزمة المتاحة",
-    paid_package: "أنت بالفعل اخترت الحزمة",
-    free_package: "وأنت في تجربة مجانية",
     no_url: "لا يمكن الحصول على عنوان url الخاص بالدفع"
   },
   post_video: {
