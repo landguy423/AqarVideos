@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
     fontFamily: commonStyles.normalFont,
     color: commonColors.placeholderText,
     width: commonStyles.screenWidth - 80,
-    fontSize: commonStyles.normalFontSize,
+    fontSize: 20
   },
   iconView: {
     width: 50,

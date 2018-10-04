@@ -236,7 +236,7 @@ class Signup extends Component {
                 keyboardType="email-address"
                 value={this.state.email}
                 onChangeText={text => this.setState({ email: text })}
-                onSubmitEditing={() => this.refs.password.focus()}
+                // onSubmitEditing={() => this.refs.password.focus()}
               />
             </View>
             <View style={styles.inputView}>
@@ -253,11 +253,11 @@ class Signup extends Component {
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
-                returnKeyType={ 'next' }
+                returnKeyType={ 'done' }
                 keyboardType="numbers-and-punctuation"
                 value={ this.state.mobile }
                 onChangeText={text => this.setState({ mobile: text })}
-                onSubmitEditing={() => this.refs.password.focus()}
+                // onSubmitEditing={() => this.refs.password.focus()}
               />
             </View>
             <View style={styles.inputView}>
@@ -273,11 +273,11 @@ class Signup extends Component {
                 textAlign="left"
                 style={styles.input}
                 underlineColorAndroid="transparent"
-                returnKeyType={'next'}
+                returnKeyType={'done'}
                 secureTextEntry
                 value={this.state.password}
                 onChangeText={text => this.setState({ password: text })}
-                onSubmitEditing={() => this.refs.confirmPassword.focus()}
+                // onSubmitEditing={() => this.refs.confirmPassword.focus()}
               />
             </View>
             <View style={styles.inputView}>

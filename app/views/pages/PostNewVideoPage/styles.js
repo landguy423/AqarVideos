@@ -45,16 +45,6 @@ export const styles = StyleSheet.create({
     marginBottom: 3,
     backgroundColor: 'transparent'
   },
-  textPhone: {
-    fontFamily: commonStyles.normalFont,
-    fontSize: commonStyles.normalFontSize,
-    textAlign: 'right',
-    color: '#88AC40',
-  },
-  description: {
-    width: '100%',
-    paddingHorizontal: commonStyles.padding,
-  },
   textDescription: {
     fontFamily: commonStyles.normalFont,
     fontSize: commonStyles.normalFontSize,
@@ -101,12 +91,6 @@ export const styles = StyleSheet.create({
     fontSize: commonStyles.normalFontSize,
     color: 'white',
   },
-  input: {
-    fontFamily: commonStyles.normalFont,
-    width: '100%',
-    fontSize: commonStyles.normalFontSize,
-    color: commonColors.placeholderText,
-  },
   underline: {
     textDecorationLine: 'underline',
     color: commonColors.greenColor
@@ -114,54 +98,13 @@ export const styles = StyleSheet.create({
   icon: {
     marginBottom: 10,
   },
-  //PriceView
-  priceView: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingVertical: 20,
-    borderBottomWidth: 0.5,
-    borderColor: commonColors.borderColor,
-  },
-  priceBox: {
-    width: 120,
-    borderWidth: 2,
-    borderColor: commonColors.placeholderText,
-    height: 45,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 5,
-  },
-  inputPrice: {
-    fontFamily: commonStyles.normalFont,
-    fontWeight: 'bold',
-    width: '100%',
-    fontSize: 14,
-    color: commonColors.placeholderText,
-    textAlign: 'center',
-  },
   input: {
     fontFamily: commonStyles.normalFont,
     fontWeight: 'bold',
     width: '100%',
-    fontSize: 14,
+    fontSize: 20,
     color: commonColors.placeholderText,
     textAlign: 'right',
-  },
-  squareMeterView: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
-  },
-  squareMeterBox: {
-    width: 160,
-    borderWidth: 2,
-    borderColor: commonColors.placeholderText,
-    height: 45,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 5,
   },
   linebar: {
     color: commonColors.placeholderText,

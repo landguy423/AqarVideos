@@ -35,35 +35,79 @@ class Login extends Component {
     this.state = {
       // mobile: '9874561230',
       // password: '123456',
-      mobile: '',
+      mobile: '+966',
       password: '',
       loading: false,
       isLoginAlert: false,    //show signin result
-      isForgotAlert: false,   //show if email is numm 
-      isForgotResultAlert: false,   //show forgot password reuslt
+      isEmptyEmail: false,   //show if email is numm 
+      isForgotResultAlert: false,   //show forgot password reuslt,
+      isError: false,
+      errorTitle: '',
+      errorText: ''
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { userInfo, forgotPasswordResult } = nextProps;
+    const { user } = nextProps;
 
-    if (this.props.user.status === 'USER_SIGN_IN_REQUEST' && nextProps.user.status === 'USER_SIGN_IN_SUCCESS') {
-      this.setState({ isLoginAlert: true, loading: false });
+    if (this.props.user.status === 'USER_SIGN_IN_REQUEST' && user.status === 'USER_SIGN_IN_SUCCESS') {
+      if (user.userLogin) {
+        this.setState({ loading: false })
+        AsyncStorage.setItem('loginStatus', JSON.stringify(true));
+        AsyncStorage.setItem('userInfo', JSON.stringify(user.userInfo));
+        this.props.changeMenu(0);
+        Actions.Main();
+      } else {
+        this.setState({
+          loading: false,
+          isError: true,
+          errorTitle: I18n.t('alert.error'),
+          errorText: I18n.t('register.login_matched_fail')
+        })
+      }
     }
 
-    if (this.props.user.status === 'USER_SIGN_IN_REQUEST' && nextProps.user.status === 'USER_SIGN_IN_FAILED') {
-      this.setState({ loading: false, loginFailed: true });
+    if (this.props.user.status === 'USER_SIGN_IN_REQUEST' && user.status === 'USER_SIGN_IN_FAILED') {
+      this.setState({
+        loading: false,
+        isError: true,
+        errorTitle: I18n.t('alert.error'),
+        errorText: I18n.t('register.login_matched_fail')
+      })
     }
 
-    if (this.props.user.status === 'FORGOT_PASSWORD_REQUEST' && nextProps.user.status === 'FORGOT_PASSWORD_SUCCESS') {
-      this.setState({ loading: false, isForgotResultAlert: true });
+    if (this.props.user.status === 'FORGOT_PASSWORD_REQUEST' && user.status === 'FORGOT_PASSWORD_SUCCESS') {
+      this.setState({
+        loading: false,
+        isError: true,
+        errorTitle: user.forgotPasswordResult.status === 200 ? I18n.t('alert.success') : I18n.t('alert.error'),
+        errorText: user.forgotPasswordResult.status === 200 ? I18n.t('register.forgot_success') : I18n.t('register.forgot_failed')
+      })
+    }
+
+    if (this.props.user.status === 'FORGOT_PASSWORD_REQUEST' && user.status === 'FORGOT_PASSWORD_FAILED') {
+      this.setState({
+        loading: false,
+        isError: true,
+        errorTitle: I18n.t('alert.error'),
+        errorText: I18n.t('register.forgot_failed')
+      })
     }
   }
 
   onLogin() {
     const { token } = this.props.tokenInfo
+
+    if (this.state.mobile === '') {
+      this.setState({
+        isError: true,
+        errorTitle: I18n.t('alert.warning'),
+        errorText: I18n.t('register.input_mobile')
+      })
+      return
+    }
+
     this.setState({ loading: true });
-    // const telephone = _.split(this.state.mobile, '+')
     let data = {
       telephone: this.state.mobile,
       password:  this.state.password
@@ -72,71 +116,37 @@ class Login extends Component {
     this.props.userSignIn(data, token);
   }
 
-  checkUserLoginResult() {
-    const { userLogin, userInfo } = this.props;
-    
-    this.setState({ isLoginAlert: false });
-
-    if (userLogin) {
-      AsyncStorage.setItem('loginStatus', JSON.stringify(true));
-      AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
-      this.props.changeMenu(0);
-      Actions.Main();
-    }
-  }
-
   onForgotPassword() {
-    if (this.state.mobile == '') {
-      this.setState({ isForgotAlert: true });
-    } else {
-      this.setState({ loading: true });
-
-      const telephone = _.split(this.state.mobile, '+')
-      let data = {
-        telephone: telephone[1]
-      };
-      this.props.forgotPassword(data, this.props.tokenInfo.token);
+    if (this.state.mobile === '') {
+      this.setState({
+        isError: true,
+        errorTitle: I18n.t('alert.warning'),
+        errorText: I18n.t('register.input_mobile')
+      })
+      return
     }
+
+    this.setState({ loading: true });
+
+    const telephone = _.split(this.state.mobile, '+')
+    let data = {
+      telephone: telephone[1]
+    };
+    this.props.forgotPassword(data, this.props.tokenInfo.token);
   }
 
   render() {
-    const { userInfo, forgotPasswordResult, loading } = this.props;
-    const { isLoginAlert } = this.state
+    const { loading, isError, errorTitle, errorText } = this.state;
 
     return (
       <View style={styles.container}>
         <LoadingSpinner visible={loading } />
         
-        {userInfo && (
-          <CustomAlert 
-            title={userInfo.status === '200' ? I18n.t('alert.success') : I18n.t('alert.error')}
-            message={userInfo.status === '200' ? I18n.t('register.login_success') : I18n.t('register.login_matched_fail')}
-            visible={isLoginAlert} 
-            closeAlert={() => this.checkUserLoginResult()}
-          />
-        )}
-
-        {forgotPasswordResult && (
-          <CustomAlert 
-            title={forgotPasswordResult.status === 200 ? I18n.t('alert.success') : I18n.t('alert.error')}
-            message={forgotPasswordResult.status === 200 ? I18n.t('register.forgot_success') : I18n.t('register.forgot_failed')} 
-            visible={this.state.isForgotResultAlert} 
-            closeAlert={() => this.setState({ isForgotResultAlert: false })}
-          />
-        )}
-        
         <CustomAlert 
-          title={I18n.t('alert.warning')}
-          message={I18n.t('register.input_mobile')}
-          visible={this.state.isForgotAlert} 
-          closeAlert={() => this.setState({ isForgotAlert: false })}
-        />
-
-        <CustomAlert 
-          title={I18n.t('alert.warning')}
-          message={I18n.t('register.login_matched_fail')}
-          visible={this.state.loginFailed} 
-          closeAlert={() => this.setState({ loginFailed: false })}
+          title={errorTitle}
+          message={errorText}
+          visible={isError} 
+          closeAlert={() => this.setState({ isError: false })}
         />
 
         <KeyboardScrollView>
@@ -180,7 +190,7 @@ class Login extends Component {
                 onChangeText={ (text) => this.setState({ password: text }) }
                 onSubmitEditing={() => this.onLogin()}
               />
-            </View>   
+            </View>
             <View style={styles.forgotPasswordView}>
               <TouchableOpacity onPress={() => this.onForgotPassword()}>
                 <Text style={styles.forgotPasswordText}>{I18n.t('profile.forgot_password')}</Text>
@@ -202,9 +212,5 @@ class Login extends Component {
 
 export default connect(state => ({
   tokenInfo: state.token.tokenInfo,
-  user: state.user,
-  userInfo: state.user.userInfo,
-  userLogin: state.user.userLogin,
-  forgotPasswordResult: state.user.forgotPasswordResult,
-  loading: state.user.loading,
+  user: state.user
 }),{ userSignIn, forgotPassword, changeMenu })(Login);
