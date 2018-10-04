@@ -19,7 +19,7 @@ import { styles } from './styles';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 import CustomAlert from '@components/CustomAlert';
 import LoadingSpinner from '@components/LoadingSpinner';
-const icon_report = require('@common/assets/images/my_message/icon.png');
+const ICON_REPORT = require('@common/assets/images/my_message/icon.png');
 
 class MyMessagePage extends Component {
   constructor(props) {
@@ -52,12 +52,13 @@ class MyMessagePage extends Component {
       this.setState({ loading: false });
       if (message.chatUserList.status === 200) {
         this.setState({ listData: message.chatUserList.messages });
+      } else {
+        this.setState({ listData: [] })
       }
-      if (message.chatUserList.status === 107) {
-        this.setState({
-          listData: []
-        })
-      }
+    }
+
+    if (this.props.message.status === 'GET_CHAT_USER_REQUEST' && message.status === 'GET_CHAT_USER_FAILED') {
+      this.setState({ listData: [] })
     }
   }
 
@@ -95,7 +96,7 @@ class MyMessagePage extends Component {
             </View>
           </View>
           <View style={styles.imageView}>
-            <Image source={icon_report} style={styles.image} />
+            <Image source={ICON_REPORT} style={styles.image} />
           </View>
         </View>
       </TouchableOpacity>

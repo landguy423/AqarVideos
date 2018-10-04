@@ -44,11 +44,14 @@ export const styles = StyleSheet.create({
   backIconView: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    borderRadius: 20,
+    paddingHorizontal: 10
   },
   backIcon_detail: {
     fontWeight: 'bold',
-    color: COMMON_COLORS.PINK_COLOR,
+    color: COMMON_COLORS.PINK_COLOR
   },
   backTitle: {
     fontSize: COMMON_STYLES.LARGE_FONT_SIZE,

@@ -203,7 +203,6 @@ class ProductUpdatePage extends Component {
       category, 
       video_url,
     } = this.state;
-    console.log('video_url: ', video_url)
 
     if (page === 'map') {
       return (

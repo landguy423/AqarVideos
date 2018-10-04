@@ -36,7 +36,7 @@ class PostProductLocationPage extends Component {
   }
 
   componentWillMount() {
-    const { coordinate, address } = this.props
+    const { coordinate, address, map } = this.props
 
     if (coordinate) {
       this.setState({
@@ -53,15 +53,8 @@ class PostProductLocationPage extends Component {
       }
       this.onRegionChange(region, region.latitude, region.longitude)
     } else {
-      this.watchID = navigator.geolocation.watchPosition((position) => {
-        let region = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta: 0.05,
-          longitudeDelta: 0.05,
-        }
-        this.onRegionChange(region, region.latitude, region.longitude)
-      })
+      const { myLocation } = map
+      this.onRegionChange(myLocation.region, myLocation.region.latitude, myLocation.region.longitude)
     }
   }
 
@@ -285,4 +278,11 @@ class PostProductLocationPage extends Component {
   }
 }
 
-export default PostProductLocationPage;
+const mapStateToProps = ({ map }) => ({
+  map
+})
+
+export default connect(
+  mapStateToProps,
+  null
+)(PostProductLocationPage)
