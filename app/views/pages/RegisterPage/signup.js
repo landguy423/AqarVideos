@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
   TextInput,
   AsyncStorage
 } from 'react-native';
@@ -15,7 +11,6 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import KeyboardScrollView from '@components/KeyboardView';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import TextInputMask from 'react-native-text-input-mask';
 import StepIndicator from '@components/StepIndicator';

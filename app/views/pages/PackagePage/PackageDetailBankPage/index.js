@@ -2,21 +2,13 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
-  TextInput,
-  Platform,
+  Image
 } from 'react-native';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { isEmpty } from 'lodash'
-import FontAwesome, {Icons} from 'react-native-fontawesome';
+import _ from 'lodash'
 import KeyboardScrollView from '@components/KeyboardView';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import DatePicker from 'react-native-datepicker';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
 import { getBankDetail, sendBankDetail } from '@redux/Package/actions'
@@ -111,7 +103,7 @@ class PackageDetailBankPage extends Component {
             ))}
           </View>
 
-          {!isEmpty(bankData) && (
+          {!_.isEmpty(bankData) && (
             <View style={styles.fieldContainer}>
               <KeyboardScrollView>
                   <View style={styles.titleView}>

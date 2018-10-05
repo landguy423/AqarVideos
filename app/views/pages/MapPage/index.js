@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   Image,
   TouchableOpacity,
 } from 'react-native';
@@ -12,9 +10,9 @@ import PropTypes from 'prop-types';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { filter } from 'lodash';
-import Video from 'react-native-video';
+import _ from 'lodash';
 import Icon from 'react-native-vector-icons/Feather';
+import VideoComponent from '@components/VideoComponent'
 import { styles } from './styles';
 import * as COMMON_STYLES from '@common/styles/commonStyles';
 
@@ -38,9 +36,9 @@ class MapPage extends Component {
     if (user.userLogin && user.userInfo) {
       console.log('USER_INFO: ', user.userInfo)
       const { customer_id } = user.userInfo.user
-      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
+      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
     } else {
-      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
     }
     this.setState({
       categoryProduct,
@@ -49,7 +47,6 @@ class MapPage extends Component {
 
   gotoDetailPage(data) {
     Actions.ProductDetail({ data });
-    // Actions.ProductUpdate({ data });
   }
 
   changeMapType(mapType) {
@@ -106,17 +103,7 @@ class MapPage extends Component {
               <MapView.Callout onPress={() => this.gotoDetailPage(marker)}>
                 <View style={styles.markerDetailView}>
                   <View style={styles.videoView}>
-                    {(!!marker.video_url && marker.video_url.length > 0) ?
-                        <Video
-                          ref={(ref) => { this.player = ref }}
-                          source={{ uri: marker.video_url }}
-                          style={styles.markerDetailVideo}
-                          resizeMode='cover'
-                          autoplay={false}
-                          paused
-                        /> :
-                        <Icon name='video-off' style={styles.emptyVideo} />
-                    }
+                    <VideoComponent rowData={marker} offsetX={65} offsetY={20} />
                   </View>
                   <Text style={styles.markerDetailText}>{marker.name}</Text>
                 </View>

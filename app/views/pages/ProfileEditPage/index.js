@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
-  TouchableOpacity,
-  Image,
+  TouchableOpacity,  
   TextInput,
 } from 'react-native';
 
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import KeyboardScrollView from '@components/KeyboardView';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import I18n from '@i18n';
@@ -110,7 +105,7 @@ class ProfileEditPage extends Component {
       firstname,
       lastname,
       telephone,
-      email: this.state.email,
+      email
     };
 
     if (password.length > 0) {
@@ -119,7 +114,7 @@ class ProfileEditPage extends Component {
         firstname,
         lastname,
         telephone,
-        email: this.state.email,
+        email,
         password,
       };
     }

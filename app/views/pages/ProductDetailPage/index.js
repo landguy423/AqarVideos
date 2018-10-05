@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
   TouchableOpacity,
   Image,
-  Modal,
-  TouchableWithoutFeedback,
   Share,
+  ScrollView,
   ActivityIndicator
 } from 'react-native';
 
@@ -25,13 +21,10 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 import I18n from '@i18n';
 import Container from '@layout/Container';
-import ModalShare from '@components/ModalShare';
 import { CATEGORY_ICON_LIST } from '@common/category';
+import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
 import { setFavorite, addViewCount } from '@redux/Product/actions';
-
-
-import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
 import * as COMMON_STYLES from '@common/styles/commonStyles';
 import * as COMMON_COLORS from '@common/styles/commonColors';
@@ -41,21 +34,19 @@ const ASPECT_RATIO = COMMON_STYLES.SCREEN_SUB_WIDTH / 200
 const LATITUDE_DELTA = 0.1222;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const icon_office = require('@common/assets/images/product_detail/office.png');
-const icon_report = require('@common/assets/images/product_detail/report_ad.png');
+const ICON_REPORT = require('@common/assets/images/product_detail/report_ad.png');
 
 class ProductDetailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showShareModal: false,
       favorite: true,
       opacity: 0,
     }
   }
 
   componentWillMount() {
-    const { data, token, user, addViewCount } = this.props
+    const { data, token, addViewCount } = this.props
 
     this.setState({ favorite: data.favorite })
     addViewCount(token.tokenInfo.token, { product_id: data.product_id })
@@ -92,7 +83,7 @@ class ProductDetailPage extends Component {
 
   onShare() {
     const { data } = this.props;
-    // this.setState({ showShareModal : true });
+
     Share.share({
       message: data.description,
       url: data.video_url,
@@ -137,7 +128,6 @@ class ProductDetailPage extends Component {
 
   render() {
     const { data, user } = this.props;
-    const { showShareModal } = this.state
 
     return (
       <Container title={data.name} type='detail'>
@@ -145,21 +135,21 @@ class ProductDetailPage extends Component {
           <ScrollView>
             <View style={styles.subContainer}>
               <View style={styles.videoView}>
-                {(!!data.video_url && data.video_url.length > 0) ?
-                  <TouchableOpacity onPress={() => this.onCamera()}>
-                    <Video
-                      ref={(ref) => { this.player = ref }}
-                      source={{ uri: data.video_url }}
-                      style={styles.video}
-                      resizeMode='cover'
-                      autoplay={false}
-                      paused
-                      onBuffer={this.onBuffer}
-                      onLoad={this.onLoad}
-                      onLoadStart={this.onLoadStart}
-                    />
-                  </TouchableOpacity> :
-                  <Icon name='video-off' style={styles.emptyVideo} />
+                {(!!data.video_url && data.video_url.length > 0)
+                  ? <TouchableOpacity onPress={() => this.onCamera()}>
+                      <Video
+                        ref={(ref) => { this.player = ref }}
+                        source={{ uri: data.video_url }}
+                        style={styles.video}
+                        resizeMode='cover'
+                        autoplay={false}
+                        paused
+                        onBuffer={this.onBuffer}
+                        onLoad={this.onLoad}
+                        onLoadStart={this.onLoadStart}
+                      />
+                    </TouchableOpacity>
+                  : <Icon name='video-off' style={styles.emptyVideo} />
                 }
 
                 <ActivityIndicator
@@ -359,14 +349,12 @@ class ProductDetailPage extends Component {
                   <TouchableOpacity onPress={() => this.onReportAD()} activeOpacity={0.5}>
                     <View style={styles.btnAd}>
                       <Text style={[styles.textDescription, {fontStyle: 'italic'}]}>{I18n.t('report_ad')}</Text>
-                      <Image source={icon_report} style={styles.iconAd} />
+                      <Image source={ICON_REPORT} style={styles.iconAd} />
                     </View>
                   </TouchableOpacity>
                 </View>
               )} */}
             </View>
-            
-            <ModalShare showShareModal={showShareModal} hideShareModal={() => this.setState({ showShareModal: false })} />
 
           </ScrollView>
         </View>

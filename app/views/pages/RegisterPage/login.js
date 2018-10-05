@@ -2,21 +2,15 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
   TextInput,
-  Alert,
-  AsyncStorage,
+  AsyncStorage
 } from 'react-native';
 
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 import KeyboardScrollView from '@components/KeyboardView';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import TextInputMask from 'react-native-text-input-mask';
 import _ from 'lodash'
@@ -33,14 +27,9 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // mobile: '9874561230',
-      // password: '123456',
       mobile: '+966',
       password: '',
       loading: false,
-      isLoginAlert: false,    //show signin result
-      isEmptyEmail: false,   //show if email is numm 
-      isForgotResultAlert: false,   //show forgot password reuslt,
       isError: false,
       errorTitle: '',
       errorText: ''

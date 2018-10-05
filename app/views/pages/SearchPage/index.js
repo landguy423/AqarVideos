@@ -2,24 +2,14 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
-  TouchableWithoutFeedback,
   TextInput,
 } from 'react-native';
 
 import PropTypes from 'prop-types';
 import KeyboardScrollView from '@components/KeyboardView';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import Video from 'react-native-video';
 import CheckBox from 'react-native-modest-checkbox';
-import ImagePicker from 'react-native-image-picker';
-import Icon from 'react-native-vector-icons/Feather';
 
 import I18n from '@i18n';
 import Container from '@layout/Container';
@@ -28,7 +18,6 @@ import CustomAlert from '@components/CustomAlert';
 import { RadioGroup, RadioButton } from '@components/RadioButtonGroup';
 import DropdownComponent from '@components/DropdownComponent';
 import CategoryComponent from '@components/CategoryComponent';
-import AutoSuggestComponent from '@components/AutoSuggestComponent';
 import LoadingSpinner from '@components/LoadingSpinner';
 import PostProductLocationPage from '../PostProductLocationPage';
 import ProductListPage from '../ProductListPage';
@@ -36,7 +25,6 @@ import ProductListPage from '../ProductListPage';
 import { styles } from './styles';
 import * as COMMON_STYLES from '@common/styles/commonStyles';
 import * as COMMON_COLORS from '@common/styles/commonColors';
-import { getRegions } from '@redux/Region/actions';
 import { searchProduct } from '@redux/Product/actions';
 
 import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
@@ -47,8 +35,8 @@ class SearchPage extends Component {
     this.state = {
       loading: false,
       isError: false,
-      showProducts: false,
       errMsg: '',
+      showProducts: false,
       page: 'post',
       address: I18n.t('post_video.select_address'),
       coordinate: null,
@@ -114,9 +102,6 @@ class SearchPage extends Component {
         lat: this.state.coordinate.latitude,
         long: this.state.coordinate.longitude,
         radius: this.state.radius,
-        // lat: '37.78',
-        // long: '-122.44',
-        // radius: this.state.radius,
         product_type: this.state.productOption,
         min_price: this.state.minPrice,
         max_price: this.state.maxPrice,

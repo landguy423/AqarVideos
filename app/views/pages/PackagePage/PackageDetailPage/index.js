@@ -10,7 +10,6 @@ import {
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
-// import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 import { RadioGroup, RadioButton } from '@components/RadioButtonGroup';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
@@ -48,7 +47,7 @@ class PackageDetailPage extends Component {
           } else {
             Actions.PaymentWebPage({ url: packages.webUrlInfo.order.url })
           }
-        } else if (packages.webUrlInfo.status === 107) {
+        } else {
           this.setState({
             isError: true,
             errorText: I18n.t('packages.no_url')

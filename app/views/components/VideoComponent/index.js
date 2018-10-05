@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   ActivityIndicator
 } from 'react-native';
 
 import PropTypes from 'prop-types';
 import Video from 'react-native-video';
 
-import FontAwesome, { Icons } from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import { styles } from './styles'
 

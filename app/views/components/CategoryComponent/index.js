@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
   ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
-  Modal,
-  TouchableWithoutFeedback,
-  TextInput,
+  Image
 } from 'react-native';
 
 import I18n from '@i18n';
@@ -32,15 +27,8 @@ export default class CategoryComponent extends Component {
   }
 
   onSelectCategory(item, index) {
-    this.setState({category: item});
+    this.setState({ category: item });
     this.props.selectCategory(item);
-
-    // if (index == 6 || index == 3) {
-    //   this.refs.categoryScroll.scrollToEnd();
-    // }
-    // if (index == 0 || index == 4) {
-    //   this.refs.categoryScroll.scrollTo({x: 0, y: 0, animated: true});
-    // }
   }
 
   render() {

@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
   Image,
-  ActivityIndicator,
   Modal
 } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';

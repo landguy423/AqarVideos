@@ -2,29 +2,17 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
-  Image,
-  Dimensions,
-  TextInput,
   TouchableOpacity,
-  Alert,
-  Keyboard,
-  findNodeHandle,  
-  Linking,
   WebView,
   Platform,
   BackHandler, 
 } from 'react-native';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import WebViewAndroid from 'react-native-webview-android';
 import Icon from 'react-native-vector-icons/Feather';
-import * as COMMON_STYLES from '@common/styles/commonStyles';
 import { styles } from './styles';
 
 class PaymentWebPage extends Component {

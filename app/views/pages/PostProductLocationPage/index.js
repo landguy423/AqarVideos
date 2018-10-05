@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   TouchableOpacity,
   Image,
   Keyboard,
@@ -72,7 +70,7 @@ class PostProductLocationPage extends Component {
   }
 
   changeMapType(mapType) {
-    if (mapType == 'satellite')
+    if (mapType === 'satellite')
       this.setState({ mapType: 'standard' });
     else
       this.setState({ mapType: 'satellite' });
@@ -192,51 +190,42 @@ class PostProductLocationPage extends Component {
             onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true				         
               this._onLoad(details)
             }}
-              
             getDefaultValue={() => { // text input default value
               return defaultAddress;
             }}
-
             query={{				         
               key: GOOGLE_API_KEY,
               language: 'ar', 
               types: 'geocode',
             }}
-
             styles={{
               description: {
                 fontWeight: 'bold',
               },
-
               textInputContainer:{
                 backgroundColor:'white'
               },
-          
               predefinedPlacesDescription: {
                 color: '#1faadb',
               },
-
               powered: {
                 height:0,
                 opacity:0
               },
-
               textInput: {
                 marginLeft: 0,
                 marginRight: 0,
                 height: 45,
                 color: '#5d5d5d',
                 fontSize: 16
-                },
-
+              },
               listView:{
                 backgroundColor:'white'
-                },
-
-                separator: {
+              },
+              separator: {
                 height: 1,
                 backgroundColor: '#c8c7cc',
-              },
+              }
             }}
 
             nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
@@ -246,9 +235,7 @@ class PostProductLocationPage extends Component {
             GooglePlacesSearchQuery={{
               // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
               rankby: 'distance',
-          
             }}
-
             filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
           />
         </View>

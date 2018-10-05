@@ -33,7 +33,6 @@ import MyMessagePage from './views/pages/MyMessagePage';
 import ChatRoomPage from './views/pages/ChatRoomPage';
 import DirectMessagePage from './views/pages/DirectMessagePage';
 import SearchPage from './views/pages/SearchPage';
-import VideoRecordPage from './views/pages/VideoRecordPage';
 import PostProductLocationPage from './views/pages/PostProductLocationPage';
 import SplashScreenPage from './views/pages/SplashScreenPage';
 import PaymentWebPage from './views/pages/PaymentWebPage'
@@ -83,7 +82,6 @@ export default class App extends Component {
         <Scene key="DirectMessage" component={ DirectMessagePage } hideNavBar panHandlers={null}/>
         <Scene key="Search" component={ SearchPage } hideNavBar panHandlers={null}/>
         <Scene key="PaymentWebPage" component={ PaymentWebPage } hideNavBar panHandlers={null}/>
-        {/* <Scene key="VideoRecord" component={ VideoRecordPage } hideNavBar panHandlers={null}/> */}
       </Scene>
     );
 

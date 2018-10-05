@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   TouchableOpacity,
-  Image,
   AsyncStorage
 } from 'react-native';
 
@@ -84,7 +81,7 @@ class MainPage extends Component {
   render() {
     const { tokenInfo } = this.props
     const { tabIndex, isBtnList, btnItem, btnStatus } = this.state;
-    const title = btnStatus == 'list' ? I18n.t('main.list') : I18n.t('main.map');
+    const title = btnStatus === 'list' ? I18n.t('main.list') : I18n.t('main.map');
 
     return (
       <Container title={title}>

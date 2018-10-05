@@ -3,18 +3,12 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   ListView,
   TouchableOpacity,
-  Image,
   TextInput,
 } from 'react-native';
 
-import { Actions } from 'react-native-router-flux';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import I18n from '@i18n';
 import Container from '@layout/Container';
@@ -23,7 +17,7 @@ import SendMessageComponent from '@components/MessageComponent/SendMessageCompon
 import ReceiveMessageComponent from '@components/MessageComponent/ReceiveMessageComponent';
 import LoadingSpinner from '@components/LoadingSpinner';
 import { getChatData, sendMessage } from '@redux/Message/actions';
-import { sortBy } from 'lodash';
+import _ from 'lodash';
 import { styles } from './styles';
 import * as COMMON_COLORS from '@common/styles/commonColors';
 
@@ -58,7 +52,7 @@ class ChatRoomPage extends Component {
       this.setState({ loading: false });
       if (message.chatData.status === 200) {
         let data = message.chatData.messages;
-        data = sortBy(data, item => item.date_added);
+        data = _.sortBy(data, item => item.date_added);
         this.setState({ messageData: data });
       }
       if (message.chatData.status === 107) {

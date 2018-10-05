@@ -2,19 +2,14 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   TouchableOpacity,
-  StatusBar,
   View,
   Text,
-  Image,
-  ListView,
-  Platform,
+  Image
 } from 'react-native';
 
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { styles } from './styles';

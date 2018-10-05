@@ -2,22 +2,10 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  Keyboard,
-  findNodeHandle,  
+  View
 } from 'react-native';
 
 import SideMenu from 'react-native-side-menu';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-
 import Sidebar from '../Sidebar';
 import Navigation from '../Navigation';
 
@@ -31,20 +19,19 @@ class Container extends Component {
   }
 
   onSideMenuChange(isOpen) {
-    this.setState({isMenuOpen: isOpen});
+    this.setState({ isMenuOpen: isOpen });
   }
 
   toggleSideMenu() {
-    this.setState({isMenuOpen: !this.state.isMenuOpen});
+    this.setState({ isMenuOpen: !this.state.isMenuOpen });
   }
 
-  render()
-  {
+  render() {
     const { type } = this.props;
     const { isMenuOpen } = this.state;
     const menuComponent = <Sidebar menuState={() => this.toggleSideMenu()} />;
 
-    if (type == 'detail' || type == 'register') {
+    if (type === 'detail' || type === 'register') {
       return (
         <View>
           <Navigation menuState={() => this.toggleSideMenu()} { ...this.props } />

@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   ListView,
-  TouchableOpacity,
-  Image,
+  TouchableOpacity
 } from 'react-native';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoadingSpinner from '@components/LoadingSpinner';
-import CustomAlert from '@components/CustomAlert';
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import _ from 'lodash'

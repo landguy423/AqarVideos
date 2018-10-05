@@ -2,27 +2,21 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   ListView,
-  TouchableOpacity,
-  Image,
+  TouchableOpacity
 } from 'react-native';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
-import { filter } from 'lodash';
-import Video from 'react-native-video';
 import _ from 'lodash'
 
 import I18n from '@i18n';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
-import { styles } from './styles';
-import * as COMMON_STYLES from '@common/styles/commonStyles';
-import LoadingSpinner from '@components/LoadingSpinner';
 import VideoComponent from '@components/VideoComponent'
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import { styles } from './styles';
 
 class ProductListPage extends Component {
   constructor(props) {
@@ -38,9 +32,9 @@ class ProductListPage extends Component {
     let categoryProduct = [];
     if (user.userLogin) {
       const { customer_id } = user.userInfo.user
-      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
+      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
     } else {
-      categoryProduct = filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
     }
     const data = _.orderBy(categoryProduct, ['date_added'], ['desc'])
 

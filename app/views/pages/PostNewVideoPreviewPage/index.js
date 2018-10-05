@@ -2,19 +2,13 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
   ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
-  TouchableWithoutFeedback
+  Image  
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import Video from 'react-native-video';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
-import Icon from 'react-native-vector-icons/Feather';
-import IconEntypo from 'react-native-vector-icons/Entypo';
 import { Actions } from 'react-native-router-flux';
 import Modal from 'react-native-modal';
 import CustomCheckbox from '@components/CustomCheckbox';
@@ -29,8 +23,6 @@ import { styles } from './styles';
 import * as COMMON_COLORS from '@common/styles/commonColors';
 import * as COMMON_STYLES from '@common/styles/commonStyles';
 import { CATEGORY_ICON_LIST } from '@common/category';
-
-import ModalShare from '@components/ModalShare';
 
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-  Image,
+  Text
 } from 'react-native';
 
 import Triangle from 'react-native-triangle';
@@ -18,7 +14,6 @@ export default class ReceiveMessageComponent extends Component {
     return (
       <View style={styles.receiveContainer}>
         <View style={styles.receiveMessageContainer}>
-          {/* <Text style={styles.name}>{data.sender_details.name}</Text> */}
           <View style={styles.body}>
             <View style={styles.triangel}>
               <Triangle

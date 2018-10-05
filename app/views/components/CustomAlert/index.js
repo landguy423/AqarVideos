@@ -1,15 +1,4 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  ActivityIndicator,
-  Modal
-} from 'react-native';
-
 import AwesomeAlert from 'react-native-awesome-alerts';
 import I18n from '@i18n';
 
@@ -19,7 +8,8 @@ export default class CustomAlert extends Component {
   }
 
   render(){
-    const {message, visible, title} = this.props;
+    const { message, visible, title } = this.props;
+
     let sTitle = ''
     if (title === 'Error') {
       sTitle = I18n.t('alert.error')
@@ -28,6 +18,7 @@ export default class CustomAlert extends Component {
     } else {
       sTitle = I18n.t('alert.warning')
     }
+
     return (
       <AwesomeAlert
         show={visible}

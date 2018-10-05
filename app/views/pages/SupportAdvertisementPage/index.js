@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   ListView,
   TouchableOpacity,
-  Image,
   TextInput,
 } from 'react-native';
 
@@ -18,13 +15,13 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import DropdownComponent from '@components/DropdownComponent';
-
-import { styles } from './styles';
-import * as COMMON_STYLES from '@common/styles/commonStyles';
-import * as COMMON_COLORS from '@common/styles/commonColors';
-import { sendAdvertisement, getAdSubject } from '@redux/Message/actions';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
+import { sendAdvertisement, getAdSubject } from '@redux/Message/actions';
+
+import * as COMMON_STYLES from '@common/styles/commonStyles';
+import * as COMMON_COLORS from '@common/styles/commonColors';
+import { styles } from './styles';
 
 class SupportAdvertisementPage extends Component {
   constructor(props) {
@@ -80,11 +77,16 @@ class SupportAdvertisementPage extends Component {
         this.setState({ isSuccess: true, successMsg: I18n.t('alert.advertisement') });
       }
     }
+
+    if (this.props.message.status === 'SEND_AD_REQUEST' && message.status === 'SEND_AD_FAILED') {
+      this.setState({ loading: false });
+    }
   }
 
   onSend() {
     const { token, sendAdvertisement } = this.props;
     this.setState({ loading: true });
+
     sendAdvertisement(
       token.tokenInfo.token,
       {

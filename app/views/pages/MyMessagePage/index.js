@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
   ListView,
   TouchableOpacity,
   Image,
@@ -16,8 +14,6 @@ import { connect } from 'react-redux';
 import { getChatUserList } from '@redux/Message/actions';
 import Container from '@layout/Container';
 import { styles } from './styles';
-import FontAwesome, { Icons } from 'react-native-fontawesome';
-import CustomAlert from '@components/CustomAlert';
 import LoadingSpinner from '@components/LoadingSpinner';
 const ICON_REPORT = require('@common/assets/images/my_message/icon.png');
 

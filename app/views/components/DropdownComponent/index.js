@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-  Image,
+  Text
 } from 'react-native';
 
-import {Dropdown} from 'react-native-material-dropdown';
+import { Dropdown } from 'react-native-material-dropdown';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { styles } from './styles';
 

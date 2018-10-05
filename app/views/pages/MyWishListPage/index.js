@@ -7,17 +7,12 @@ import { Actions } from 'react-native-router-flux';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
-  TouchableOpacity,
-  Image,
+  TouchableOpacity
 } from 'react-native';
 
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
 import LoadingSpinner from '@components/LoadingSpinner';
 import FontAwesome, {Icons} from 'react-native-fontawesome';
-import Icon from 'react-native-vector-icons/Feather';
 import _ from 'lodash'
 import I18n from '@i18n';
 import Container from '@layout/Container';

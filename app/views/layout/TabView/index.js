@@ -2,12 +2,7 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  TouchableOpacity,
   View,
-  Text,
-  Image,
-  ListView,
   ScrollView
 } from 'react-native';
 
@@ -16,7 +11,6 @@ import ScrollableTabBar from './ScrollableTabBar';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 
 import { styles } from './styles';
 import * as COMMON_STYLES from '@common/styles/commonStyles';

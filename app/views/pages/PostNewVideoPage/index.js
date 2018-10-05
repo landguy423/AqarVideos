@@ -2,16 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
-  TouchableWithoutFeedback,
   TextInput,
 } from 'react-native';
 
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import Video from 'react-native-video';
@@ -25,7 +19,6 @@ import KeyboardScrollView from '@components/KeyboardView';
 import { RadioGroup, RadioButton } from '@components/RadioButtonGroup';
 import DropdownComponent from '@components/DropdownComponent';
 import CategoryComponent from '@components/CategoryComponent';
-import AutoSuggestComponent from '@components/AutoSuggestComponent';
 import LoadingSpinner from '@components/LoadingSpinner';
 import CustomAlert from '@components/CustomAlert';
 import PostProductLocationPage from '../PostProductLocationPage'

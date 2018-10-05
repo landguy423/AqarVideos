@@ -3,22 +3,16 @@ import PropTypes from 'prop-types';
 import {
   View,
   Text,
-  Dimensions,
-  ScrollView,
-  ListView,
   TouchableOpacity,
-  Image,
   TextInput,
 } from 'react-native';
 
-import FontAwesome, {Icons} from 'react-native-fontawesome';
 import KeyboardScrollView from '@components/KeyboardView';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-import I18n from '@i18n';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import I18n from '@i18n';
 import Container from '@layout/Container';
-import DropdownComponent from '@components/DropdownComponent';
 import { sendMessage } from '@redux/Message/actions';
 
 import { styles } from './styles';
