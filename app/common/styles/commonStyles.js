@@ -52,6 +52,6 @@ export const BUTTON_BOTTOM_HEIGHT = Platform.OS === 'ios' ? ifIphoneX(60, 40) : 
 export const BUTTON_HEIGHT = 50
 
 export const NORMAL_FONT_SIZE = 14
-export const LARGE_FONT_SIZE = 18
+export const LARGE_FONT_SIZE = 20
 export const SMALL_FONT_SIZE = 12
 export const NORMAL_FONT_FAMILY = 'NotoKufiArabic'

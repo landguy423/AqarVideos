@@ -73,7 +73,7 @@ class PostNewVideoPage extends Component {
       gallery_number: '',
 
       page: 'post',
-      errorFlag: false,
+      isError: false,
       errorText: '',
     }
     this.player = null;
@@ -90,26 +90,26 @@ class PostNewVideoPage extends Component {
     const propsData = this.state;
 
     if (!propsData.video_url || !propsData.videoFileName) {
-      this.setState({ errorFlag: true })
+      this.setState({ isError: true })
       this.setState({ errorText: I18n.t('post_video.select_video') })
       return
     }
     if (!propsData.coordinate) {
-      this.setState({ errorFlag: true })
+      this.setState({ isError: true })
       this.setState({ errorText: I18n.t('post_video.select_address') })
       return
     }
     if (propsData.name.length === 0) {
-      this.setState({ errorFlag: true })
+      this.setState({ isError: true })
       this.setState({ errorText: I18n.t('post_video.select_title') })
       return
     } else if (propsData.price.length === 0) {
-      this.setState({ errorFlag: true })
+      this.setState({ isError: true })
       this.setState({ errorText: I18n.t('post_video.select_price') })
       return
     }
 
-    this.setState({ errorFlag: false })
+    this.setState({ isError: false })
     
     Actions.PostNewVideoPreview({ data: propsData });
   }
@@ -173,13 +173,13 @@ class PostNewVideoPage extends Component {
     } else {
       this.setState({ location: I18n.t('post_video.select_address') })
     }
-    this.setState({ errorFlag: false })
+    this.setState({ isError: false })
   }
 
   render() {
     const {
       loading,
-      errorFlag,
+      isError,
       errorText,
       page,
       category,
@@ -206,8 +206,8 @@ class PostNewVideoPage extends Component {
         <CustomAlert 
           title={I18n.t('alert.warning')}
           message={errorText}
-          visible={errorFlag} 
-          closeAlert={() => this.setState({ errorFlag: false })}
+          visible={isError} 
+          closeAlert={() => this.setState({ isError: false })}
         />
 
         <View style={styles.container}>
@@ -246,7 +246,7 @@ class PostNewVideoPage extends Component {
               </Text>
               <TouchableOpacity onPress={() => this.changePage('map')}>
                 <View style={styles.addressView}>
-                  <Text style={[styles.input, styles.underline]}>{this.state.location}</Text>
+                  <Text style={[styles.input, styles.underline]} numberOfLines={2} ellipsizeMode="tail">{this.state.location}</Text>
                 </View>
               </TouchableOpacity>
             </View>

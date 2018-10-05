@@ -43,7 +43,7 @@ class PackageDetailPage extends Component {
     if (this.props.packages.status === 'GET_WEBURL_REQUEST' && packages.status === 'GET_WEBURL_SUCCESS') {
       this.setState({ loading: false }, () => {
         if (packages.webUrlInfo.status === 200) {
-          if (packages.webUrlInfo.message === 'Trial is active') {
+          if (packages.webUrlInfo.messages === 'Trial is active') {
             Actions.Package()
           } else {
             Actions.PaymentWebPage({ url: packages.webUrlInfo.order.url })
