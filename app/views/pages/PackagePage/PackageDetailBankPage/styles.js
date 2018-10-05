@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
   logoView: {
     width: 150,
     height: 80,
-    borderWidth: 3,
+    borderWidth: 5,
     margin: 10,
     borderRadius: 5
   },

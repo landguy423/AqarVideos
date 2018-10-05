@@ -6,6 +6,7 @@ import {
   Image
 } from 'react-native';
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import KeyboardScrollView from '@components/KeyboardView';
@@ -26,7 +27,7 @@ class PackageDetailBankPage extends Component {
       bankData: {},
       loading: false,
       sendBankResult: null,
-      selectIndex: 0
+      selectIndex: 1
     }
   }
 
@@ -40,7 +41,7 @@ class PackageDetailBankPage extends Component {
     if (this.props.packages.status === 'GET_BANK_DETAIL_REQUEST' && nextProps.packages.status === 'GET_BANK_DETAIL_SUCCESS') {
       const { bankInfo } = nextProps.packages
       this.setState({ loading: false })
-      this.setState({ bankInfo, bankData: bankInfo.length > 0 ? bankInfo[0] : {} })
+      this.setState({ bankInfo, bankData: bankInfo.length > 0 ? bankInfo[this.state.selectIndex] : {} })
     }
 
     if (this.props.packages.status === 'SEND_BANK_DETAIL_REQUEST' && nextProps.packages.status === 'SEND_BANK_DETAIL_SUCCESS') {
@@ -95,7 +96,7 @@ class PackageDetailBankPage extends Component {
             {bankInfo.map((item, index) => (
               <TouchableOpacity
                 key={index} onPress={() => this.onChange(index)}
-                style={[styles.logoView, index === selectIndex ? { borderColor: COMMON_COLORS.PINK_COLOR } : { borderColor: COMMON_COLORS.GREEN_COLOR }]}
+                style={[styles.logoView, index === selectIndex ? { borderColor: COMMON_COLORS.GREEN_COLOR } : { borderColor: '#e2e2e2' }]}
                 activeOpacity={0.8}
               >
                 <Image source={{ uri: item.image }} style={styles.logo} />
