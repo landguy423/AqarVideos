@@ -362,7 +362,7 @@ class SearchPage extends Component {
                       labelBefore
                       labelStyle={{
                         color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
-                        fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                        fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
                         marginBottom: 3,
                         fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                       }}
@@ -375,7 +375,7 @@ class SearchPage extends Component {
                       labelBefore
                       labelStyle={{
                         color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
-                        fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                        fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
                         marginBottom: 3,
                         fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                       }}
@@ -463,11 +463,12 @@ class SearchPage extends Component {
             animationType="slide"
             transparent
             isVisible={this.state.showProducts}
-            backdropColor='rgba(0, 0, 0, 0.3)'
+            backdropColor='rgba(0, 0, 0, 0.2)'
             onBackdropPress={() => this.setState({ showProducts: false })}
           >
             <View style={styles.modal} >
               <ProductListPage
+                page="search"
                 category={this.state.category}
                 allProduct={this.state.searchProductList}
                 listWidth={COMMON_STYLES.SCREEN_SUB_WIDTH}

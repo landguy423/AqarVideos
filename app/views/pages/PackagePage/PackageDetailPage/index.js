@@ -84,6 +84,16 @@ class PackageDetailPage extends Component {
 
   render() {
     const { data, packages } = this.props
+    let height = COMMON_STYLES.SCREEN_NORMAL_HEIGHT - 160
+    let padding = 20
+    if ((!packages.isPaidUser || (packages.isPaidUser && packages.myPackageInfo && packages.myPackageInfo.package.price === '$0.00'))
+            && data.price !== '$0.00') {
+      height = COMMON_STYLES.SCREEN_NORMAL_HEIGHT - 380
+    }
+
+    if (!packages.isPaidUser || (packages.isPaidUser && packages.myPackageInfo && packages.myPackageInfo.package.price === '$0.00' && data.price !== '$0.00')) {
+      padding = 100
+    }
 
     return (
       <Container title={`${data.duration}${I18n.t('packages.days')}`} type='detail'>
@@ -109,8 +119,8 @@ class PackageDetailPage extends Component {
             </View>
           </View>
           
-          <View style={styles.detailView}>
-            <ScrollView style={styles.scrollView}>
+          <View style={[styles.detailView, { height }]}>
+            <ScrollView style={[styles.scrollView, { paddingBottom: padding }]}>
               <Text style={styles.description}>
                 {data.detail['1'].description}
               </Text>

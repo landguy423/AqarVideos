@@ -416,7 +416,7 @@ class ProductUpdatePage extends Component {
                     labelBefore
                     labelStyle={{
                       color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
-                      fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                      fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
                       marginBottom: 3,
                       fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                     }}
@@ -459,7 +459,7 @@ class ProductUpdatePage extends Component {
                     labelBefore
                     labelStyle={{
                       color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
-                      fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+                      fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
                       marginBottom: 3,
                       fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                     }}

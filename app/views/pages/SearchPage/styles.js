@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
   textRadio: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     marginBottom: 5,
-    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
@@ -82,7 +82,7 @@ export const styles = StyleSheet.create({
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     width: '100%',
-    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'center',
   },
@@ -90,7 +90,7 @@ export const styles = StyleSheet.create({
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',
     width: '100%',
-    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right',
   },

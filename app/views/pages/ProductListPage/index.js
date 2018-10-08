@@ -49,7 +49,7 @@ class ProductListPage extends Component {
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
-    const { user, itemWidth } = this.props
+    const { user, itemWidth, page } = this.props
     return (
       <View style={styles.listItem}>
         <TouchableOpacity 
@@ -57,7 +57,10 @@ class ProductListPage extends Component {
           onPress={() => this.onItemSelect(rowData, rowID)}
         >
           <View style={styles.videoView}>
-            <VideoComponent rowData={rowData} offsetX={COMMON_STYLES.SCREEN_WIDTH / 2 - 30} offsetY={60} size={50} full={true} />
+            {page === 'tab'
+              ? <VideoComponent rowData={rowData} offsetX={COMMON_STYLES.SCREEN_WIDTH / 2 - 30} offsetY={60} size={50} full={true} />
+              : <VideoComponent rowData={rowData} offsetX={COMMON_STYLES.SCREEN_SUB_WIDTH / 2 - 30} offsetY={60} size={50} full={true} />
+            }
 
             <View style={styles.subView}>
               <Text style={styles.textTitle}>{rowData.name}</Text>
@@ -126,12 +129,14 @@ const mapStateToProps = ({ user }) => ({
 
 ProductListPage.defaultProps = {
   listWidth: COMMON_STYLES.SCREEN_WIDTH,
+  page: 'tab',
   closeModal: () => {}
 }
 
 ProductListPage.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   listWidth: PropTypes.number,
+  page: PropTypes.string,
   closeModal: PropTypes.func
 }
 

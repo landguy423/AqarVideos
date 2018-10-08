@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   dropdownPlaceholderText: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
-    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right'
   },
   arrowDown: {

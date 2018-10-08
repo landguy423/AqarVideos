@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
   input: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     width: '100%',
-    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
   },
   iconView: {

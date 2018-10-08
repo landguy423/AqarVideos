@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
   textDescription: {
     backgroundColor: 'transparent',
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
-    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },

@@ -41,18 +41,18 @@ export const styles = StyleSheet.create({
   },
   detailView: {
     width: '100%',
-    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT - 380,
     backgroundColor: 'transparent',
   },
   scrollView: {
     width: '100%',
-    paddingVertical: 20,
+    paddingTop: 20,
     paddingHorizontal: COMMON_STYLES.PADDING,
   },
   description: {
     backgroundColor: 'transparent',
     textAlign: 'right',
-    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    marginBottom: 40
   },
   radioGroup: {
     width: '100%'

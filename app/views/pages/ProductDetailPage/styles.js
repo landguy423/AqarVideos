@@ -64,6 +64,16 @@ export const styles = StyleSheet.create({
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     textAlign: 'right'
   },
+  textPhone: {
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    textAlign: 'right',
+    color: COMMON_COLORS.GREEN_COLOR,
+    fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+
+  },
   bold: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     fontWeight: 'bold',

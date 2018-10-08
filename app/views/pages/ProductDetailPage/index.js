@@ -18,7 +18,8 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
+import _ from 'lodash'
+import call from 'react-native-phone-call'
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { CATEGORY_ICON_LIST } from '@common/category';
@@ -126,6 +127,15 @@ class ProductDetailPage extends Component {
     this.setState({ opacity: isBuffering ? 1 : 0 })
   }
 
+  onPhoneCall = () => {
+    const number = _.split(this.props.data.telephone, '+')
+    const args = {
+      number: number[1],
+      prompt: false
+    }
+    call(args).catch(console.error)
+  }
+
   render() {
     const { data, user } = this.props;
 
@@ -188,9 +198,11 @@ class ProductDetailPage extends Component {
 
               {data.telephone && (
                 <View style={[styles.titleView, { marginBottom: 0 }]}>
-                  <Text style={[styles.textDescription, { color: COMMON_COLORS.GREEN_COLOR }]}>
-                    {data.telephone}
-                  </Text>
+                  <TouchableOpacity onPress={() => this.onPhoneCall()}>
+                    <Text style={styles.textPhone}>
+                      {data.telephone}
+                    </Text>
+                  </TouchableOpacity>
                 </View>
               )}
               
