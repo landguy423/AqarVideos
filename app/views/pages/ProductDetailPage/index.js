@@ -140,7 +140,7 @@ class ProductDetailPage extends Component {
     const { data, user } = this.props;
 
     return (
-      <Container title={data.name} type='detail'>
+      <Container title="" type='detail'>
         <View style={styles.container}>
           <ScrollView>
             <View style={styles.subContainer}>

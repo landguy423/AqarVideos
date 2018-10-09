@@ -370,7 +370,7 @@ class Signup extends Component {
                   keyboardType="numbers-and-punctuation"
                   value={this.state.mobile}
                   onChangeText={text => this.setState({ mobile: text })}
-                  returnKeyType={'send'}
+                  returnKeyType={'done'}
                   onSubmitEditing={() => this.onVerifyPhone()}
                 />
               </View>

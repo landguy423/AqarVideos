@@ -116,9 +116,9 @@ class Login extends Component {
 
     this.setState({ loading: true });
 
-    const telephone = _.split(this.state.mobile, '+')
+    // const telephone = _.split(this.state.mobile, '+')
     let data = {
-      telephone: telephone[1]
+      telephone: this.state.mobile
     };
     this.props.forgotPassword(data, this.props.tokenInfo.token);
   }

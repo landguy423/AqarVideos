@@ -22,13 +22,13 @@ export default {
     my_location: 'موقعي',
     packages: 'الباقات',
     my_profile: 'حسابي',
-    support_advertisement: 'إشتراكي',
+    support_advertisement: 'الدعم والمبيعات',
     signout: 'تسجيل الخروج',
     login_signup: ' الدخول  /   التسجيل',
     preview: 'مشاهدة',
     register: 'تسجيل جديد',
     search: 'البحث',
-    my_packages: 'باقاتي',
+    my_packages: 'باقتي',
   },
   main: {
     list: 'القائمة',
@@ -38,7 +38,7 @@ export default {
     days: 'أيام',
     trial: 'تجربة',
     free_trial: 'تجربة مجانية',
-    try: 'محاولة',
+    try: 'تفعيل الباقة',
     account_number: 'رقم الحساب',
     company_name: 'اسم الشركة',
     bank_number: 'رقم البنك',
@@ -88,7 +88,7 @@ export default {
     description: 'الوصف*',
     title: 'العنوان*',
     select_address: 'اختر العنوان من الخريطة',
-    radius: 'نصف القطر (km)',
+    radius: 'المساحة',
     radius_ph: 'دائرة نصف قطرها الإدخال',
     select_video: 'يرجى تحديد الفيديو',
     select_address: 'يرجى اختيار العنوان',
@@ -97,10 +97,10 @@ export default {
   },
   profile: {
     ph_name: 'الاسم كامل',
-    ph_firstname: "الاسم الأول",
-    ph_lastname: "اسم اعائلة",
+    ph_firstname: "الإسم الشخصي",
+    ph_lastname: "الإسم العائلي",
     ph_mobile_number: 'رقم الجوال',
-    ph_email: 'عنوان البريد الإلكتروني',
+    ph_email: 'البريد الإلكتروني',
     ph_password: 'كلمة المرور',
     ph_confirm_password: 'تأكيد كلمة المرور',
     forgot_password: 'نسيت كلمة المرور',
@@ -147,12 +147,12 @@ export default {
     commercial: 'تجاري'
   },
   apartment_type: {
-    singular: 'صيغة المفرد',
-    familiar: 'مألوف'
+    singular: 'عزاب',
+    familiar: 'عوائل'
   },
   payment_type: {
-    visa: 'التأشيرة والبطاقة الرئيسية',
-    bank: 'بنك'
+    visa: 'البطاقات الإئتمانية / سداد',
+    bank: 'تحويل بنكي'
   },
   register: {
     verify_phone: 'رمز التحقق يرسل إلى هاتفك!',

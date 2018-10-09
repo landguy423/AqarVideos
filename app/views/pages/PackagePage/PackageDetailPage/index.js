@@ -140,7 +140,7 @@ class PackageDetailPage extends Component {
                 <RadioButton value="MasterCard">
                   <View style={styles.radioItem}>
                     <Text style={styles.radioText}>{I18n.t('payment_type.visa')}</Text>
-                    <Image source={IMG_VISA} style={styles.visaImage} />
+                    <Image source={IMG_VISA} style={styles.visaImage} resizeMode="contain" />
                   </View>
                 </RadioButton>
                 <RadioButton value="Bank">

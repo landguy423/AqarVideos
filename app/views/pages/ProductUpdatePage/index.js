@@ -209,7 +209,7 @@ class ProductUpdatePage extends Component {
     }
 
     return (
-      <Container title={this.state.name} type='detail'>
+      <Container title="" type='detail'>
         <LoadingSpinner visible={loading } />
 
         <View style={styles.container}>
