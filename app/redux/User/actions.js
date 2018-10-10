@@ -87,3 +87,15 @@ export function forgotPassword(data, token) {
       })  
   };
 }
+export function updaePassword(data, token) {
+  return {
+    types: [types.UPDATE_PASSWORD_REQUEST, types.UPDATE_PASSWORD_SUCCESS, types.UPDATE_PASSWORD_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${API_URL}?route=api/customer/updatePassword&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          data: data
+      })  
+  };
+}

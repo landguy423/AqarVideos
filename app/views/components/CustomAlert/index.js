@@ -30,8 +30,8 @@ export default class CustomAlert extends Component {
         showCancelButton
         cancelText={I18n.t('alert.ok')}
         cancelButtonColor="#DD6B55"
-        alertContainerStyle={{zIndex: 100}}
-        // overlayStyle={{opacity: 0.2}}
+        alertContainerStyle={{ zIndex: 100 }}
+        overlayStyle={{ position: 'absolute', top: 0 }}
         onCancelPressed={() => {
           this.props.closeAlert();
         }}

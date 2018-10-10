@@ -65,12 +65,14 @@ class Login extends Component {
     }
 
     if (this.props.user.status === 'FORGOT_PASSWORD_REQUEST' && user.status === 'FORGOT_PASSWORD_SUCCESS') {
-      this.setState({
-        loading: false,
-        isError: true,
-        errorTitle: user.forgotPasswordResult.status === 200 ? I18n.t('alert.success') : I18n.t('alert.error'),
-        errorText: user.forgotPasswordResult.status === 200 ? I18n.t('register.forgot_success') : I18n.t('register.forgot_failed')
-      })
+      // this.setState({
+      //   loading: false,
+      //   isError: true,
+      //   errorTitle: user.forgotPasswordResult.status === 200 ? I18n.t('alert.success') : I18n.t('alert.error'),
+      //   errorText: user.forgotPasswordResult.status === 200 ? I18n.t('register.forgot_success') : I18n.t('register.forgot_failed')
+      // })
+      this.setState({ loading: false })
+      Actions.ForgotPasswordPage({ phone: this.state.mobile })
     }
 
     if (this.props.user.status === 'FORGOT_PASSWORD_REQUEST' && user.status === 'FORGOT_PASSWORD_FAILED') {

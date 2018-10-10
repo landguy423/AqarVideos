@@ -16,6 +16,7 @@ const store = createStoreWithMiddleware(reducer);
 
 import MainPage from './views/pages/MainPage';
 import RegisterPage from './views/pages/RegisterPage';
+import ForgotPasswordPage from './views/pages/RegisterPage/forgotPassword';
 import MyAdsPage from './views/pages/MyAdsPage';
 import MyWishListPage from './views/pages/MyWishListPage';
 import PackagePage from './views/pages/PackagePage';
@@ -63,6 +64,7 @@ export default class App extends Component {
       <Scene key="root">
         <Scene key="Main" initial component={ MainPage } hideNavBar panHandlers={null}/>
         <Scene key="Register" component={ RegisterPage } hideNavBar panHandlers={null}/>
+        <Scene key="ForgotPasswordPage" component={ ForgotPasswordPage } hideNavBar panHandlers={null}/>
         <Scene key="MyAds" component={ MyAdsPage } hideNavBar panHandlers={null}/>
         <Scene key="MyWishList" component={ MyWishListPage } hideNavBar panHandlers={null} />
         <Scene key="Package" component={ PackagePage } hideNavBar panHandlers={null}/>

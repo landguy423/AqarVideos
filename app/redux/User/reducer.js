@@ -11,6 +11,7 @@ const initialState = {
   verifyCodeInfo: null,
   userSignupInfo: null,
   forgotPasswordResult: null,
+  updatePasswordResult: null,
   status: null
 };
 
@@ -139,6 +140,26 @@ export default function user(state = initialState, action = {}) {
         status: types.FORGOT_PASSWORD_FAILED,
         forgotPasswordResult: null,
       };
+  /**************************/
+  /* Forgot password
+  /**************************/
+  case types.UPDATE_PASSWORD_REQUEST:
+    return {
+      ...state,
+      updatePasswordResult: null,
+      status: types.UPDATE_PASSWORD_REQUEST,
+    };
+  case types.UPDATE_PASSWORD_SUCCESS:
+    return {
+      status: types.UPDATE_PASSWORD_SUCCESS,
+      updatePasswordResult: action.result.data
+    }
+  case types.UPDATE_PASSWORD_FAILED:
+    return {
+      ...state,
+      status: types.UPDATE_PASSWORD_FAILED,
+      updatePasswordResult: null,
+    };
 
     /*
       User sign out

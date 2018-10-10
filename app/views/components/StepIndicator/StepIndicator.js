@@ -235,7 +235,7 @@ export default class StepIndicator extends PureComponent {
       return (
         <Animated.View key={'step-indicator'} removeClippedSubviews style={[styles.step , stepStyle ]}>
           {_isArabic ?
-            <Text style={indicatorLabelStyle}>{ 3 - position }</Text> :
+            <Text style={indicatorLabelStyle}>{ stepCount - position }</Text> :
             <Text style={indicatorLabelStyle}>{ 1 + position }</Text>
           }
         </Animated.View>

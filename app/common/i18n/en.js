@@ -110,6 +110,7 @@ export default {
     wizard_phone: "verify phone",
     wizard_code: "verify code",
     wizard_signup: "signup",
+    wizard_update: 'update password',
     success: "You have successfully updated the profile",
     failed: "Profile update failed"
   },
@@ -167,7 +168,10 @@ export default {
     forgot_failed: 'Mobile number does not exist',
     login_success: 'Successfully logged in',
     login_failed: 'Login failed',
-    login_password_matched_fail: 'Wrong password'
+    login_password_matched_fail: 'Wrong password',
+    input_code: 'Please input code',
+    input_password: 'Please input password',
+    update_password_failed: 'Password updating is failed'
   },
   alert: {
     ok: "OK",

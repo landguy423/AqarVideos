@@ -110,6 +110,7 @@ export default {
     wizard_phone: 'رقم الجوال',
     wizard_code: 'التحقق من الرمز',
     wizard_signup: 'التسجيل',
+    wizard_update: 'تطوير كلمة السر',
     success: 'لقد قمت بتحديث ملف التعريف بنجاح',
     failed: 'فشل تحديث الملف الشخصي'
   },
@@ -167,7 +168,10 @@ export default {
     forgot_failed: 'رقم الهاتف المحمول غير موجود',
     login_success: 'تسجيل الدخول بنجاح',
     login_failed: 'فشل تسجيل الدخول',
-    login_password_matched_fail: 'كلمة مرور خاطئة'
+    login_password_matched_fail: 'كلمة مرور خاطئة',
+    input_code: 'يرجى إدخال رمز',
+    input_password: 'يرجى إدخال كلمة السر',
+    update_password_failed: 'فشل تحديث كلمة المرور'
   },
   alert: {
     ok: "حسنا",
