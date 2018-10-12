@@ -13,6 +13,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import WebViewAndroid from 'react-native-webview-android';
 import Icon from 'react-native-vector-icons/Feather';
+import I18n from '@i18n'
 import { styles } from './styles';
 
 class PaymentWebPage extends Component {
@@ -53,7 +54,7 @@ class PaymentWebPage extends Component {
               <Icon name='arrow-left' style={styles.backIcon}></Icon>
             </TouchableOpacity>
           </View>
-          <Text style={styles.menuTitle}>Telr payment page</Text>
+          <Text style={styles.menuTitle}>{I18n.t('packages.web_title')}</Text>
         </View>
 
         <View style={styles.paymentView}>

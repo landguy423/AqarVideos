@@ -63,7 +63,7 @@ class ProductListPage extends Component {
             }
 
             <View style={styles.subView}>
-              <Text style={styles.textTitle}>{rowData.name}</Text>
+              <Text style={styles.textTitle} numberOfLines={1} ellipsizeMode="tail">{rowData.name}</Text>
             </View>
           </View>
         </TouchableOpacity>

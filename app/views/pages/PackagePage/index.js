@@ -66,6 +66,8 @@ class PackagePage extends Component {
   }
 
   _renderRow (rowData, sectionID, rowID, highlightRow) {
+    let price = rowData.price
+    price = (price.split('$'))[1]
     return (
       <TouchableOpacity 
         activeOpacity={0.6}
@@ -79,7 +81,7 @@ class PackagePage extends Component {
             </View>
           </View>
           <View style={styles.footerView}>
-            <Text style={styles.textTitle}>{rowData.price}</Text>
+            <Text style={styles.textTitle}>{price}</Text>
           </View>
         </View>
       </TouchableOpacity>

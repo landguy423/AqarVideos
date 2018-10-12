@@ -78,8 +78,8 @@ class MyAdsPage extends Component {
           </View>
 
           <View style={styles.footerView}>
-            <Text  style={styles.textTitle}>{rowData.name}</Text>
-            <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
+            <Text style={styles.textTitle} numberOfLines={1} ellipsizeMode="tail">{rowData.name}</Text>
+            <Text style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
             <View style={styles.viewWrapper}>
               <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
               <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>

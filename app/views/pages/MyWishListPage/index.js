@@ -135,7 +135,7 @@ class MyWishListPage extends Component {
                             <VideoComponent rowData={rowData} />
                           </View>
                           <View style={styles.footerView}>
-                            <Text style={styles.textTitle}>{rowData.name}</Text>
+                            <Text style={styles.textTitle} numberOfLines={1} ellipsizeMode="tail">{rowData.name}</Text>
                             <View style={styles.bottomWrapper}> 
                               <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
                               <View style={styles.viewWrapper}>

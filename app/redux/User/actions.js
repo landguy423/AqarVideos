@@ -87,7 +87,7 @@ export function forgotPassword(data, token) {
       })  
   };
 }
-export function updaePassword(data, token) {
+export function updatePassword(data, token) {
   return {
     types: [types.UPDATE_PASSWORD_REQUEST, types.UPDATE_PASSWORD_SUCCESS, types.UPDATE_PASSWORD_FAILED],
     promise:

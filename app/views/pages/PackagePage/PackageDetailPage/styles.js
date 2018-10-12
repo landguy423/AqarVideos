@@ -76,7 +76,7 @@ export const styles = StyleSheet.create({
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
   },
   visaImage: {
-    width: 180,
+    width: 141,
     height: 30
   },
   bankImageView: {

@@ -29,6 +29,7 @@ export default {
     register: "REGISTER",
     search: "SEARCH",
     my_packages: "My Package",
+    add_to: "ADD TO"
   },
   main: {
     list: "LIST",
@@ -49,7 +50,8 @@ export default {
     confirm: 'CONFIRM',
     cancel: 'CANCEL',
     empty_package: "There is no package available",
-    no_url: "Can't get the payment url"
+    no_url: "Can't get the payment url",
+    web_title: "Visa / Master / Mada"
   },
   post_video: {
     record_choose_video: "Record or Choose the Video",

@@ -79,6 +79,14 @@ class ForgotPassword extends Component {
         })
       }
     }
+
+    if (this.props.user.status === 'UPDATE_PASSWORD_REQUEST' && user.status === 'UPDATE_PASSWORD_FAILED') {
+      this.setState({
+        isError: true,
+        errorTitle: I18n.t('alert.error'),
+        errorText: I18n.t('register.update_password_failed')
+      })
+    }
   }
   
   // Verify received code (step 1)

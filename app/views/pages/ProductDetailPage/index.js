@@ -138,6 +138,7 @@ class ProductDetailPage extends Component {
 
   render() {
     const { data, user } = this.props;
+    console.log('DATA: ', data)
 
     return (
       <Container title="" type='detail'>
@@ -173,13 +174,6 @@ class ProductDetailPage extends Component {
                     left: COMMON_STYLES.SCREEN_WIDTH / 2 - 20,
                   }}
                 />
-              </View>
-
-              <View style={styles.titleView}>
-                <Image source={CATEGORY_ICON_LIST[data.category.toLowerCase()]} style={styles.iconCategory} resizeMode="contain" />
-                <Text style={styles.textDescription}>
-                  {I18n.t(`category.${data.category.toLowerCase()}`)}
-                </Text>
               </View>
               
               <View style={styles.titleView}>
@@ -289,14 +283,29 @@ class ProductDetailPage extends Component {
                   </View>
                 </View>
               )}
+
+              {(data.location !== null && data.location.length > 0) && (
+                <View style={styles.itemView}>
+                  <Text style={styles.textDescription}>
+                    {data.location}
+                  </Text>
+                </View>
+              )}
               
               <View style={styles.itemView}>
                 <Text style={styles.textTitle}>
                   {data.product_type === '0' ? I18n.t('post_video.sale') : I18n.t('post_video.rent')}
                 </Text>
               </View>
+
+              <View style={styles.titleView}>
+                <Image source={CATEGORY_ICON_LIST[data.category.toLowerCase()]} style={styles.iconCategory} resizeMode="contain" />
+                <Text style={styles.textDescription}>
+                  {I18n.t(`category.${data.category.toLowerCase()}`)}
+                </Text>
+              </View>
               
-              <View style={[styles.titleView, { marginTop: 20 }]}>
+              {/* <View style={[styles.titleView, { marginTop: 20 }]}>
                 <Text style={styles.textTitle}>
                   {data.location}
                 </Text>
@@ -328,7 +337,7 @@ class ProductDetailPage extends Component {
                     />
                   </MapView>
                 </View>
-              </View>
+              </View> */}
 
               <View style={styles.separate} />
 
@@ -336,14 +345,18 @@ class ProductDetailPage extends Component {
                 <View style={styles.btnView}>
                   <TouchableOpacity onPress={() => this.onFavorite()} activeOpacity={0.5}>
                     <View style={styles.btnFavorite}>
+                      <View style={styles.sendTextWrapper}>
+                        <Text style={styles.textSend}>{I18n.t('sidebar.add_to')}</Text>
+                        <Text style={styles.textSend}>{(I18n.t('sidebar.my_wishlist')).toUpperCase()}</Text>
+                      </View>
                       <FontAwesome style={this.state.favorite ? styles.icon_select : styles.icon}>{Icons.star}</FontAwesome>
                     </View>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => this.onShare()} activeOpacity={0.5}>
+                  {/* <TouchableOpacity onPress={() => this.onShare()} activeOpacity={0.5}>
                     <View style={styles.btnShare}>
                       <IconEntypo name='share' style={styles.icon}></IconEntypo>
                     </View>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                   <TouchableOpacity onPress={() => this.onSendMessage()} activeOpacity={0.5}>
                     <View style={styles.btnSend}>
                       <View style={styles.sendTextWrapper}>
@@ -356,16 +369,16 @@ class ProductDetailPage extends Component {
                 </View>
               )}
               
-              {/* {user.userLogin && (
+              {user.userLogin && (
                 <View style={styles.btnView}>
                   <TouchableOpacity onPress={() => this.onReportAD()} activeOpacity={0.5}>
                     <View style={styles.btnAd}>
-                      <Text style={[styles.textDescription, {fontStyle: 'italic'}]}>{I18n.t('report_ad')}</Text>
+                      <Text style={[styles.textDescription, { fontStyle: 'italic' }]}>{I18n.t('report_ad')}</Text>
                       <Image source={ICON_REPORT} style={styles.iconAd} />
                     </View>
                   </TouchableOpacity>
                 </View>
-              )} */}
+              )}
             </View>
 
           </ScrollView>

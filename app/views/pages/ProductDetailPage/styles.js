@@ -66,7 +66,6 @@ export const styles = StyleSheet.create({
   },
   textPhone: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
-    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
     textAlign: 'right',
     color: COMMON_COLORS.GREEN_COLOR,
     fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
@@ -109,10 +108,11 @@ export const styles = StyleSheet.create({
   },
   btnFavorite: {
     backgroundColor: '#D6D6D6',
-    width: 90,
+    width: COMMON_STYLES.SCREEN_WIDTH / 2,
     height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   btnShare: {
     backgroundColor: COMMON_COLORS.PINK_COLOR,
@@ -122,7 +122,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnSend: {
-    width: COMMON_STYLES.SCREEN_WIDTH - 180,
+    // width: COMMON_STYLES.SCREEN_WIDTH - 200,
+    width: COMMON_STYLES.SCREEN_WIDTH / 2,
     backgroundColor: COMMON_COLORS.GREEN_COLOR,
     height: '100%',
     alignItems: 'center',

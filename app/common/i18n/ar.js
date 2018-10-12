@@ -29,6 +29,7 @@ export default {
     register: 'تسجيل جديد',
     search: 'البحث',
     my_packages: 'باقتي',
+    add_to: "اضف إليه"
   },
   main: {
     list: 'القائمة',
@@ -49,7 +50,8 @@ export default {
     confirm: 'تأكيد',
     cancel: 'إلغاء',
     empty_package: "لا يوجد حزمة المتاحة",
-    no_url: "لا يمكن الحصول على عنوان url الخاص بالدفع"
+    no_url: "لا يمكن الحصول على عنوان url الخاص بالدفع",
+    web_title: "فيزا / ماستر / مدى"
   },
   post_video: {
     record_choose_video: 'سجل أو اختر فيديو',
