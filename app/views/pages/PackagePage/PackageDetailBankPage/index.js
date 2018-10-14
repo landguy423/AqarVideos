@@ -19,6 +19,9 @@ import { styles } from './styles';
 import * as COMMON_COLORS from '@common/styles/commonColors';
 const img_detail = require('@common/assets/images/my_message/picture.png')
 
+const IMG_BANK_SAMB= require('@common/assets/images/package/samba.jpg')
+const IMG_BANK_RAJHI = require('@common/assets/images/package/rajhi.png')
+
 class PackageDetailBankPage extends Component {
   constructor(props) {
     super(props);
@@ -93,15 +96,20 @@ class PackageDetailBankPage extends Component {
           <Image source={img_detail} style={styles.thumbnail} />
           
           <View style={styles.logoContainer}>
-            {bankInfo.map((item, index) => (
-              <TouchableOpacity
-                key={index} onPress={() => this.onChange(index)}
-                style={[styles.logoView, index === selectIndex ? { borderColor: COMMON_COLORS.GREEN_COLOR } : { borderColor: '#e2e2e2' }]}
-                activeOpacity={0.8}
-              >
-                <Image source={{ uri: item.image }} style={styles.logo} />
-              </TouchableOpacity>
-            ))}
+            <TouchableOpacity
+              onPress={() => this.onChange(0)}
+              style={[styles.logoView, selectIndex === 0 ? { borderColor: COMMON_COLORS.GREEN_COLOR } : { borderColor: '#e2e2e2' }]}
+              activeOpacity={0.8}
+            >
+              <Image source={IMG_BANK_SAMB} style={styles.logo} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.onChange(1)}
+              style={[styles.logoView, selectIndex === 1 ? { borderColor: COMMON_COLORS.GREEN_COLOR } : { borderColor: '#e2e2e2' }]}
+              activeOpacity={0.8}
+            >
+              <Image source={IMG_BANK_RAJHI} style={styles.logo} />
+            </TouchableOpacity>
           </View>
 
           {!_.isEmpty(bankData) && (

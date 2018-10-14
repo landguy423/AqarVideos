@@ -47,7 +47,8 @@ class MyWishListPage extends Component {
   componentWillReceiveProps(nextProps) {
     const { products } = nextProps
 
-    if (this.props.products.loading === 'GET_WISHLIST_PRODUCT_REQUEST' && products.loading === 'GET_WISHLIST_PRODUCT_SUCCESS') {
+    if ((this.props.products.loading === 'GET_WISHLIST_PRODUCT_REQUEST' && products.loading === 'GET_WISHLIST_PRODUCT_SUCCESS') ||
+        (this.props.products.loading === 'ADD_VIEW_COUNT_REQUEST' && products.loading === 'ADD_VIEW_COUNT_SUCCESS')) {
       this.setState({ loading: false })
       if (products.wishlistProduct) {
         const data = _.orderBy(products.wishlistProduct, ['date_added'], ['desc'])

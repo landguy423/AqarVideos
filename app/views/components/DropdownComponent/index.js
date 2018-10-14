@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import { Dropdown } from 'react-native-material-dropdown';
-import IconEntypo from 'react-native-vector-icons/Entypo';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { styles } from './styles';
 
 export default class DropdownComponent extends Component {
@@ -24,12 +24,12 @@ export default class DropdownComponent extends Component {
           onChangeText={(value, index) => this.props.selectItem(index)}
           renderBase={() => (
             <View style={styles.dropdownPlaceholderView}>
-              <IconEntypo name='chevron-down' style={styles.arrowDown} />
+              <Text style={styles.dropdownPlaceholderText}>{this.props.item}</Text>
+              <FontAwesome name='angle-down' style={styles.arrowDown} size={30} />
             </View>
           )}
           underlineColorAndroid='transparent'
         />
-        <Text style={styles.dropdownPlaceholderText}>{this.props.item}</Text>
       </View>
     )
   }

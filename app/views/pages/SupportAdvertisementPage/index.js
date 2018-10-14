@@ -177,8 +177,8 @@ class SupportAdvertisementPage extends Component {
                 </View>
               </View>
 
-              <View style={styles.itemView}>
-                <Text style={styles.textTitle}>{I18n.t('support.subject')}</Text>
+              <View style={[styles.itemView, { marginRight: 5 }]}>
+                {/* <Text style={styles.textTitle}>{I18n.t('support.subject')}</Text> */}
                 <DropdownComponent
                   selectItem={value => this.setState({ subject: value })}
                   item={subjectList.length > 0 ? subjectList[this.state.subject].value : ''}
@@ -186,7 +186,7 @@ class SupportAdvertisementPage extends Component {
                 />
               </View>
 
-              <View style={styles.itemView}>
+              <View style={[styles.itemView, styles.messageView]}>
                 <Text style={styles.textTitle}>{I18n.t('support.message')}</Text>
                 <TextInput
                   ref="message"

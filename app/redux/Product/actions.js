@@ -127,7 +127,8 @@ export function addViewCount(token, data) {
           url: `${API_URL}?route=api/package/viewProductCount&api_token=${token}`,
           headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
           data,
-      })  
+      }),
+    payload: { productId: data.product_id }
   };
 }
 

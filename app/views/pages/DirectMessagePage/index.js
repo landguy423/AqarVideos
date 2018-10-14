@@ -60,7 +60,7 @@ class DirectMessagePage extends Component {
 
   render() {
     return (
-      <Container title={'DIRECT MESSAGE'} type='detail'>
+      <Container title={I18n.t('direct_message')} type='detail'>
         <View style={styles.container}>
           <KeyboardScrollView>
             <View style={styles.fieldContainer}>
@@ -69,7 +69,7 @@ class DirectMessagePage extends Component {
                   ref="fullName"
                   autoCapitalize="none"
                   autoCorrect={ false }
-                  placeholder="Fullname"
+                  placeholder={I18n8n.t('profile.ph_name')}
                   placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}
@@ -84,7 +84,7 @@ class DirectMessagePage extends Component {
                 </View>
               </View>
 
-              <View style={styles.itemView}>
+              {/* <View style={styles.itemView}>
                 <Text style={styles.textTitle}>{I18n.t('support.subject')}</Text>
                 <TextInput
                   ref="subject"
@@ -100,16 +100,16 @@ class DirectMessagePage extends Component {
                   value={ this.state.subject }
                   onChangeText={ (text) => this.setState({ subject: text }) }
                 />
-              </View>
+              </View> */}
 
-              <View style={styles.itemView}>
+              <View style={[styles.itemView, styles.messageView]}>
                 <Text style={styles.textTitle}>{I18n.t('message')}</Text>
                 <TextInput
                   ref="message"
                   multiline
                   autoCapitalize="none"
                   autoCorrect={ true }
-                  placeholder="Type your message here"
+                  placeholder={I18n.t('support.ph_message')}
                   placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}

@@ -73,6 +73,7 @@ export const styles = StyleSheet.create({
   viewWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'flex-end'
   },
   textViewCount: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,

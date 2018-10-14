@@ -217,9 +217,31 @@ export default function products(state = initialState, action = {}) {
         loading: types.ADD_VIEW_COUNT_REQUEST,
       };
     case types.ADD_VIEW_COUNT_SUCCESS: {
+      const { data } = action.result
+      const { productId } = action.payload
+      const { allProduct, wishlistProduct } = state
+      const currentProduct = _.filter(allProduct, item => item.product_id === productId)
+      const restProduct = _.filter(allProduct, item => item.product_id !== productId)
+
+      const restWishlistProduct = _.filter(wishlistProduct, item => item.product_id !== productId)
+
       return {
         ...state,
         loading: types.ADD_VIEW_COUNT_SUCCESS,
+        allProduct: [
+          ...restProduct,
+          {
+            ...currentProduct[0],
+            viewed: data.viewcount
+          }
+        ],
+        wishlistProduct: [
+          ...restWishlistProduct,
+          {
+            ...currentProduct[0],
+            viewed: data.viewcount
+          }
+        ]
       }
     }
     case types.ADD_VIEW_COUNT_FAILED:

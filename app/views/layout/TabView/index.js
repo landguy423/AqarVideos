@@ -88,7 +88,8 @@ class TabView extends Component {
   componentWillReceiveProps(nextProps) {
     const { products, packages } = nextProps
 
-    if (this.props.products.loading === 'GET_PRODUCT_BY_CATEGORY_REQUEST' && products.loading === 'GET_PRODUCT_BY_CATEGORY_SUCCESS') {
+    if ((this.props.products.loading === 'GET_PRODUCT_BY_CATEGORY_REQUEST' && products.loading === 'GET_PRODUCT_BY_CATEGORY_SUCCESS') ||
+        (this.props.products.loading === 'ADD_VIEW_COUNT_REQUEST' && products.loading === 'ADD_VIEW_COUNT_SUCCESS')) {
       this.setState({
         loading: false,
         allProduct: products.allProduct,

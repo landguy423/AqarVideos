@@ -187,5 +187,6 @@ export default {
     bank_failed: "Failed to send bank data",
     upload_success: "The request signature we calculated does not match the signature you provided. Check your key and signing method",
     upload_failed: "Failed to upload video file to server"
-  }
+  },
+  direct_message: 'DIRECT MESSAGE'
 }

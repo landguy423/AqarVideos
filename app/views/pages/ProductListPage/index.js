@@ -27,7 +27,18 @@ class ProductListPage extends Component {
   }
 
   componentWillMount() {
-    const { category, allProduct, user } = this.props
+    const { allProduct } = this.props
+    this.setCateogryProduct(allProduct)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.allProduct !== nextProps.allProduct) {
+      this.setCateogryProduct(nextProps.allProduct)
+    }
+  }
+
+  setCateogryProduct(allProduct) {
+    const { category, user } = this.props
 
     let categoryProduct = [];
     if (user.userLogin) {

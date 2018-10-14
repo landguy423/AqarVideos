@@ -20,11 +20,10 @@ export const styles = StyleSheet.create({
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
-    textAlign: 'right'
+    textAlign: 'right',
+    marginRight: 30,
   },
   arrowDown: {
-    marginLeft: 25,
-    fontSize: 30,
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
   },
   pickerStyle: {

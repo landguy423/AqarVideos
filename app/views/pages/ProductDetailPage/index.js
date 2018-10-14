@@ -50,7 +50,7 @@ class ProductDetailPage extends Component {
     const { data, token, addViewCount } = this.props
 
     this.setState({ favorite: data.favorite })
-    addViewCount(token.tokenInfo.token, { product_id: data.product_id })
+    addViewCount(token.tokenInfo.token, { product_id: data.product_id, user_id: this.props.user.userInfo.user.customer_id })
   }
 
   componentWillReceiveProps(nextProps) {

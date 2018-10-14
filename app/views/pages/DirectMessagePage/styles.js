@@ -56,6 +56,9 @@ export const styles = StyleSheet.create({
     marginVertical: 5,
     paddingVertical: 10,
   },
+  messageView: {
+    borderBottomWidth: 0
+  },
   input: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     width: '100%',

@@ -8,8 +8,14 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT,
-    width: '100%',
+    width: COMMON_STYLES.SCREEN_WIDTH,
     justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  fieldContainer: {
+    width: COMMON_STYLES.SCREEN_WIDTH,
+    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT - 100,
+    justifyContent:'center',
     alignItems: 'center',
   },
   btnView: {
@@ -29,12 +35,6 @@ export const styles = StyleSheet.create({
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: 'white',
     fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
-  },
-  fieldContainer: {
-    width: '100%',
-    height: COMMON_STYLES.SCREEN_NORMAL_HEIGHT - 100,
-    justifyContent:'center',
-    alignItems: 'center',
   },
   inputView: {
     width: '100%',
@@ -56,6 +56,9 @@ export const styles = StyleSheet.create({
     marginVertical: 5,
     paddingVertical: 10,
     marginTop: 20,
+  },
+  messageView: {
+    borderBottomWidth: 0
   },
   input: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
