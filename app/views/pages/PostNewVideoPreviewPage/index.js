@@ -205,14 +205,7 @@ class PostNewVideoPreviewPage extends Component {
               </View>
             )}
 
-            {data.category === 'villa' && (
-              <View style={styles.itemView}>
-                <Text style={styles.textDescription}>
-                  {data.squaremeter}
-                </Text>
-              </View>)}
-
-            {(data.category === 'apartment' || data.category === 'chalet') && (
+            {(data.category === 'apartment') && (
               <View style={styles.itemView}>
                 <Text style={styles.textDescription}>
                   {PERIOD_DATA[parseInt(data.period)].value}
@@ -222,6 +215,11 @@ class PostNewVideoPreviewPage extends Component {
 
             {(data.category === 'apartment') && (
               <View>
+                <View style={styles.itemView}>
+                  <Text style={styles.textDescription}>
+                    {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
+                  </Text>
+                </View>
                 {data.furniture.checked && (
                   <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
@@ -229,34 +227,7 @@ class PostNewVideoPreviewPage extends Component {
                     </Text>
                   </View>
                 )}
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
-                  </Text>
-                </View>
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.room_count}
-                  </Text>
-                </View>
-                {data.ownership.checked && (
-                  <View style={styles.itemView}>
-                    <Text style={styles.textDescription}>
-                      {I18n.t('post_video.ownership')}
-                    </Text>
-                  </View>
-                )}
               </View>
-            )}
-
-            {(data.category === 'office') && (
-              data.areaspace.length > 0 && (
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.areaspace}
-                  </Text>
-                </View>
-              )
             )}
 
             {(data.category === 'gallery') && (
@@ -265,13 +236,6 @@ class PostNewVideoPreviewPage extends Component {
                   <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {data.street_size}
-                    </Text>
-                  </View>
-                )}
-                {data.gallery_number.length > 0 && (
-                  <View style={styles.itemView}>
-                    <Text style={styles.textDescription}>
-                      {data.gallery_number}
                     </Text>
                   </View>
                 )}

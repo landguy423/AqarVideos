@@ -41,21 +41,15 @@ class SearchPage extends Component {
       address: I18n.t('post_video.select_address'),
       coordinate: null,
       category: 'building',
-      minPrice: '0',
-      maxPrice: '10000',
+      minPrice: '',
+      maxPrice: '',
       productOption: I18n.t('post_video.sale'),
       radius: '1',
       period: '0',
       buildingType: '0',
-      minSquareMeter: '',
-      maxSquareMeter: '',
-      roomType: '0',
-      roomCount: '',
+      roomType: '0',      
       furniture: true,
-      ownership: false,
-      areaSpace: '',
       streetSize: '',
-      galleryNumber: '',
       searchedProducts: [],
     }
     this.player = null;
@@ -106,16 +100,10 @@ class SearchPage extends Component {
         min_price: this.state.minPrice,
         max_price: this.state.maxPrice,
         building_type: this.state.buildingType,
-        min_square_meter: this.state.minSquareMeter,
-        max_square_meter: this.state.maxSquareMeter,
         period: this.state.period,
         room_type: this.state.roomType,
-        room_count: this.state.roomCount,
         furniture: this.state.furniture,
-        ownership: this.state.ownership,
-        areaspace: this.state.areaSpace,
-        street_size: this.state.streetSize,
-        gallery_number: this.state.galleryNumber
+        street_size: this.state.streetSize
       }
     );
   }
@@ -223,16 +211,10 @@ class SearchPage extends Component {
                     <Text style={styles.textRadio}>{I18n.t('post_video.rent')}</Text>
                   </RadioButton>
                 </RadioGroup>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.product_option')}
-                </Text>
               </View>
 
               {(category === 'building') && (
                 <View style={styles.itemView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.type')}
-                  </Text>
                   <DropdownComponent
                     selectItem={value => this.setState({ buildingType: value })}
                     item={BUILDING_TYPE_DATA[parseInt(this.state.buildingType)].value}
@@ -241,8 +223,8 @@ class SearchPage extends Component {
                 </View>
               )}
 
-              <View style={styles.squareMeterView}>
-                <View style={styles.squareMeterBox}>
+              <View style={styles.priceView}>
+                <View style={styles.priceBox}>
                   <TextInput
                     ref="maxPrice"
                     autoCapitalize="none"
@@ -258,7 +240,7 @@ class SearchPage extends Component {
                     onChangeText={text => this.setState({ maxPrice: text })}
                   />
                 </View>
-                <View style={styles.squareMeterBox}>
+                <View style={styles.priceBox}>
                   <TextInput
                     ref="minPrice"
                     autoCapitalize="none"
@@ -276,47 +258,8 @@ class SearchPage extends Component {
                 </View>
               </View>
 
-              {category === 'villa' && (
-              <View style={styles.squareMeterView}>
-                <View style={styles.squareMeterBox}>
-                  <TextInput
-                    ref="maxSquareMeter"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholder={I18n.t('post_video.max_squaremeter')}
-                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
-                    textAlign="right"
-                    style={styles.inputPrice}
-                    underlineColorAndroid="transparent"
-                    returnKeyType={'next'}
-                    keyboardType="numbers-and-punctuation"
-                    value={this.state.maxSquareMeter}
-                    onChangeText={text => this.setState({ maxSquareMeter: text })}
-                  />
-                </View>
-                <View style={styles.squareMeterBox}>
-                  <TextInput
-                    ref="minSquareMeter"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholder={I18n.t('post_video.min_squaremeter')}
-                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
-                    textAlign="right"
-                    style={styles.inputPrice}
-                    underlineColorAndroid="transparent"
-                    returnKeyType={'next'}
-                    keyboardType="numbers-and-punctuation"
-                    value={this.state.minSquareMeter}
-                    onChangeText={text => this.setState({ minSquareMeter: text })}
-                  />
-                </View>
-              </View>)}
-
-              {(category === 'apartment' || category === 'chalet') && (
+              {(category === 'apartment') && (
                 <View style={styles.itemView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.period')}
-                  </Text>
                   <DropdownComponent
                     selectItem={value => this.setState({ period: value })}
                     item={PERIOD_DATA[parseInt(this.state.period)].value}
@@ -328,9 +271,6 @@ class SearchPage extends Component {
               {(category === 'apartment') && (
                 <View>
                   <View style={styles.itemView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.room_type')}
-                    </Text>
                     <DropdownComponent
                       selectItem={value => this.setState({ roomType: value })}
                       item={APARTMENT_ROOM_TYPE[parseInt(this.state.roomType)].value}
@@ -338,72 +278,20 @@ class SearchPage extends Component {
                     />
                   </View>
                   <View style={styles.itemView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.room_count')}
-                    </Text>
-                    <TextInput
-                      ref="roomCount"
-                      autoCapitalize="none"
-                      autoCorrect={true}
-                      placeholder={I18n.t('post_video.ph_room_count')}
-                      placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
-                      textAlign="right"
-                      style={styles.input}
-                      underlineColorAndroid="transparent"
-                      returnKeyType={'next'}
-                      keyboardType="numbers-and-punctuation"
-                      value={this.state.roomCount}
-                      onChangeText={text => this.setState({ roomCount: text }) }
-                    />
-                  </View>
-                  <View style={styles.itemView}>
                     <CheckBox
                       label={I18n.t('post_video.furniture')}
                       labelBefore
+                      checkboxStyle={{ width: 20 }}
                       labelStyle={{
                         color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
                         fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
                         marginBottom: 3,
+                        marginRight: 20,
                         fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                       }}
                       onChange={checked => this.setState({ furniture: checked.checked })}
                     />
                   </View>
-                  <View style={styles.itemView}>
-                    <CheckBox
-                      label={I18n.t('post_video.ownership')}
-                      labelBefore
-                      labelStyle={{
-                        color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
-                        fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
-                        marginBottom: 3,
-                        fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
-                      }}
-                      onChange={(checked) => this.setState({ ownership: checked.checked })}
-                    />
-                  </View>
-                </View>
-              )}
-
-              {(category === 'office') && (
-                <View style={styles.itemView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.area_space')}
-                  </Text>
-                  <TextInput
-                    ref="areaSpace"
-                    autoCapitalize="none"
-                    autoCorrect={ true }
-                    placeholder={I18n.t('post_video.ph_area_space')}
-                    placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
-                    textAlign="right"
-                    style={styles.input}
-                    underlineColorAndroid="transparent"
-                    returnKeyType={ 'next' }
-                    keyboardType="numbers-and-punctuation"
-                    value={this.state.areaSpace}
-                    onChangeText={text => this.setState({ areaSpace: text }) }
-                  />
                 </View>
               )}
 
@@ -426,24 +314,6 @@ class SearchPage extends Component {
                       keyboardType="numbers-and-punctuation"
                       value={this.state.streetSize}
                       onChangeText={text => this.setState({ streetSize: text }) }
-                    />
-                  </View>
-                  <View style={styles.itemView}>
-                    <Text style={styles.textTitle}>
-                      {I18n.t('post_video.gallery_shop')}
-                    </Text>
-                    <TextInput
-                      ref="galleryNumber"
-                      autoCapitalize="none"
-                      autoCorrect={true}
-                      placeholder={I18n.t('post_video.ph_gallery_number')}
-                      placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
-                      textAlign="right"
-                      style={styles.input}
-                      underlineColorAndroid="transparent"
-                      returnKeyType={'next'}
-                      value={this.state.galleryNumber}
-                      onChangeText={text => this.setState({ galleryNumber: text }) }
                     />
                   </View>
                 </View>

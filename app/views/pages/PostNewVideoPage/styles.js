@@ -71,14 +71,14 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: COMMON_COLORS.BORDER_COLOR,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     paddingHorizontal: COMMON_STYLES.PADDING,
     marginVertical: 5,
     paddingVertical: 10,
     flexDirection: 'row',
   },
   radioGroup: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   previewBtnView: {
     marginVertical: 40,

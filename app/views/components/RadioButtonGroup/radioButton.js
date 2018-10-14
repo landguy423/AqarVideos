@@ -74,8 +74,9 @@ RadioButton.contextTypes = {
 let styles = StyleSheet.create({
   container:{
 	  flexGrow: 1,
-	  flexDirection: 'row',
-	  padding: 10,
+      flexDirection: 'row',
+      paddingVertical: 10,
+      paddingLeft: 10
   },
   radio:{
 	  alignItems: 'center',

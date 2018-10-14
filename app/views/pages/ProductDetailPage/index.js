@@ -216,15 +216,7 @@ class ProductDetailPage extends Component {
                 </View>
               )}
 
-              {data.category === 'villa' && (
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.squaremeter}
-                  </Text>
-                </View>
-              )}
-
-              {(data.category === 'apartment' || data.category === 'chalet') && (
+              {(data.category === 'apartment') && (
                 <View style={styles.itemView}>
                   <Text style={styles.textDescription}>
                     {PERIOD_DATA[parseInt(data.period)].value}
@@ -234,6 +226,11 @@ class ProductDetailPage extends Component {
 
               {data.category === 'apartment' && (
                 <View>
+                  <View style={styles.itemView}>
+                    <Text style={styles.textDescription}>
+                      {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
+                    </Text>
+                  </View>
                   {(data.furniture || data.furniture === 'true') && (
                     <View style={styles.itemView}>
                       <Text style={styles.textDescription}>
@@ -241,31 +238,6 @@ class ProductDetailPage extends Component {
                       </Text>
                     </View>
                   )}
-                  <View style={styles.itemView}>
-                    <Text style={styles.textDescription}>
-                      {APARTMENT_ROOM_TYPE[parseInt(data.room_type)].value}
-                    </Text>
-                  </View>
-                  <View style={styles.itemView}>
-                    <Text style={styles.textDescription}>
-                      {data.room_count}
-                    </Text>
-                  </View>
-                  {(data.ownership || data.ownership === 'true')  && (
-                    <View style={styles.itemView}>
-                      <Text style={styles.textDescription}>
-                        {I18n.t('post_video.ownership')}
-                      </Text>
-                    </View>
-                  )}
-                </View>
-              )}
-
-              {data.category === 'office' && (
-                <View style={styles.itemView}>
-                  <Text style={styles.textDescription}>
-                    {data.areaspace}
-                  </Text>
                 </View>
               )}
 
@@ -274,11 +246,6 @@ class ProductDetailPage extends Component {
                   <View style={styles.itemView}>
                     <Text style={styles.textDescription}>
                       {data.street_size}
-                    </Text>
-                  </View>
-                  <View style={styles.itemView}>
-                    <Text style={styles.textDescription}>
-                      {data.gallery_number}
                     </Text>
                   </View>
                 </View>

@@ -356,16 +356,10 @@ class ProductUpdatePage extends Component {
                   <Text style={styles.textRadio}>{I18n.t('post_video.rent')}</Text>
                 </RadioButton>
               </RadioGroup>
-              <Text style={styles.textTitle}>
-                {I18n.t('post_video.product_option')}
-              </Text>
             </View>
 
             {(category === 'building') && (
               <View style={styles.itemView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.type')}
-                </Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ building_type: value })}
                   item={BUILDING_TYPE_DATA[parseInt(this.state.building_type)].value}
@@ -374,32 +368,8 @@ class ProductUpdatePage extends Component {
               </View>
             )}
 
-            {category === 'villa' && (
+            {(category === 'apartment') && (
               <View style={styles.itemView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.squaremeter')}
-                </Text>
-                <TextInput
-                  ref="squareMeter"
-                  autoCapitalize="none"
-                  autoCorrect
-                  placeholder={I18n.t('post_video.squaremeter')}
-                  placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
-                  textAlign="right"
-                  style={styles.input}
-                  underlineColorAndroid="transparent"
-                  returnKeyType={'next'}
-                  keyboardType="numbers-and-punctuation"
-                  value={this.state.squaremeter}
-                  onChangeText={text => this.setState({ squaremeter: text })}
-                />
-              </View>)}
-
-            {(category === 'apartment' || category === 'chalet') && (
-              <View style={styles.itemView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.period')}
-                </Text>
                 <DropdownComponent
                   selectItem={value => this.setState({ period: value })}
                   item={PERIOD_DATA[parseInt(this.state.period)].value}
@@ -411,23 +381,6 @@ class ProductUpdatePage extends Component {
             {(category === 'apartment') && (
               <View>
                 <View style={styles.itemView}>
-                  <CheckBox
-                    label={I18n.t('post_video.furniture')}
-                    labelBefore
-                    labelStyle={{
-                      color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
-                      fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
-                      marginBottom: 3,
-                      fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
-                    }}
-                    checked={this.state.furniture === '1' ? true : false}
-                    onChange={checked => this.setState({ furniture: checked.checked })}
-                  />
-                </View>
-                <View style={styles.itemView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.room_type')}
-                  </Text>
                   <DropdownComponent
                     selectItem={value => this.setState({ room_type: value })}
                     item={APARTMENT_ROOM_TYPE[parseInt(this.state.room_type)].value}
@@ -435,60 +388,21 @@ class ProductUpdatePage extends Component {
                   />
                 </View>
                 <View style={styles.itemView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.room_count')}
-                  </Text>
-                  <TextInput
-                    ref="roomCount"
-                    autoCapitalize="none"
-                    autoCorrect
-                    placeholder={I18n.t('post_video.ph_room_count')}
-                    placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
-                    textAlign="right"
-                    style={styles.input}
-                    underlineColorAndroid="transparent"
-                    returnKeyType={'next'}
-                    keyboardType="numbers-and-punctuation"
-                    value={this.state.room_count}
-                    onChangeText={text => this.setState({ room_count: text })}
-                  />
-                </View>
-                <View style={styles.itemView}>
                   <CheckBox
-                    label={I18n.t('post_video.ownership')}
+                    label={I18n.t('post_video.furniture')}
                     labelBefore
+                    checkboxStyle={{ width: 20 }}
                     labelStyle={{
                       color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
                       fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
                       marginBottom: 3,
+                      marginRight: 20,
                       fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
                     }}
-                    checked={this.state.ownership === '1' ? true : false}
-                    onChange={checked => this.setState({ ownership: checked.checked })}
+                    checked={this.state.furniture === '1' ? true : false}
+                    onChange={checked => this.setState({ furniture: checked.checked })}
                   />
                 </View>
-              </View>
-            )}
-
-            {(category === 'office') && (
-              <View style={styles.itemView}>
-                <Text style={styles.textTitle}>
-                  {I18n.t('post_video.area_space')}
-                </Text>
-                <TextInput
-                  ref="areaSpace"
-                  autoCapitalize="none"
-                  autoCorrect
-                  placeholder={I18n.t('post_video.ph_area_space')}
-                  placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
-                  textAlign="right"
-                  style={styles.input}
-                  underlineColorAndroid="transparent"
-                  returnKeyType={'next'}
-                  keyboardType="numbers-and-punctuation"
-                  value={this.state.areaspace}
-                  onChangeText={text => this.setState({ areaspace: text })}
-                />
               </View>
             )}
 
@@ -511,24 +425,6 @@ class ProductUpdatePage extends Component {
                     keyboardType="numbers-and-punctuation"
                     value={this.state.street_size}
                     onChangeText={text => this.setState({ street_size: text })}
-                  />
-                </View>
-                <View style={styles.itemView}>
-                  <Text style={styles.textTitle}>
-                    {I18n.t('post_video.gallery_shop')}
-                  </Text>
-                  <TextInput
-                    ref="galleryNumber"
-                    autoCapitalize="none"
-                    autoCorrect
-                    placeholder={I18n.t('post_video.ph_gallery_number')}
-                    placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
-                    textAlign="right"
-                    style={styles.input}
-                    underlineColorAndroid="transparent"
-                    returnKeyType={'next'}
-                    value={ this.state.gallery_number }
-                    onChangeText={text => this.setState({ gallery_number: text })}
                   />
                 </View>
               </View>

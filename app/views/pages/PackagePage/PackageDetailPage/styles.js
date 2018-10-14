@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     width: '100%' ,
     position: 'absolute',
     bottom: COMMON_STYLES.BUTTON_HEIGHT,
-    paddingRight: 10
+    paddingRight: COMMON_STYLES.PADDING
   },
   radioItem: {
     alignItems: 'flex-end',

@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: COMMON_COLORS.BORDER_COLOR,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     paddingHorizontal: COMMON_STYLES.PADDING,
     marginVertical: 5,
     paddingVertical: 10,
@@ -98,20 +98,20 @@ export const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: COMMON_COLORS.GREEN_COLOR
   },
-  squareMeterView: {
+  priceView: {
     alignItems: 'center',
-    justifyContent: 'space-around',
+    paddingHorizontal: COMMON_STYLES.PADDING,
+    justifyContent: 'space-between',
     flexDirection: 'row',
     marginTop: 20,
   },
-  squareMeterBox: {
+  priceBox: {
     width: 150,
     borderWidth: 2,
     borderColor: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
     height: 45,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 5,
+    alignItems: 'center'
   },
   linebar: {
     color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
