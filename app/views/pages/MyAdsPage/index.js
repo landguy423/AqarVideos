@@ -18,6 +18,7 @@ import I18n from '@i18n'
 import { getAdsProducts } from '@redux/Product/actions'
 import VideoComponent from '@components/VideoComponent'
 import * as COMMON_STYLES from '@common/styles/commonStyles'
+import { PRICE_FORMAT } from '@common';
 const listItemWidth = (COMMON_STYLES.SCREEN_WIDTH - COMMON_STYLES.PADDING * 2 - 15) / 2;
 
 class MyAdsPage extends Component {
@@ -79,7 +80,7 @@ class MyAdsPage extends Component {
 
           <View style={styles.footerView}>
             <Text style={styles.textTitle} numberOfLines={1} ellipsizeMode="tail">{rowData.name}</Text>
-            <Text style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
+            <Text style={styles.textPrice}>{PRICE_FORMAT(rowData.price)} {I18n.t('sar')}</Text>
             <View style={styles.viewWrapper}>
               <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
               <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>

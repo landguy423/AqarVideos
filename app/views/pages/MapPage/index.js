@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import VideoComponent from '@components/VideoComponent'
 import { styles } from './styles';
 import * as COMMON_STYLES from '@common/styles/commonStyles';
+import { PRICE_FORMAT } from '@common';
 
 const icon_bubble = require('@common/assets/images/map/speech_bubble.png');
 const icon_satellite = require('@common/assets/images/map/satellite.png');
@@ -97,7 +98,7 @@ class MapPage extends Component {
             >
               <View style={styles.marker}>
                 <Image source={icon_bubble} resizeMode="cover" style={styles.bubble} />
-                <Text style={styles.markerText}>{parseFloat(marker.price).toFixed(2)}</Text>
+                <Text style={styles.markerText}>{PRICE_FORMAT(marker.price)}</Text>
               </View>
 
               <MapView.Callout onPress={() => this.gotoDetailPage(marker)}>

@@ -18,3 +18,14 @@ export const APARTMENT_ROOM_TYPE = [
   { value: I18n.t('apartment_type.singular') },
   { value: I18n.t('apartment_type.familiar') }
 ];
+
+export const PRICE_FORMAT = (price) => {
+  if (parseInt(price) > 1000000 || parseInt(price) === 1000000) {
+    return  (parseInt(price) / 1000000).toFixed(2) + 'M'
+  }
+  if (parseInt(price) > 1000 || parseInt(price) === 1000) {
+    return  (parseInt(price) / 1000).toFixed(2) + 'K'
+  }  
+
+  return parseFloat(price).toFixed(2)
+}

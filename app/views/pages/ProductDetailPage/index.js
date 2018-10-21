@@ -23,7 +23,7 @@ import call from 'react-native-phone-call'
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { CATEGORY_ICON_LIST } from '@common/category';
-import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
+import { PRICE_FORMAT, PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
 import { setFavorite, addViewCount } from '@redux/Product/actions';
 
@@ -47,10 +47,12 @@ class ProductDetailPage extends Component {
   }
 
   componentWillMount() {
-    const { data, token, addViewCount } = this.props
+    const { data, user, token, addViewCount } = this.props
 
     this.setState({ favorite: data.favorite })
-    addViewCount(token.tokenInfo.token, { product_id: data.product_id, user_id: this.props.user.userInfo.user.customer_id })
+    if (user.userLogin) {
+      addViewCount(token.tokenInfo.token, { product_id: data.product_id, user_id: this.props.user.userInfo.user.customer_id })
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -204,7 +206,7 @@ class ProductDetailPage extends Component {
               
               <View style={styles.itemView}>
                 <Text style={styles.textTitle}>
-                  {`${data.price} ${I18n.t('sar')}`} 
+                  {`${PRICE_FORMAT(data.price)} ${I18n.t('sar')}`} 
                 </Text>
               </View>
 

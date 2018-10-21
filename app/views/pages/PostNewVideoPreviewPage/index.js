@@ -29,7 +29,7 @@ import CustomAlert from '@components/CustomAlert';
 
 import { addProduct } from '@redux/Product/actions';
 
-import { PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
+import { PRICE_FORMAT, PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
 class PostNewVideoPreviewPage extends Component {
   constructor(props) {
@@ -187,7 +187,7 @@ class PostNewVideoPreviewPage extends Component {
             
             <View style={styles.itemView}>
               <Text style={[styles.textDescription, { fontWeight: 'bold' }]}>
-                {`${data.price} ${I18n.t('sar')}`} 
+                {`${PRICE_FORMAT(data.price)} ${I18n.t('sar')}`} 
               </Text>
             </View>
             

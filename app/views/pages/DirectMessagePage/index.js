@@ -69,7 +69,7 @@ class DirectMessagePage extends Component {
                   ref="fullName"
                   autoCapitalize="none"
                   autoCorrect={ false }
-                  placeholder={I18n8n.t('profile.ph_name')}
+                  placeholder={I18n.t('profile.ph_name')}
                   placeholderTextColor={ COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR }
                   textAlign="right"
                   style={styles.input}

@@ -46,8 +46,8 @@ export default {
     date: 'التاريخ',
     confirm: 'تأكيد',
     cancel: 'إلغاء',
-    empty_package: "عفوا لم تختر أي باقة للإستفادة من الخدمات",
-    no_url: "لا يمكن الحصول على عنوان url الخاص بالدفع",
+    empty_package: "فضلا أختر باقة للإستفادة من الخدمات",
+    no_url: "عفوا تم إنتهاء المدة التجربيبة ، المرجو إختيار باقة جديدة ",
     web_title: "فيزا / ماستر / مدى"
   },
   post_video: {
@@ -70,7 +70,7 @@ export default {
     min_price:  'أقل سعر',
     period: 'الفترة',
     location: 'الموقع*',
-    furniture: 'المفروشات',
+    furniture: 'مفروشة',
     room_type: 'نوع الغرفة',
     street_size: 'حجم الشارع',
     area_space: 'مساحة المكان',
@@ -122,7 +122,7 @@ export default {
     stores:  'مستودعات',
     gallery: 'معرض تجاري ',
     land: 'أأرض سكنية',
-    office_for_sale: 'مكاتب للتقبيل',
+    office_for_sale: 'مكاتب تجارية',
     complete_action: 'عقار',
     facebook: 'فيس بوك',
     whatsapp: 'واتس أب',

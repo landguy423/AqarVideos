@@ -20,6 +20,7 @@ import Container from '@layout/Container';
 import { styles } from './styles';
 import { getWishlistProducts, deleteWishlistProduct } from '@redux/Product/actions';
 import VideoComponent from '@components/VideoComponent'
+import { PRICE_FORMAT } from '@common';
 
 class MyWishListPage extends Component {
   constructor(props) {
@@ -138,7 +139,7 @@ class MyWishListPage extends Component {
                           <View style={styles.footerView}>
                             <Text style={styles.textTitle} numberOfLines={1} ellipsizeMode="tail">{rowData.name}</Text>
                             <View style={styles.bottomWrapper}> 
-                              <Text  style={styles.textPrice}>{rowData.price} {I18n.t('sar')}</Text>
+                              <Text  style={styles.textPrice}>{PRICE_FORMAT(rowData.price)} {I18n.t('sar')}</Text>
                               <View style={styles.viewWrapper}>
                                 <Text  style={styles.textViewCount}>{I18n.t('number_of_view')} {rowData.viewed}</Text>
                                 <FontAwesome style={styles.eye}>{Icons.eye}</FontAwesome>

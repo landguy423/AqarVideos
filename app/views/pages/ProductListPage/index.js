@@ -16,6 +16,7 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import VideoComponent from '@components/VideoComponent'
 import * as COMMON_STYLES from '@common/styles/commonStyles';
+import { PRICE_FORMAT } from '@common';
 import { styles } from './styles';
 
 class ProductListPage extends Component {
@@ -88,7 +89,7 @@ class ProductListPage extends Component {
 
           <View style={styles.footerRightView}>
             {rowData.price.length > 0 && (
-              <Text style={styles.textPrice}>{`${rowData.price} ${I18n.t('sar')}`}</Text>
+              <Text style={styles.textPrice}>{`${PRICE_FORMAT(rowData.price)} ${I18n.t('sar')}`}</Text>
             )}
 
             <View style={styles.viewWrapper}>

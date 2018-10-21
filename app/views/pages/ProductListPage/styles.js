@@ -102,6 +102,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     marginTop: 30,
-    color: COMMON_COLORS.GREEN_COLOR
+    color: COMMON_COLORS.GREEN_COLOR,
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY
   }
 });
