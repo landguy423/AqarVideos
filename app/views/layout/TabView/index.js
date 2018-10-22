@@ -54,7 +54,8 @@ class TabView extends Component {
       getProductsByCategory(token.tokenInfo.token, { id: 0 })
     }
 
-    if (myLocation == null) {
+    if (myLocation === null || !myLocation) {
+      console.log('POSITON: ', myLocation)
       this.watchID = navigator.geolocation.watchPosition((position) => {
         let region = {
           latitude: position.coords.latitude,

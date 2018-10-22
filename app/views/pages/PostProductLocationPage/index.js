@@ -21,6 +21,13 @@ const icon_standard = require('@common/assets/images/map/standard.png');
 
 import { styles } from './styles';
 
+const INIT_REGION = {
+  latitude: 24.774265,
+  longitude: 46.738586,
+  latitudeDelta: 0.05,
+  longitudeDelta: 0.05,
+}
+
 class PostProductLocationPage extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +59,11 @@ class PostProductLocationPage extends Component {
       this.onRegionChange(region, region.latitude, region.longitude)
     } else {
       const { myLocation } = map
-      this.onRegionChange(myLocation.region, myLocation.region.latitude, myLocation.region.longitude)
+      if (myLocation) {
+        this.onRegionChange(myLocation.region, myLocation.region.latitude, myLocation.region.longitude)
+      } else {
+        this.onRegionChange(INIT_REGION, INIT_REGION.latitude, INIT_REGION.longitude)
+      }
     }
   }
 
