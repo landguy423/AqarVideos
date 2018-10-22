@@ -95,7 +95,7 @@ class SearchPage extends Component {
         category_name: this.state.category,
         lat: this.state.coordinate.latitude,
         long: this.state.coordinate.longitude,
-        radius: this.state.radius,
+        radius: 50,
         product_type: this.state.productOption,
         min_price: this.state.minPrice,
         max_price: this.state.maxPrice,
@@ -176,7 +176,7 @@ class SearchPage extends Component {
                 </TouchableOpacity>
               </View>
 
-              <View style={styles.itemView}>
+              {/* <View style={styles.itemView}>
                 <Text style={styles.textTitle}>
                   {I18n.t('post_video.radius')}
                 </Text>
@@ -194,7 +194,7 @@ class SearchPage extends Component {
                   value={this.state.radius}
                   onChangeText={text => this.setState({ radius: text })}
                 />
-              </View>
+              </View> */}
 
               <View style={styles.productOptionView}>
                 <RadioGroup 
@@ -235,7 +235,7 @@ class SearchPage extends Component {
                     style={styles.inputPrice}
                     underlineColorAndroid="transparent"
                     returnKeyType={'next'}
-                    keyboardType="numbers-and-punctuation"
+                    keyboardType="numeric"
                     value={this.state.maxPrice}
                     onChangeText={text => this.setState({ maxPrice: text })}
                   />
@@ -251,7 +251,7 @@ class SearchPage extends Component {
                     style={styles.inputPrice}
                     underlineColorAndroid="transparent"
                     returnKeyType={'next'}
-                    keyboardType="numbers-and-punctuation"
+                    keyboardType="numeric"
                     value={this.state.minPrice}
                     onChangeText={text => this.setState({ minPrice: text })}
                   />
@@ -311,7 +311,7 @@ class SearchPage extends Component {
                       style={styles.input}
                       underlineColorAndroid="transparent"
                       returnKeyType={'next'}
-                      keyboardType="numbers-and-punctuation"
+                      keyboardType="numeric"
                       value={this.state.streetSize}
                       onChangeText={text => this.setState({ streetSize: text }) }
                     />

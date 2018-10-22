@@ -21,11 +21,18 @@ export const APARTMENT_ROOM_TYPE = [
 
 export const PRICE_FORMAT = (price) => {
   if (parseInt(price) > 1000000 || parseInt(price) === 1000000) {
-    return  (parseInt(price) / 1000000).toFixed(2) + 'M'
+    return (parseInt(price) / 1000000).toFixed(2) + 'M'
   }
   if (parseInt(price) > 1000 || parseInt(price) === 1000) {
-    return  (parseInt(price) / 1000).toFixed(2) + 'K'
+    return (parseInt(price) / 1000).toFixed(2) + 'K'
   }  
 
   return parseFloat(price).toFixed(2)
+}
+
+export const IS_FLOAT = (value) => {
+  if (value.match('\d+(.\d+)?')) {
+    return true
+  }
+  return false
 }

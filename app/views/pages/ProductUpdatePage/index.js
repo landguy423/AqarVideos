@@ -334,7 +334,7 @@ class ProductUpdatePage extends Component {
                 style={styles.input}
                 underlineColorAndroid="transparent"
                 returnKeyType={ 'next' }
-                keyboardType="numbers-and-punctuation"
+                keyboardType="numeric"
                 value={this.state.price}
                 onChangeText={text => this.setState({ price: text })}
                 onSubmitEditing={() => this.refs.password.focus()}
@@ -422,7 +422,7 @@ class ProductUpdatePage extends Component {
                     style={styles.input}
                     underlineColorAndroid="transparent"
                     returnKeyType={'next'}
-                    keyboardType="numbers-and-punctuation"
+                    keyboardType="numeric"
                     value={this.state.street_size}
                     onChangeText={text => this.setState({ street_size: text })}
                   />

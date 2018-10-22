@@ -293,7 +293,7 @@ class PostNewVideoPage extends Component {
                 underlineColorAndroid="transparent"
                 returnKeyType={ 'next' }
                 value={this.state.price}
-                keyboardType="numbers-and-punctuation"
+                keyboardType="numeric"
                 onChangeText={text => this.setState({ price: text })}
               />
             </View>
@@ -378,7 +378,7 @@ class PostNewVideoPage extends Component {
                     style={styles.input}
                     underlineColorAndroid="transparent"
                     returnKeyType={'next'}
-                    keyboardType="numbers-and-punctuation"
+                    keyboardType="numeric"
                     value={this.state.street_size}
                     onChangeText={text => this.setState({ street_size: text })}
                   />
