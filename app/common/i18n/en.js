@@ -176,5 +176,7 @@ export default {
     upload_success: "The request signature we calculated does not match the signature you provided. Check your key and signing method",
     upload_failed: "Failed to upload video file to server"
   },
-  direct_message: 'DIRECT MESSAGE'
+  direct_message: 'DIRECT MESSAGE',
+  PRICE_M: 'M',
+  PRICE_K: 'K'
 }

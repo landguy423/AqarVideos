@@ -41,13 +41,14 @@ class ProductListPage extends Component {
   setCateogryProduct(allProduct) {
     const { category, user } = this.props
 
-    let categoryProduct = [];
-    if (user.userLogin) {
-      const { customer_id } = user.userInfo.user
-      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
-    } else {
-      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
-    }
+    // let categoryProduct = [];
+    // if (user.userLogin) {
+    //   const { customer_id } = user.userInfo.user
+    //   categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
+    // } else {
+    //   categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+    // }
+    const categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
     const data = _.orderBy(categoryProduct, ['date_added'], ['desc'])
 
     this.setState({

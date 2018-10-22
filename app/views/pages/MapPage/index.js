@@ -33,14 +33,16 @@ class MapPage extends Component {
   componentWillMount() {
     const { category, allProduct, user } = this.props
 
-    let categoryProduct = [];
-    if (user.userLogin && user.userInfo) {
-      console.log('USER_INFO: ', user.userInfo)
-      const { customer_id } = user.userInfo.user
-      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
-    } else {
-      categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
-    }
+    // let categoryProduct = [];
+    // if (user.userLogin && user.userInfo) {
+    //   console.log('USER_INFO: ', user.userInfo)
+    //   const { customer_id } = user.userInfo.user
+    //   categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase() && item.customer_id !== customer_id)
+    // } else {
+    //   categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+    // }
+    const categoryProduct = _.filter(allProduct, item => item.category.toLowerCase() === category.toLowerCase())
+
     this.setState({
       categoryProduct,
     })

@@ -25,7 +25,7 @@ export default class CustomAlert extends Component {
         showProgress={false}
         title={sTitle}
         message={message}
-        closeOnTouchOutside
+        closeOnTouchOutside={false}
         closeOnHardwareBackPress={false}
         showCancelButton
         cancelText={I18n.t('alert.ok')}
