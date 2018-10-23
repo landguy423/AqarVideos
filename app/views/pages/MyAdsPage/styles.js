@@ -82,10 +82,15 @@ export const styles = StyleSheet.create({
     color: COMMON_COLORS.DARK_GRAY_COLOR,
     marginLeft: 5,
   },
+  emptyView: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   noPackgeText: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
     color: COMMON_COLORS.GREEN_COLOR,
     fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
-    marginTop: 30
+    marginTop: 20
   }
 });

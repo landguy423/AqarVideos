@@ -70,8 +70,7 @@ export const styles = StyleSheet.create({
     color: COMMON_COLORS.GREEN_COLOR,
     fontSize: COMMON_STYLES.LARGE_FONT_SIZE,
     fontWeight: 'bold',
-    textDecorationLine: 'underline',
-
+    textDecorationLine: 'underline'
   },
   bold: {
     fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
@@ -97,7 +96,13 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: COMMON_COLORS.BORDER_COLOR,
     height: 1,
-    marginTop: 20,
+    marginTop: 10,
+  },
+  input: {
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    width: '100%',
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
+    color: COMMON_COLORS.PLACEHOLDER_TEXT_COLOR,
   },
   btnView: {
     width: '100%',
@@ -163,5 +168,31 @@ export const styles = StyleSheet.create({
   mapView: {
     height: '100%',
     width: '100%',
+  },
+  reportView: {
+    width: COMMON_STYLES.SCREEN_SUB_WIDTH,
+    marginHorizontal: COMMON_STYLES.PADDING,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    overflow: 'hidden',
+    padding: 20,
+    maxHeight: COMMON_STYLES.SCREEN_NORMAL_HEIGHT
+  },
+  reportBtnView: {
+    width: '100%',
+    height: COMMON_STYLES.BUTTON_HEIGHT,
+    backgroundColor: COMMON_COLORS.PINK_COLOR,
+    marginTop: 50
+  },
+  reportBtnWrapper: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  reportBtnText: {
+    fontFamily: COMMON_STYLES.NORMAL_FONT_FAMILY,
+    color: 'white',
+    fontSize: COMMON_STYLES.NORMAL_FONT_SIZE,
   },
 });

@@ -273,6 +273,25 @@ export default function products(state = initialState, action = {}) {
         searchProduct: null,
         error: action.error,
       };
+    /**
+     * Send report
+     */
+    case types.SEND_REPORT_REQUEST:
+      return {
+        ...state,
+        loading: types.SEND_REPORT_REQUEST
+      };
+    case types.SEND_REPORT_SUCCESS: {
+      return {
+        ...state,
+        loading: types.SEND_REPORT_SUCCESS
+      }
+    }
+    case types.SEND_REPORT_FAILED:
+      return {
+        ...state,
+        loading: types.SEND_REPORT_FAILED
+      };
     default:
       return state;
   }

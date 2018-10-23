@@ -144,3 +144,16 @@ export function searchProduct(token, data) {
       })  
   };
 }
+
+export function sendReport(token, data) {
+  return {
+    types: [types.SEND_REPORT_REQUEST, types.SEND_REPORT_SUCCESS, types.SEND_REPORT_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${API_URL}?route=api/reportads&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          data,
+      })
+  };
+}

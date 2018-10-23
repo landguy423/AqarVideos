@@ -51,14 +51,14 @@ class MainPage extends Component {
   }
 
   onSelectItem(index) {
-    const { btnStatus } = this.state;
+    const { btnStatus, isBtnList } = this.state;
 
     switch(index) {
       case 'plus':
-        this.setState({ isBtnList: !this.state.isBtnList });
+        this.setState({ isBtnList: !isBtnList });
         break;
       case 'list':
-        if (btnStatus == 'map')
+        if (btnStatus === 'map')
           this.setState({ btnStatus: 'list' });
         else
           this.setState({ btnStatus: 'map' });
@@ -70,7 +70,7 @@ class MainPage extends Component {
       default:
         break;
     }
-    this.setState({ isBtnList: !this.state.isBtnList });
+    this.setState({ isBtnList: !isBtnList });
   }
 
   changeTab(index) {
@@ -79,10 +79,10 @@ class MainPage extends Component {
   }
 
   render() {
-    const { tokenInfo } = this.props
+    const { tokenInfo, allProduct } = this.props
     const { tabIndex, isBtnList, btnItem, btnStatus } = this.state;
     const title = btnStatus === 'list' ? I18n.t('main.list') : I18n.t('main.map');
-
+    console.log('ALL_PRODUCTS: ', allProduct)
     return (
       <Container title={title}>
         <View style={styles.container}>
@@ -94,7 +94,7 @@ class MainPage extends Component {
             <MapButtonListComponent onSelectItem={value => this.onSelectItem(value)} btnStatus={btnStatus} />
           )}
 
-          {tokenInfo && (
+          {tokenInfo && allProduct && (
             <ButtonPlusComponent isBtnList={isBtnList} btnStatus={btnStatus} onSelectItem={value => this.onSelectItem(value) }/>
           )}
         </View>
@@ -107,4 +107,5 @@ class MainPage extends Component {
 export default connect(state => ({
   tokenInfo: state.token.tokenInfo,
   userLogin: state.user.userLogin,
+  allProduct: state.products.allProduct
 }),{ getToken, changeMenu, setLoginStatus })(MainPage);

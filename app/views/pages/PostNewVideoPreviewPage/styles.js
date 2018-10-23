@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: COMMON_COLORS.BORDER_COLOR,
     height: 1,
-    marginTop: 20,
+    marginTop: 10,
   },
   icon: {
     color: 'white',

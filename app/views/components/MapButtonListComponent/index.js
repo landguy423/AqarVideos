@@ -47,13 +47,13 @@ class MapButtonListComponent extends Component {
   componentDidMount() {
     Animated.timing(this.animatedMapValue, {
       toValue: 250,
-      duration: 1500,
+      duration: 1200,
       easing: Easing.bounce,
     }).start()
 
     Animated.timing(this.animatedListValue, {
       toValue: 70,
-      duration: 1500,
+      duration: 1200,
       easing: Easing.bounce,
     }).start()
   }

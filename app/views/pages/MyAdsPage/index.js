@@ -117,7 +117,7 @@ class MyAdsPage extends Component {
                 renderSeparator={this._renderSeparator}
                 contentContainerStyle={styles.listView}
               />
-            : !loading && <Text style={styles.noPackgeText}>{I18n.t('alert.search')}</Text>
+            : !loading && <View style={styles.emptyView}><Text style={styles.noPackgeText}>{I18n.t('alert.search')}</Text></View>
           }
         </View>
       </Container>

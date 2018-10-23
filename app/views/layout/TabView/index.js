@@ -26,6 +26,13 @@ const ASPECT_RATIO = COMMON_STYLES.SCREEN_WIDTH / COMMON_STYLES.SCREEN_HEIGHT
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+const INIT_REGION = {
+  latitude: 24.774265,
+  longitude: 46.738586,
+  latitudeDelta: 0.05,
+  longitudeDelta: 0.05,
+}
+
 const _isArabic = true
 
 class TabView extends Component {
@@ -124,19 +131,14 @@ class TabView extends Component {
     const { btnStatus } = this.props;
     let { tabIndex, region, currentLocation, allProduct, loading } = this.state;
     
-    if (currentLocation == null) {
+    if (!currentLocation) {
       currentLocation = {
-        latitude: 24.774265,
-        longitude: 46.738586,
+        latitude: INIT_REGION.latitude,
+        longitude: INIT_REGION.longitude
       }
     }
-    if (region == null) {
-      region = {
-        latitude: 24.774265,
-        longitude: 46.738586,
-        latitudeDelta: 0.05,
-        longitudeDelta: 0.05,
-      }
+    if (!region) {
+      region = INIT_REGION
     }
 
     return (

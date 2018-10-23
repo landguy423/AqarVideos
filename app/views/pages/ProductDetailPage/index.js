@@ -6,7 +6,8 @@ import {
   Image,
   Share,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  TextInput
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -18,14 +19,17 @@ import FontAwesome, {Icons} from 'react-native-fontawesome';
 import Icon from 'react-native-vector-icons/Feather';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import Modal from 'react-native-modal'
 import _ from 'lodash'
 import call from 'react-native-phone-call'
+import CustomAlert from '@components/CustomAlert';
+
 import I18n from '@i18n';
 import Container from '@layout/Container';
 import { CATEGORY_ICON_LIST } from '@common/category';
 import { PRICE_FORMAT, PERIOD_DATA, BUILDING_TYPE_DATA, APARTMENT_ROOM_TYPE } from '@common';
 
-import { setFavorite, addViewCount } from '@redux/Product/actions';
+import { setFavorite, addViewCount, sendReport } from '@redux/Product/actions';
 
 import * as COMMON_STYLES from '@common/styles/commonStyles';
 import * as COMMON_COLORS from '@common/styles/commonColors';
@@ -43,6 +47,9 @@ class ProductDetailPage extends Component {
     this.state = {
       favorite: true,
       opacity: 0,
+      reportModal: false,
+      reportMessage: '',
+      isSuccess: false
     }
   }
 
@@ -50,15 +57,21 @@ class ProductDetailPage extends Component {
     const { data, user, token, addViewCount } = this.props
 
     this.setState({ favorite: data.favorite })
-    if (user.userLogin) {
-      addViewCount(token.tokenInfo.token, { product_id: data.product_id, user_id: this.props.user.userInfo.user.customer_id })
+
+    if (user.userLogin && data.customer_id !== user.userInfo.user.customer_id) {
+      addViewCount(token.tokenInfo.token, { product_id: data.product_id, user_id: user.userInfo.user.customer_id })
     }
   }
 
   componentWillReceiveProps(nextProps) {
     const { products } = nextProps
+
     if (this.props.products.loading === 'SET_FAVORITE_REQUEST' && products.loading === 'SET_FAVORITE_SUCCESS') {
       Actions.MyWishList()
+    }
+
+    if (this.props.products.loading === 'SEND_REPORT_REQUEST' && products.loading === 'SEND_REPORT_SUCCESS') {
+      this.setState({ reportMessage: '', isSuccess: true })
     }
   }
 
@@ -106,8 +119,24 @@ class ProductDetailPage extends Component {
     });
   }
 
-  onReportAD() {
+  onReportAD = () => {
+    this.setState({ reportModal: true })
+  }
 
+  onSendReport = () => {
+    const { data, user, token, sendReport } = this.props
+
+    if (this.state.reportMessage.length > 0) {
+      const param = {
+        product_id: data.product_id,
+        user_id: user.userInfo.user.customer_id,
+        description: this.state.reportMessage
+      }
+
+      this.setState({ reportModal: false }, () => {
+        sendReport(token.tokenInfo.token, param)
+      })
+    }
   }
 
   onCamera() {
@@ -140,8 +169,7 @@ class ProductDetailPage extends Component {
 
   render() {
     const { data, user } = this.props;
-    console.log('DATA: ', data)
-
+    console.log('DETAIL_DATA: ', data)
     return (
       <Container title="" type='detail'>
         <View style={styles.container}>
@@ -184,7 +212,7 @@ class ProductDetailPage extends Component {
                 </Text>
               </View>
 
-              {data.description && (
+              {data.description.length > 0 && (
                 <View style={[styles.titleView, { marginVertical: 0 }]}>
                   <Text style={styles.textDescription}>
                     {data.description}
@@ -308,9 +336,11 @@ class ProductDetailPage extends Component {
                 </View>
               </View> */}
 
-              <View style={styles.separate} />
+              {user.userLogin && data.customer_id !== user.userInfo.user.customer_id && (
+                <View style={styles.separate} />
+              )}
 
-              {user.userLogin && (
+              {user.userLogin && data.customer_id !== user.userInfo.user.customer_id && (
                 <View style={styles.btnView}>
                   <TouchableOpacity onPress={() => this.onFavorite()} activeOpacity={0.5}>
                     <View style={styles.btnFavorite}>
@@ -338,7 +368,7 @@ class ProductDetailPage extends Component {
                 </View>
               )}
               
-              {user.userLogin && (
+              {user.userLogin && data.customer_id !== user.userInfo.user.customer_id && (
                 <View style={styles.btnView}>
                   <TouchableOpacity onPress={() => this.onReportAD()} activeOpacity={0.5}>
                     <View style={styles.btnAd}>
@@ -351,7 +381,48 @@ class ProductDetailPage extends Component {
             </View>
 
           </ScrollView>
+
+          <Modal
+            style={{ margin: 0 }}
+            isVisible={this.state.reportModal}
+            backdropOpacity={0.6}
+            animationIn="slideInUp"
+            animationOut="slideOutDown"
+            animationInTiming={500}
+            onBackdropPress={() => this.setState({ reportModal: false, reportMessage: '' })}
+          >
+            <View style={styles.reportView}>
+              <TextInput
+                ref="message"
+                multiline
+                autoCapitalize="none"
+                autoCorrect
+                placeholder={I18n.t('support.ph_message')}
+                placeholderTextColor={COMMON_COLORS.PLACEHOLDER_SUB_TEXT_COLOR}
+                textAlign="right"
+                style={styles.input}
+                underlineColorAndroid="transparent"
+                returnKeyType={'send'}
+                value={this.state.reportMessage}
+                onChangeText={text => this.setState({ reportMessage: text })}
+                onSubmitEditing={() => this.onSendReport()}
+              />
+              <View style={styles.reportBtnView}>
+                <TouchableOpacity onPress={() => this.onSendReport()} activeOpacity={0.5}>
+                  <View style={styles.reportBtnWrapper}>
+                    <Text style={styles.reportBtnText}>{I18n.t('send')}</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
         </View>
+
+        <CustomAlert 
+          title={I18n.t('alert.success')}
+          visible={this.state.isSuccess} 
+          closeAlert={() => this.setState({ isSuccess: false })}
+        />
       </Container>
     );
   }
@@ -366,6 +437,7 @@ const mapStateToProps = ({ user, token, products }) => ({
 const mapDispatchToProps = dispatch => ({
   setFavorite: (token, data, flag) => dispatch(setFavorite(token, data, flag)),
   addViewCount: (token, data) => dispatch(addViewCount(token, data)),
+  sendReport: (token, data) => dispatch(sendReport(token, data)),
 })
 
 ProductDetailPage.propTypes = {
