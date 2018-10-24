@@ -7,6 +7,8 @@ const initialState = {
   chatData: null,
   advertisementData: null,
   adSubjectList: null,
+  totalUnreadMsgCount: 0,
+  isUpdateMsg: false
 };
 
 export default function message(state = initialState, action = {}) {
@@ -38,20 +40,29 @@ export default function message(state = initialState, action = {}) {
     case types.GET_CHAT_USER_REQUEST:
       return {
         ...state,
-        status: 'GET_CHAT_USER_REQUEST',
-        chatUserList: null,
+        isUpdateMsg: false,
+        status: 'GET_CHAT_USER_REQUEST'
       };
     case types.GET_CHAT_USER_SUCCESS:
+      const chatUserList = action.result.data
+      let totalUnreadMsgCount = 0
+
+      if (chatUserList.status === 200) {
+        for (let i = 0; i < chatUserList.messages.length; i ++) {
+          totalUnreadMsgCount += parseInt(chatUserList.messages[i]['unread_count'])
+        }
+      }
+
       return {
         ...state,
         status: 'GET_CHAT_USER_SUCCESS',
-        chatUserList: action.result.data
+        chatUserList,
+        totalUnreadMsgCount
       }
     case types.GET_CHAT_USER_FAILED:
       return {
         ...state,
-        status: 'GET_CHAT_USER_FAILED',
-        chatUserList: null,
+        status: 'GET_CHAT_USER_FAILED'
       };
     /**
      * Get chat data for user & product
@@ -59,8 +70,7 @@ export default function message(state = initialState, action = {}) {
     case types.GET_CHAT_DATA_REQUEST:
       return {
         ...state,
-        status: 'GET_CHAT_DATA_REQUEST',
-        chatData: null,
+        status: 'GET_CHAT_DATA_REQUEST'
       };
     case types.GET_CHAT_DATA_SUCCESS:
       return {
@@ -71,8 +81,7 @@ export default function message(state = initialState, action = {}) {
     case types.GET_CHAT_DATA_FAILED:
       return {
         ...state,
-        status: 'GET_CHAT_DATA_FAILED',
-        chatData: null,
+        status: 'GET_CHAT_DATA_FAILED'
       };
     /**
      * Send advertisement
@@ -115,6 +124,29 @@ export default function message(state = initialState, action = {}) {
         ...state,
         status: 'GET_AD_SUBJECT_FAILED',
         adSubjectList: null,
+      };
+    /**
+     * Update unread messages
+     */
+    case types.UPDATE_UNREAD_MESSAGES_REQUEST:
+      console.log('UPDATE_UNREAD_MESSAGES_REQUEST')
+      return {
+        ...state,
+        isUpdateMsg: false,
+        status: 'UPDATE_UNREAD_MESSAGES_REQUEST'
+      };
+    case types.UPDATE_UNREAD_MESSAGES_SUCCESS:
+      console.log('UPDATE_UNREAD_MESSAGES_SUCCESS', action.result.data)
+      return {
+        ...state,
+        isUpdateMsg: true,
+        status: 'UPDATE_UNREAD_MESSAGES_SUCCESS'
+      }
+    case types.UPDATE_UNREAD_MESSAGES_FAILED:
+      console.log('UPDATE_UNREAD_MESSAGES_FAILED')
+      return {
+        ...state,
+        status: 'UPDATE_UNREAD_MESSAGES_FAILED',
       };
     default:
       return state;

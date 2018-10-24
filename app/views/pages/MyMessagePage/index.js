@@ -45,12 +45,13 @@ class MyMessagePage extends Component {
     const { message } = nextProps;
 
     if (this.props.message.status === 'GET_CHAT_USER_REQUEST' && message.status === 'GET_CHAT_USER_SUCCESS') {
-      this.setState({ loading: false });
-      if (message.chatUserList.status === 200) {
-        this.setState({ listData: message.chatUserList.messages });
-      } else {
-        this.setState({ listData: [] })
-      }
+      this.setState({ loading: false }, () => {
+        if (message.chatUserList.status === 200) {
+          this.setState({ listData: message.chatUserList.messages });
+        } else {
+          this.setState({ listData: [] })
+        }
+      })      
     }
 
     if (this.props.message.status === 'GET_CHAT_USER_REQUEST' && message.status === 'GET_CHAT_USER_FAILED') {
@@ -78,7 +79,7 @@ class MyMessagePage extends Component {
           <View style={styles.leftView}>
             <View style={styles.dateView}>
               <View style={styles.countView}>
-                <Text style={styles.textCount}>{rowData.message_count}</Text>
+                <Text style={styles.textCount}>{rowData.unread_count}</Text>
               </View>
             </View>
             <View>

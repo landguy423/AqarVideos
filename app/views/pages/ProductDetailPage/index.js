@@ -169,7 +169,8 @@ class ProductDetailPage extends Component {
 
   render() {
     const { data, user } = this.props;
-    console.log('DETAIL_DATA: ', data)
+    // console.log('DETAIL_DATA: ', data)
+
     return (
       <Container title="" type='detail'>
         <View style={styles.container}>

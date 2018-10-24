@@ -65,3 +65,16 @@ export function getAdSubject(token) {
       })  
   };
 }
+
+export function updateUnreadMessages(token, data) {
+  return {
+    types: [types.UPDATE_UNREAD_MESSAGES_REQUEST, types.UPDATE_UNREAD_MESSAGES_SUCCESS, types.UPDATE_UNREAD_MESSAGES_FAILED],
+    promise:
+      axios({
+          method: 'post',
+          url: `${API_URL}?route=api/chat/readMessages&api_token=${token}`,
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          data,
+      })  
+  };
+}

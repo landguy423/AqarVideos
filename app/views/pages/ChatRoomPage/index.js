@@ -12,11 +12,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 import I18n from '@i18n';
 import Container from '@layout/Container';
-import KeyboardScrollView from '@components/KeyboardView';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SendMessageComponent from '@components/MessageComponent/SendMessageComponent';
 import ReceiveMessageComponent from '@components/MessageComponent/ReceiveMessageComponent';
 import LoadingSpinner from '@components/LoadingSpinner';
-import { getChatData, sendMessage } from '@redux/Message/actions';
+import { getChatData, sendMessage, updateUnreadMessages } from '@redux/Message/actions';
 import _ from 'lodash';
 import { styles } from './styles';
 import * as COMMON_COLORS from '@common/styles/commonColors';
@@ -32,10 +32,10 @@ class ChatRoomPage extends Component {
   }
 
   componentWillMount() {
-    const { data, user, token, message, getChatData } = this.props;
+    const { data, user, token } = this.props;
 
     this.setState({ loading: true })
-    getChatData(
+    this.props.getChatData(
       token.tokenInfo.token,
       {
         product_id: data.product_id,
@@ -45,25 +45,72 @@ class ChatRoomPage extends Component {
     );
   }
 
+  componentDidMount() {
+    const { data, user, token, message } = this.props
+
+    const param = {
+      receiver_id: data.sender_id === user.userInfo.user.customer_id ? data.receiver_id : data.sender_id,
+      sender_id: user.userInfo.user.customer_id,
+    }
+    setTimeout(() => {
+      this.props.updateUnreadMessages(token.tokenInfo.token, param)
+    }, 15000)
+
+    this.intervalId = setInterval(this.pollMessages, 10000)
+  }
+
+  pollMessages = () => {
+    const { token, user, data, message } = this.props
+
+    if (message.isUpdateMsg) {
+      const param = {
+        product_id: data.product_id,
+        receiver_id: data.sender_id === user.userInfo.user.customer_id ? data.receiver_id : data.sender_id,
+        sender_id: user.userInfo.user.customer_id,
+      }
+      this.props.getChatData(token.tokenInfo.token, param)
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    const { message, getChatData, token, data, user } = nextProps;
+    const { message, token, data, user } = nextProps;
+
+    if (this.props.message.status === 'UPDATE_UNREAD_MESSAGES_REQUEST' && message.status === 'UPDATE_UNREAD_MESSAGES_SUCCESS') {
+      this.intervalId = setInterval(this.pollMessages, 10000)
+    }
 
     if (this.props.message.status === 'GET_CHAT_DATA_REQUEST' && message.status === 'GET_CHAT_DATA_SUCCESS') {
       this.setState({ loading: false });
+
       if (message.chatData.status === 200) {
         let data = message.chatData.messages;
         data = _.sortBy(data, item => item.date_added);
-        this.setState({ messageData: data });
+        this.setState({ messageData: data }, () => {
+          this.refs.listview.scrollToEnd()
+        });
+      } else if (message.chatData.status === 107) {
+        this.setState({
+          messageData: [{
+            message: data.message,
+            date_added: data.date_added,
+            receiver_id: data.receiver_id,
+            sender_id: data.sender_id
+          }]
+        });
+      } else {
+        this.setState({ messageData: this.state.messageData })
       }
-      if (message.chatData.status === 107) {
-        this.setState({ messageData: [] });
-      }
+    }
+
+    if (this.props.message.status === 'GET_CHAT_DATA_REQUEST' && message.status === 'GET_CHAT_DATA_FAILED') {
+      this.setState({ loading: false })
+      this.setState({ messageData: this.state.messageData })
     }
 
     // Recall message list
     if (this.props.message.status === 'SEND_DIRECT_MESSAGE_REQUEST' && message.status === 'SEND_DIRECT_MESSAGE_SUCCESS') {
       if (message.directMessage.status === 200) {
-        getChatData(
+        this.props.getChatData(
           token.tokenInfo.token,
           {
             product_id: data.product_id,
@@ -73,6 +120,11 @@ class ChatRoomPage extends Component {
         );
       }
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId)
+    this.intervalId = null
   }
 
   onItemSelect(rowData, rowID) {
@@ -163,11 +215,11 @@ class ChatRoomPage extends Component {
     }
 
     return (
-      <Container title={userName} type="detail">
+      <Container title={userName} type="chat">
         <LoadingSpinner visible={loading } />
 
         <View style={styles.container}>
-          <KeyboardScrollView>
+          <KeyboardAwareScrollView keyboardDismissMode="on-drag" keyboardShouldPersistTaps="handled">
             <View style={styles.container}>
               <View style={styles.messageContainer}>
                 <ListView
@@ -207,7 +259,7 @@ class ChatRoomPage extends Component {
 
               </View>
             </View>
-          </KeyboardScrollView>
+          </KeyboardAwareScrollView>
         </View>
       </Container>
     );
@@ -224,6 +276,7 @@ const mapStateToProps = ({ message, token, user }) => ({
 const mapDispatchToProps = dispatch => ({
   getChatData: (token, data) => dispatch(getChatData(token, data)),
   sendMessage: (token, data) => dispatch(sendMessage(token, data)),
+  updateUnreadMessages: (token, data) => dispatch(updateUnreadMessages(token, data)),
 })
 
 ChatRoomPage.propTypes = {

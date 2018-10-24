@@ -29,13 +29,13 @@ class MapButtonListComponent extends Component {
   }
 
   componentWillMount() {
-    const { token, user, getChatUserList } = this.props;
+    const { token, user } = this.props;
 
     this.animatedMapValue = new Animated.Value(170)
     this.animatedListValue = new Animated.Value(0)
 
     if (user.userInfo) {
-      getChatUserList(
+      this.props.getChatUserList(
         token.tokenInfo.token,
         {
           user_id: user.userInfo.user.customer_id,
@@ -63,7 +63,7 @@ class MapButtonListComponent extends Component {
 
     if (this.props.message.status === 'GET_CHAT_USER_REQUEST' && message.status === 'GET_CHAT_USER_SUCCESS') {
       if (message.chatUserList.status === 200) {
-        this.setState({ messageCount: message.chatUserList.messages.length });
+        this.setState({ messageCount: message.totalUnreadMsgCount });
       }
     }
   }
@@ -80,6 +80,7 @@ class MapButtonListComponent extends Component {
 
   render() {
     const { btnStatus, user, packages } = this.props;
+
     const animatedMapStyle= { bottom: this.animatedMapValue }
     const animatedListStyle= { bottom: this.animatedListValue }
 

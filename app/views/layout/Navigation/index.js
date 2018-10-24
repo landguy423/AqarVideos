@@ -29,7 +29,11 @@ class Navigation extends Component {
   }
 
   onBack() {
-    Actions.pop({ refresh: {} });
+    if (this.props.type === 'chat') {
+      Actions.MyMessage({ refresh: {} })
+    } else {
+      Actions.pop({ refresh: {} });
+    }
   }
 
   render() {
@@ -45,8 +49,7 @@ class Navigation extends Component {
           </View>
         </View>
       )
-    }
-    else if (type === 'detail') {
+    } else if (type === 'detail' || type === 'chat') {
       return (
         <View style={styles.container_detail}>
           <View style={styles.backIconWrapper}>

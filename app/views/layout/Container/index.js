@@ -31,7 +31,7 @@ class Container extends Component {
     const { isMenuOpen } = this.state;
     const menuComponent = <Sidebar menuState={() => this.toggleSideMenu()} />;
 
-    if (type === 'detail' || type === 'register') {
+    if (type === 'detail' || type === 'chat' || type === 'register') {
       return (
         <View>
           <Navigation menuState={() => this.toggleSideMenu()} { ...this.props } />

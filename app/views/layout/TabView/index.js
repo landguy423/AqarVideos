@@ -62,7 +62,6 @@ class TabView extends Component {
     }
 
     if (myLocation === null || !myLocation) {
-      console.log('POSITON: ', myLocation)
       this.watchID = navigator.geolocation.watchPosition((position) => {
         let region = {
           latitude: position.coords.latitude,

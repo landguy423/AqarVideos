@@ -82,7 +82,8 @@ class MainPage extends Component {
     const { tokenInfo, allProduct } = this.props
     const { tabIndex, isBtnList, btnItem, btnStatus } = this.state;
     const title = btnStatus === 'list' ? I18n.t('main.list') : I18n.t('main.map');
-    console.log('ALL_PRODUCTS: ', allProduct)
+    // console.log('ALL_PRODUCTS: ', allProduct)
+
     return (
       <Container title={title}>
         <View style={styles.container}>
